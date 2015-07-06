@@ -13,18 +13,18 @@
  */
 
  .login{
-              background: url("../assets/background.jpg") no-repeat;
-              background-size: cover;
-              margin: auto;
-              position: relative;
-              left: 0;
-              right: 0;
-              bottom: 0;
-              top: 0;
-              min-height: 50%;
-              min-width: 50%;
-              background-position:fixed;
-          }
+  background: url("../assets/background.jpg") no-repeat;
+  background-size: cover;
+  margin: auto;
+  position: relative;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  min-height: 50%;
+  min-width: 50%;
+  background-position:fixed;
+  }
 
        .front-card {
           width:806px;

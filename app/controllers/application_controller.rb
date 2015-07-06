@@ -3,6 +3,12 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   #filters
+
+ if Rails.env == "production"
+   puts "Am on production"
+ else
+  puts "NO..."
+ end
   
   before_filter :last_requested_at
   before_action :load_users
