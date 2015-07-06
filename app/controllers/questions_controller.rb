@@ -17,6 +17,7 @@ class QuestionsController < ApplicationController
         format.xml
         format.html
         format.js
+        format.json
       end 
      
   end
@@ -122,7 +123,7 @@ class QuestionsController < ApplicationController
     @question = Question.new(question_params)
     @question.user = current_user
       if @question.save
-       redirect_to @question,  :notice=>"Question was successfully created."  
+       redirect_to @question,  :notice =>"Question was successfully created."
       else
        render action: 'new' 
     end
