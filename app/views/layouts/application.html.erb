@@ -3,65 +3,46 @@
 <head>
   <title><%= yield :title %> Inquire</title>
   <%= stylesheet_link_tag    "application", 'ckeditor/ckeditor.js', media: "all", "data-turbolinks-track" => true %>
-   <%= stylesheet_link_tag 'mobile' if mobile_device? %>
+  <%= stylesheet_link_tag 'mobile' if mobile_device? %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
-  
+
   <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-<!--[if lt IE 9]>
+  <!--[if lt IE 9]>
   <script src="../assets/js/html5shiv.js"></script>
   <script src="../assets/js/respond.min.js"></script>
-<![endif]-->
+  <![endif]-->
 
-<!-- Favicons -->
-<link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/ico/apple-touch-icon-144-precomposed.png">
-<link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/ico/apple-touch-icon-114-precomposed.png">
+  <!-- Favicons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/ico/apple-touch-icon-144-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/ico/apple-touch-icon-114-precomposed.png">
   <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/ico/apple-touch-icon-72-precomposed.png">
-                <link rel="apple-touch-icon-precomposed" href="assets/ico/apple-touch-icon-57-precomposed.png">
-                               <link rel="shortcut icon" href="assets/ico/favicon.png">
+  <link rel="apple-touch-icon-precomposed" href="assets/ico/apple-touch-icon-57-precomposed.png">
+  <link rel="shortcut icon" href="assets/ico/favicon.png">
 
 
 </head>
 <body>
-    <%= render :partial => "layouts/nav" %>
- 
-               
+<%= render :partial => "layouts/nav" %>
 
-      
-                
-              <div id="outer-holder">  
-                <div class="outer-holder-left">
-                <% flash.each do |key, value| %>
-                    <div class="<%= flash_class(key) %>">
-                      <%= value %>
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                <% end %>
-              </div>
-         	<%= yield %>
-               <div>
-           <div class="outer-holder-right">
-           <%=render :partial => "layouts/rightside" %> 
-         </div>
-       <div>
-       
-      <style>
-         #outer-holder{
-	    width:960px;
-            margin-left:auto;
-	    margin-right:auto;			
-	}
 
-        .outer-holder-left{
-		float: left;
-		margin-bottom: 40px;
-		width: 735px;                          
-		}
+<div class="container">
+  <div class="row">
+    <div class="col-md-8">
+     <%= yield %>
 
-        .outer-holder-right{
-		float:right;
-                width: 210px;
-		}
-       </style>
+    </div>
+    <div class="col-md-4">
+      <%= render :partial => "layouts/rightside" %>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
 
 
 </body>
