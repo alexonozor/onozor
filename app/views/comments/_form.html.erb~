@@ -1,0 +1,17 @@
+<%= form_for @comment do |f| %>
+  
+  <br />
+  <div class="field">
+  
+    <%= f.text_area :body, class:"form-control" %>
+  </div>
+  <div class="field">
+    <%= f.hidden_field :user_id %>
+    <%= f.hidden_field :parent_id %>
+    <%= f.hidden_field :commentable_type %>
+    <%= f.hidden_field :commentable_id %>
+  <br />
+  <div class="actions">
+    <%= f.submit (@comment.new_record? ? "Post comment" : "Update comment"), class:'btn btn-primary btn-lg' %>
+  </div>
+<% end %>

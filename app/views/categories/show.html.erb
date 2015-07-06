@@ -1,0 +1,9 @@
+<div id="questions">
+<div class="bs-callout bs-callout-danger">
+      <h4><%= @category.name %></h4>
+      <p><%=strip_tags (@category.description) %></p>
+    </div>
+
+<%= render :partial => @category.questions %>
+
+</div>

@@ -1,0 +1,44 @@
+
+<% title "#{@question.name}"%>
+
+<div class="toolbar">
+  <div class="toolbar-inner">
+    <%= link_to "<i class='glyphicon glyphicon-star darkgray  #{@question.favourited?(current_user)? 'favourite-saved' : 'favoured' if current_user }'></i> ".html_safe, toggle_favourite_path(@question.id), :method => "post", :remote => true %>
+
+    <% if current_user && current_user.can_vote_for?(@question) %>
+     <%= link_to  ("<i class='glyphicon glyphicon-thumbs-up darkgray'></i>").html_safe, vote_question_path(@question.id, value: 1), method: "post", class:'link ajax-submit', alt:'Up Vote'  %>
+     <span class="badge2" id="open-badge"><%= @question.answers_count %></span>
+     <%= link_to ("<i class='glyphicon glyphicon-thumbs-down darkgray'></i>").html_safe, vote_question_path(@question.id, value: -1), :method=>"POST", class:'link ajax-submit' %>
+     <a href="#" data-popover=".popover-action" class="open-popover link "><i class="glyphicon glyphicon-tasks darkgray \"></i></a>
+    <% else %>
+
+        <%= link_to  ("<i class='glyphicon glyphicon-thumbs-up darkgray'></i>").html_safe, vote_question_path(@question.id, value: 1), :method=>"POST", class:'link ajax-submit', alt:'Up Vote' %>
+        <span class="badge2" id="open-badge"><%= @question.answers_count %></span>
+        <%= link_to ("<i class='glyphicon glyphicon-thumbs-down darkgray'></i>").html_safe, vote_question_path(@question.id, value: -1), :method=>"POST", class:'link ajax-submit'  %>
+        <a href="#" data-popover=".popover-action" class="open-popover link "><i class="glyphicon glyphicon-tasks darkgray"></i></a>
+    <% end %>
+  </div>
+</div>
+
+
+
+
+
+<div class="content-block-title"><%= @question.name %></div>
+
+<div class="content-block">
+  <div class="content-block-inner">
+
+    <%=raw markdown(@question.body) %>
+  </div>
+</div>
+
+
+<%= render "answers/form" %>
+
+
+
+
+
+
+

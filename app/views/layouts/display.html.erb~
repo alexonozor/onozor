@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= yield :title %> INQUIRE</title>
+  <%= stylesheet_link_tag    "application", 'ckeditor/ckeditor.js', media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+
+  <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+  <script src="../assets/js/html5shiv.js"></script>
+  <script src="../assets/js/respond.min.js"></script>
+  <![endif]-->
+
+  <!-- Favicons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/ico/apple-touch-icon-144-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/ico/apple-touch-icon-114-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/ico/apple-touch-icon-72-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" href="assets/ico/apple-touch-icon-57-precomposed.png">
+  <link rel="shortcut icon" href="assets/ico/favicon.png">
+
+
+</head>
+<body>
+<%= render :partial => "layouts/nav" %>
+
+<div class="container">
+  <div class="row clear-top">
+   <div class="col-md-8"><div class="">
+
+ <% flash.each do |key, value| %>
+                    <div class="<%= flash_class(key) %>">
+                      <%= value %>
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+
+                    </div>
+                <% end %>
+<%= yield %></div></div>
+   <div class="col-md-3" style="padding-right:0px; padding-left:0px;"><%= render :partial => "questions/related_questions" %></div>
+  </div>
+</div>
+
+
+
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        if ($('textarea').length > 0) {
+            var data = $('textarea');
+            $.each(data, function(i) {
+                CKEDITOR.replace(data[i].id);
+            });
+        }
+    });</script>
+</body>
+</html>

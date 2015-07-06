@@ -1,0 +1,23 @@
+
+<nav class="users">
+                    <% for user in @user %>
+                     <div class="follow">
+                      <div class="little-timeline">
+                       <div class="litle-profile"><%=image_tag user.avatar.url(:thumb) %></div>
+                       </div>
+                         <div class="gen-content">
+                           <p><%=link_to user.fullname, user %></p>
+                          <p>
+                          <small>
+                           <p><%= user.intrest %></p>  
+                          </small>
+                           </p>
+                          
+                        </div>
+                     </div>
+                        
+                     <% end %>
+             
+              </nav>
+       
+

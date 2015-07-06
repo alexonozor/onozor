@@ -1,0 +1,8 @@
+
+<% if @comment.errors.present? %>
+alert("<%= @comment.errors.full_messages.to_sentence.html_safe %>");
+<% else %>
+$('#new_comment').fadeOut('slow');
+$('#comment_link').fadeIn('slow');
+$("#new_comment_<%= @comment.id %>").append("<%=raw escape_javascript render(@comment) %>");
+<% end %>

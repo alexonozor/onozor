@@ -1,0 +1,13 @@
+
+  <<div class="col-md-1 votes">
+
+		   <% if current_user && current_user.can_vote?(answer) %>
+<h4><%= link_to  (image_tag "arrow-up.png"), vote_answer_path(answer, value: 1), method: "post" %></h4>
+		             <h4><%= answer.votes %></h4>
+<h4><%= link_to (image_tag "arrow-down.png"), vote_answer_path(answer, value: 1), method: "post" %></h4>
+		   <% else %>
+              <h4><%= link_to  (image_tag "arrow-up.png"), vote_answer_path(answer, value: 1), method: "post" %></h4>
+		               <h4><%=  answer.votes %></h4>
+              <h4><%= link_to (image_tag "arrow-down.png"), vote_answer_path(answer, value: 1), method: "post" %></h4>
+		   <% end %>
+                </div>

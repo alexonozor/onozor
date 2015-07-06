@@ -1,0 +1,9 @@
+ <table class="table table-condensed">
+<% for f in @user %>
+  <tr>
+ <td><p><strong><%=link_to f.fullname, f %></strong></p> </td>
+ <td><small> since <%=distance_of_time_in_words_to_now f.created_at %> ago </small></td>
+ <td><%=  render 'follow_form' if signed_in? %></td>
+  </tr>
+ <% end %>
+  </table>

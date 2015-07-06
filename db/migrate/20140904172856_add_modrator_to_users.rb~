@@ -1,0 +1,5 @@
+class AddModratorToUsers < ActiveRecord::Migration
+  def change
+    add_column :users, :modrator, :boolean
+  end
+end

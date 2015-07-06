@@ -1,0 +1,3 @@
+ <%= link_to(t("comment.new"), new_comment_path(:comment => { :commentable_type => parent.id.class.name,
+                                                              :commentable_id => parent.id}),
+                                                              :class => "btn") %>

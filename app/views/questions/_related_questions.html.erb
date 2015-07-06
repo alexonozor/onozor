@@ -1,0 +1,33 @@
+<% if action_name == "show" %>
+<div class="flow">
+<h3>Similar Questions</h3>
+<hr />
+<% for question in @related_questions %>
+ <p class="center"> <%= link_to question.name, question %></p>
+ <hr>
+<% end %>
+
+</div>
+<% end %>
+
+ <div class="flow">
+     <div>
+     <p><a href="#"><span class="glyphicon glyphicon-bullhorn"></span>&nbspCreate an AD</a></p>
+     <hr>
+     <%=image_tag "safe.jpg", :class => "ads" %>
+     <h5><a>Start Your Worldtells Store</a></h5>
+     <p><small> shopify.com
+       You live in the most connected time thus far. Make some money off it. </small></p>
+   </div>
+
+
+ </div>
+
+   <div class="flow">
+     <div>
+      <p><small> © 2014 Overflow &nbsp <a href="#">About</a>&nbsp <a href="#">Help</a>&nbsp <a href="#">Terms</a>&nbsp <a href="#">Privacy</a>
+        <a href="#">Cookies</a>&nbsp <a href="#">Ads</a>&nbsp <a>infoBrand</a>&nbsp <a href="#">Blog</a>&nbsp <a href="#">Status</a> <a href="#">Apps</a> <a>Jobs</a> <a>Advertise</a>
+        &nbsp<a href="#">Businesses</a>&nbsp  <a href="#">Media</a>&nbsp <a href="#">Developers</a></small></p>
+
+     </div>
+ </div>

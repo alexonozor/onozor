@@ -1,0 +1,33 @@
+<% title "All Users" %>
+
+
+<div id="users">
+<div style="background-color:#3B41A7; padding: 5px 5px 0px 5px; color:white;">
+<ul class="nav nav-tabs" id="myTab">
+  <li class="active"><a href="#home" >All users</a></li>
+  <li><a href="#online" class="online" >Online</a></li>
+</ul>
+</div>
+<div align="center">
+<%= form_tag(users_path, :method => "get", class:"navbar-form", :id => "users_search") do %>
+      <div class="form-group">
+          <%= text_field_tag :search, params[:search], placeholder: "Search user", class: "form-control" %>
+         </div>
+          <button class="btn btn-default">search</button>
+      <% end %>
+ </div>
+<div class="tab-content">
+  <div class="tab-pane active" id="home"><%= render "users" %></div>
+  <div class="tab-pane" id="online"></div>
+</div>
+
+
+</div>
+
+
+
+
+ 
+
+
+

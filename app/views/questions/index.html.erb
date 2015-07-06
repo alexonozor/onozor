@@ -1,0 +1,10 @@
+<% title "Questions" %>
+
+<%= content_tag :div, id: "questions", data: { url: questions_path(@question) } do %>
+<%= render @questions %>
+<% end %>
+
+<%= will_paginate @questions %>
+
+
+

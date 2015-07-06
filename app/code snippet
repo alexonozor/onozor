@@ -1,0 +1,26 @@
+<div class="flow question-body" data-question="<%= question.created_at.to_i %>" data-id="<%= question.id %>">
+      <div class="row">
+        <div class="col-md-2 profile-area">
+          
+          <%=link_to (image_tag question.user.avatar(:thumbnails), :class=>"profile-pix"), user_path(question.user.slug) %>
+          <small><%= question.user.title %>  <%=link_to question.user.slug, user_path(question.user.slug) %></small>
+        </div>
+
+        <div class="col-md-9 bod question-headlines">
+          <strong><%=link_to question.name, question %><a  class="glyphicon glyphicon-share-alt share"></a>
+            <% if user_signed_in? %>
+                <%= link_to "", toggle_favourite_path(question.id), :method => "post", :class => "glyphicon glyphicon-star favourite", title:"Add to favourite", :remote => true %>
+            <% end -%>
+          </strong>
+           <p class="<%= question.vote_status %>"><small><i class="glyphicon glyphicon-time"></i> <%= time_ago_in_words(question.created_at) %> ago</small></p>
+          <p style=" text-align:left; color:black;"><%=  (truncate strip_tags(question.body), length: 150) %></p>
+          
+          <p class="pull-left lighter">
+            <small class="lighter"><p  class="glyphicon glyphicon-tags"></p><%= raw question.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %> &nbsp <p class="glyphicon glyphicon-question-sign"></p>
+            <%=link_to  (pluralize (question.answers.size ), "Answer"), question, anchor: "answers"   %>
+             &nbsp <i class="glyphicon glyphicon-subtitles"></i> <%=link_to question.category.name, question.category if question.category  %>
+          </small>
+         </p>
+        </div>
+      </div>
+    </div>

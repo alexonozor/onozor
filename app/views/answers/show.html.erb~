@@ -1,0 +1,16 @@
+<p id="notice"><%= notice %></p>
+
+
+ <div>
+  <span class="user">
+        <%= link_to( image_tag(answer.user.avatar.url(:thumb), :border =>"0"), user_path(answer.user)) %>
+    <p><%=raw answer.body %></p>
+    <%= link_to answer.user.username, user_path(answer.user) %> &middot;
+    <span class="user-<%=answer.user.id%>-reputation"></span> &middot;
+    <%= distance_of_time_in_words_to_now answer.created_at %></span>
+   <%= link_to("edit", edit_answer_path(:question_id => question.id, :id => answer.id), :class => "edit") if (answer.user == current_user) %>
+
+ </div>
+
+
+

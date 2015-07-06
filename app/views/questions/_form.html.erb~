@@ -1,0 +1,57 @@
+<%= simple_form_for(@question, html: {class: 'form-horizontal' }) do |f| %>
+  <% if @question.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@question.errors.count, "error") %> prohibited this question from being saved:</h2>
+
+      <ul>
+      <% @question.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+    <div class="form-group">
+      <label for="inputEmail1" class="col-lg-2 control-label">Question</label>
+      <div class="col-lg-10">
+
+        <%= f.text_field :name, :class=>"form-control", :id=>"inputEmail1", :placeholder=>"Question name", :label =>false %>
+      </div>
+    </div>
+
+
+
+    <%= f.text_area :body, :as => :ckeditor, :input_html => { :ckeditor => {:toolbar => 'Full'} } %>
+
+    <br>
+
+    <div class="alert alert-info">
+    How to Tag
+    A tag is a keyword or label that categorizes your question with other, similar questions.
+    ► favor existing popular tags; avoid creating new tags
+    ► use common abbreviations
+    ► don't include synonyms
+    ► combine multiple words into single-words with dashes
+    ► maximum of 5 tags, 25 chars per tag
+    ► tag characters: [a-z 0-9 + # - .]
+    ► delimit tags by space, semicolon, or comma
+      <a href="#">popular tags »</a>
+  </div>
+
+   <%= f.association :category, :class=>"form-control" %>
+
+    <%= f.input :tag_list, "data-pre" => @question.alltags.map(&:attributes).to_json %> <p> I can't find the tags that Marched my question <a href="../alltags/new">Create it!</a>
+    <br />
+
+    <div class="checkbox">
+      <label>
+        <%= f.check_box :send_mail %> <%= label :send_mail, "Send me new responses to my posts via email (settings)" %>
+      </label>
+    </div>
+
+    <br />
+
+   <%= f.submit "Flow it", :class=>"btn btn-primary btn-lg btn-block" %>
+   <button type="button" class="btn btn-default btn-lg btn-block">Rest Flow</button>
+
+<% end %>

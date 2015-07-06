@@ -1,0 +1,3 @@
+ $('#answers').append("<%= escape_javascript(render(@answer)) %>");
+ $('cke_editable cke_editable_themed cke_contents_ltr cke_show_borders')[0].reset();
+

@@ -1,0 +1,12 @@
+---
+:User:
+  :avatar:
+  - :home
+  - :medium
+  - :thumb
+  - :thumbnails
+  - :thumbs
+:Ckeditor::Picture:
+  :data:
+  - :content
+  - :thumb

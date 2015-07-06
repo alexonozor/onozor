@@ -1,0 +1,29 @@
+
+
+
+<div class="col-md-1 bod votes">
+
+
+             <% if current_user && current_user.can_vote_for?(@question) %>
+<h4><%= link_to (image_tag "arrow-up.png"), vote_question_path(@question.id, value: 1), method: "post", class:'vote-direction', alt:'Up Vote' , remote: true %></h4>
+                 <h5 id='question_vote_count' class="<%= @question.vote_status %> center"><strong><%=  @question.votes %></strong></h5>
+<h4><%= link_to (image_tag "arrow-down.png"), vote_question_path(@question.id, value: -1), method: "post", remote: true %></h4>
+             <% else %>
+
+           <h4><%= link_to (image_tag "arrow-up.png"), vote_question_path(@question.id, value: 1), method: "post", class:'vote-direction' %></h4>
+                 <h5 class="<%= @question.vote_status %> center"><strong><%=  @question.votes %></strong></h5>
+<h4><%= link_to (image_tag "arrow-down.png"), vote_question_path(@question.id, value: -1), method: "post"  %></h4>
+              <% end %>
+
+
+  <% if user_signed_in? %>
+      <div class=" id='favourite-question-<%=@question.id%>' ">
+        <%= link_to "<i class='glyphicon glyphicon-star center #{@question.favourited?(current_user)? 'favourite-saved' : 'favoured' }'></i> ".html_safe, toggle_favourite_path(@question.id), :method => "post", :remote => true %>
+      </div>
+  <% end -%>
+
+        </div>
+
+
+
+

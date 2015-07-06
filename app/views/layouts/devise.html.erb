@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title> Sign up | Sign in Overflow</title>
+  <%= stylesheet_link_tag    "application", 'ckeditor/ckeditor.js', media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+
+  <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+  <script src="../assets/js/html5shiv.js"></script>
+  <script src="../assets/js/respond.min.js"></script>
+  <![endif]-->
+
+  <!-- Favicons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/ico/apple-touch-icon-144-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/ico/apple-touch-icon-114-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/ico/apple-touch-icon-72-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" href="assets/ico/apple-touch-icon-57-precomposed.png">
+  <link rel="shortcut icon" href="assets/ico/favicon.png">
+
+
+</head>
+<body class="login">
+  
+  
+ <header class="navbar navbar-inverse navbar-fixed-top bs-docs-na" role="banner">
+  <div class="container">
+    <nav class="nav navbar-nav pull-right">
+   <li>
+   <%= form_for(resource, html: {class:"form-inline navbar-form navbar-right" }, url: session_path(resource_name)) do |f| %>
+  <div class="form-group">
+    <label class="sr-only" for="exampleInputEmail2">Email address</label>
+    <%= f.email_field :email, required: true, :label=> :false, :class=>"form-control", :placeholder=>"Enter email" %>
+  </div>
+  <div class="form-group">
+    <label class="sr-only" for="exampleInputPassword2">Password</label>
+    <%= f.password_field :password, required: true, :label=> :false, :class=>"form-control", :placeholder=>"Enter password" %>
+  </div>
+  <div class="checkbox">
+    <label>
+      <%= f.check_box :remember_me, :label=> :false, as: :boolean if devise_mapping.rememberable? %> Remember me
+    </label>
+  </div>
+  <button type="submit" class="btn btn-success"><i class="glyphicon glyphicon-log-in"></i>&nbspSign in</button>
+<% end %>
+
+  </li>
+   </nav>
+    </div>   
+    </header>
+    
+
+  
+
+
+   <div class="front-card">
+     <% flash.each do |key, value| %>
+                    <div class="<%= flash_class(key) %>">
+                      <%= value %>
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+
+                    </div>
+                <% end %>
+     <div class="row">
+             <div class="col-md-7 six">
+              <h1> Welcome to Overflow.</h1>
+<p class="lead" style="color:#fff">Experience exicting moments and share ideas with professionals, getting Satisfying  answers to questions in all Categories of life.<br/> Share & Flow</p>    
+             </div>
+           <div class="col-md-5 col-md-offset-0">
+                 <%= yield %>  
+           </div> 
+
+     </div>
+
+ <div class="footer">     
+ <nav class="footer"><p><small> © 2014 Overflow &nbsp <a href="#">About</a>&nbsp <a href="#">Help</a>&nbsp <a href="#">Terms</a>&nbsp <a href="#">Privacy</a>
+        <a href="#">Cookies</a>&nbsp <a href="#">Ads</a>&nbsp <a>infoBrand</a>&nbsp <a href="#">Blog</a>&nbsp <a href="#">Status</a> <a href="#">Apps</a> <a>Jobs</a> <a>Advertise</a>
+        &nbsp<a href="#">Businesses</a>&nbsp  <a href="#">Media</a>&nbsp <a href="#">Developers</a></small></p></nav>
+   </div></div>
+
+
+
+
+
+ 
+</body>
+</html>

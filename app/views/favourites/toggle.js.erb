@@ -1,0 +1,7 @@
+<% if @question.favourited?(current_user) %>
+$('#favourite-question-<%=@question.id %> > a').css('color', 'black');
+alert('<%= @message.html_safe %>');
+<% else %>
+$('#favourite-question-<%=@question.id %> > a').attr('class', '');
+alert('<%= @message.html_safe %>');
+ <% end %>

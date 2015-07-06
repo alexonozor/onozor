@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  body: MyText
+  question_id: 1
+  user_id: 1
+  accepted: 1
+  body_plain: MyText
+  send_mail: false
+
+two:
+  body: MyText
+  question_id: 1
+  user_id: 1
+  accepted: 1
+  body_plain: MyText
+  send_mail: false

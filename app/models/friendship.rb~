@@ -1,0 +1,10 @@
+class Friendship < ActiveRecord::Base
+ #association
+ belongs_to :user
+ belongs_to :friend, :class_name => "User"
+ 
+   #validation
+   validates_uniqueness_of :friend
+
+  
+end

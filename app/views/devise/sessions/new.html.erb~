@@ -1,0 +1,8 @@
+
+
+<div class="flow" style="border: 1px solid #e1e8ed; width:300px;">
+ <%= render :template => "devise/registrations/new" %>
+</div>
+
+
+

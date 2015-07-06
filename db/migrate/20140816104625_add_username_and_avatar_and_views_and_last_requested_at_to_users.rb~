@@ -1,0 +1,9 @@
+class AddUsernameAndAvatarAndViewsAndLastRequestedAtToUsers < ActiveRecord::Migration
+  def change
+    add_column :users, :username, :string
+    add_column :users, :avatar, :string
+    add_column :users, :views, :string
+    add_column :users, :views, :integer
+    add_column :users, :last_requested_at, :datetime
+  end
+end
