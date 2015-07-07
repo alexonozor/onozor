@@ -24,44 +24,22 @@
 </head>
 <body>
     <%= render :partial => "layouts/nav" %>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8">
+          <%= yield %>
+        </div>
+        <div class="col-md-4">
+          <%=render :partial => "layouts/rightside" %>
+        </div>
+      </div>
+
+    </div>
 
 
 
 
 
-              <div id="outer-holder">
-                <div class="outer-holder-left">
-                <% flash.each do |key, value| %>
-                    <div class="<%= flash_class(key) %>">
-                      <%= value %>
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                <% end %>
-              </div>
-         	<%= yield %>
-               <div>
-           <div class="outer-holder-right">
-           <%=render :partial => "layouts/rightside" %>
-         </div>
-       <div>
-
-      <style>
-         #outer-holder{
-	    width:960px;
-            margin-left:auto;
-	    margin-right:auto;
-	}
-
-        .outer-holder-left{
-		float: left;
-		margin-bottom: 40px;
-		width: 735px;
-		}
-
-        .outer-holder-right{
-		float:right;
-                width: 210px;
-		}
-       </style>
 
 
 </body>

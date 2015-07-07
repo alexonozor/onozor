@@ -67,11 +67,11 @@
 
         </div>
           <% end %>
-           <%= link_to(t("Add comment"), new_comment_path(:comment => { :commentable_type => @question.class.name,
+           <%= link_to "Add comment", new_comment_path(:comment => { :commentable_type => @question.class.name,
                                                               :commentable_id => @question.id}),
                                                               :remote => true,
                                                               :class => "btn comment_link",
-                                                               id:"comment_link"  ) %>
+                                                               id:"comment_link"   %>
          </div>
         </div>
                       

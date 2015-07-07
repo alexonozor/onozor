@@ -107,6 +107,7 @@ class QuestionsController < ApplicationController
     @tags = Question.tag_counts_on(:tags)
     respond_to do |format|
       format.xml
+      format.json
       format.mobile { render :layout => "application" }
     end
   end
@@ -123,7 +124,7 @@ class QuestionsController < ApplicationController
     @question = Question.new(question_params)
     @question.user = current_user
       if @question.save
-       redirect_to @question,  :notice =>"Question was successfully created."
+       redirect_to @question,  :notice => "Question was successfully created."
       else
        render action: 'new' 
     end
@@ -137,6 +138,7 @@ class QuestionsController < ApplicationController
         format.xml
         format.html { redirect_to :back, notice: "Thank you for voting." }
         format.js { render 'vote.js.erb' }
+        format.json
         format.mobile { render 'vote.js.erb' }
       end   
     else
@@ -185,7 +187,8 @@ class QuestionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
  def question_params
-  params.require(:question).permit(:name, :body, :user_id, :views, :answers_count, :permalink, :answer_id, :tag_list, :send_mail, :category_id)
+  params.require(:question).permit(:name, :body, :user_id, :views, :answers_count, :permalink,
+                                   :answer_id, :tag_list, :taggin_count,  :send_mail, :category_id)
  end
 
  
