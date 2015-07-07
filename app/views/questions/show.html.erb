@@ -62,11 +62,12 @@
         <table>
         <%= render @question.comments %>
         </table>
-          <div id="comment-form"></div>
+
 
 
         </div>
           <% end %>
+         <div id="comment-form"></div>
            <%= link_to "Add comment", new_comment_path(:comment => { :commentable_type => @question.class.name,
                                                               :commentable_id => @question.id}),
                                                               :remote => true,

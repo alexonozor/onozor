@@ -34,8 +34,8 @@ NairaOverflow::Application.configure do
       :address              => "smtp.gmail.com",
       :port                 => 587,
       :domain               => 'gmail.com',
-      :user_name            => 'alexonozor',
-      :password             => 'onozorgheneho1',
+      :user_name            => 'alex.obogbare@andela.com',
+      :password             => 'onozorgheneho',
       :authentication       => 'plain',
       :enable_starttls_auto => true
     }

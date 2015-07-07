@@ -1,7 +1,7 @@
 class UserMailer < ActionMailer::Base
 
 
-  default :from => "Inquire.com"
+  default :from => "alex.obogbare@andela.com"
 
   def answer_update(answer)
     @question = answer.question
