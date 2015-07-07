@@ -146,7 +146,7 @@ class QuestionsController < ApplicationController
     else
       respond_to do |format|
         format.xml
-        format.html { redirect_to :back, alert: "Unablet to vote, perhaps you already did."}
+        format.html { redirect_to :back, alert: "Unable to vote, perhaps you already did."}
         format.js {render 'fail_vote.js.erb'}
         format.mobile { render 'vote.js.erb' }
       end 

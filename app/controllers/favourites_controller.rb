@@ -14,12 +14,12 @@ class FavouritesController < ApplicationController
     @question = Question.find params[:id]
     respond_to do |format|
       if @favourite.blank?
-        @message = "You successfully saved this question from your favourites!"
+        @message = "favorited!"
         @class = "favourite-saved"
         @favourite = Favourite.new({:question => @question, :user => current_user})
         @favourite.save
       else
-        @message = "You successfully deleted this question from your favourites!"
+        @message = "Remove as your favourite"
         @class = "favoured"
         @favourite.destroy
       end
