@@ -32,8 +32,6 @@
         <ul class="dropdown-menu">
           <li><a href="../users/edit">Edit Profile</a></li>
           <li class="divider"><a href="../users/<%= current_user.slug %>">View Profile</a></li>
-          <li><a href="../help">Help</a></li>
-          <li><a href="../keyboard">Keyboard Shortcut</a></li>
           <li><li><%= link_to "<i class='glyphicon glyphicon-log-out'></i> Sign out".html_safe, destroy_user_session_path, :method => :delete %></li></li>
         </ul>
       </li>
@@ -57,7 +55,7 @@
    <a href="/questions/active" type="button" class="btn btn-default <% if action_name == 'active' %>active <% end %>""><i class="glyphicon glyphicon-sort-by-attributes"></i> Active</a>
 
     
-    <a href="/questions/advise" type="button" class="btn btn-default col-md-offset-1 "><i class="glyphicon glyphicon-question-sign" data-no-turbolink></i> Ask Question</a>
+    <a href="/questions/advise" type="button" class="btn btn-info col-md-offset-1 "><i class="glyphicon glyphicon-question-sign" data-no-turbolink></i> Ask Question</a>
    </div> 
   </div>
 </div>

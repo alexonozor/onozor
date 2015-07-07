@@ -72,25 +72,20 @@ body {
 }
 
 
-
-/*
- * Main navigation
- *
- * Turn the `.navbar` at t.bs-old-docs {
-padding: 44px;
-color: #777;
-/* background-color: #fafafa; */
-/* border-top: 1px solid #fff; */
-/* position: fixed; */
-left: 0;
-right: 0;
-z-index: 1000;
-/* border-width: 0 0 1px; */
-margin-bottom: -50px;
-/* border-bottom: 1px solid #e1e8ed; */
-/* border-bottom: 1px solid rgba(0,0,0,0.05); */
-}he top of the docs purple.
- */
+.bs-old-docs {
+    padding: 37px 0px 70px 0px;
+    color: #777;
+    /* background-color: #fafafa; */
+    /* border-top: 1px solid #fff; */
+    /* position: fixed; */
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    /* border-width: 0 0 1px; */
+    margin-bottom: -50px;
+    /* border-bottom: 1px solid #e1e8ed; */
+    /* border-bottom: 1px solid rgba(0,0,0,0.05); */
+}
 
 .bs-docs-nav {
   text-shadow: 0 -1px 0 rgba(0,0,0,.15);
@@ -430,18 +425,18 @@ margin-bottom: -50px;
 }
 
 .bs-old-docs {
-padding: 64px 0px 95px 0px;
-color: #777;
-/* background-color: #fafafa; */
-/* border-top: 1px solid #fff; */
-/* position: fixed; */
-left: 0;
-right: 0;
-z-index: 1000;
-/* border-width: 0 0 1px; */
-margin-bottom: -50px;
-/* border-bottom: 1px solid #e1e8ed; */
-/* border-bottom: 1px solid rgba(0,0,0,0.05); */
+    padding: 34px 0px 77px 0px;
+    color: #777;
+    /* background-color: #fafafa; */
+    /* border-top: 1px solid #fff; */
+    /* position: fixed; */
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    /* border-width: 0 0 1px; */
+    margin-bottom: -50px;
+    /* border-bottom: 1px solid #e1e8ed; */
+    /* border-bottom: 1px solid rgba(0,0,0,0.05); */
 }
 .bs-old-docs strong {
   color: #555;
