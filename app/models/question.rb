@@ -4,7 +4,7 @@ class Question < ActiveRecord::Base
   acts_as_taggable_on :tags
   acts_as_tagger
   before_validation :set_permalink
-  has_paper_trail
+  #has_paper_trail
   has_ancestry
 
  extend FriendlyId

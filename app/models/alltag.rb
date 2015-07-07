@@ -16,10 +16,7 @@ class Alltag < ActiveRecord::Base
 
    def strip_tags
     if name.present?
-       
      self.name = name.titleize.strip.gsub(' ', '-') 
     end  
    end
-
-
 end
