@@ -1,114 +1,68 @@
-<div class="flow">
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, multiple: :true, :role=>"form" }) do |f| %>
+    <% if @user.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@user.errors.count, "error") %> prohibited your account from being created:</h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, multiple: :true, :role=>"form", :class=>"form-horizontal" }) do |f| %>
- <div class="row"> 
-
-  <% if @user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@user.errors.count, "error") %> prohibited your account from being created:</h2>
-
-      <ul>
-      <% @user.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-  
-     <%= f.select :title,  [:Mr, :Mrs, :Miss, :Dr, :Prof, :Engr, :Bar, :Pharm,], class:"form-control"   %>
-   
-  <div class="form-inputs">
-     <div class="form-group">
-    <%= f.text_field :username, class:"form-control" %>
-   </div>
-   </div>
-
-  <div class="form-group"> 
-   <div class="col-lg-4">
-   <label>First name</label>
-   <%= f.text_field :first_name, class:"form-control"   %>
-  </div>
-  </div>   
-
-    <div class="form-group">
-    <div class="col-lg-4">
-    <label>First name</label>
-    <%= f.text_field :last_name,  class:"form-control" %>
-    </div>
-    </div>  
- 
-     <%= f.select :gender,  [:Male, :Female], :prompt => 'Select Gender'  %>
-
-   <div class="form-group">
-   <div class="col-lg-6">
-    <label>Biography</label>
-     <%= f.text_area :bio, class:"form-control", rows:"3" %>
-    </div>
-    </div> 
- 
-      <div class="form-group">
-       <div class="col-lg-4">
-       <label>Intrest</label>
-      <%= f.text_field :intrest, class:"form-control" %>
-      </div>
-      </div>   
- 
-      <div class="form-group">
-      <div class="col-lg-4">
-       <label>Occupation</label>
-       <%= f.text_field :occupation, class:"form-control" %>
-       </div>
-       </div>      
- 
-   <div class="form-group">
-    <div class="col-lg-4">
-     <label for="exampleInputEmail1">Email address</label>
-    <%= f.text_field :email, class:"form-control", id:"exampleInputEmail1", placeholder:"Enter email"  %>
-    </div>
-    </div> 
-  
-    <div class="form-group">
-     <div class="col-lg-4">
-    <label for="exampleInputFile">Profile Picture</label>
-    <%= f.file_field :avatar, id:"exampleInputFile"  %>
-    <p class="help-block">Please upload a profile picture Max (5mb).</p>
-  </div>
-  </div>
-    
-    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-      <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
+          <ul>
+            <% @user.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
     <% end %>
-    
-    <div class="form-input">
-    <div class="col-lg-4">
-     <label for="exampleInputEmail1">Password</label>
-    <%= f.password_field :password, hint: "leave it blank if you don't want to change it", class:"form-control", id:"exampleInputEmail1", placeholder:"password" %>
-     </div>
-     </div>     
-  
-  <div class="form-inputs">
-     <div class="form-group">
-     <label for="exampleInputEmail1">Password comfirmation</label>
-    <%= f.password_field :password_confirmation, class:"form-control", id:"exampleInputEmail1", placeholder:"password" %>
-   </div>
- </div> 
- 
-   <div class="form-inputs">
-     <div class="form-group">
-     <label for="exampleInputEmail1">Current Password</label>
-    <%= f.password_field :current_password, hint: "we need your current password to confirm your changes",  class:"form-control", id:"exampleInputEmail1", placeholder:"current password" %>
-  </div>
-  
 
-  <div class="form-actions">
-    <button :class="btn" >Update</button>
+    <div class="form-group">
+    <label for="exampleInputEmail1">Username</label>
+      <%= f.text_field :username, class:"form-control" %>
   </div>
+  <div class="form-group">
+    <label>First name</label>
+    <%= f.text_field :first_name, class:"form-control"   %>
+  </div>
+
+    <div class="form-group">
+      <label>last name</label>
+      <%= f.text_field :last_name, class:"form-control"   %>
+    </div>
+
+    <div class="form-group">
+      <label>Gender</label>
+      <%= f.select :gender,  [:Male, :Female], :prompt => 'Select Gender', class:"form-control"  %>
+    </div>
+
+    <div class="form-group">
+      <label>First name</label>
+      <%= f.text_area :bio, class:"form-control", rows:"3" %>
+    </div>
+
+    <div class="form-group">
+      <label>First name</label>
+      <%= f.text_field :first_name, class:"form-control"   %>
+    </div>
+
+    <div class="form-group">
+      <label>First name</label>
+      <%= f.text_field :first_name, class:"form-control"   %>
+    </div>
+
+    <div class="form-group">
+      <label>First name</label>
+      <%= f.text_field :first_name, class:"form-control"   %>
+    </div>
+
+  <div class="form-group">
+    <label for="exampleInputFile">File input</label>
+    <input type="file" id="exampleInputFile">
+    <p class="help-block">Example block-level help text here.</p>
+  </div>
+  <div class="checkbox">
+    <label>
+      <input type="checkbox"> Check me out
+    </label>
+  </div>
+
+
+  <%= f.submit "Update  Account", class:"btn btn-default" %>
 <% end %>
-</div>
-<h3>Cancel my account</h3>
 
-<p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-<%= link_to "Back", :back %>
 

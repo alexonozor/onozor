@@ -4,11 +4,6 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   #filters
 
- if Rails.env == "production"
-   puts "Am on production"
- else
-  puts "NO..."
- end
   
   before_filter :last_requested_at
   before_action :load_users
@@ -20,6 +15,10 @@ class ApplicationController < ActionController::Base
   def load_category
     @category  = Category.limit(10)
   end
+
+  layout :layout_by_resource
+
+
 
   private
   def mobile_device?
@@ -95,5 +94,12 @@ class ApplicationController < ActionController::Base
     current_user.update_attribute(:last_requested_at,  Time.now) if current_user.present?
   end
 
+  protected
+
+  def layout_by_resource
+    if devise_controller? && resource_name == :user && action_name == "edit"
+     "application"
+    end
+  end
 
 end
