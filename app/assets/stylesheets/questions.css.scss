@@ -334,6 +334,30 @@ a{
 }
 
 
+.post_form{
+  height: 900px;
+  border-radius: 0px;
+}
+
+.form-header{
+  width: 100%;
+  border: 1px solid #CCCCCC;
+  border-bottom: none;
+  nav {
+    padding: 10px;
+    a{
+      padding: 10px;
+    }
+  }
+}
+
+.editing-help{
+  width: 100%;
+  background: #FFF7E5;
+  height: 200px;
+  display: none;
+  padding: 10px;
+}
 
 
 

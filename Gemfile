@@ -62,6 +62,7 @@ gem 'paper_trail'
 gem 'will_paginate'
 gem 'redcarpet'
 gem 'albino'
+gem 'nokogiri'
 
 
 

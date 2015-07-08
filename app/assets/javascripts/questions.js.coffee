@@ -11,3 +11,26 @@ jQuery ->
         $('.pagination').fadeIn(500000).html("Fetching more questions...").addClass('flow')
         $.getScript(url)
     $(window).scroll()
+
+
+jQuery ->
+  $('.help-toggle').click ->
+    $('.editing-help').slideToggle('fast')
+
+
+jQuery ->
+  $('.question-title').focus ->
+    $('.error-holder').addClass('has-error')
+
+jQuery ->
+  $('.question-title').keydown ->
+    if this.value.length >= 10
+      $('.error-holder').removeClass('has-error')
+    else
+      $('.error-holder').addClass('has-error')
+
+
+
+
+
+

@@ -85,7 +85,7 @@
 			             <% else %>
 			            <h3 class="text-warning border-bottom">
                                    <strong style="text-transformation: capiterlize">
-                                  <%= pluralize @question.answers_count, "ANSWER" %></strong></h3>
+                                  <%= pluralize @question.answers_count, "Answer" %></strong></h3>
 				 <div id="answers">
 				<%= render :partial => @question.answers %>
 			       </div>
@@ -96,4 +96,4 @@
 
 	 
  
-	
+	<%= "<script>alert('damage')</script>".html_safe %>
