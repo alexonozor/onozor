@@ -9,6 +9,7 @@ class ApplicationController < ActionController::Base
   before_action :load_users
   before_action :configure_devise_permitted_parameters, if: :devise_controller?
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
+  rescue_from  ActionView::Template::Error, with: :no_user_found
   before_filter :prepare_for_mobile
   before_filter :load_category
 
@@ -37,12 +38,20 @@ class ApplicationController < ActionController::Base
   
   rescue_from CanCan::AccessDenied do |exception|
       redirect_to root_url, :alert => exception.message
-    end
- 
+  end
+
+
+
   private
+
+  def no_user_found
+    flash[:error] = "You need to signin before continuing"
+    redirect_to root_url
+  end
  
   def record_not_found
-    render  "public/404.html", status: 404, layout: false
+    flash[:error] = "The page you are looking for does not exit"
+    redirect_to root_url
   end
 
   protected
