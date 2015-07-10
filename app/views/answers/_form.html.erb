@@ -3,25 +3,25 @@
   <% if current_user.nil? %>
       <p>First <%= link_to "sign in", new_user_session_path %> to post a Answer.</p>
   <% elsif cannot? :create, :answers %>
-      <p>You have been banned from creating Answers. Please  if you are a legitimate user.</p>
+      <p>You have been banned from creating Answers.</p>
   <% else %>
       <%= form_for @answer, class: 'form-horizontal', :remote => true do |f| %>
 
 
           <div class="form-group">
-            <div class="col-lg-10">
-              <div class="form-header">
+            <div class="col-lg-12">
+              <div class="form-header md_editor">
                 <nav>
-                  <a href="#"><i class="glyphicon glyphicon-bold"></i></a>
-                  <a href="#"><i class="glyphicon glyphicon-italic"></i></a>
-                  <a href="#"><i class="glyphicon glyphicon-link"></i></a>
-                  <a href="#"><i class="glyphicon glyphicon-align-center"></i></a>
-                  <a href="#"><i class="glyphicon glyphicon-align-left"></i></a>
-                  <a href="#"><i class="glyphicon glyphicon-align-right"></i></a>
+                  <a href="#insert_strong" id="add_strong" ><i class="glyphicon glyphicon-bold"></i></a>
+                  <a href="#insert_em" id="add_em"><i class="glyphicon glyphicon-italic"></i></a>
+                  <a href="#insert_link" id="add_link"><i class="glyphicon glyphicon-link"></i></a>
+                  <a href="#insert_ol" id="add_ord_list"><i class="glyphicon glyphicon-list" ></i></a>
+                  <a href="#insert_code" id="insert_code"><i class="glyphicon glyphicon-chevron-left"></i><i class="glyphicon glyphicon-chevron-right"></i></a>
                   <a href="#"><i class="glyphicon glyphicon-question-sign help-toggle"></i></a>
+                  <span class="posting text-info">posting......</span>
                 </nav>
                 <div class="editing-help">
-                  <p>To create code blocks or other preformatted text, indent by four spaces:</p>
+                  <p>To create code blocks or other preformatted text, indent by four spaces, highlight the code  and click on the code icon <b>< ></b></p>
                   <p>This will be displayed in a monospaced font. The first four spaces</p>
                   <p>will be stripped off, but all other whitespace will be preserved.</p> </br>
 

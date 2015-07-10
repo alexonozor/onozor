@@ -72,6 +72,13 @@
            </div> 
 
      </div>
+     <% flash.each do |key, value| %>
+         <div class="<%= flash_class(key) %>">
+           <%= value %>
+           <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+
+         </div>
+     <% end %>
 
  <div class="footer">     
  <nav class="footer"><p><small> © 2014 Overflow &nbsp <a href="#">About</a>&nbsp <a href="#">Help</a>&nbsp <a href="#">Terms</a>&nbsp <a href="#">Privacy</a>

@@ -19,7 +19,7 @@ class FavouritesController < ApplicationController
         @favourite = Favourite.new({:question => @question, :user => current_user})
         @favourite.save
       else
-        @message = "Remove as your favourite"
+        @message = "Removed as your favourite"
         @class = "favoured"
         @favourite.destroy
       end

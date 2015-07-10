@@ -30,7 +30,7 @@ class Question < ActiveRecord::Base
   default_scope ->{ order('created_at DESC') }
   scope :overflowed, :order => "questions.created_at DESC", :conditions => ["answers_count > ?", "10"]
   scope :latest, :order => "questions.created_at DESC"
-  scope :hot, :order => "answers_count DESC, questions.updated_at DESC"
+  scope :hot, :order => "answers_count > 10, questions.updated_at DESC"
   scope :active, :order => "questions.updated_at DESC, answers_count DESC"
   scope :unanswered, :order => "questions.created_at DESC", :conditions => ["answers_count = ?", "0"]
   scope :answered, :order => "questions.created_at DESC", :conditions => ["answers_count > ?", "0"]

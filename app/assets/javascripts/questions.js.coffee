@@ -18,9 +18,15 @@ jQuery ->
     $('.editing-help').slideToggle('fast')
 
 
+
 jQuery ->
   $('.question-title').focus ->
     $('.error-holder').addClass('has-error')
+
+jQuery ->
+  $('.post_form').focus ->
+    $('.editing-help').slideDown('slow')
+
 
 jQuery ->
   $('.question-title').keydown ->
@@ -30,6 +36,11 @@ jQuery ->
       $('.error-holder').addClass('has-error')
 
 
+jQuery ->
+  $(document).ajaxStart ->
+    $('.posting').show()
+  $(document).ajaxComplete ->
+    $('.posting').hide()
 
 
 

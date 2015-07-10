@@ -13,24 +13,23 @@
 
     <div class="form-group error-holder">
       <div class="col-lg-10">
-        <%= f.text_field :name, :class=>"form-control question-title", :placeholder=>"What is your question?", :label =>false %>
+        <%= f.text_field :name, :class=>"form-control question-title", :placeholder=>"What is your programing question be specific?", :label =>false %>
       </div>
     </div>
 
     <div class="form-group">
-      <div class="col-lg-10">
+      <div class="col-lg-12">
         <div class="form-header md_editor">
           <nav>
             <a href="#insert_strong" id="add_strong" ><i class="glyphicon glyphicon-bold"></i></a>
             <a href="#insert_em" id="add_em"><i class="glyphicon glyphicon-italic"></i></a>
             <a href="#insert_link" id="add_link"><i class="glyphicon glyphicon-link"></i></a>
-            <a href="#"><i class="glyphicon glyphicon-align-center"></i></a>
-            <a href="#"><i class="glyphicon glyphicon-align-left"></i></a>
-            <a href="#"><i class="glyphicon glyphicon-align-right"></i></a>
+            <a href="#insert_ol" id="add_ord_list"><i class="glyphicon glyphicon-list" ></i></a>
+            <a href="#insert_code" id="insert_code"><i class="glyphicon glyphicon-chevron-left"></i><i class="glyphicon glyphicon-chevron-right"></i></a>
             <a href="#"><i class="glyphicon glyphicon-question-sign help-toggle"></i></a>
           </nav>
           <div class="editing-help">
-            <p>To create code blocks or other preformatted text, indent by four spaces:</p>
+            <p>To create code blocks or other preformatted text, indent by four spaces, highlight the code  and click on the code icon <b>< ></b></p>
             <p>This will be displayed in a monospaced font. The first four spaces</p>
             <p>will be stripped off, but all other whitespace will be preserved.</p> </br>
 
@@ -38,41 +37,21 @@
             <p><i>This is not italic</i>, and [this is not a link](http://example.com)</p>
           </div>
         </div>
-        <%= f.text_area :body, :class=>"form-control post_form", name: "md_text_editor", rows:10 %>
+        <%= f.text_area :body, :class=>"form-control post_form", rows:10 %>
       </div>
     </div>
-
-    <div class="md_editor">
-      <a href="#insert_h1"         id="add_h1">         h1</a>
-      <a href="#insert_h2"         id="add_h2">         h2</a>
-      <a href="#insert_h3"         id="add_h3">         h3</a>
-      <a href="#insert_h4"         id="add_h4">         h4</a>
-      <a href="#insert_h5"         id="add_h5">         h5</a>
-      <a href="#insert_h6"         id="add_h6">         h6</a>
-      <a href="#insert_em"         id="add_em">         I</a>
-      <a href="#insert_strong"     id="add_strong">     B</a>
-      <a href="#insert_paragraf"   id="add_paragraph">  P</a>
-      <a href="#insert_blockquote" id="add_blockquote"> BQt</a>
-      <a href="#insert_ul"         id="add_unord_list"> UL</a>
-      <a href="#insert_ol"         id="add_ord_list">   OL</a>
-      <a href="#insert_link"       id="add_link">       A</a>
-      <br />
-
-    </div>
-
-
-
-
 
     <%= f.input :tag_list, :label => "Select Tags (must be more than two)", "data-pre" => @question.alltags.map { |tag| tag.name}.to_json  %> <p> I can't find the tags that Marched my question <a href="../alltags/new">Create it!</a>
 
        <br /><br />
-          <%= f.check_box :send_mail %>
+        <%= f.check_box :send_mail %>
          <%= f.label :send_mail, "Send me new responses of my posts via email (settings)" %>
 
     <br />
 
   <div class="form-group">
-   <%= f.submit "Post Question", :class=>"btn btn-primary" %>
+   <%= f.submit "Post your Question", :class=>"btn btn-primary" %>
   </div>
 <% end %>
+
+

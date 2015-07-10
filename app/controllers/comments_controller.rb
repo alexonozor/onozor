@@ -19,11 +19,9 @@ class CommentsController < ApplicationController
 
   # GET /comments/1/edit
   def edit
-
    respond_to do |format|
-        
          format.js
-        end
+   end
   end
 
   # POST /comments
@@ -39,27 +37,28 @@ class CommentsController < ApplicationController
      end      
       else
         respond_to do |format|
-          format.js {render "fail_create.js.erb"} 
+          format.js { render "fail_create.js.erb"}
        end   
       end
     end
-  end
 
   # PATCH/PUT /comments/1
   # PATCH/PUT /comments/1.json
   def update
-      if @answer.update(answer_params)
+      if @comment.update(comment_params)
        respond_to do |format|
-        format.html { redirect_to @answer.question, :notice =>"Edited successfully #{undo_link}".html_safe}
-         format.js
+        format.html { redirect_to @comment.question, :notice =>"Edited successfully #{undo_link}".html_safe}
+        format.js {render "update.js.erb"}
        end
       else
        respond_to do |format|
-        format.html { redirect_to @answer.question, alert: 'Unable to Update' }
-         format.js
+        format.html { redirect_to @comment.question, alert: 'Unable to Update' }
+        format.js  {render "update_fail.js.erb"}
         end
       end
-    end
+  end
+
+
   # DELETE /comments/1
   # DELETE /comments/1.json
   def destroy
@@ -70,7 +69,7 @@ class CommentsController < ApplicationController
     end
   end
 
-  private
+
     # Use callbacks to share common setup or constraints between actions.
     def set_comment
       @comment = Comment.find(params[:id])
@@ -80,4 +79,5 @@ class CommentsController < ApplicationController
     def comment_params
       params.require(:comment).permit(:body, :user_id, :commentable_id, :commentable_type, :user_agent, :user_ip, :referrer)
     end
+  end
 

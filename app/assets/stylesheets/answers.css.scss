@@ -7,7 +7,6 @@
    padding:6px;
    line-height:1;
    color :#444;
-   border-bottom :1px dotted #ccc;
    box-shadow: #7558A3 0px -3px 0px;
 
   p{
@@ -28,4 +27,12 @@ p{
  }
 }
 
+.answer-username {
+  /* margin-right: 50px; */
+  float: left;
+  position: relative;
+  right: 17px;
+  text-transform: capitalize;
+  margin-top: 10px;
+}
 

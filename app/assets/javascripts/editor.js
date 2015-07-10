@@ -1,70 +1,79 @@
-
 $(document).ready(function() {
     $('#add_h1').on("click", function(e) {
         e.preventDefault();
-        md_insert_h1_to('md_text_editor');
+        md_insert_h1_to('question[body]');
     });
 
     $('#add_h2').on("click", function(e) {
         e.preventDefault();
-        md_insert_h2_to('md_text_editor');
+        md_insert_h2_to('question[body]');
     });
 
     $('#add_h3').on("click", function(e) {
         e.preventDefault();
-        md_insert_h3_to('md_text_editor');
+        md_insert_h3_to('question[body]');
     });
 
     $('#add_h4').on("click", function(e) {
         e.preventDefault();
-        md_insert_h4_to('md_text_editor');
+        md_insert_h4_to('question[body]');
     });
 
     $('#add_h5').on("click", function(e) {
         e.preventDefault();
-        md_insert_h5_to('md_text_editor');
+        md_insert_h5_to('question[body]');
     });
 
     $('#add_h6').on("click", function(e) {
         e.preventDefault();
-        md_insert_h6_to('md_text_editor');
+        md_insert_h6_to('question[body]');
     });
 
     $('#add_em').on("click", function(e) {
         e.preventDefault();
-        md_insert_em_to('md_text_editor');
+        md_insert_em_to('question[body]');
     });
 
     $('#add_strong').on("click", function(e) {
         e.preventDefault();
-        md_insert_strong_to('md_text_editor');
+        md_insert_strong_to('question[body]');
     });
 
     $('#add_paragraph').on("click", function(e) {
         e.preventDefault();
-        md_insert_paragraph_to('md_text_editor');
+        md_insert_paragraph_to('question[body]');
     });
 
     $('#add_blockquote').on("click", function(e) {
         e.preventDefault();
-        md_insert_blockquote_to('md_text_editor');
+        md_insert_blockquote_to('question[body]');
     });
 
     $('#add_unord_list').on("click", function(e) {
         e.preventDefault();
-        md_insert_unord_list_to('md_text_editor');
+        md_insert_unord_list_to('question[body]');
     });
 
     $('#add_ord_list').on("click", function(e) {
         e.preventDefault();
-        md_insert_ord_list_to('md_text_editor');
+        md_insert_ord_list_to('question[body]');
     });
 
     $('#add_link').on("click", function(e) {
         e.preventDefault();
-        md_insert_link_to('md_text_editor');
+        md_insert_link_to('question[body]');
+        alert("welcme");
+    });
+
+    $('#insert_code').on("click", function(e) {
+        e.preventDefault();
+        md_insert_code_to('question[body]');
     });
 });
+
+function md_insert_link_to(element) {
+    insertText(element, "[", "](http://link_address)", "link_name")
+}
 
 function md_insert_h1_to(element) {
     insertText(element, "\n# ", "\n", "H1")
@@ -78,17 +87,6 @@ function md_insert_h3_to(element) {
     insertText(element, "\n### ", "\n", "H3")
 }
 
-function md_insert_h4_to(element) {
-    insertText(element, "\n#### ", "\n", "H4")
-}
-
-function md_insert_h5_to(element) {
-    insertText(element, "\n##### ", "\n", "H5")
-}
-
-function md_insert_h6_to(element) {
-    insertText(element, "\n###### ", "\n", "H6")
-}
 
 function md_insert_em_to(element) {
     insertText(element, "*", "*", "italic")
@@ -96,6 +94,10 @@ function md_insert_em_to(element) {
 
 function md_insert_strong_to(element) {
     insertText(element, "**", "**", "bold")
+}
+
+function md_insert_code_to(element) {
+    insertText(element, "```", "```", "code")
 }
 
 function md_insert_paragraph_to(element) {
@@ -114,9 +116,7 @@ function md_insert_ord_list_to(element) {
     insertText(element, "\n1 ", "\n", "element")
 }
 
-function md_insert_link_to(element) {
-    insertText(element, "[", "](http://link_address)", "link_name")
-}
+
 
 
 function insertText(element_name, before_text, after_text, default_text) {

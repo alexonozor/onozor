@@ -21,10 +21,10 @@
              <span class="answer-format"><%= markdown(answer.body).html_safe %>
               <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i>
                <%= distance_of_time_in_words_to_now answer.created_at %> ago
-                <%= link_to(t("Add comment"), new_comment_path(:comment => { :commentable_type => answer.class.name,
+                <%= link_to "Add comment", new_comment_path(:comment => { :commentable_type => answer.class.name,
                                                               :commentable_id => answer.id}),
                                                               :remote => true,
-                                                              :class => "btn comment_link") %>
+                                                              :class => "btn comment_link" %>
 						      	      </small>
 							     </p>
 							    </span>
@@ -41,11 +41,9 @@
                            <% end %>
 		          </small>
 			 </nav>
-                        <%= link_to( image_tag(answer.user.avatar.url(:thumb),
-                                           class:"follow-pix", :border =>"0"),
-                                           user_path(answer.user)) %>
-                                           <%= link_to  answer.user.username,
-                                            user_path(answer.user) %>
+                        <%= ( image_tag(answer.user.avatar.url(:thumb),
+                                           class:"follow-pix", :border =>"0") ) %>
+                                          <span class="answer-username"><%= answer.user.username %></span>
 
 					   </div>
                                      <div class="comment row" id="comments">
