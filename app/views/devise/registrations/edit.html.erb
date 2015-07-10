@@ -36,7 +36,7 @@
     </div>
 
     <div class="form-group">
-      <label>Intrest</label>
+      <label>Interest</label>
       <%= f.text_field :intrest, class:"form-control" %>
     </div>
 
@@ -60,13 +60,17 @@
         <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
     <% end %>
 
+
+    <br>
+    <p>leave it blank if you don't want to change it</p>
+
     <div class="form-input">
-        <label for="exampleInputEmail1">Password</label>
+        <label for="exampleInputEmail1">Change Password</label>
         <%= f.password_field :password, hint: "leave it blank if you don't want to change it", class:"form-control", id:"exampleInputEmail1", placeholder:"password" %>
     </div>
 
     <div class="form-inputs">
-        <label for="exampleInputEmail1">Password comfirmation</label>
+        <label for="exampleInputEmail1">confirmation Password </label>
         <%= f.password_field :password_confirmation, class:"form-control", id:"exampleInputEmail1", placeholder:"password" %>
     </div>
 
@@ -75,7 +79,7 @@
         <%= f.password_field :current_password, hint: "we need your current password to confirm your changes",  class:"form-control", id:"exampleInputEmail1", placeholder:"current password" %>
     </div>
 
-
+<br />
   <%= f.submit "Update  Account", class:"btn btn-default" %>
 <% end %>
 
