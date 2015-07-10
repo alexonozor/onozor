@@ -41,7 +41,7 @@
       </div>
     </div>
 
-    <%= f.input :tag_list, :label => "Select Tags (must be more than two)", "data-pre" => @question.alltags.map { |tag| tag.name}.to_json  %> <p> I can't find the tags that Marched my question <a href="../alltags/new">Create it!</a>
+    <%= f.input :tag_list, :label => "Select Tags (must be more than two)", "data-pre" => @question.alltags.map { |tag| tag.name}.to_json  %>
 
        <br /><br />
         <%= f.check_box :send_mail %>
