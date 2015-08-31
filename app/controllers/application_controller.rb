@@ -2,14 +2,14 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
-  #filters
 
-  
+
+  #filters
   before_filter :last_requested_at
   before_action :load_users
   before_action :configure_devise_permitted_parameters, if: :devise_controller?
-  rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
-  rescue_from  ActionView::Template::Error, with: :no_user_found
+   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
+  # rescue_from  ActionView::Template::Error, with: :no_user_found
   before_filter :prepare_for_mobile
   before_filter :load_category
 
@@ -19,9 +19,35 @@ class ApplicationController < ActionController::Base
 
   layout :layout_by_resource
 
+  def load_users
+    @users = User.all
+  end
+
+  def is_admin?
+    if user_signed_in? && current_user.admin?
+      true
+    else
+      false
+    end
+  end
+
 
 
   private
+  def last_requested_at
+    current_user.update_attribute(:last_requested_at,  Time.now) if current_user.present?
+  end
+
+  def no_user_found
+    flash[:error] = "You need to signin before continuing"
+    redirect_to root_url
+  end
+
+  def record_not_found
+    flash[:error] = "The page you are looking for does not exit"
+    redirect_to root_url
+  end
+
   def mobile_device?
     if session[:mobile_param]
       session[:mobile_param] == "1"
@@ -35,41 +61,19 @@ class ApplicationController < ActionController::Base
     session[:mobile_param] = params[:mobile] if params[:mobile]
     request.format = :mobile if mobile_device?
   end
-  
+
   rescue_from CanCan::AccessDenied do |exception|
-      redirect_to root_url, :alert => exception.message
+    redirect_to root_url, :alert => exception.message
   end
 
-
-
-  private
-
-  def no_user_found
-    flash[:error] = "You need to signin before continuing"
-    redirect_to root_url
-  end
- 
-  def record_not_found
-    flash[:error] = "The page you are looking for does not exit"
-    redirect_to root_url
-  end
 
   protected
 
-
-
-
- 
-
-
-   def load_users
-      @users = User.all
-   end
-  
-
-  
-
-  protected
+  def layout_by_resource
+    if devise_controller? && resource_name == :user && action_name == "edit"
+     "application"
+    end
+  end
 
   def configure_devise_permitted_parameters
     registration_params = [ :avatar, :last_requested_at, :admin, :avatar_file_name, :username, :gender, :first_name, :last_name, :bio, :occupation, :title, :intrest , :username, :location, :email, :password, :password_confirmation]
@@ -82,32 +86,6 @@ class ApplicationController < ActionController::Base
       devise_parameter_sanitizer.for(:sign_up) {
           |u| u.permit(registration_params)
       }
-    end
-  end
-
-
- 
-      def is_admin?
-        if user_signed_in? && current_user.admin?
-         true
-        else
-         false
-        end
-      end
-
-
-
-
-  private
-  def last_requested_at
-    current_user.update_attribute(:last_requested_at,  Time.now) if current_user.present?
-  end
-
-  protected
-
-  def layout_by_resource
-    if devise_controller? && resource_name == :user && action_name == "edit"
-     "application"
     end
   end
 

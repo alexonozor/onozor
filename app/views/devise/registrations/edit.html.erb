@@ -74,9 +74,13 @@
         <%= f.password_field :password_confirmation, class:"form-control", id:"exampleInputEmail1", placeholder:"password" %>
     </div>
 
+
+    <br>
+    <p>Enter your password to update your account</p>
+
     <div class="form-inputs">
         <label for="exampleInputEmail1">Current Password</label>
-        <%= f.password_field :current_password, hint: "we need your current password to confirm your changes",  class:"form-control", id:"exampleInputEmail1", placeholder:"current password" %>
+        <%= f.password_field :current_password, hint: "we need your current password to confirm your changes",  class:"form-control", id:"exampleInputEmail1", placeholder:"current password", :required => true  %>
     </div>
 
 <br />

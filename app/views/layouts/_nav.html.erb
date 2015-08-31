@@ -13,11 +13,16 @@
       <a href="/" data-no-turbolink class="navbar-brand"><i class="glyphicon glyphicon-home"></i>&nbspINQUIRE</a>
     </div>
     <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
-       <form class="navbar-form navbar-left" role="search">
-      <div class="form-group searchform">
-        <input type="text" class="form-control searchform" placeholder="Search" >
-      </div>
-    </form>
+       <!--<form class="navbar-form navbar-left" role="search">-->
+      <!--<div class="form-group searchform">-->
+        <!--<input type="text" class="form-control searchform" placeholder="Search" >-->
+      <!--</div>-->
+    <!--</form>-->
+      <%= form_tag questions_path, :method=> "get", class: "navbar-form navbar-left", role:"search"  do %>
+          <div class="form-group searchform">
+            <%= text_field_tag :search, params[:search], class:"form-control searchform", placeholder:"Search" %>
+          </div>
+      <% end %>
       <ul class="nav navbar-nav pull-right">
         <% unless user_signed_in? %>
         <li><a href="/users/sign_in"><i class="glyphicon glyphicon-log-in"></i> Sign in</a></li>

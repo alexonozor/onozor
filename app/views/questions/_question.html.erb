@@ -6,7 +6,7 @@
          <div class="vote">
            <p><%= (pluralize (question.votes), "Vote") %></p>
          </div>
-          <div class="answer-box" style="background-color: <%= question.answer_count_color %>;"><p><%= (pluralize (question.answers.size ), "Answer")   %></p></div>
+          <div class="answer-box" style="background-color: <%= question.answer_count_color %>;"><p><%= (pluralize (question.answers.count), "Answer")   %></p></div>
           <div class="views">
             <p><%= (pluralize (question.views), "View") %></p>
           </div>

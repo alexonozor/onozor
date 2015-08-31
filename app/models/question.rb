@@ -96,6 +96,14 @@ class Question < ActiveRecord::Base
     Favourite.find_by_user_id_and_question_id(user.id, self).present?
   end
 
+  def self.search(text)
+    if text
+      find(:all, :conditions => ['name LIKE ?', "%#{text}%"])
+    else
+      find(:all)
+    end
+  end
+
   
 
 

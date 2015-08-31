@@ -1,6 +1,11 @@
 <html>
 <body>
-<h1><%= @question.name %></h1>
+<h1>Hi " <%= @question_owner.username %>", </h1>
+<p><%= @user.username %> has an answer to your question: <%= @question.name %></p>
+<p>click the link below to reply</p>
+
+<%= question_url @question.name, @question %>
+
 
 </body>
 </html>

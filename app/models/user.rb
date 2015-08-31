@@ -5,10 +5,16 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   has_paper_trail
   #avatar upload
-  has_attached_file :avatar, :styles => { :medium => "150x150#", :thumbs => "100x100#", :thumbnails => "70x70#", 
+  has_attached_file :avatar,
+                    :storage => :dropbox,
+                    :dropbox_credentials => "#{Rails.root}/config/dropbox.yml",
+                    :styles => { :medium => "150x150#", :thumbs => "100x100#", :thumbnails => "70x70#",
   :thumb => "50x50#", :home => "30x30>" }, :default_url => ""
   validates_attachment :avatar,
-  :content_type => { :content_type => ["image/jpeg", "image/gif", "image/png"] }
+  :content_type => { :content_type => ["image/jpeg", "image/gif", "image/png"] },
+                       :dropbox_options => {
+                           :path => proc { |style| "#{style}/#{id}_#{avatar.original_filename}" }
+                       }
 
   extend FriendlyId
   friendly_id :username, use: :slugged

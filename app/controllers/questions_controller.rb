@@ -9,6 +9,8 @@ class QuestionsController < ApplicationController
         @questions = Question.latest.tagged_with(params[:tag]).paginate :page => params[:page], :per_page => 8
       elsif current_user.present? && current_user.only_follower_feed == true
         @questions = current_user.feed.paginate :page => params[:page], :per_page => 8
+      elsif (params[:search].present?)
+        @questions = Question.search(params[:search]).paginate(:per_page => 5, :page => params[:page])
       else
         @questions = Question.where('id > ?', params[:after].to_i).latest.paginate :page => params[:page], :per_page => 8
       end
