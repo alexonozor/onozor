@@ -28,7 +28,7 @@
         <li><a href="/users/sign_in"><i class="glyphicon glyphicon-log-in"></i> Sign in</a></li>
         <li><a href="/users/sign_up"> <i class="glyphicon glyphicon-arrow-up"></i> Sign up</a></li>
         <% else %>
-         <li><%= link_to (image_tag current_user.avatar(:home)), current_user %></li>
+         
         <li><p class="navbar-text" style="color:white;"><%= current_user.username %></p></li>
 
         <li class="dropdown">
