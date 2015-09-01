@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   #avatar upload
   has_attached_file :avatar,
                     :storage => :dropbox,
-                    :dropbox_credentials => "#{Rails.root}/config/dropbox.yml",
+                    # :dropbox_credentials => "#{Rails.root}/config/dropbox.yml",
                     :styles => { :medium => "150x150#", :thumbs => "100x100#", :thumbnails => "70x70#",
   :thumb => "50x50#", :home => "30x30>" }, :default_url => ""
   validates_attachment :avatar,
