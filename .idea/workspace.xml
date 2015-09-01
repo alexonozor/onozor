@@ -46,8 +46,8 @@
       <file leaf-file-name="_nav.html.erb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/views/layouts/_nav.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.13920455">
-              <caret line="30" column="9" selection-start-line="30" selection-start-column="9" selection-end-line="30" selection-end-column="9" />
+            <state vertical-scroll-proportion="0.10511363">
+              <caret line="30" column="54" selection-start-line="30" selection-start-column="9" selection-end-line="30" selection-end-column="85" />
               <folding />
             </state>
           </provider>
@@ -1066,8 +1066,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/layouts/_nav.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.13920455">
-          <caret line="30" column="9" selection-start-line="30" selection-start-column="9" selection-end-line="30" selection-end-column="9" />
+        <state vertical-scroll-proportion="0.10511363">
+          <caret line="30" column="54" selection-start-line="30" selection-start-column="9" selection-end-line="30" selection-end-column="85" />
           <folding />
         </state>
       </provider>
