@@ -17,5 +17,4 @@
 
 # Ignore application configuration
 /config/application.yml
-/config/dropbox.yml
 .idea/
