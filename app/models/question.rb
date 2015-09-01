@@ -4,6 +4,7 @@ class Question < ActiveRecord::Base
   acts_as_taggable_on :tags
   acts_as_tagger
   before_validation :set_permalink
+  after_create :send_slack_message
   #has_paper_trail
   has_ancestry
 
@@ -102,6 +103,13 @@ class Question < ActiveRecord::Base
     else
       find(:all)
     end
+  end
+
+
+
+  def send_slack_message
+    SLACK_NOTIFIER.ping("<!channel> New Question from #{self.user.username} :
+                 #{self.name} <http://localhost:3000/questions/#{self.slug}|Click here> to answer", http_options: { open_timeout: 5 })
   end
 
   

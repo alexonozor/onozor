@@ -66,6 +66,7 @@ gem 'nokogiri'
 gem 'figaro'
 gem 'sidekiq'
 gem 'paperclip-dropbox'
+gem 'slack-notifier'
 
 
 
