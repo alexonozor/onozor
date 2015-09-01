@@ -67,6 +67,7 @@ gem 'figaro'
 gem 'sidekiq'
 gem 'paperclip-dropbox'
 gem 'slack-notifier'
+gem 'redis'
 
 
 

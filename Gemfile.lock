@@ -243,6 +243,7 @@ DEPENDENCIES
   rails (= 4.0.1)
   rails_12factor
   redcarpet
+  redis
   rmagick
   sass-rails (~> 4.0.0)
   sidekiq
