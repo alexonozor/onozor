@@ -44,7 +44,7 @@ NairaOverflow::Application.configure do
 
   # Set to :debug to see everything in the log.
   config.log_level = :info
-  config.active_job.queue_adapter = :delayed_job
+  #config.active_job.queue_adapter = :delayed_job
 
   # Prepend all log lines with the following tags.
   # config.log_tags = [ :subdomain, :uuid ]
