@@ -89,9 +89,8 @@ body {
 
 .bs-docs-nav {
   text-shadow: 0 -1px 0 rgba(0,0,0,.15);
-  background-color: #090A42;
-  border-color: #090A42;
-  box-shadow: 0 1px 0 rgba(255,255,255,.1);
+  background-color: #1db4c1;
+  border-color: #1db4c1;
 }
 .bs-docs-nav .navbar-collapse {
   border-color: #463265;
