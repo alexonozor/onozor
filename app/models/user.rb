@@ -45,7 +45,6 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :username, :on => :account_update
 
   def self.from_omniauth(auth)
-    puts auth
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.username = auth.info.name.split(' ')[0] + auth.info.name.split(' ')[1]
       user.email = auth.info.email
@@ -67,9 +66,7 @@ class User < ActiveRecord::Base
     end
   end
 
-  def password_required?
-    super && provider.blank?
-  end
+
 
   #scoping
   scope :online, -> {where('last_requested_at > ? ', Time.now - 5.minute)}
