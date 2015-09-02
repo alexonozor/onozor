@@ -66,7 +66,9 @@ class User < ActiveRecord::Base
     end
   end
 
-
+  def password_required?
+    super && provider.blank?
+  end
 
   #scoping
   scope :online, -> {where('last_requested_at > ? ', Time.now - 5.minute)}
