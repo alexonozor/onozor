@@ -2,6 +2,7 @@ class QuestionsController < ApplicationController
   before_action :set_question, only: [:show, :edit, :update, :destroy, :vote, :undo_link]
   before_action :authenticate_user!, only: [:edit, :new, :create, :vote ]
   respond_to :html, :xml, :json, :js, :mobile
+  require 'will_paginate/array'
   # GET /questions
   # GET /questions.json
   def index
