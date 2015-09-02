@@ -108,7 +108,7 @@ class Question < ActiveRecord::Base
 
 
   def send_slack_message
-    SLACK_NOTIFIER.ping("<!channel> New Question from #{self.user.username} :
+    SLACK_NOTIFIER.ping("New Question from #{self.user.username} :
                  #{self.name} <http://localhost:3000/questions/#{self.slug}|Click here> to answer", http_options: { open_timeout: 5 })
   end
 

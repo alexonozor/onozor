@@ -26,7 +26,9 @@ NairaOverflow::Application.routes.draw do
       get :latest
     end
   end
- devise_for :users, :path => '/', :controllers => { :sessions => "sessions" }  
+  devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks" }
+  # devise_for :users, :path => '/', :controllers => { :sessions => "sessions" }
+
  get 'users/who_is_online', to: 'users#who_is_online', as: :online_users  
   
   resources :users do

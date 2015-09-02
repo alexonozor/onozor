@@ -26,22 +26,26 @@
   </div>
 </div>
 
- <div class="form-inputs">
-      <div class="form-group">
-   <%= f.password_field :password, required: true, :label=> :false, :class=>"form-control", :placeholder=>"Password" %>
-  </div>
-</div>
+   <% if f.object.password_required?  %>
+     <div class="form-inputs">
+          <div class="form-group">
+       <%= f.password_field :password, required: true, :label=> :false, :class=>"form-control", :placeholder=>"Password" %>
+      </div>
+    </div>
 
 
-    <div class="form-inputs">
-      <div class="form-group">
-   <%= f.password_field :password_comfirmation, required: true, :label=> :false, :class=>"form-control", :placeholder=>"Retype password" %>
-  </div>
-</div>
+        <div class="form-inputs">
+          <div class="form-group">
+       <%= f.password_field :password_comfirmation, required: true, :label=> :false, :class=>"form-control", :placeholder=>"Retype password" %>
+      </div>
+    </div>
 
-  <div class="form-actions">
-    <button class="btn btn-success">Sign up</button>
-  </div>
+      <div class="form-actions">
+        <button class="btn btn-success">Sign up</button>
+
+      </div>
+     <% end %>
+      <%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook) %>
 <% end %>
 </div>
 

@@ -1,10 +1,8 @@
 <html>
 <body>
-<h1>Hi  <%= @question_owner.username %>, </h1>
-<p><%= @user.username %> has an answer to your question: <%= @question.name %></p>
+<h3>Hi  <%= (@question_owner.username.titleize) %>, </h3>
+<p><%=  (@user.username.titleize)  %> has an answer to your question: <b><%= @question.name %></b></p>
 <p>click the link below to reply</p>
-<%= question_url @question.name, @question %>
-
-
+<%= question_url (@question) %>
 </body>
 </html>

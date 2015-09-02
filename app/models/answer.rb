@@ -37,14 +37,6 @@ class Answer < ActiveRecord::Base
      UserMailer.delay_for(1.second).answer_update(self) if self.question.send_mail
   end
 
-  #schema
- #t.text     "body"
- #t.integer  "question_id"
- #t.integer  "user_id"
- #t.integer  "accepted"
- #t.text     "body_plain"
- #t.boolean  "send_mail",   default: false
- #t.datetime "created_at"
- #t.datetime "updated_at"
+
 
 end
