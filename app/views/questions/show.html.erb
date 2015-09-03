@@ -1,99 +1,57 @@
-<% title "#{@question.name}"%>
-<div class="">
-
-<div id="question" data-id="<%= @question.id %>" >
-    
-      
-       <div class="row">
-       <div class="col-md-1"></div>
-       <div class="col-md-11">
-       <h2><%= @question.name %></h2>
-       <hr>
-       <%= image_tag ('ads.gif') %>
-       </div>       
+<!-- POST -->
+<div class="post">
+  <div class="topwrap">
+    <div class="userinfo pull-left">
+      <div class="avatar">
+        <%= link_to (image_tag @question.user.avatar(:thumb)), @question.user %>
+        <% if @question.user.is_online? %>
+            <div class="status green">&nbsp;</div>
+        <% else %>
+            <div class="status red">&nbsp;</div>
+        <% end %>
       </div>
-       <br />
-       <div class="row"> 
-       <%= render :partial =>"questions/votebox" %>
-       <div class="col-md-11">
-   	<div id="question_body"><%=raw markdown(@question.body) %></div>
-       
-       <small class="text-muted">
- <% if current_user.present?  %>
-	 <% if current_user && @question.user_id == current_user || current_user.admin?  %>
-    <%= link_to "<i class='glyphicon glyphicon-pencil'></i>".html_safe, edit_question_path(@question), class:"btn" %> 
- <% end %>
-	<% end %>
-  </small>
-
-   
-                <div class="row">
-               <div class="col-md-6">
-              <nav class="tags">
-	     <i class="glyphicon glyphicon-tags"></i> 
-	    <%= raw @question.tag_list.map { |t| link_to t, tag_path(t) }.join('') %>
-	   </nav>
+      <%= link_to  @question.user.username.titleize, @question.user %>
+    </div>
+    <div class="posttext pull-left">
+      <h2><%= (@question.name) %></h2>
+      <p><%=raw markdown(@question.body) %></p>
+      <% if @question.comments.present? %>
+          <div id="comments" class="comments">
+            <%=pluralize @question.comments.count, "comment"  %>
+              <%= render @question.comments %>
           </div>
-         <div class="col-md-2">
-        <span class="text-info">Edited on <%= (@question.updated_at).strftime("%B %d, %Y") %></span>
-       </div>
-
-         <div class="col-md-4 pull-right">
-        <div class="user-info ">
-       <p style="color: white; margin:0px;"><%= time_ago_in_words @question.created_at %> ago</p>
-      <%=link_to (image_tag @question.user.avatar.url(:thumb)), @question.user %> 
-     <%=link_to @question.user.username, @question.user %>
-   </div>
+      <% end %>
+      <%= link_to "Add comment".html_safe, new_comment_path(:comment => { :commentable_type => @question.class.name,
+                                                                                  :commentable_id => @question.id}),
+                                                                                  :remote => true,
+                                                                                  :class => "btn comment_link",
+                                                                                  id:"comment_link" if current_user   %>
+      <div id="comment-form"></div>
+    </div>
+    <div class="clearfix"></div>
   </div>
- </div>
-  
-   
 
-  
+  <div class="postinfobot">
+    <div class="likeblock pull-left">
+      <%= render :partial =>"questions/votebox" %>
+    </div>
+    <div class="prev pull-left">
+      <a href="#"><i class="fa fa-reply"></i></a>
+    </div>
 
-
-    
-         <br />
-		 
-
-        <% if @question.comments.present? %>
-
-        <div id="comments" class="comments">
-        <table>
-        <%= render @question.comments %>
-        </table>
-
-
-
+    <div class="posted pull-left"><i class="fa fa-clock-o"></i> Posted on : <%= (@question.created_at).strftime("%-d %b @ %-l:%M%P") %></div>
+       <% if current_user && @question.user == current_user || current_user.admin?  %>
+        <div class="next pull-right">
+          <%= link_to "<i class='fa fa-pencil'></i>".html_safe, edit_question_path(@question) %>
+          <%= link_to "<i class='fa fa-trash'></i>".html_safe, question_path(@question), method: :delete %>
         </div>
-          <% end %>
-         <div id="comment-form"></div>
-           <%= link_to "Add comment", new_comment_path(:comment => { :commentable_type => @question.class.name,
-                                                              :commentable_id => @question.id}),
-                                                              :remote => true,
-                                                              :class => "btn comment_link",
-                                                               id:"comment_link"   %>
-         </div>
-        </div>
-                      
+       <% end %>
+    <div class="clearfix"></div>
+  </div>
+</div><!-- POST -->
 
-  				
-		        
 
-			           <% unless @question.answers.present? %>
-                                    <h4>Know someone who can answer? Share a link to this question via email, Google+, Twitter, or Facebook.</h4>
-			             <% else %>
-			            <h3 class="text-warning border-bottom">
-                                   <strong style="text-transformation: capiterlize">
-                                  <%= pluralize @question.answers_count, "Answer" %></strong></h3>
-				 <div id="answers">
-				<%= render :partial => @question.answers %>
-			       </div>
-			      <% end %>         
-                             </div>
-  <%= render "answers/form" %>
-                            </div>
+<%= render :partial => @question.answers %>
+<%= render "answers/form" %>
 
-	 
- 
 

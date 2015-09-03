@@ -1,66 +1,36 @@
-<a class="sr-only" href="components#content">Skip navigation</a>
 
-    <!-- Docs master nav -->
-    <header class="navbar navbar-inverse navbar-fixed-top bs-docs-nav" role="banner">
   <div class="container">
     <div class="navbar-header">
-      <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#bs-navbar" aria-controls="bs-navbar" aria-expanded="false">
         <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a href="/" data-no-turbolink class="navbar-brand"><i class="glyphicon glyphicon-home"></i>&nbspINQUIRE</a>
+      <%= link_to image_tag('logo.png'), root_path, class:'navbar-brand' %>
     </div>
-    <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
-       <!--<form class="navbar-form navbar-left" role="search">-->
-      <!--<div class="form-group searchform">-->
-        <!--<input type="text" class="form-control searchform" placeholder="Search" >-->
-      <!--</div>-->
-    <!--</form>-->
-      <%= form_tag questions_path, :method=> "get", class: "navbar-form navbar-left", role:"search"  do %>
-          <div class="form-group searchform">
-            <%= text_field_tag :search, params[:search], class:"form-control searchform", placeholder:"Search" %>
-          </div>
-      <% end %>
-      <ul class="nav navbar-nav pull-right">
-        <% unless user_signed_in? %>
-        <li><a href="/users/sign_in"><i class="glyphicon glyphicon-log-in"></i> Sign in</a></li>
-        <li><a href="/users/sign_up"> <i class="glyphicon glyphicon-arrow-up"></i> Sign up</a></li>
+    <nav id="bs-navbar" class="collapse navbar-collapse">
+      <form class="navbar-form navbar-left" role="search">
+        <div class="form-group has-success has-feedback">
+          <label class="control-label sr-only" for="inputSuccess5">Hidden label</label>
+          <input type="text" class="form-control" id="inputInfo5" aria-describedby="inputSuccess5Status">
+          <span class="fa fa-search form-control-feedback" aria-hidden="true"></span>
+          <span id="inputSuccess5Status" class="sr-only">(success)</span>
+        </div>
+      </form>
+      <%= link_to "Start new Topic", question_advise_path, class: 'btn  navbar-btn offset-2 topic-button'  %>
+      <ul class="nav navbar-nav navbar-right">
+        <% if user_signed_in? %>
+            <p class="navbar-text">Hi, <%= current_user.username.titleize if current_user %></p>
+            <li><%= link_to image_tag current_user.avatar.url(:thumb) if current_user.avatar.present?  %></li>
+            <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
         <% else %>
-         <li><%= link_to (image_tag current_user.avatar(:home)), current_user %></li>
-        <li><p class="navbar-text" style="color:white;"><%= current_user.username %></p></li>
-
-        <li class="dropdown">
-    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-cog"></i></a>
-        <ul class="dropdown-menu">
-          <li><a href="../users/edit">Edit Profile</a></li>
-          <li class="divider"><a href="../users/<%= current_user.slug %>">View Profile</a></li>
-          <li><li><%= link_to "<i class='glyphicon glyphicon-log-out'></i> Sign out".html_safe, destroy_user_session_path, :method => :delete %></li></li>
-        </ul>
-      </li>
-      <% end %>
+            <li><%= link_to "Signup", new_user_registration_path %></li>
+             <li><%= link_to "Login", new_user_session_path %></li>
+        <% end %>
       </ul>
     </nav>
   </div>
-</header>
 
- <div class="container">
- <div class="bs-old-docs">
-  <div class="container">
-   <div class="col-md-offset-2">
-     <a  href="/questions/answered" type="button"
-       class="btn btn-default <% if action_name == 'answered' %>active <% end %>">
-     <i class="glyphicon glyphicon-ok"></i>&nbspAnswered</a>
-     <a href="/questions/unanswered" type="button" class="btn btn-default <% if action_name == 'unanswered' %>active <% end %>""><i class="glyphicon glyphicon-exclamation-sign"></i> Unanswered</a>
-     <a href="/questions/hot" type="button" class="btn btn-default <% if action_name == 'hot' %>active <% end %>""><i class="glyphicon glyphicon-fire"></i> Hot</a>
-    <a href="/questions/latest" type="button" class="btn btn-default <% if action_name == 'latest' %>active <% end %>""><i class="glyphicon glyphicon-flash"></i> Latest</a>
 
-   <a href="/questions/active" type="button" class="btn btn-default <% if action_name == 'active' %>active <% end %>""><i class="glyphicon glyphicon-sort-by-attributes"></i> Active</a>
 
-    
-    <a href="/questions/advise" type="button" class="btn btn-info col-md-offset-1 "><i class="glyphicon glyphicon-question-sign" data-no-turbolink></i> Ask Question</a>
-   </div> 
-  </div>
-</div>
-</div>

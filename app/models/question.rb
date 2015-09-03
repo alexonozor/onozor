@@ -9,7 +9,7 @@ class Question < ActiveRecord::Base
   has_ancestry
 
  extend FriendlyId
-  friendly_id :name, use: :slugged
+  friendly_id :name, use: [:slugged, :finders]
 
  #association
  belongs_to :user
@@ -29,6 +29,7 @@ class Question < ActiveRecord::Base
 
   #scope
   default_scope ->{ order('created_at DESC') }
+  scope :popular, -> {where('questions.views >= ?', "10" ).limit(5)}
   scope :overflowed, :order => "questions.created_at DESC", :conditions => ["answers_count > ?", "10"]
   scope :latest, :order => "questions.created_at DESC"
   scope :hot, :order => "answers_count > 10, questions.updated_at DESC"

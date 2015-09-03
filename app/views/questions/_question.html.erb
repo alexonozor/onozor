@@ -1,30 +1,40 @@
 
+<!-- POST -->
+<div class="post index-question question-body" data-question="<%= question.created_at.to_i %>" data-id="<%= question.id %>" >
+  <div class="wrap-ut pull-left">
+    <div class="userinfo pull-left">
+      <div class="avatar">
+        <%=link_to image_tag(question.user.avatar.url(:thumb)), question.user    %>
+        <% if question.user.is_online? %>
+            <div class="status green">&nbsp;</div>
+        <% end %>
+      </div>
 
-<div class="index-question question-body" data-question="<%= question.created_at.to_i %>" data-id="<%= question.id %>">
-      <div class="row">
-        <div class="col-md-5-offset-0 profile-area">
-         <div class="vote">
-           <p><%= (pluralize (question.votes), "Vote") %></p>
-         </div>
-          <div class="answer-box" style="background-color: <%= question.answer_count_color %>;"><p><%= (pluralize (question.answers.count), "Answer")   %></p></div>
-          <div class="views">
-            <p><%= (pluralize (question.views), "View") %></p>
-          </div>
-        </div>
-
-        <div class="question-headlines">
-          <h4><%=link_to question.name, question %></h4>
-          <div class="tag-index">
-
-            <%= raw question.tag_list.map { |t| link_to t, tag_path(t) }.join('') %>
-          </div>
-
-          <div class="asker-details"><p><small><%= time_ago_in_words question.created_at %> ago <%=link_to question.user.username,
-                                                                                                user_path(question.user.slug)  %></small> </p></div>
-        </div>
+      <div class="icons">
+        <%=link_to question.user.username.titleize, question.user %>
+        <p> <i class="fa fa-thumbs-up text-danger"></i> <%=  (question.votes) %></p>
       </div>
     </div>
+    <div class="posttext pull-left">
+      <h2><%=link_to question.name, question %></h2>
+      <p><%= truncate (strip_tags question.body), length: 80 %></p>
+      <%= raw question.tag_list.map { |t| link_to t, tag_path(t), class:'tags' }.join('') %>
+    </div>
+    <div class="clearfix"></div>
+  </div>
+  <div class="postinfo pull-left">
+    <div class="comments">
+      <div class="commentbg">
+        <%=  question.answers.count  %>
+        <div class="mark"></div>
+      </div>
 
+    </div>
+    <div class="views"><i class="fa fa-eye"></i> <%=  question.views %></div>
+    <div class="time"><i class="fa fa-clock-o"></i> <%= time_ago_in_words question.created_at %></div>
+  </div>
+  <div class="clearfix"></div>
+</div><!-- POST -->
 
 
 
