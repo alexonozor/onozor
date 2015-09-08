@@ -1,23 +1,24 @@
 
   <!-- POST -->
+  <%= div_for(answer) do %>
   <div class="post">
     <div class="topwrap">
       <div class="userinfo pull-left">
         <div class="avatar">
-          <%= link_to image_tag(@answer.user.avatar.url(:thumb)) %>
-          <% if @answer.user.is_online? %>
+          <%= link_to image_tag(answer.user.avatar.url(:thumb)) %>
+          <% if answer.user.is_online? %>
               <div class="status green">&nbsp;</div>
           <% else %>
               <div class="status red">&nbsp;</div>
           <% end %>
         </div>
-        <%=link_to @answer.user.username.titleize, answer.user %>
+        <%=link_to answer.user.username.titleize, answer.user %>
       </div>
       <div class="posttext pull-left">
         <p><%= markdown(answer.body).html_safe %></p>
         <% if @answer.comments.present? %>
             <div id="comments" class="comments">
-                <%= render @answer.comments %>
+                <%= render answer.comments %>
             </div>
         <% end %>
 
@@ -42,7 +43,7 @@
       </div>
 
       <div class="posted pull-left"><i class="fa fa-clock-o"></i>Posted on : <%= (answer.created_at).strftime("%-d %b @ %-l:%M%P") %></div>
-    <% if current_user && answer.user == current_user || current_user.admin?   %>
+    <% if current_user && answer.user == current_user    %>
       <div class="next pull-right">
         <%= link_to "<i class='fa fa-pencil'></i>".html_safe , edit_answer_path(answer.id), :remote => true   %>
         <%= link_to "<i class='fa fa-trash'></i>".html_safe , answer , :method => :delete, :remote=> true %>
@@ -51,6 +52,7 @@
       <div class="clearfix"></div>
     </div>
   </div><!-- POST -->
+ <% end %>
 
 
 

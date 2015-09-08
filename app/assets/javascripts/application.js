@@ -239,7 +239,9 @@ function insertText(element_name, before_text, after_text, default_text) {
     }
 }
 
-
+$('.hide-form').click(function(){
+    alert('welcome')
+})
 
 
 
