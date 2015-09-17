@@ -3,15 +3,10 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.1'
 
-group :production do
-  gem 'pg'
-  gem 'rails_12factor'
-end
 
-gem 'sqlite3'
-group :development do
-  gem 'sqlite3'
-end
+
+
+
 
 
 # Use SCSS for stylesheets
@@ -54,7 +49,6 @@ gem 'rmagick'
 gem 'ancestry'
 gem 'acts-as-taggable-on', '~> 3.4'
 gem 'cancancan'
-gem 'ckeditor'
 gem 'paper_trail'
 gem 'will_paginate'
 gem 'redcarpet'
@@ -69,5 +63,13 @@ gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'
 gem 'pry'
 
+group :production do
+  gem 'pg'
+  gem 'rails_12factor'
+end
+
+group :development do
+  gem 'sqlite3'
+end
 
 
