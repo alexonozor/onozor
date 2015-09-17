@@ -6,7 +6,7 @@ NairaOverflow::Application.routes.draw do
 
   post "versions/:id/revert" => "versions#revert", :as => "revert_version"
   get 'questions/advise', to: 'questions#advise', :as => "question_advise"
-  mount Ckeditor::Engine => '/ckeditor'
+
   resources :friendships
   resources :followers
   resources :alltags

@@ -1,18 +1,7 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.1'
-
-group :production do
-  gem 'pg'
-  gem 'rails_12factor'
-end
-
-gem 'sqlite3'
-group :development do
-  gem 'sqlite3'
-end
-
+gem 'rails', '4.0.6'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
@@ -33,7 +22,7 @@ gem 'jquery-rails'
 gem 'turbolinks'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 1.2'
+#gem 'jbuilder', '~> 1.2'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
@@ -54,7 +43,6 @@ gem 'rmagick'
 gem 'ancestry'
 gem 'acts-as-taggable-on', '~> 3.4'
 gem 'cancancan'
-gem 'ckeditor'
 gem 'paper_trail'
 gem 'will_paginate'
 gem 'redcarpet'
@@ -66,6 +54,26 @@ gem 'paperclip-dropbox'
 gem 'slack-notifier'
 gem 'redis'
 gem 'omniauth-facebook'
+gem 'omniauth-google-oauth2'
+gem 'pry'
 
 
+group :development, :test do
+  # Use sqlite3 as the database for Active Record
+  gem 'sqlite3'
+end
+
+group :development do
+  gem 'capistrano',         require: false
+  gem 'capistrano-rvm',     require: false
+  gem 'capistrano-rails',   require: false
+  gem 'capistrano-bundler', require: false
+  gem 'capistrano3-puma',   require: false
+end
+
+gem 'puma'
+
+group :production do
+  gem 'pg'
+end
 

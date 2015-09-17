@@ -1,5 +1,6 @@
 # Use this hook to configure devise mailer, warden hooks and so forth.
 # Many of these configuration options can be set straight in your model.
+require "omniauth-google-oauth2"
 Devise.setup do |config|
   # The secret key used by Devise. Devise uses this key to generate
   # random tokens. Changing this key will render invalid all existing
@@ -20,7 +21,9 @@ Devise.setup do |config|
   # :mongoid (bson_ext recommended) by default. Other ORMs may be
   # available as additional gems.
   require 'devise/orm/active_record'
-  config.omniauth :facebook, "484766111702543", "73fe45582ab2101860d6b8972c3bc228",  scope: 'email',  info_fields: 'email,name,first_name,last_name,gender'
+  config.omniauth :facebook, ENV['FACEBOOK_APP_ID'], ENV['FACEBOOK_APP_SECRET'],  scope: 'email',  info_fields: 'email,name,first_name,last_name,gender'
+  # config.omniauth :google_oauth2, "229231951350-76429kirhj4k2fklcg68v7tmcj86hdsg.apps.googleusercontent.com", "NNQ4EzFN1mHlCKvwQqoU9wGE"
+  config.omniauth :google_oauth2, ENV['GOOGLE_APP_ID'], ENV['GOOGLE_APP_SECRET']
   # ==> Configuration for any authentication mechanism
   # Configure which keys are used when authenticating a user. The default is
   # just :email. You can configure it to use [:username, :subdomain], so for
