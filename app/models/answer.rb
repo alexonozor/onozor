@@ -1,5 +1,5 @@
 class Answer < ActiveRecord::Base
-  after_create :send_answer_email
+  #after_create :send_answer_email
 
  #association
  belongs_to :question, :counter_cache => true

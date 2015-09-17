@@ -34,9 +34,9 @@ class AnswersController < ApplicationController
      end      
       else
     respond_to do |format|
-      format.html { redirect_to @answer.question, alert: 'Unable to add Answer' }
-      format.mobile { redirect_to @answer.question, alert: 'Unable to add Answer' }
-      format.js { render 'fail_create.js.erb' }
+        format.html { redirect_to @answer.question, alert: 'Unable to add Answer' }
+        format.mobile { redirect_to @answer.question, alert: 'Unable to add Answer' }
+        format.js { render 'fail_create.js.erb' }
        end
       end
     end

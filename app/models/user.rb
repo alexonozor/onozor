@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
                     :storage => :dropbox,
                     :dropbox_credentials => "#{Rails.root}/config/dropbox.yml",
                     :styles => { :medium => "150x150#", :thumbs => "100x100#", :thumbnails => "70x70#",
-  :thumb => "50x50#", :home => "30x30>" }, :default_url => ""
+  :thumb => "50x50#", :home => "30x30>" }, :default_url => "http://res.cloudinary.com/sportbay-co/image/upload/c_scale,w_50/v1441294900/missing_avatar_mqvxnf.png"
   validates_attachment :avatar,
   :content_type => { :content_type => ["image/jpeg", "image/gif", "image/png"] ,
                        :dropbox_options => {

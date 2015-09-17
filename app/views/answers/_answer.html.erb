@@ -1,65 +1,58 @@
 
-          <div id="answer-body" data-time="<%= answer.created_at.to_i %>" >
-          <%= div_for answer do %>
-	     <div class="row">
+  <!-- POST -->
+  <%= div_for(answer) do %>
+  <div class="post">
+    <div class="topwrap">
+      <div class="userinfo pull-left">
+        <div class="avatar">
+          <%= link_to image_tag(answer.user.avatar.url(:thumb)) %>
+          <% if answer.user.is_online? %>
+              <div class="status green">&nbsp;</div>
+          <% else %>
+              <div class="status red">&nbsp;</div>
+          <% end %>
+        </div>
+        <%=link_to answer.user.username.titleize, answer.user %>
+      </div>
+      <div class="posttext pull-left">
+        <p><%= markdown(answer.body).html_safe %></p>
+        <% if @answer.comments.present? %>
+            <div id="comments" class="comments">
+                <%= render answer.comments %>
+            </div>
+        <% end %>
 
-              <div class="col-md-1 votes">
+      </div>
+      <div class="clearfix"></div>
+    </div>
+    <div class="postinfobot">
 
-		   <% if current_user && current_user.can_vote?(answer) %>
-<h4><%= link_to  (image_tag "arrow-up.png"), vote_answer_path(answer, value: 1), remote: true, method: "post" %></h4>
-		             <h4 id='answer_vote_count'><%= answer.votes %></h4>
-<h4><%= link_to (image_tag "arrow-down.png"), vote_answer_path(answer, value: 1), remote: true, method: "post" %></h4>
-		   <% else %>
- <h4><%= link_to  (image_tag "arrow-up.png"), vote_answer_path(answer, value: 1), remote: true, method: "post" %></h4>
-		               <h4 id='answer_vote_count'><%=  answer.votes %></h4>
-<h4><%= link_to (image_tag "arrow-down.png"), vote_answer_path(answer, value: 1), remote: true, method: "post" %></h4>
-		   <% end %>
-                </div>
+      <div class="likeblock pull-left">
+        <% if current_user %>
+            <%= link_to '<i class="fa fa-thumbs-o-up"></i>'.html_safe, vote_answer_path(answer.id, value: 1), method: "post", class:'vote-direction up', alt:'Up Vote' , remote: true %>
+            <%=  answer.votes %>
+            <%= link_to '<i class="fa fa-thumbs-o-down"></i>'.html_safe, vote_answer_path(answer.id, value: -1), method: "post", class:"down", remote: true %>
+        <% end %>
+      </div>
 
+      <div class="prev pull-left">
+        <%= link_to '<i class="fa fa-reply"></i>'.html_safe, new_comment_path(:comment => { :commentable_type => answer.class.name,
+                                                                  :commentable_id => answer.id}),
+                    :remote => true,
+                    :class => "btn comment_link" %>
+      </div>
 
-            <div class="col-md-10 body-rigion">
-             <span class="answer-format"><%= markdown(answer.body).html_safe %>
-              <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i>
-               <%= distance_of_time_in_words_to_now answer.created_at %> ago
-                <%= link_to "Add comment", new_comment_path(:comment => { :commentable_type => answer.class.name,
-                                                              :commentable_id => answer.id}),
-                                                              :remote => true,
-                                                              :class => "btn comment_link" %>
-						      	      </small>
-							     </p>
-							    </span>
-							   </div>
-
-		    <div class="col-md-1">
-		      <nav class="offset-2">
-		         <small class="mute">
-                          <% if current_user.present? %>
-			    <% if current_user && answer.user_id == current_user.id || current_user.admin?  %>
-<i id="edit"><%= link_to "<i class='glyphicon glyphicon-pencil'></i>".html_safe , edit_answer_path(answer.id), :remote => true   %></i>
-<i id="delete"><%= link_to "<i class='glyphicon glyphicon-trash'></i>".html_safe , answer , :method => :delete, :remote=> true %></i>
-			     <% end %>
-                           <% end %>
-		          </small>
-			 </nav>
-                        <%= ( image_tag(answer.user.avatar.url(:thumb),
-                                           class:"follow-pix", :border =>"0") ) %>
-                                          <span class="answer-username"><%= answer.user.username %></span>
-
-					   </div>
-                                     <div class="comment row" id="comments">
-				       <div class="col-md-1"></div>
-                                      <div class="col-md-11">
-                                     <table>
-                                    <%= render answer.comments %>
-                                     </table>
-                                      </div>
-                                       </div>
-				          </div>
-				         <% end %>
-                                        </div>
-
-
-
+      <div class="posted pull-left"><i class="fa fa-clock-o"></i>Posted on : <%= (answer.created_at).strftime("%-d %b @ %-l:%M%P") %></div>
+    <% if current_user && answer.user == current_user    %>
+      <div class="next pull-right">
+        <%= link_to "<i class='fa fa-pencil'></i>".html_safe , edit_answer_path(answer.id), :remote => true   %>
+        <%= link_to "<i class='fa fa-trash'></i>".html_safe , answer , :method => :delete, :remote=> true %>
+      </div>
+    <% end %>
+      <div class="clearfix"></div>
+    </div>
+  </div><!-- POST -->
+ <% end %>
 
 
 

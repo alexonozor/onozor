@@ -80,7 +80,6 @@ class QuestionsController < ApplicationController
 
 
   def advise
-
     respond_to do |format|
       format.xml
       format.mobile { render :layout => "application" }
@@ -98,7 +97,6 @@ class QuestionsController < ApplicationController
   @answer = Answer.new(:question => @question, :user => current_user)
   @comment = Comment.new(:commentable_type => @question.class.name, :commentable_id => @question.id, :user => current_user )
   respond_to do |format|
-    format.html {render layout: "display"}
     format.mobile {render layout: "application"}
    end
   end
@@ -172,8 +170,8 @@ class QuestionsController < ApplicationController
   # DELETE /questions/1.json
   def destroy
     @question.destroy
-    redirect_to :back, :notice=> "Question has been remove #{undo_link}".html_safe 
-   authorize! :destroy, @questions 
+    redirect_to root_path, :notice => "Question has been remove #{undo_link}".html_safe
+    authorize! :destroy, @questions
   end
 
    def undo_link
@@ -186,7 +184,7 @@ class QuestionsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_question
-      @question = Question.friendly.find(params[:id])  
+      @question = Question.friendly.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
