@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  #load_and_authorize_resource 
+  #load_and_authorize_resource
   layout "display"
   respond_to :html, :xml, :json, :js, :mobile
   before_filter :load_users
@@ -8,7 +8,7 @@ class UsersController < ApplicationController
   def index
    if params[:search].present?
       @user = User.search(params[:search])
-    else  
+    else
      @user = User.order(:username).paginate :page => params[:page], :per_page => 20
    end
   respond_to do |format|
@@ -18,7 +18,7 @@ class UsersController < ApplicationController
     end
   end
 
-   
+
 
   def show
     @related_questions = Question.latest.limit(10)
@@ -42,10 +42,7 @@ class UsersController < ApplicationController
     end
   end
 
- 
- 
 
-  
   def who_is_online
     @users = User.online
     respond_to do |format|
@@ -54,7 +51,7 @@ class UsersController < ApplicationController
     end
   end
 
- 
+
 
   private
   def load_user
@@ -64,7 +61,7 @@ class UsersController < ApplicationController
   def load_questions
   @related_questions = Question.all
   end
-  
+
   def user_params
       params.require(:user).permit(:banned_at )
   end
