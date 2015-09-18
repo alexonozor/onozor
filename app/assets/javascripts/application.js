@@ -18,7 +18,7 @@
 
  $(function(){
   $('#question_tag_list').tokenInput('/alltags.json', {
-     crossDomain:false, 
+     crossDomain:false,
      prePopulate: $('#question_tag_list').data('pre')
    });
  });
@@ -39,7 +39,7 @@ $(function(){
 function updateAnswers(){
  var question_id = $('#question').attr('data-id');
  var after = $('#answer-body:last-child').attr('data-time');
- $.getScript("/answers.js?question_id="+question_id+"&after="+after) 
+ $.getScript("/answers.js?question_id="+question_id+"&after="+after)
  setTimeout(updateAnswers, 10000);
 }
 
@@ -241,10 +241,3 @@ function insertText(element_name, before_text, after_text, default_text) {
 $('.hide-form').click(function(){
     alert('welcome')
 })
-
-
-
-
-
-
-
