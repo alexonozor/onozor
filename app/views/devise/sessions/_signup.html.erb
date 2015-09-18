@@ -1,0 +1,35 @@
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+
+  <div class="form-inputs">
+     <div class="form-group">
+ <%= f.text_field :username, required: true, :label=> :false, :class=>"form-control", :placeholder=>"Username" %>
+  </div>
+</div>
+
+  <div class="form-inputs">
+     <div class="form-group">
+ <%= f.email_field :email, required: true, :label=> :false, :class=>"form-control", :placeholder=>"Email" %>
+  </div>
+</div>
+
+   <% if f.object.password_required?  %>
+     <div class="form-inputs">
+          <div class="form-group">
+       <%= f.password_field :password, required: true, :label=> :false, :class=>"form-control", :placeholder=>"Password here" %>
+      </div>
+    </div>
+
+
+        <div class="form-inputs">
+          <div class="form-group">
+       <%= f.password_field :password_comfirmation, required: true, :label=> :false, :class=>"form-control", :placeholder=>"Retype password" %>
+      </div>
+    </div>
+
+      <div class="form-actions">
+        <button class="btn btn-success">Sign up</button>
+        <%=link_to "Cancel", "#", class: "btn btn-default email-signup" %>
+      </div>
+     <% end %>
+
+<% end %>
