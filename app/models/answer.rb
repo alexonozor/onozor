@@ -34,7 +34,8 @@ class Answer < ActiveRecord::Base
 
 
   def send_answer_email
-     UserMailer.delay_for(1.second).answer_update(self) if self.question.send_mail
+    #delay_for(1.second)
+     UserMailer.answer_update(self) if self.question.send_mail
   end
 
 
