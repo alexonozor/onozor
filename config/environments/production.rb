@@ -80,7 +80,7 @@ NairaOverflow::Application.configure do
   config.log_formatter = ::Logger::Formatter.new
 
   # SMTP Configuration
-  config.action_mailer.default_url_options = { host: "alexinquire.herokuapp.com" }
+  config.action_mailer.default_url_options = { host: "http://178.62.24.144/" }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
       :address              => "smtp.gmail.com",
