@@ -1,5 +1,5 @@
 class Answer < ActiveRecord::Base
-  #after_create :send_answer_email
+  after_create :send_answer_email
 
  #association
  belongs_to :question, :counter_cache => true
@@ -35,7 +35,7 @@ class Answer < ActiveRecord::Base
 
   def send_answer_email
     #delay_for(1.second)
-     UserMailer.answer_update(self) if self.question.send_mail
+     UserMailer.answer_update(self).deliver if self.question.send_mail
   end
 
 
