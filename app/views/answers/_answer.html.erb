@@ -17,7 +17,7 @@
       <div class="posttext pull-left" id="comment-form_<%= answer.id %>">
         <p><%= markdown(answer.body).html_safe %></p>
         <% if answer.comments.present? %>
-            <div id="comments" class="comments">
+            <div id="comments" class="comments" style="text-align: left">
                 <%= render answer.comments %>
             </div>
         <% end %>

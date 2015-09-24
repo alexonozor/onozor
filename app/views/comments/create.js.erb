@@ -1,9 +1,16 @@
 
 <% if @comment.errors.present? %>
     alert("<%= @comment.errors.full_messages.values.to_sentence.html_safe %>");
-<% else %>
-    $('#new_comment').fadeOut('slow');
-    $('#comment_link').fadeIn('slow');
+<% elsif @comment.commentable_type == "Answer"%>
+    $('#new_comment').hide('fast');
+//  $('#comment_link').fadeIn('slow');
     $('.comment_link').show();
     $("#comment-form_<%= @comment.commentable_id %>").append("<%=raw escape_javascript render(@comment) %>");
+    $('.new_comment').hide('fast');
+<% else %>
+    $('#new_comment').fadeOut('slow');
+    //  $('#comment_link').fadeIn('slow');
+    $('.comment_link').show();
+    $("#comments").append("<%=raw escape_javascript render(@comment) %>");
+    $('.new_comment').hide('fast');
 <% end %>

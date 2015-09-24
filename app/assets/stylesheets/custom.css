@@ -476,8 +476,7 @@ td.chbox {
 }
 
 .post .comments {
-    border-bottom: solid 1px #f1f1f1;
-    padding: 18px 0 25px 0;
+    /*padding: 18px 0 25px 0;*/
     text-align: center;
 }
 
