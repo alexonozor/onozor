@@ -14,9 +14,9 @@
         </div>
         <%=link_to answer.user.username.titleize, answer.user %>
       </div>
-      <div class="posttext pull-left">
+      <div class="posttext pull-left" id="comment-form_<%= answer.id %>">
         <p><%= markdown(answer.body).html_safe %></p>
-        <% if @answer.comments.present? %>
+        <% if answer.comments.present? %>
             <div id="comments" class="comments">
                 <%= render answer.comments %>
             </div>

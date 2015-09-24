@@ -1,11 +1,12 @@
 <div class="clear"></div>
 <div>
   <% if current_user.nil? %>
-      <p>First <%= link_to "sign in", new_user_session_path %> to post a Answer.</p>
+      <p class="alert alert-danger text-center"><%= link_to "sign in or sign up", new_user_session_path %> to post a Answer.</p>
   <% elsif cannot? :create, :answers %>
-      <p>You have been banned from creating Answers.</p>
+      <p class="alert alert-danger">You have been banned from creating Answers.</p>
   <% else %>
       <!-- POST -->
+      <p class="alert alert-info text-center">Post your answer</p>
       <div class="post">
         <%= form_for @answer, class: 'form-horizontal form', :remote => true do |f| %>
             <%= f.hidden_field :question_id  %>

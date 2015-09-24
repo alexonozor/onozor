@@ -31,7 +31,7 @@
       <%= render :partial =>"questions/votebox" %>
     </div>
     <div class="prev pull-left">
-    <%= link_to "<i class='fa fa-reply'></i>".html_safe, new_comment_path(:comment => { :commentable_type => @question.class.name,
+    <%= link_to "<i class='fa fa-comments'></i>+".html_safe, new_comment_path(:comment => { :commentable_type => @question.class.name,
                                                                           :commentable_id => @question.id}),
                   :remote => true,
                   :class => "comment_link",
@@ -50,7 +50,7 @@
 </div><!-- POST -->
 
 <div class="answer-post">
-<%= render :partial => @question.answers %>
+    <%= render :partial => @question.answers %>
 </div>
 <%= render "answers/form" %>
 

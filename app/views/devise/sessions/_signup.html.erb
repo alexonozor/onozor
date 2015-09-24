@@ -25,11 +25,9 @@
        <%= f.password_field :password_comfirmation, required: true, :label=> :false, :class=>"form-control", :placeholder=>"Retype password" %>
       </div>
     </div>
-
-      <div class="form-actions">
-        <button class="btn btn-success">Sign up</button>
-        <%=link_to "Cancel", "#", class: "btn btn-default email-signup" %>
-      </div>
      <% end %>
-
+    <div class="form-actions">
+      <button class="btn btn-success">Sign up</button>
+      <%=link_to "Cancel", "#", class: "btn btn-default email-signup" %>
+    </div>
 <% end %>

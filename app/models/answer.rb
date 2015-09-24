@@ -1,5 +1,5 @@
 class Answer < ActiveRecord::Base
-  after_create :send_answer_email
+  #after_create :send_answer_email
 
  #association
  belongs_to :question, :counter_cache => true
@@ -11,9 +11,8 @@ class Answer < ActiveRecord::Base
 
 
   #validation
-  validates_uniqueness_of :body
+  validates_uniqueness_of :body, { scope: :question_id }
   validates_presence_of :body, :question_id, :user_id
-  validates_length_of   :body, :within => 25..20048
   has_many :comments, :as => :commentable, :dependent => :destroy
 
  def self.by_votes

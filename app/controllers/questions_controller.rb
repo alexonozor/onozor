@@ -115,7 +115,7 @@ class QuestionsController < ApplicationController
   # GET /questions/1/edit
   def edit
   @related_questions = @question.find_related_tags.limit(10)
-  authorize! :edit, @questions
+  # authorize! :edit, @questions
   end
 
   # POST /questions
@@ -123,7 +123,6 @@ class QuestionsController < ApplicationController
   def create
     @question = Question.new(question_params)
     @question.user = current_user
-    puts  params[:tag_list]
     @question.tag_list.add(params[:tag_list])
       if @question.save
        redirect_to @question,  :notice => "Question was successfully created."
@@ -158,11 +157,10 @@ class QuestionsController < ApplicationController
   # PATCH/PUT /questions/1.json
   def update
       if @question.update(question_params)
-        redirect_to @question, :notice =>"Question was successfully updated. #{undo_link}".html_safe 
-      else
+        redirect_to @question, :notice =>"Question was successfully updated"
         render action: 'edit'
       end
-     authorize! :read, @update
+     # authorize! :read, @update
   end
   
 
@@ -174,12 +172,7 @@ class QuestionsController < ApplicationController
     authorize! :destroy, @questions
   end
 
-   def undo_link
-    if can? :revert, :versions
-      version = @question.versions.scoped.last
-        view_context.link_to("undo", revert_version_path(version), :method => :post) if can? :revert, version
-    end
-   end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

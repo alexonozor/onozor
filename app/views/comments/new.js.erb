@@ -1,7 +1,7 @@
 <% if @comment.commentable_type == "Question" %>
-$('#comment-form').append('<%= escape_javascript render("form") %>');
-$('.comment_link').hide();
+    $('#comment-form').append('<%= escape_javascript render("form") %>');
+    $('.comment_link').hide();
  <% else %>
-$('#answer_<%= @comment.commentable_id %>').append('<%= escape_javascript render("form") %>');
-$('.comment_link').hide();
+    $('#comment-form_<%= @comment.commentable_id %>').append('<%= escape_javascript render("form") %>');
+    $('.comment_link').hide();
 <% end %>

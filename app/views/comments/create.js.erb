@@ -1,8 +1,9 @@
 
 <% if @comment.errors.present? %>
-alert("<%= @comment.errors.full_messages.to_sentence.html_safe %>");
+    alert("<%= @comment.errors.full_messages.values.to_sentence.html_safe %>");
 <% else %>
-$('#new_comment').fadeOut('slow');
-$('#comment_link').fadeIn('slow');
-$("#comments").append("<%=raw escape_javascript render(@comment) %>");
+    $('#new_comment').fadeOut('slow');
+    $('#comment_link').fadeIn('slow');
+    $('.comment_link').show();
+    $("#comment-form_<%= @comment.commentable_id %>").append("<%=raw escape_javascript render(@comment) %>");
 <% end %>
