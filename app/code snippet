@@ -1,148 +1,108 @@
-<div class="flow question-body" data-question="<%= question.created_at.to_i %>" data-id="<%= question.id %>">
-      <div class="row">
-        <div class="col-md-2 profile-area">
+<%= simple_form_for(@question, html: {class: 'form-horizontal' }) do |f| %>
+  <% if @question.errors.any? %>
+        <div id="error_explanation">
+      <h2><%= pluralize(@question.errors.count, "error") %> prohibited this question from being saved:</h2>
 
-          <%=link_to (image_tag question.user.avatar(:thumbnails), :class=>"profile-pix"), user_path(question.user.slug) %>
-          <small><%= question.user.title %>  <%=link_to question.user.slug, user_path(question.user.slug) %></small>
-        </div>
+      <ul>
+      <% @question.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
 
-        <div class="col-md-9 bod question-headlines">
-          <strong><%=link_to question.name, question %><a  class="glyphicon glyphicon-share-alt share"></a>
-            <% if user_signed_in? %>
-                <%= link_to "", toggle_favourite_path(question.id), :method => "post", :class => "glyphicon glyphicon-star favourite", title:"Add to favourite", :remote => true %>
-            <% end -%>
-          </strong>
-           <p class="<%= question.vote_status %>"><small><i class="glyphicon glyphicon-time"></i> <%= time_ago_in_words(question.created_at) %> ago</small></p>
-          <p style=" text-align:left; color:black;"><%=  (truncate strip_tags(question.body), length: 150) %></p>
-
-          <p class="pull-left lighter">
-            <small class="lighter"><p  class="glyphicon glyphicon-tags"></p><%= raw question.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %> &nbsp <p class="glyphicon glyphicon-question-sign"></p>
-            <%=link_to  (pluralize (question.answers.size ), "Answer"), question, anchor: "answers"   %>
-             &nbsp <i class="glyphicon glyphicon-subtitles"></i> <%=link_to question.category.name, question.category if question.category  %>
-          </small>
-         </p>
-        </div>
+    <div class="form-group error-holder">
+      <div class="col-lg-10">
+        <%= f.text_field :name, :class=>"form-control question-title", :placeholder=>"What is your programing question be specific?", :label =>false %>
       </div>
     </div>
 
+    <div class="form-group">
+      <div class="col-lg-12">
+        <div class="form-header md_editor">
+          <nav>
+            <a href="#insert_strong" id="add_strong" ><i class="glyphicon glyphicon-bold"></i></a>
+            <a href="#insert_em" id="add_em"><i class="glyphicon glyphicon-italic"></i></a>
+            <a href="#insert_link" id="add_link"><i class="glyphicon glyphicon-link"></i></a>
+            <a href="#insert_ol" id="add_ord_list"><i class="glyphicon glyphicon-list" ></i></a>
+            <a href="#insert_code" id="insert_code"><i class="glyphicon glyphicon-chevron-left"></i><i class="glyphicon glyphicon-chevron-right"></i></a>
+            <a href="#"><i class="glyphicon glyphicon-question-sign help-toggle"></i></a>
+          </nav>
+          <div class="editing-help">
+            <p>To create code blocks or other preformatted text, indent by four spaces, highlight the code  and click on the code icon <b>< ></b></p>
+            <p>This will be displayed in a monospaced font. The first four spaces</p>
+            <p>will be stripped off, but all other whitespace will be preserved.</p> </br>
 
-
-
-<h2>Edit Your Account</h2>
-
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, multiple: :true, :role=>"form", :class=>"form-horizontal" }) do |f| %>
-    <div class="row">
-
-      <% if @user.errors.any? %>
-          <div id="error_explanation">
-            <h2><%= pluralize(@user.errors.count, "error") %> prohibited your account from being created:</h2>
-
-            <ul>
-              <% @user.errors.full_messages.each do |msg| %>
-                  <li><%= msg %></li>
-              <% end %>
-            </ul>
-          </div>
-      <% end %>
-
-
-      <div class="form-inputs">
-        <div class="form-group">
-          <%= f.text_field :username, class:"form-control" %>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <div class="col-lg-4">
-          <label>First name</label>
-          <%= f.text_field :first_name, class:"form-control"   %>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <div class="col-lg-4">
-          <label>First name</label>
-          <%= f.text_field :last_name,  class:"form-control" %>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <div class="col-lg-4">
-            <%= f.select :gender,  [:Male, :Female], :prompt => 'Select Gender', class:"form-control"  %>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <div class="col-lg-6">
-          <label>Biography</label>
-          <%= f.text_area :bio, class:"form-control", rows:"3" %>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <div class="col-lg-4">
-          <label>Intrest</label>
-          <%= f.text_field :intrest, class:"form-control" %>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <div class="col-lg-4">
-          <label>Occupation</label>
-          <%= f.text_field :occupation, class:"form-control" %>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <div class="col-lg-4">
-          <label for="exampleInputEmail1">Email address</label>
-          <%= f.text_field :email, class:"form-control", id:"exampleInputEmail1", placeholder:"Enter email"  %>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <div class="col-lg-4">
-          <label for="exampleInputFile">Profile Picture</label>
-          <%= f.file_field :avatar, id:"exampleInputFile"  %>
-          <p class="help-block">Please upload a profile picture Max (5mb).</p>
-        </div>
-      </div>
-
-      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-          <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
-      <% end %>
-
-      <div class="form-input">
-        <div class="col-lg-4">
-          <label for="exampleInputEmail1">Password</label>
-          <%= f.password_field :password, hint: "leave it blank if you don't want to change it", class:"form-control", id:"exampleInputEmail1", placeholder:"password" %>
-        </div>
-      </div>
-
-      <div class="form-inputs">
-        <div class="form-group">
-          <label for="exampleInputEmail1">Password comfirmation</label>
-          <%= f.password_field :password_confirmation, class:"form-control", id:"exampleInputEmail1", placeholder:"password" %>
-        </div>
-      </div>
-
-      <div class="form-inputs">
-        <div class="form-group">
-          <label for="exampleInputEmail1">Current Password</label>
-          <%= f.password_field :current_password, hint: "we need your current password to confirm your changes",  class:"form-control", id:"exampleInputEmail1", placeholder:"current password" %>
-        </div>
-       </div>
-
-        <div class="form-inputs">
-          <div class="form-group">
-            <label for="exampleInputEmail1">Current Password</label>
-            <%= f.submit %>
+            <p>Markdown and HTML are turned off in code blocks:</p>
+            <p><i>This is not italic</i>, and [this is not a link](http://example.com)</p>
           </div>
         </div>
+        <%= f.text_area :body, :class=>"form-control post_form", rows:10 %>
+      </div>
+    </div>
+
+    <%= f.input :tag_list, :label => "Select Tags (must be more than two)", "data-pre" => @question.alltags.map { |tag| tag.name}.to_json  %>
+
+       <br /><br />
+        <%= f.check_box :send_mail %>
+         <%= f.label :send_mail, "Send me new responses of my posts via email (settings)" %>
+
+    <br />
+
+  <div class="form-group">
+   <%= f.submit "Post your Question", :class=>"btn btn-primary" %>
+  </div>
 <% end %>
-<h3>Cancel my account</h3>
 
-<p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
 
-<%= link_to "Back", :back %>
+ <div class="row newtopcheckbox">
+            <div class="col-lg-6 col-md-6">
+              <div><p>Who can see this?</p></div>
+              <div class="row">
+                <div class="col-lg-6 col-md-6">
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" id="everyone"> Everyone
+                    </label>
+                  </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" id="friends"> Only Friends
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-6">
+              <div>
+                <p>Share on Social Networks</p>
+              </div>
+              <div class="row">
+                <div class="col-lg-3 col-md-4">
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" id="fb"> <i class="fa fa-facebook-square"></i>
+                    </label>
+                  </div>
+                </div>
+                <div class="col-lg-3 col-md-4">
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" id="tw"> <i class="fa fa-twitter"></i>
+                    </label>
+                  </div>
+                </div>
+                <div class="col-lg-3 col-md-4">
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" id="gp"> <i class="fa fa-google-plus-square"></i>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
 

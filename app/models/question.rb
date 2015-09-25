@@ -24,7 +24,7 @@ class Question < ActiveRecord::Base
  validates_presence_of :name, :body, :user_id #:tag_list
  validates_length_of   :name, :within => 20..200
  validates_length_of   :body, :within => 70...20000
- validates_length_of   :tag_list, :minimum => 2, :maximum => 8
+ # validates_length_of   :tag_list, :minimum => 2, :maximum => 8
  validates_uniqueness_of :name, :body
 
   #scope
@@ -100,9 +100,9 @@ class Question < ActiveRecord::Base
 
   def self.search(text)
     if text
-      find(:all, :conditions => ['name LIKE ?', "%#{text}%"])
+      where('name LIKE ?', "%#{text}%")
     else
-      find(:all)
+      []
     end
   end
 

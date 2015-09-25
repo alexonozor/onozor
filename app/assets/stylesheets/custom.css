@@ -476,7 +476,7 @@ td.chbox {
 }
 
 .post .comments {
-    /*padding: 18px 0 25px 0;*/
+    padding: 18px 0 25px 0;
     text-align: center;
 }
 
@@ -1131,6 +1131,8 @@ a.down:hover {
         padding-bottom: 15px;
     }
 
+
+
     .post .comments .commentbg {
         font-size: 12px;
         padding: 7px;
@@ -1315,4 +1317,19 @@ a.down:hover {
 }
 .sitename {
   color: #00B5C0;
+}
+
+.radio, .checkbox {
+    display: block;
+    min-height: 20px;
+    margin-top: 0px;
+    margin-bottom: 10px;
+    padding-left: 20px;
+}
+
+.error {
+    color: red;
+    position: relative;
+    bottom: 22px;
+    text-decoration: blink;
 }

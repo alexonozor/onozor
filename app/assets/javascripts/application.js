@@ -238,6 +238,10 @@ function insertText(element_name, before_text, after_text, default_text) {
     }
 }
 
-$('.hide-form').click(function(){
-    alert('welcome')
+$(function(){
+    $('#question_name').keyup(function () {
+        $.get($('#question_name').attr('action'),
+        $('#question_name').serialize(), null, 'script');
+        return false;
+    });
 })

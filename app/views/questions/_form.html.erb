@@ -1,57 +1,100 @@
-<%= simple_form_for(@question, html: {class: 'form-horizontal' }) do |f| %>
-  <% if @question.errors.any? %>
-        <div id="error_explanation">
-      <h2><%= pluralize(@question.errors.count, "error") %> prohibited this question from being saved:</h2>
 
-      <ul>
-      <% @question.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
 
-    <div class="form-group error-holder">
-      <div class="col-lg-10">
-        <%= f.text_field :name, :class=>"form-control question-title", :placeholder=>"What is your programing question be specific?", :label =>false %>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <div class="col-lg-12">
-        <div class="form-header md_editor">
-          <nav>
-            <a href="#insert_strong" id="add_strong" ><i class="glyphicon glyphicon-bold"></i></a>
-            <a href="#insert_em" id="add_em"><i class="glyphicon glyphicon-italic"></i></a>
-            <a href="#insert_link" id="add_link"><i class="glyphicon glyphicon-link"></i></a>
-            <a href="#insert_ol" id="add_ord_list"><i class="glyphicon glyphicon-list" ></i></a>
-            <a href="#insert_code" id="insert_code"><i class="glyphicon glyphicon-chevron-left"></i><i class="glyphicon glyphicon-chevron-right"></i></a>
-            <a href="#"><i class="glyphicon glyphicon-question-sign help-toggle"></i></a>
-          </nav>
-          <div class="editing-help">
-            <p>To create code blocks or other preformatted text, indent by four spaces, highlight the code  and click on the code icon <b>< ></b></p>
-            <p>This will be displayed in a monospaced font. The first four spaces</p>
-            <p>will be stripped off, but all other whitespace will be preserved.</p> </br>
-
-            <p>Markdown and HTML are turned off in code blocks:</p>
-            <p><i>This is not italic</i>, and [this is not a link](http://example.com)</p>
+  <!-- POST -->
+  <div class="post">
+    <%= simple_form_for @question,  html:{class:"form newtopic"} do |f| %>
+      <div class="topwrap">
+        <div class="userinfo pull-left">
+          <div class="avatar">
+            <%= link_to (image_tag current_user.avatar(:thumb)), current_user %>
+            <% if current_user.is_online? %>
+                <div class="status green">&nbsp;</div>
+            <% else %>
+                <div class="status red">&nbsp;</div>
+            <% end %>
+          </div>
+          <div class="icons">
+            <%= link_to  current_user.username.titleize, @question.user %>
           </div>
         </div>
-        <%= f.text_area :body, :class=>"form-control post_form", rows:10 %>
+        <div class="posttext pull-left">
+          <div>
+            <%= f.input :name, placeholder:"Enter Topic Title", input_html: { class: 'form-control' }, label: false  %>
+          </div>
+            <div>
+             <%= f.association :category, input_html: {class: 'form-control'}, label: false, prompt: "Select your Category" %>
+            </div>
+          <div>
+            <%= f.input :body, input_html: {class: 'form-control', id: 'desc'}, label: false, placeholder:"Description" %>
+          </div>
+        </div>
+        <div class="clearfix"></div>
       </div>
-    </div>
+      <div class="postinfobot">
 
-    <%= f.input :tag_list, :label => "Select Tags (must be more than two)", "data-pre" => @question.alltags.map { |tag| tag.name}.to_json  %>
+        <div class="notechbox pull-left">
+          <%= f.input :send_mail,  input_html: {class: 'form-control', id: 'desc', style: 'margin-bottom: 0px'}, label: false %>
+        </div>
 
-       <br /><br />
-        <%= f.check_box :send_mail %>
-         <%= f.label :send_mail, "Send me new responses of my posts via email (settings)" %>
+        <div class="pull-left">
+          <label for="note"> Email me when some one post a reply</label>
+        </div>
 
-    <br />
+        <div class="pull-right postreply">
+          <!--<div class="pull-left smile"><a href="#"><i class="fa fa-smile-o"></i></a></div>-->
+          <div class="pull-left"><button type="submit" class="btn btn-primary">Post</button></div>
+          <div class="clearfix"></div>
+        </div>
 
-  <div class="form-group">
-   <%= f.submit "Post your Question", :class=>"btn btn-primary" %>
+
+        <div class="clearfix"></div>
+      </div>
+    <% end %>
+  </div><!-- POST -->
+
+  <div class="row similarposts">
+    <div class="col-lg-10"><i class="fa fa-info-circle"></i> <p>Similar Posts according to your <a href="/">Topic Title</a>.</p></div>
+    <div class="col-lg-2 loading"><i class="fa fa-spinner"></i></div>
+
   </div>
-<% end %>
 
+<% @similar_question.each do |question| %>
 
+    <!-- POST -->
+    <div class="post index-question question-body" data-question="<%= question.created_at.to_i %>" data-id="<%= question.id %>" >
+      <div class="wrap-ut pull-left">
+        <div class="userinfo pull-left">
+          <div class="avatar">
+
+            <% if question.user.is_online? %>
+              <div class="status green">&nbsp;</div>
+            <% end %>
+          </div>
+
+          <div class="icons">
+            <%=link_to question.user.username.titleize, question.user %>
+            <p> <i class="fa fa-thumbs-up text-danger"></i> <%=  (question.votes) %></p>
+          </div>
+        </div>
+        <div class="posttext pull-left">
+          <h2><%=link_to question.name, question %></h2>
+          <p><%= truncate (strip_tags question.body), length: 150 %></p>
+          <%#= raw question.tag_list.map { |t| link_to t, tag_path(t), class:'tags' }.join('') %>
+        </div>
+        <div class="clearfix"></div>
+      </div>
+      <div class="postinfo pull-left">
+        <div class="comments">
+          <div class="commentbg">
+            <%=  question.answers.count  %>
+            <div class="mark"></div>
+          </div>
+
+        </div>
+        <div class="views"><i class="fa fa-eye"></i> <%=  question.views %></div>
+        <div class="time"><i class="fa fa-clock-o"></i> <%= time_ago_in_words question.created_at %></div>
+      </div>
+      <div class="clearfix"></div>
+    </div><!-- POST -->
+
+  <% end %>

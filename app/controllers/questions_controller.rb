@@ -105,9 +105,15 @@ class QuestionsController < ApplicationController
   def new
     @question = Question.new
     @tags = Question.tag_counts_on(:tags)
+
+    param =  params[:question] ||= ""
+    convert = param["name"]
+    #require 'pry'; binding.pry
+    @similar_question =  Question.search(convert)
     respond_to do |format|
       format.xml
       format.json
+      format.js
       format.mobile { render :layout => "application" }
     end
   end

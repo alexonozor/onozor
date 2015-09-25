@@ -1,6 +1,5 @@
-
 <!-- POST -->
-<div class="post index-question question-body" data-question="<%= question.created_at.to_i %>" data-id="<%= question.id %>" >
+<div class="post index-question question-body"  data-question="<%= question.created_at.to_i %>" data-id="<%= question.id %>" >
   <div class="wrap-ut pull-left">
     <div class="userinfo pull-left">
       <div class="avatar">
@@ -17,8 +16,8 @@
     </div>
     <div class="posttext pull-left">
       <h2><%=link_to question.name, question %></h2>
-      <p><%= truncate (strip_tags question.body), length: 80 %></p>
-      <%= raw question.tag_list.map { |t| link_to t, tag_path(t), class:'tags' }.join('') %>
+      <p><%= truncate (strip_tags question.body), length: 150 %></p>
+      <%#= raw question.tag_list.map { |t| link_to t, tag_path(t), class:'tags' }.join('') %>
     </div>
     <div class="clearfix"></div>
   </div>
@@ -35,6 +34,3 @@
   </div>
   <div class="clearfix"></div>
 </div><!-- POST -->
-
-
-
