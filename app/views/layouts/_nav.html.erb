@@ -18,7 +18,7 @@
           <span id="inputSuccess5Status" class="sr-only">(success)</span>
         </div>
       </form>
-      <%= link_to "Start new Topic", question_advise_path, class: 'btn  navbar-btn offset-2 topic-button'  %>
+      <%= link_to "Start new Topic", new_question_path, class: 'btn  navbar-btn offset-2 topic-button'  %>
       <ul class="nav navbar-nav navbar-right">
         <% if user_signed_in? %>
             <p class="navbar-text">Hi, <%= current_user.username.titleize if current_user %></p>
