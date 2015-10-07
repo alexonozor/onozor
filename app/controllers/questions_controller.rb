@@ -2,14 +2,17 @@ class QuestionsController < ApplicationController
   before_action :set_question, only: [:show, :edit, :update, :destroy, :vote, :undo_link]
   before_action :authenticate_user!, only: [:edit, :new, :create, :vote ]
   respond_to :html, :xml, :json, :js, :mobile
+
+
+
   require 'will_paginate/array'
   # GET /questions
   # GET /questions.json
   def index
       if (params[:tag].present?)
         @questions = Question.latest.tagged_with(params[:tag]).paginate :page => params[:page], :per_page => 8
-      elsif current_user.present? && current_user.only_follower_feed == true
-        @questions = current_user.feed.paginate :page => params[:page], :per_page => 8
+      elsif current_user
+        @questions = current_user.category_feeds.paginate :page => params[:page], :per_page => 8
       elsif (params[:search].present?)
         @questions = Question.search(params[:search]).paginate(:per_page => 5, :page => params[:page])
       else
@@ -20,9 +23,10 @@ class QuestionsController < ApplicationController
         format.html
         format.js
         format.json
-      end 
-     
+      end
   end
+
+
 
   def latest
     @questions = Question.latest.paginate :page => params[:page], :per_page => 8
@@ -78,17 +82,6 @@ class QuestionsController < ApplicationController
       end
  end
 
-
-  def advise
-    respond_to do |format|
-      format.xml
-      format.mobile { render :layout => "application" }
-    end
-  end
-
-
-
-
   # GET /questions/1
   # GET /questions/1.json
   def show
@@ -104,12 +97,12 @@ class QuestionsController < ApplicationController
   # GET /questions/new
   def new
     @question = Question.new
-    @tags = Question.tag_counts_on(:tags)
+    # @tags = Question.tag_counts_on(:tags)
 
     param =  params[:question] ||= ""
     convert = param["name"]
-    #require 'pry'; binding.pry
     @similar_question =  Question.search(convert)
+    # require 'pry'; binding.pry
     respond_to do |format|
       format.xml
       format.json
@@ -133,7 +126,7 @@ class QuestionsController < ApplicationController
       if @question.save
        redirect_to @question,  :notice => "Question was successfully created."
       else
-       render action: 'new' 
+       render action: 'new'
     end
       authorize! :create, @question
   end
@@ -147,16 +140,16 @@ class QuestionsController < ApplicationController
         format.js { render 'vote.js.erb' }
         format.json
         format.mobile { render 'vote.js.erb' }
-      end   
+      end
     else
       respond_to do |format|
         format.xml
         format.html { redirect_to :back, alert: "Unable to vote, perhaps you already did."}
         format.js {render 'fail_vote.js.erb'}
         format.mobile { render 'vote.js.erb' }
-      end 
+      end
     end
-    
+
   end
 
   # PATCH/PUT /questions/1
@@ -164,11 +157,12 @@ class QuestionsController < ApplicationController
   def update
       if @question.update(question_params)
         redirect_to @question, :notice =>"Question was successfully updated"
+      else
         render action: 'edit'
       end
      # authorize! :read, @update
   end
-  
+
 
   # DELETE /questions/1
   # DELETE /questions/1.json
@@ -186,12 +180,14 @@ class QuestionsController < ApplicationController
       @question = Question.friendly.find(params[:id])
     end
 
+
+
     # Never trust parameters from the scary internet, only allow the white list through.
  def question_params
   params.require(:question).permit(:name, :body, :user_id, :views, :answers_count, :permalink,
-                                   :answer_id, :tag_list,  :send_mail, :category_id)
+                                   :answer_id, :tag_list,  :send_mail, :category_id, :counter_cache)
  end
 
- 
+
 
 end

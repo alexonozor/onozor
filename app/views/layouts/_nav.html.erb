@@ -1,4 +1,4 @@
-
+<nav>
   <div class="container">
     <div class="navbar-header">
       <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#bs-navbar" aria-controls="bs-navbar" aria-expanded="false">
@@ -7,30 +7,47 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <%#= link_to image_tag('logo.png'), root_path, class:'navbar-brand' %>
+      <%= link_to (image_tag 'logo.png', class:'navbar-brand resize-logo'), root_path %>
     </div>
     <nav id="bs-navbar" class="collapse navbar-collapse">
       <form class="navbar-form navbar-left" role="search">
-        <div class="form-group has-success has-feedback">
-          <label class="control-label sr-only" for="inputSuccess5">Hidden label</label>
+        <div class="form-group  has-feedback">
           <input type="text" class="form-control" id="inputInfo5" placeholder=" Search Questions" aria-describedby="inputSuccess5Status">
-          <span class="fa fa-search form-control-feedback" aria-hidden="true"></span>
-          <span id="inputSuccess5Status" class="sr-only">(success)</span>
+          <span class="fa fa-search form-control-feedback" style="margin-top: 10px;" aria-hidden="true"></span>
         </div>
       </form>
-      <%= link_to "Start new Topic", new_question_path, class: 'btn  navbar-btn offset-2 topic-button'  %>
+
+
+      <ul class="nav navbar-nav navbar-left col-sm-offset-10">
+       <li><%= link_to "<i class='fa fa-list-alt'></i> HOME".html_safe, '/' %></li>
+       <li><%= link_to "<i class='fa fa-bell-o'></i> NOTIFICATION".html_safe %></li>
+      </ul>
+
+      <%= form_tag nil, class: 'navbar-form navbar-left' do  %>
+        <%= select_tag(:option, options_for_select([['Answered', 'Answered'],
+                                                    ['Unanswered', 'Unanswered'],
+                                                    ['Hot', 'Hot'], ['Latest', 'Latest'],
+                                                    ['Active', 'Active']],
+                                                    selected: :option ), class:'form-control') %>
+      <% end %>
+
       <ul class="nav navbar-nav navbar-right">
-        <% if user_signed_in? %>
-            <p class="navbar-text">Hi, <%= current_user.username.titleize if current_user %></p>
-            <li><%= link_to image_tag current_user.avatar.url(:thumb) if current_user.avatar.present?  %></li>
+       <% if user_signed_in? %>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <%= cl_image_tag current_user.avatar.url(:thumb) %> <%=  current_user.username.titleize %></a>
+          <ul class="dropdown-menu navbar-right">
+            <li><%= link_to "My Profile", user_path(current_user.username) %></li>
+            <li role="separator" class="divider"></li>
             <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
+          </ul>
+        </li>
         <% else %>
-            <li><%= link_to "Signup", new_user_registration_path %></li>
-             <li><%= link_to "Login", new_user_session_path %></li>
+          <li><%= link_to "Signup", new_user_registration_path %></li>
+          <li><%= link_to "Login", new_user_session_path %></li>
         <% end %>
       </ul>
+
+      <%= link_to "Start new Topic", new_question_path, class: 'btn  navbar-btn offset-2 topic-button pull-right'  %>
     </nav>
   </div>
-
-
-
+</nav>

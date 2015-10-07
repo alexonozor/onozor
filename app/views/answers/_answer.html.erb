@@ -1,20 +1,22 @@
 
   <!-- POST -->
   <%= div_for(answer) do %>
-  <div class="post">
+  <div class="post row">
     <div class="topwrap">
-      <div class="userinfo pull-left">
-        <div class="avatar">
-          <%= link_to image_tag(answer.user.avatar.url(:thumb)) %>
-          <% if answer.user.is_online? %>
-              <div class="status green">&nbsp;</div>
-          <% else %>
-              <div class="status red">&nbsp;</div>
-          <% end %>
+        <div class="media">
+          <div class="media-left">
+            <%= link_to (image_tag answer.user.avatar.url(:thumb), class:'img-circle'), answer.user %>
+          </div>
+          <div class="media-body">
+            <p class="media-heading"><%= link_to  (answer.user.fullname? ? answer.user.fullname : answer.user.username), user_path(answer.user) %></p>
+            <p><%= pluralize answer.user.followers.count, "followers" %>, intrested in <%=  answer.user.categories.map{|a| link_to a.name, a}.join(", ").html_safe %> <br />
+                Posted on : <%= (answer.created_at).strftime("%-d %b @ %-l:%M%P") %>
+            </p>
+          </div>
         </div>
-        <%=link_to answer.user.username.titleize, answer.user %>
-      </div>
-      <div class="posttext pull-left" id="comment-form_<%= answer.id %>">
+
+
+      <div class="answers" id="comment-form_<%= answer.id %>">
         <p><%= markdown(answer.body).html_safe %></p>
         <% if answer.comments.present? %>
             <div id="comments" class="comments" style="text-align: left">
@@ -25,57 +27,28 @@
       </div>
       <div class="clearfix"></div>
     </div>
+
+
     <div class="postinfobot">
+      <nav class="options">
+        <%= link_to  "Upvote | #{answer.votes}", vote_answer_path(answer.id, value: 1), method: "post", remote: true, class: 'btn btn-secondry btn-sm' %>
+        <%= link_to  "Downvote", vote_answer_path(answer.id, value: -1), method: "post", remote: true %>
+        <% if current_user.present? %>
+         <%= link_to " Add comment <i class='fa fa-comments'></i>+".html_safe, new_comment_path(:comment => { :commentable_type => answer.class.name,
+                       :commentable_id => answer.id}),
+                       :remote => true,
+                       :class => "comment_link",
+                       id:"comment_link"    %>
+         <%  if user_signed_in? && answer.user == current_user  %>
+          <div class="next pull-right">
+            <%= link_to "<i class='fa fa-pencil'></i>".html_safe, edit_answer_path(answer), :remote => true %>
+            <%= link_to "<i class='fa fa-trash'></i>".html_safe, answer_path(answer), :remote => true, method: :delete %>
+          </div>
+         <% end %>
+      <% end %>
+      </nav>
 
-      <div class="likeblock pull-left">
-        <% if current_user %>
-            <%= link_to '<i class="fa fa-thumbs-o-up"></i>'.html_safe, vote_answer_path(answer.id, value: 1), method: "post", class:'vote-direction up', alt:'Up Vote' , remote: true %>
-            <%=  answer.votes %>
-            <%= link_to '<i class="fa fa-thumbs-o-down"></i>'.html_safe, vote_answer_path(answer.id, value: -1), method: "post", class:"down", remote: true %>
-        <% end %>
-      </div>
-
-      <div class="prev pull-left">
-        <%= link_to '<i class="fa fa-reply"></i>'.html_safe, new_comment_path(:comment => { :commentable_type => answer.class.name,
-                                                                  :commentable_id => answer.id}),
-                    :remote => true,
-                    :class => "btn comment_link" %>
-      </div>
-
-      <div class="posted pull-left"><i class="fa fa-clock-o"></i>Posted on : <%= (answer.created_at).strftime("%-d %b @ %-l:%M%P") %></div>
-    <% if current_user && answer.user == current_user    %>
-      <div class="next pull-right">
-        <%= link_to "<i class='fa fa-pencil'></i>".html_safe , edit_answer_path(answer.id), :remote => true   %>
-        <%= link_to "<i class='fa fa-trash'></i>".html_safe , answer , :method => :delete, :remote=> true %>
-      </div>
-    <% end %>
       <div class="clearfix"></div>
     </div>
   </div><!-- POST -->
  <% end %>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

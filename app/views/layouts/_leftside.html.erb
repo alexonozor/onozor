@@ -1,20 +1,18 @@
-<div class="col-lg-4 col-md-4">
+<div class="col-lg-3 col-md-3">
 
-  <!-- -->
+  <% if current_user %>
   <div class="sidebarblock">
-    <h3>Categories</h3>
+    <h3><i class="fa fa-rss"></i> My Feeds <a class="fa fa-plus pull-right" data-toggle="modal" data-target="#myModal"></a></h3>
     <div class="divline"></div>
     <div class="blocktxt">
       <ul class="cats">
-        <li><a href="/questions/answered">Answered<span class="badge pull-right">20</span></a></li>
-        <li><a href="/questions/unanswered">Unanswered<span class="badge pull-right">10</span></a></li>
-        <li><a href="/questions/hot">Hot <span class="badge pull-right">50</span></a></li>
-        <li><a href="/questions/latest">Latest <span class="badge pull-right">36</span></a></li>
-        <li><a href="/questions/active">Active <span class="badge pull-right">41</span></a></li>
+        <% current_user.categories.each do |category| %>
+         <li><%= link_to category.name, category %> <span class="remove  fa fa-times  pull-right"></span></li>
+        <% end %>
       </ul>
     </div>
   </div>
-
+<% end %>
 
 
 

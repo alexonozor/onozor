@@ -71,28 +71,16 @@ class Question < ActiveRecord::Base
   def vote_class
    self.votes.to_i
   end
-  
+
  def vote_status
    case vote_class
     when 11..30 then 'text-success'
     when 8..10 then 'text-primary'
     when 7 then 'text-warning'
      else
-      'text-danger'      
+      'text-danger'
     end
  end
-
-  def answers_count_color
-    self.answers_count.to_i
-  end
-
-  def answer_count_color
-    case answers_count_color
-      when  11..1000  then 'rgba(0, 225, 0, 0.50)'
-      else
-        'rgba(103, 83, 135, 0.20)'
-    end
-  end
 
   def favourited?(user)
     Favourite.find_by_user_id_and_question_id(user.id, self).present?
@@ -107,14 +95,8 @@ class Question < ActiveRecord::Base
   end
 
 
-
   def send_slack_message
     SLACK_NOTIFIER.ping("New Question from #{self.user.username} :
                  #{self.name} <http://localhost:3000/questions/#{self.slug}|Click here> to answer", http_options: { open_timeout: 5 })
   end
-
-  
-
-
-
 end

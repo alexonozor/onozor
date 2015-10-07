@@ -3,8 +3,6 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  puts ENV['email']
-
 
   #filters
   before_filter :last_requested_at
@@ -14,6 +12,7 @@ class ApplicationController < ActionController::Base
   # rescue_from  ActionView::Template::Error, with: :no_user_found
   before_filter :prepare_for_mobile
   before_filter :load_category
+  before_action :people_to_follow
 
   def load_category
     @category  = Category.limit(10)
@@ -33,6 +32,9 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def people_to_follow
+    @people_to_follows = User.people_you_may_know
+  end
 
 
   private
@@ -78,17 +80,21 @@ class ApplicationController < ActionController::Base
   end
 
   def configure_devise_permitted_parameters
-    registration_params = [ :avatar, :last_requested_at, :admin, :avatar_file_name, :username, :gender, :first_name, :last_name, :bio, :occupation, :title, :intrest , :username, :location, :email, :password, :password_confirmation]
+    registration_params = [ :avatar, :last_requested_at, :admin, :avatar_file_name, :username, :gender, :first_name, :last_name, :bio, :occupation, :title,
+                            :intrest , :username, :location, :email, :password, :password_confirmation, :category_ids]
 
-    if params[:action] == 'update'
-      devise_parameter_sanitizer.for(:account_update) {
-          |u| u.permit(registration_params << :current_password)
-      }
-    elsif params[:action] == 'create'
+
+    if params[:action] == 'create'
       devise_parameter_sanitizer.for(:sign_up) {
           |u| u.permit(registration_params)
       }
     end
+  end
+
+  protected
+
+  def update_resource(resource, params)
+    resource.update_without_password(params)
   end
 
 end

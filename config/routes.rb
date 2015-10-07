@@ -1,6 +1,6 @@
 NairaOverflow::Application.routes.draw do
 
- 
+  put 'users/select_category/:id', to: "users#select_category", as: "select_category"
   get "tags/index"
   resources :categories
 
@@ -9,14 +9,11 @@ NairaOverflow::Application.routes.draw do
 
   resources :friendships
   resources :followers
-  resources :alltags
-
   resources :comments
   resources :tags, :only => [:index]
 
   resources :questions do
     member {post :vote}
-   
     collection do
       get :hot
       get :active
@@ -26,11 +23,7 @@ NairaOverflow::Application.routes.draw do
       get :latest
     end
   end
-  devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks" }
-  # devise_for :users, :path => '/', :controllers => { :sessions => "sessions" }
 
- get 'users/who_is_online', to: 'users#who_is_online', as: :online_users  
-  
   resources :users do
   collection do
     get :tigers
@@ -38,6 +31,13 @@ NairaOverflow::Application.routes.draw do
     member { put :ban }
   resources :favourites, :only => [:index]
   end
+  
+  devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks" }
+
+
+ get 'users/who_is_online', to: 'users#who_is_online', as: :online_users
+
+
 
  resources :relationships, only: [:create, :destroy]
 

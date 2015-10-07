@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
   <title><%= yield :title %> Inquire</title>
-  <%= stylesheet_link_tag    "application", 'https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css', media: "all", "data-turbolinks-track" => true %>
+  <%= stylesheet_link_tag "application", 'https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css', media: "all", "data-turbolinks-track" => true %>
   <%= stylesheet_link_tag 'mobile' if mobile_device? %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
@@ -34,10 +34,11 @@
   <section class="content">
     <div class="container clear-top">
       <div class="row">
-       <div class="col-lg-8 col-md-8">
+        <%= render :partial => 'layouts/leftside' %>
+       <div class="col-lg-6 col-md-6">
         <%= yield %>
        </div>
-        <%= render :partial => 'layouts/leftside' %>
+        <%= render :partial => 'layouts/rightside' %>
       </div>
     </div>
   </section>
@@ -46,9 +47,36 @@
 
 </div>
 
+
+
+<% if current_user && current_user.categories.empty? %>
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary btn-lg" id="select-category" data-toggle="modal" data-target="#myModal">
+  Launch demo modal
+</button>
+<% end %>
+
+<% if current_user %>
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-keyboard="false" data-backdrop="static">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel">Follow topics to see the best answers about them</h4>
+        <p>Select all the topics you're interested in.</p>
+      </div>
+      <div class="modal-body">
+        <%= form_for @current_user, url: select_category_path(current_user.id), method: :put do |f| %>
+          <%= f.collection_check_boxes(:category_ids, Category.all, :id, :name_with_image, class: 'select-category' ) %>
+          </div>
+          <div class="modal-footer">
+            <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+            <%= f.submit 'Save changes', :class => 'btn btn-primary save-cat disabled' %>
+          </div>
+        <% end %>
+        </div>
+  </div>
+</div>
+<% end %>
 </body>
 </html>
-
-
-
-

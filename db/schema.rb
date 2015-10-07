@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150901223433) do
+ActiveRecord::Schema.define(version: 20151007151513) do
 
   create_table "alltags", force: true do |t|
     t.string   "name"
@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(version: 20150901223433) do
     t.datetime "updated_at"
     t.string   "permalink"
     t.string   "slug"
+    t.string   "image"
   end
 
   create_table "ckeditor_assets", force: true do |t|
@@ -89,6 +90,13 @@ ActiveRecord::Schema.define(version: 20150901223433) do
     t.datetime "updated_at"
   end
 
+  create_table "followers", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "follow"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "friendly_id_slugs", force: true do |t|
     t.string   "slug",                      null: false
     t.integer  "sluggable_id",              null: false
@@ -109,6 +117,17 @@ ActiveRecord::Schema.define(version: 20150901223433) do
     t.datetime "updated_at"
   end
 
+  create_table "notifications", force: true do |t|
+    t.integer  "sender_id"
+    t.integer  "receiver_id"
+    t.integer  "notifiable_id"
+    t.string   "notifiable_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "notifications", ["notifiable_id", "notifiable_type"], name: "index_notifications_on_notifiable_id_and_notifiable_type"
+
   create_table "question_votes", force: true do |t|
     t.integer  "user_id"
     t.integer  "question_id"
@@ -121,16 +140,17 @@ ActiveRecord::Schema.define(version: 20150901223433) do
     t.string   "name"
     t.text     "body"
     t.integer  "user_id"
-    t.integer  "views",         default: 0
-    t.integer  "answers_count", default: 0
+    t.integer  "views",          default: 0
+    t.integer  "answers_count",  default: 0
     t.string   "permalink"
     t.integer  "answer_id"
-    t.boolean  "send_mail",     default: false
+    t.boolean  "send_mail",      default: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "slug"
     t.integer  "category_id"
     t.string   "ancestry"
+    t.integer  "comments_count", default: 0
   end
 
   add_index "questions", ["ancestry"], name: "index_questions_on_ancestry"

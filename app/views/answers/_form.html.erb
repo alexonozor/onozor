@@ -6,28 +6,15 @@
       <p class="alert alert-danger">You have been banned from creating Answers.</p>
   <% else %>
       <!-- POST -->
-      <p class="alert alert-info text-center">Post your answer</p>
-      <div class="post">
+      <div class="post row">
         <%= form_for @answer, class: 'form-horizontal form', :remote => true do |f| %>
             <%= f.hidden_field :question_id  %>
             <%= f.hidden_field :user_id %>
             <div class="topwrap">
-              <div class="userinfo pull-left">
-                <div class="avatar">
-                  <%= link_to (image_tag current_user.avatar.url(:thumb)), current_user %>
-                  <% if @current_user.is_online? %>
-                      <div class="status green">&nbsp;</div>
-                  <% else %>
-                      <div class="status red">&nbsp;</div>
-                  <% end %>
-                </div>
-
-
-              </div>
               <div class="posttext pull-left">
                 <div class="textwraper">
                   <div class="postreply">Post a Reply</div>
-                  <%= f.text_area :body, :class=>"post_form", id:"reply", placeholder:"Type your message here" %>
+                  <%= f.text_area :body, :class=>"post_form", id:"reply", placeholder:"Type your message here", style:'margin: 0px; width: 517px; height: 51px;' %>
                 </div>
               </div>
               <div class="clearfix"></div>
@@ -56,6 +43,3 @@
       </div><!-- POST -->
   <% end %>
 </div>
-
-
-

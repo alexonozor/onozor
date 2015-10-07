@@ -4,25 +4,12 @@
   <div class="post">
     <%= simple_form_for @question,  html:{class:"form newtopic"} do |f| %>
       <div class="topwrap">
-        <div class="userinfo pull-left">
-          <div class="avatar">
-            <%= link_to (image_tag current_user.avatar(:thumb)), current_user %>
-            <% if current_user.is_online? %>
-                <div class="status green">&nbsp;</div>
-            <% else %>
-                <div class="status red">&nbsp;</div>
-            <% end %>
-          </div>
-          <div class="icons">
-            <%= link_to  current_user.username.titleize, @question.user %>
-          </div>
-        </div>
-        <div class="posttext pull-left">
+        <div class="posttext">
           <div>
             <%= f.input :name, placeholder:"Enter Topic Title", input_html: { class: 'form-control' }, label: false  %>
           </div>
             <div>
-             <%= f.association :category, input_html: {class: 'form-control'}, label: false, prompt: "Select your Category" %>
+             <%= f.association :category, collection: current_user.categories.pluck(:name), input_html: {class: 'form-control'}, label: false, prompt: "Select your Category" %>
             </div>
           <div>
             <%= f.input :body, input_html: {class: 'form-control', id: 'desc'}, label: false, placeholder:"Description" %>
@@ -41,7 +28,7 @@
         </div>
 
         <div class="pull-right postreply">
-          <!--<div class="pull-left smile"><a href="#"><i class="fa fa-smile-o"></i></a></div>-->
+          <div class="pull-left smile"><a href="#"><i class="fa fa-smile-o"></i></a></div>
           <div class="pull-left"><button type="submit" class="btn btn-primary">Post</button></div>
           <div class="clearfix"></div>
         </div>
@@ -52,49 +39,11 @@
     <% end %>
   </div><!-- POST -->
 
-  <!--<div class="row similarposts">-->
-    <!--<div class="col-lg-10"><i class="fa fa-info-circle"></i> <p>Similar Posts according to your <a href="/">Topic Title</a>.</p></div>-->
-    <!--<div class="col-lg-2 loading"><i class="fa fa-spinner"></i></div>-->
+  <div class="row similarposts">
+    <div class="col-lg-10"><i class="fa fa-info-circle"></i> <p>Similar Posts according to your <a href="/">Topic Title</a>.</p></div>
+    <div class="col-lg-2 loading"><i class="fa fa-spinner fa-pulse"></i></div>
 
-  <!--</div>-->
-
-<% @similar_question.each do |question| %>
-
-    <!-- POST -->
-    <div class="post index-question question-body" data-question="<%= question.created_at.to_i %>" data-id="<%= question.id %>" >
-      <div class="wrap-ut pull-left">
-        <div class="userinfo pull-left">
-          <div class="avatar">
-
-            <% if question.user.is_online? %>
-              <div class="status green">&nbsp;</div>
-            <% end %>
-          </div>
-
-          <div class="icons">
-            <%=link_to question.user.username.titleize, question.user %>
-            <p> <i class="fa fa-thumbs-up text-danger"></i> <%=  (question.votes) %></p>
-          </div>
-        </div>
-        <div class="posttext pull-left">
-          <h2><%=link_to question.name, question %></h2>
-          <p><%= truncate (strip_tags question.body), length: 150 %></p>
-          <%#= raw question.tag_list.map { |t| link_to t, tag_path(t), class:'tags' }.join('') %>
-        </div>
-        <div class="clearfix"></div>
-      </div>
-      <div class="postinfo pull-left">
-        <div class="comments">
-          <div class="commentbg">
-            <%=  question.answers.count  %>
-            <div class="mark"></div>
-          </div>
-
-        </div>
-        <div class="views"><i class="fa fa-eye"></i> <%=  question.views %></div>
-        <div class="time"><i class="fa fa-clock-o"></i> <%= time_ago_in_words question.created_at %></div>
-      </div>
-      <div class="clearfix"></div>
-    </div><!-- POST -->
-
-  <% end %>
+  </div>
+<div class="similarquestion">
+ <%= render partial: 'questions/similar' %>
+</div>

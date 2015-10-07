@@ -36,7 +36,7 @@ gem 'turbolinks'
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 gem 'devise'
-gem 'paperclip'
+
 gem 'simple_form'
 gem 'friendly_id'
 gem 'rmagick'
@@ -50,12 +50,14 @@ gem 'albino'
 gem 'nokogiri'
 gem 'figaro'
 gem 'sidekiq'
-gem 'paperclip-dropbox'
+gem 'carrierwave'
+gem 'cloudinary'
 gem 'slack-notifier'
 gem 'redis'
 gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'
-gem 'pry'
+gem 'public_activity'
+
 
 
 group :development, :test do
@@ -64,6 +66,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'pry'
   gem 'capistrano',         require: false
   gem 'capistrano-rvm',     require: false
   gem 'capistrano-rails',   require: false
@@ -75,4 +78,3 @@ gem 'puma'
 group :production do
   gem 'pg'
 end
-

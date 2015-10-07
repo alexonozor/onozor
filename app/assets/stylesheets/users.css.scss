@@ -2,177 +2,83 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-//
-//.profile-picture {
-//  position: absolute;
-//  left: 69px;
-//  top: 50px;
-//  box-shadow: -1px 1px 13px #0C0101;
-//  border-radius: 10px;
-//  z-index: 200;
-//  border: 3px solid white;
-//  cursor: pointer;
-//  &:hover{
-//    position: absolute;
-//    left: 69px;
-//    top: 50px;
-//    border-radius: 10px;
-//    z-index: 200;
-//    cursor: pointer;
-//  }
-//}
-//
-//
-//
-//.followment{
-//   width: 520px;
-//.follow{
-//  width: 164px;
-//  height: 145px;
-//  /* border: 1px solid #3B41A7; */
-//  border-radius: 3px;
-//  box-shadow: 1px 1px 3px;
-//  display: table;
-//  float: left;
-//  margin-left: 9px;
-//  margin-bottom: 13px;
-//  overflow:hidden;
-//.little-timeline{
-//   height:70px;
-//   background-color: #3B41A7;
-//   width:inherite;
-//   position:relative;
-//.litle-profile{
-//  width:50px;
-//  height:50px;
-//  background-color:black;
-//  position:absolute;
-//  bottom: -26px;
-//  left: 12px;
-//  border-radius: 8px;
-//  overflow: hidden;
-//  border: 2px solid #fff;
-//   }
-//  }
-// }
-//}
-//
-//
-//.users{
-//  margin-right:auto;
-//  margin-left:auto;
-//  margin-top:20px;
-//  width:800px;
-//.follow{
-//  width: 164px;
-//  height: 125px;
-//  /* border: 1px solid #3B41A7; */
-//  border-radius: 3px;
-//  box-shadow: 1px 1px 3px;
-//  display: table;
-//  float: left;
-//  margin-left: 9px;
-//  margin-bottom: 13px;
-//  overflow:hidden;
-//.little-timeline{
-//   height:70px;
-//   background-color: #3B41A7;
-//   width:inherite;
-//   position:relative;
-//.litle-profile{
-//  width:50px;
-//  height:50px;
-//  background-color:black;
-//  position:absolute;
-//  bottom: -26px;
-//  left: 12px;
-//  border-radius: 8px;
-//  overflow: hidden;
-//  border: 2px solid #fff;
-//   }
-//  }
-// }
-//}
-//
-//.gen-content{
-//  width: inherit;
-//  height: inherit;
-//  /* background-color: red; */
-//  padding: 27px 13px 0px 13px;
-//  text-align: left;
-//  font-weight: bolder;
-//  line-height: normal;
-// p, a{
-//   margin: 0px 0px 1px 0px;
-//   text-transformation: capiterlize;
-// small{
-//   font-weight:lighter;
-//   text-align:justify;
-//  }
-//}
-//}
-//
-//.follow-button{
-//  position: absolute;
-//  top: -100px;
-//  left: 170px;
-//  text-align: center;
-//  color: #ffffff;
-//  width: 318px;
-//  height: 75px;
-//}
-//
-//.userinfo{
-//  background-color: #3B41A7;
-//  color: #ffffff;
-//  background-color: #3B41A7;
-//  color: #ffffff;
-//  height: 320px;
-//  box-shadow: 2px 2px 3px #ccc;
-//  margin-top: 3px;
-//  margin-left: 15px;
-//  width: 270px;
-//  table{
-//   width:100%;
-//   margin-top:60px;
-//   color:#fff;
-//   border-radius: 3px;
-// td{
-//   color: #ffffff;
-//   background-color: #090A41;
-//   padding:10px;
-//
-//  p{
-//   color: #ffffff;
-//    }
-//   }
-//  }
-//}
-//
-//
-//.timeline{
-//  width: inherit;
-//  height: 150px;
-//  background: -webkit-linear-gradient(#090A42, #3D44AC); /* For Safari 5.1 to 6.0 */
-//  background: -o-linear-gradient(#090A42, #3D44AC); /* For Opera 11.1 to 12.0 */
-//  background: -moz-linear-gradient(#090A42, #3D44AC); /* For Firefox 3.6 to 15 */
-//  background: linear-gradient(#090A42, #3D44AC); /* Standard syntax */
-//  background-color: #090A42;
-//  box-shadow: 2px 2px 3px #ccc;
-//  position: relative;
-//  color: #ffffff;
-//}
-//
-//
-//
-//
-//.time-tab{
-//  position: absolute;
-//  margin-top: 111px;
-//  width: inherit;
-//  float: right;
-//  a{
-//    color: white;
-//    font-weight: bolder;
-//  }
-//}
+.profile-picture-image{
+   margin-bottom: 50px;
+   margin-left: 30px;
+   margin-right: 30px;
+
+}
+
+.container-set{
+  width: 995px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.profile-picture-name{
+  color: black;
+  text-transform: capitalize;
+  font-weight: bolder;
+  margin-bottom: 0px;
+}
+.info-text{
+  color: black;
+}
+
+#user-contact-info{
+  width: 100%;
+  padding: 10px 10px 10px 0px;
+  border-bottom: 2px solid #ccc;
+  ul{
+    display: inline-block;
+    list-style-type: none;
+    margin: 0px;
+    padding: 0px;
+  }
+}
+
+.activities{
+  height: 20px;
+  font-weight: bolder;
+}
+
+#feeds{
+  border-top: 1px solid #ccc;
+  width: 100%;
+  margin-top: 10px;
+  padding-top: 20px;
+}
+
+.profile-questions{
+  margin-bottom: 18px;
+    h4{
+
+    }
+   a{
+    color:black;
+    line-height: 10px;
+    font-weight: bolder;
+  }
+  span{
+    font-size: 10px;
+  }
+}
+
+.nav-list{
+  list-style-type: none;
+  color: black;
+  list-style-position: inside;
+  margin-bottom: 5px;
+}
+.similar a{
+  color: black;
+}
+.short-body{
+  font-family: Georgia,Times,"Times New Roman",serif;
+  font-size: 15px;
+  line-height: 1.4;
+}
+
+.set-padding{
+  padding: 10px;
+}

@@ -80,12 +80,12 @@ NairaOverflow::Application.configure do
   config.log_formatter = ::Logger::Formatter.new
 
   # SMTP Configuration
-  config.action_mailer.default_url_options = { host: "http://onozor.com" }
+  config.action_mailer.default_url_options = { host: "http://www.onozor.com" }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
       :address              => "smtp.gmail.com",
       :port                 => 587,
-      :domain               => '178.62.24.144',
+      :domain               => 'http://www.onozor.com',
       :user_name            => 'alex.obogbare@andela.com',
       :password             => 'onozorgheneho',
       :authentication       => 'plain',

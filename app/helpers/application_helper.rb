@@ -16,7 +16,9 @@ end
       pre.replace Albino.colorize(pre.text.rstrip, pre[:lang])
     end
     doc.to_s
-  end
+ end
+
+
 
 
 

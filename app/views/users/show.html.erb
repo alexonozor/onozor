@@ -1,151 +1,48 @@
 <% title "#{@user.username}" %>
 
- <div class="timeline">
-   <div class="row">
-     <div class="col-md-3"><%= image_tag @user.avatar.url(:medium), class:"profile-picture" %></div>
-     <div class=" col-md-offset-4">
-   <ul class="nav nav-tabs time-tab " id="myTab">
-     <div class="follow-button">
-       <%= render 'follow_form' if signed_in?  %>
-       <p style="color: #ffffff"><%=strip_tags @user.bio %></p>
+<div class="container-set">
+  <div class="row clear-top">
+    <div class="col-md-3">
+      <div class="profile-picture-image">
+       <%= image_tag @user.avatar.url(:medium), class:"profile-picture", class: 'img-circle' %>
       </div>
-     <li class="active"><a href="#Followers">Followers <span class="badge f"><%= @user.followers.count  %></span></a></li>
-     <li><a href="#followings">Followings <span class="badge u"><%= @user.followed_users.count %></span></a></li>
-     <li><a href="#favorite_question">Favorites <span class="badge f"><%= @user.favourite_questions.count  %></span></a></li>
-     <li><a href="#Question">Questions <span class="badge"><%= @user.questions.count %></span></a></li>
-     <li><a href="#settings">Replies</a></li>
-   </ul>
+      <div class="list-group">
+        <a href="#" class="list-group-item disabled">Feeds</a>
+        <%= link_to (pluralize @user.questions.count, "Question"), "#" , class: "list-group-item"  %>
+        <%= link_to (pluralize @user.answers.count, "Answer"), "#" , class: "list-group-item"  %>
+        <%= link_to (pluralize @user.followers.count, "Follower"), "#" , class: "list-group-item"  %>
+        <%= link_to (pluralize @user.followed_users.count, "Following"), "#" , class: "list-group-item"  %>
+      </div>
+    </div>
+   <div class="col-md-6">
+     <div class="info-text">
+       <h1 class="profile-picture-name"><%=  @user.fullname? ? @user.fullname : @user.username %></h1>
+       <h3><%= @user.intrest %></h3>
+       <p><%= @user.bio %></p>
+       <div id="user-contact-info">
+         <ul>
+           <li><%= render 'follow_form' if signed_in?  %></li>
+         </ul>
+       </div>
+       <span class="activities">ACTIVITY<span>
+     </div>
+     <div id="feeds">
+      <% @user.questions.each do |question| %>
+       <div class="profile-questions">
+         <h4><%=link_to question.name, question %><h4>
+         <span><%= time_ago_in_words question.created_at %> ago, <%= pluralize question.answers_count, "Answer" %> <%= (pluralize question.views, "views") %>  </span>
+         <p class="short-body"><%=truncate question.body, length:150 %></p>
+      </div>
+       <% end %>
      </div>
    </div>
- </div>
-     
-     
-
-
- <div class="row " >
-          <div class="col-md-4 userinfo">
-          <table>
-               <tr>
-              <td><p>Gender</p></td>
-             <td><p><%= (@user.gender) %></p></td>
-            </tr>
-            <tr>
-             <td><p>Occupation</p></td>
-              <td><p><%= (@user.occupation) %></p></td>
-               </tr>
-               <tr>
-              <td><p>Seen by</p></td>
-             <td><p> <%= (@user.views) %> people</p></td>
-            </tr>
-           <tr>
-         <td><p>Presence</p></td>
-        <td><p><%= @user.is_online? ? "Online" : "Offline" %> <%= distance_of_time_in_words_to_now @user.last_requested_at unless @user.is_online? %> ago</p></td>
-       </tr>
-      </table>
-          </div>
-
-
-  		   <div class=" row-height" data-no-turbolink>
-             <div class="tab-content">
-                <div class="tab-pane active" id="Followers">
-                  <br>
-                   <nav class="followment">
-                    <% for f in @user.followers %>
-                     <div class="follow">
-                      <div class="little-timeline">
-                       <div class="litle-profile"><%=image_tag f.avatar.url(:thumb) %></div>
-                       </div>
-                         <div class="gen-content">
-                           <p><%=link_to f.fullname, f %></p>
-                          <p>
-                          <small>
-                           <%=  strip_tags truncate f.bio, length: 200 %>
-                          </small>
-                           </p>
-                          
-                        </div>
-                     </div>
-                        
-                     
-               <% end %>
-              </nav>
-             </div>
-
-            <div class="tab-pane" id="followings">
-            <br>
-             <nav class="followment">
-                    <% for f in @user.followed_users %>
-                     <div class="follow">
-                      <div class="little-timeline">
-                       <div class="litle-profile"><%=image_tag f.avatar.url(:thumb) %></div>
-                       </div>
-                         <div class="gen-content">
-                           <p><%=link_to f.fullname, f %></p>
-                          <p>
-                          <small>
-                           <%=  strip_tags truncate f.bio, length: 200 %>  
-                          </small>
-                           </p>
-                          
-                        </div>
-                     </div>
-                        
-                     
-               <% end %>
-              </nav>
-             </div>
-
-
-              <div class="tab-pane" id="favorite_question">
-             <br>
-
-           <table class="table table-condensed">
-		     <% @user.favourite_questions.each do |question| %>
-		    <tr>
-		      <td><small><%=link_to question.name, question %></small></td>
-             <td><p><small>Asked <%= distance_of_time_in_words_to_now question.created_at %> ago</small></p></td>
-            <% if question.user_id == current_user %> 
-            <td> <%=link_to "<i class='glyphicon glyphicon-pencil'>".html_safe, edit_question_path(question) %></td>
-           <td> <%=link_to "<i class='glyphicon glyphicon-trash'>".html_safe, question, method: :delete, data: { comfirm:'Are you sure you want to delete this question?'} %></td>
-           <td><%= link_to "", toggle_favourite_path(question.id), :method => "post", :class => "glyphicon glyphicon-star", title:"Add to favourite", :remote => true %></td>
-            <% end %>
-		  </tr>
-		  <% end %>
-           </table>
-          </div>    
-  
-
-              <div class="tab-pane" id="Question">
-             <br>
-
-           <table class="table table-condensed">
-		     <% @user.latest_questions.each do |question| %>
-		    <tr>
-		      <td><p><small><%=link_to question.name, question %></small></p></td>
-             <td><p><small>Asked <%= distance_of_time_in_words_to_now question.created_at %> ago</small></p></td>
-            <% if question.user_id == current_user %> 
-            <td><p><small><%=link_to "<i class='glyphicon glyphicon-pencil'>".html_safe, edit_question_path(question) %></p></td>
-           <td><p><small><%=link_to "<i class='glyphicon glyphicon-trash'>".html_safe, question, method: :delete, data: { comfirm:'Are you sure you want to delete this question?'} %></small></p></td>
-            <% end %>
-		  </tr>
-		  <% end %>
-           </table>
-          </div>
-         <div class="tab-pane" id="settings">
-        <br>
-
-
-            <table class="table table-condensed">
-		     <% @user.replies.each do |reply| %>
-		      <tr><td><%=strip_tags reply.body %></td></tr>
-		       <% end %>
-                 </table>
-                </div>
-               </div>
-              </div>
-             </div>
-
-
-
-
-
+   <div class="col-md-3">
+     <div>
+        <div class="recent">Recent Post<div>
+      <% @related_questions.each do |a| %>
+       <p class="similar"><%= link_to a.name, a  %></p>
+      <% end %>
+    </div>
+   </div>
+  </div>
+</div>

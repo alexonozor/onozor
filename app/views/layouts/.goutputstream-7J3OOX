@@ -95,3 +95,27 @@
 
 
         </div>
+
+        <div class="postinfo pull-left">
+            <div class="comments">
+              <div class="commentbg">
+                <%=  question.answers_count  %>
+                <div class="mark"></div>
+              </div>
+
+            </div>
+            <div class="views"><i class="fa fa-eye"></i> <%=  question.views %></div>
+            <div class="time"><i class="fa fa-clock-o"></i> <%= time_ago_in_words question.created_at %></div>
+          </div>
+
+          <div class="media">
+                  <div class="media-left">
+                    <a href="#">
+                      <%= link_to (image_tag user.avatar.url(:thumb)), users_path(user)  %>
+                    </a>
+                  </div>
+                  <div class="media-body">
+                    <p class="media-heading"><%= link_to  (user.fullname? ? user.fullname : user.username), users_path(user) %></p>
+                    ...
+                  </div>
+                   </div>

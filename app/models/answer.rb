@@ -1,14 +1,14 @@
 class Answer < ActiveRecord::Base
-  #after_create :send_answer_email
+  after_create :send_answer_email
+
 
  #association
  belongs_to :question, :counter_cache => true
  belongs_to :user
  has_many :answer_votes
  has_many :comments, :as => :commentable, :dependent => :destroy
+ has_many :notifications, as: :notifiable
  has_paper_trail
- 
-
 
   #validation
   validates_uniqueness_of :body, { scope: :question_id }
@@ -33,7 +33,6 @@ class Answer < ActiveRecord::Base
 
 
   def send_answer_email
-    #delay_for(1.second)
      UserMailer.answer_update(self).deliver if self.question.send_mail
   end
 

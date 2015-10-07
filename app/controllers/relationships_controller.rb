@@ -3,6 +3,7 @@ class RelationshipsController < ApplicationController
    def create
     @user = User.find(params[:relationship][:followed_id])
    if current_user.follow!(@user)
+      Follower.followers_update(@user, current_user).deliver
     respond_to do |format|
       format.html { redirect_to :back, :notice => "Followed Succefully" }
       format.js

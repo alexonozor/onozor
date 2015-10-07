@@ -5,22 +5,24 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable,
          :omniauth_providers => [:facebook, :google_oauth2]
 
+  mount_uploader :avatar, AvatarUploader
   #avatar upload
-  has_attached_file :avatar,
-                    :storage => :dropbox,
-                    :dropbox_credentials => "#{Rails.root}/config/dropbox.yml",
-                    :styles => { :medium => "150x150#", :thumbs => "100x100#", :thumbnails => "70x70#",
-  :thumb => "50x50#", :home => "30x30>" }, :default_url => "http://res.cloudinary.com/sportbay-co/image/upload/c_scale,w_50/v1441294900/missing_avatar_mqvxnf.png"
-  validates_attachment :avatar,
-  :content_type => { :content_type => ["image/jpeg", "image/gif", "image/png"] ,
-                       :dropbox_options => {
-                           :path => proc { |style| "#{style}/#{id}_#{avatar.original_filename}" }
-   }}
+  # has_attached_file :avatar,
+  #                   :storage => :dropbox,
+  #                   :dropbox_credentials => "#{Rails.root}/config/dropbox.yml",
+  #                   :styles => { :medium => "150x150#", :thumbs => "100x100#", :thumbnails => "70x70#",
+  # :thumb => "50x50#", :home => "30x30>" }, :default_url => "http://res.cloudinary.com/sportbay-co/image/upload/c_scale,w_50/v1441294900/missing_avatar_mqvxnf.png"
+  # validates_attachment :avatar,
+  # :content_type => { :content_type => ["image/jpeg", "image/gif", "image/png"] ,
+  #                      :dropbox_options => {
+  #                          :path => proc { |style| "#{style}/#{id}_#{avatar.original_filename}" }
+  #  }}
 
   extend FriendlyId
   friendly_id :username, use: :slugged
 
   #association
+  has_many :notifications, as: :notifiable
   has_many :questions
   has_many :replies, :through => :questions, :source => :answers
   has_many :alltags
@@ -35,8 +37,8 @@ class User < ActiveRecord::Base
                                    class_name:  "Relationship",
                                    dependent:   :destroy
   has_many :followers, through: :reverse_relationships
-  has_many :category 
-  has_many :comments  
+  has_many :categories
+  has_many :comments
 
   #validations
   validates_presence_of :username
@@ -45,7 +47,6 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :username, :on => :account_update
 
   def self.from_omniauth(auth)
-     # require 'pry'
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
        # binding.pry;
       user.username = auth.info.name.split(' ')[0] + auth.info.name.split(' ')[1]
@@ -54,7 +55,7 @@ class User < ActiveRecord::Base
       user.first_name = auth.info.first_name
       user.last_name = auth.info.last_name
       user.gender = auth['extra']['raw_info']['gender']
-      # user.avatar = auth.info.image
+      user.remote_avatar_url = auth.info.image
     end
   end
 
@@ -84,13 +85,13 @@ class User < ActiveRecord::Base
     answer_votes.build(value: 1, answer: answer).valid?
   end
 
- 
+
 
  def self.search(search)
     where("username like ?", "%#{search}%")
   end
 
-   
+
 
 
 
@@ -144,7 +145,7 @@ end
    banned_at
   end
 
- 
+
  def following?(other_user)
     relationships.find_by(followed_id: other_user.id)
   end
@@ -159,9 +160,19 @@ end
 
    def feed
     Question.from_users_followed_by(self)
+   end
+
+  def category_feeds
+    feeds = self.categories.map(&:questions) << feed
+     @alex = feeds.flatten.uniq
   end
 
- 
+  def self.people_you_may_know
+    User.last(3).delete_if{|a| a == self}
+  end
+
+
+
   #schema
  # t.string   "email",                  default: "", null: false
  # t.string   "encrypted_password",     default: "", null: false

@@ -1,9 +1,9 @@
 class UsersController < ApplicationController
   #load_and_authorize_resource
-  layout "display"
+  layout "display", only: [:index, :show]
   respond_to :html, :xml, :json, :js, :mobile
   before_filter :load_users
-  before_filter :load_questions
+
 
   def index
    if params[:search].present?
@@ -17,6 +17,8 @@ class UsersController < ApplicationController
       format.mobile { render :layout => "application" }
     end
   end
+
+
 
 
 
@@ -51,19 +53,43 @@ class UsersController < ApplicationController
     end
   end
 
+  def select_category
+   if current_user.update(user_params)
+     respond_to do |format|
+       format.html {redirect_to root_path}
+     end
+   else
+     respond_to do |format|
+       format.html {redirect_to root_path}
+     end
+   end
+  end
 
+  def update
+   @user = current_user
+  if @user.update(user_params)
+      redirect_to root_path, notice: "Account was updated successfully"
+   else
+     redirect_to :back
+   end
+  end
+
+  def edit
+
+     @user = current_user
+  end
 
   private
   def load_user
-  @user = User.order(:username)
+    @user = User.order(:username)
   end
 
-  def load_questions
-  @related_questions = Question.all
-  end
 
   def user_params
-      params.require(:user).permit(:banned_at )
+    # pry.binding
+    params.require(:user).permit(:banned_at, {:category_ids => []},
+    :avatar, :last_requested_at, :admin, :avatar_file_name, :username, :gender, :first_name, :last_name, :bio, :occupation, :title,
+                            :intrest, :username, :location, :email, :password, :password_confirmation)
   end
 
 
