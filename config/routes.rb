@@ -23,7 +23,7 @@ NairaOverflow::Application.routes.draw do
       get :latest
     end
   end
-
+devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks" }
   resources :users do
   collection do
     get :tigers
@@ -31,8 +31,8 @@ NairaOverflow::Application.routes.draw do
     member { put :ban }
   resources :favourites, :only => [:index]
   end
-  
-  devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks" }
+
+
 
 
  get 'users/who_is_online', to: 'users#who_is_online', as: :online_users
