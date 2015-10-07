@@ -388,3 +388,11 @@
   background-color: #1DB4C1;
   color: #ffffff;
 }
+
+.my-comic{
+	color: white;
+	&:hover{
+		text-decoration: none;
+		color: white;
+	}
+}
