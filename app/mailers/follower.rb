@@ -1,5 +1,5 @@
 class Follower < ActionMailer::Base
-  default :from => "alex.obogbare@andela.com"
+  default :from => "noreply@onozor.com"
   def followers_update(following, follower)
     @following = following
     @follower = follower
