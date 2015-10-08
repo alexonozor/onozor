@@ -1,6 +1,5 @@
 class Comment < ActiveRecord::Base
-  include PublicActivity::Model
-  tracked  
+  
   #association
   has_ancestry
   belongs_to :user
