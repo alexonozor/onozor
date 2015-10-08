@@ -1507,3 +1507,90 @@ a.down:hover {
 .navbar-form fa {
   margin-top: 10px;
 }
+
+.views_on_profile {
+    display: block;
+    padding: 8px 16px 16px;
+    margin: -8px -16px 16px;
+    margin-bottom: 32px;
+    border-radius: 3px;
+}
+a {
+    text-decoration: none;
+    color: #2b6dad;
+}
+.views_on_profile h3 {
+  margin-bottom: 0;
+}
+.sidebar h3 {
+    font-size: 11px;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+    font-weight: bold;
+    padding-bottom: 8px;
+    margin-bottom: 16px;
+    border-bottom: 1px solid #e2e2e2;
+}
+.users_answers {
+    color: #2b6dad;
+}
+.views_on_profile .stat {
+    color: #333;
+    margin: 8px 0 0;
+    display: inline-block;
+    box-sizing: border-box;
+    text-align: center;
+    width: 49%;
+}
+.views_on_profile .stat .total_count {
+    font-size: 15px;
+    line-height: 1.4;
+    font-weight: bold;
+}
+.views_on_profile .stat .stats_tooltip {
+    -webkit-transition: all .2s;
+    transition: all .2s;
+    -webkit-transition: all .2s 180ms ease-in-out 0s;
+    -o-transition: all .2s 180ms ease-in-out 0s;
+    transition: all .2s 180ms ease-in-out 0s;
+    font-size: 13px;
+    border-radius: 3px;
+    opacity: 0;
+    position: absolute;
+    background: #333;
+    padding: 4px 8px;
+    color: #fff;
+    font-weight: 400;
+    margin-top: 24px;
+    text-align: left;
+    z-index: 1500;
+    pointer-events: none;
+}
+.views_on_profile .stat .stat_label.is_increase {
+    background: url(//qsf.is.quoracdn.net/-f908bf5b96eae06d.svg) no-repeat;
+    background-size: 10px 12px;
+    background-position: 8px 2px;
+}
+.views_on_profile .stat .stat_label {
+    color: #999;
+}
+.views_on_profile .stat:last-child {
+    border-left: 1px solid #e2e2e2;
+}
+.sidebar_right {
+    width: 240px;
+    float: left;
+    min-height: 2px;
+    margin-left: 45px;
+    font-size: 13px;
+}
+h3 {
+    display: block;
+    font-size: 1.17em;
+    -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    font-weight: bold;
+}
