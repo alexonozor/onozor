@@ -22,8 +22,8 @@ class Question < ActiveRecord::Base
 
  #validation
  validates_presence_of :name, :body, :user_id #:tag_list
- validates_length_of   :name, :within => 20..200
- validates_length_of   :body, :within => 70...20000
+ validates_length_of   :name, :within => 5..2000
+ validates_length_of   :body, :within => 10...20000
  # validates_length_of   :tag_list, :minimum => 2, :maximum => 8
  validates_uniqueness_of :name, :body
 
@@ -97,6 +97,6 @@ class Question < ActiveRecord::Base
 
   def send_slack_message
     SLACK_NOTIFIER.ping("New Question from #{self.user.username} :
-                 #{self.name} <http://localhost:3000/questions/#{self.slug}|Click here> to answer", http_options: { open_timeout: 5 })
+                 #{self.name} <http://www.onozor.com/questions/#{self.slug}|Click here> to answer", http_options: { open_timeout: 5 })
   end
 end
