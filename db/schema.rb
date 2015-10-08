@@ -90,13 +90,6 @@ ActiveRecord::Schema.define(version: 20151007151513) do
     t.datetime "updated_at"
   end
 
-  create_table "followers", force: true do |t|
-    t.integer  "user_id"
-    t.integer  "follow"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "friendly_id_slugs", force: true do |t|
     t.string   "slug",                      null: false
     t.integer  "sluggable_id",              null: false
@@ -204,10 +197,6 @@ ActiveRecord::Schema.define(version: 20151007151513) do
     t.string   "avatar"
     t.integer  "views",                  default: 0
     t.datetime "last_requested_at"
-    t.string   "avatar_file_name"
-    t.string   "avatar_content_type"
-    t.integer  "avatar_file_size"
-    t.datetime "avatar_updated_at"
     t.boolean  "admin"
     t.integer  "reputation"
     t.string   "slug"
