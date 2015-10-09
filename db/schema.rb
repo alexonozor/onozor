@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151007151513) do
+ActiveRecord::Schema.define(version: 20151008223550) do
 
   create_table "alltags", force: true do |t|
     t.string   "name"
@@ -82,6 +82,15 @@ ActiveRecord::Schema.define(version: 20151007151513) do
   end
 
   add_index "comments", ["ancestry"], name: "index_comments_on_ancestry"
+
+  create_table "direct_messages", force: true do |t|
+    t.string   "created_by"
+    t.string   "title"
+    t.string   "body"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "favourites", force: true do |t|
     t.integer  "user_id"

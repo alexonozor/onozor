@@ -1594,3 +1594,41 @@ h3 {
     -webkit-margin-end: 0px;
     font-weight: bold;
 }
+.center_col .list_header {
+    font-size: 11px;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+    font-weight: bold;
+  //  padding-bottom: 8px;
+  //  margin-bottom: 16px;
+  // border-bottom: 1px solid #e2e2e2;
+}
+.center_col {
+    padding-top: 16px;
+    // border-top: 2px solid #ddd;
+}
+.user_action {
+  display: inline-block;
+  margin: 0;
+  padding: 5px 0 4px;
+  color: #999;
+  background: 0;
+  font-weight: 400;
+  cursor: pointer;
+}
+#user-contact-info ul li {
+  display: inline-block;
+  padding-right: 10px;
+}
+.modal_title {
+    font-size: 19px;
+    font-weight: bold;
+    color: #333;
+    border-radius: 4px 4px 0 0;
+}
+.recent {
+  padding-bottom: 10px;
+  border-bottom: 1px solid;
+  margin-bottom: 10px;
+}
