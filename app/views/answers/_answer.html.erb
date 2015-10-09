@@ -1,4 +1,5 @@
 
+
   <!-- POST -->
   <%= div_for(answer) do %>
   <div class="post row">
@@ -31,7 +32,7 @@
 
     <div class="postinfobot">
       <nav class="options">
-        <%= link_to  "Upvote | #{answer.votes}", vote_answer_path(answer.id, value: 1), method: "post", remote: true, class: 'btn btn-secondry btn-sm' %>
+        <%= link_to  "Upvote | <span id='answer-vote-count-#{answer.id}'>#{answer.votes}</sapn>".html_safe, vote_answer_path(answer.id, value: 1), method: "post", remote: true, class: 'btn btn-secondry btn-sm' %>
         <%= link_to  "Downvote", vote_answer_path(answer.id, value: -1), method: "post", remote: true %>
         <% if current_user.present? %>
          <%= link_to " Add comment <i class='fa fa-comments'></i>+".html_safe, new_comment_path(:comment => { :commentable_type => answer.class.name,
@@ -50,5 +51,6 @@
 
       <div class="clearfix"></div>
     </div>
+    
   </div><!-- POST -->
  <% end %>
