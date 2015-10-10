@@ -105,7 +105,7 @@ class User < ActiveRecord::Base
   end
 
  def fullname
-   "#{first_name}" ' ' "#{last_name}".capitalize if first_name && last_name.present?
+   ("#{first_name}" ' ' "#{last_name}".capitalize if first_name && last_name.present?) || username
  end
 
 def fullname?

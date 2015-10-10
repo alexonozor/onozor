@@ -24,8 +24,8 @@
           <%= render("users/add_interest") %>
          <% end %>
         <% else %>
-          <h3 class="user_interests"><%= @user.intrest || "<i>No interests yet</i>" %></h3>
-          <p><%= @user.bio || "<i>No bio yet</i>" %></p>
+          <h3 class="user_interests"><%= @user.intrest || "<i>No interests yet</i>".html_safe %></h3>
+          <p><%= @user.bio || "<i>No bio yet</i>".html_safe %></p>
         <% end %>
        <div id="user-contact-info">
          <ul>
