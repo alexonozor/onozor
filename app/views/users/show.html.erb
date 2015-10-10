@@ -46,7 +46,7 @@
         <div class="content_header">
           <%=link_to question.user.fullname, user_path(question.user) %>
           <div class="photo_tooltip">
-            <%= cl_image_tag current_user.avatar.url(:thumb), alt: "" %>
+            <%= image_tag question.user.avatar.url(:thumb), alt: "" %>
           </div>
           <div class="credibility_fact">
             <%= (pluralize question.user.views, "view") %>, &nbsp;

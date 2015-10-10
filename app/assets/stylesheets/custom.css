@@ -1652,11 +1652,16 @@ h3 {
     margin-left: -48px;
 }
 .photo_tooltip {
-    float: left;
+  float: left;
+  border-radius: 50%;
+  padding: 0 10px 10px 0;
+  height: 40px;
+  width: 40px;
+  overflow: hidden;
 }
 .right {
   float: right;
 }
 .edit_link {
-  
+
 }
