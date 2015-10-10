@@ -1,0 +1,1 @@
+$(".user_interests").html('<%=j render(partial: "users/js_textbox", locals: {request_path: "user", field_to_edit: "intrest", default_text: "#{@current_user.intrest}"}) %>');
