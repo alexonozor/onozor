@@ -4,10 +4,14 @@ module ApplicationHelper
   @markdown ||= Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true, space_after_headers: true,  hard_wrap: true, filter_html: true, no_intraemphasis: true, fenced_code: true, gh_blockcode: true, fenced_code_blocks: true)
   @markdown.render(body)
 end
-  
+
 
   def title(text)
-    content_for(:title, "#{text}  " ) if text.present?
+    content_for(:title, "#{text}" ) if text.present?
+  end
+
+  def content(text)
+    content_for(:content, "#{text}" ) if text.present?
   end
 
  def syntax_highlighter(html)
@@ -31,5 +35,3 @@ end
     end
   end
 end
-
-

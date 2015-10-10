@@ -11,10 +11,10 @@ class QuestionsController < ApplicationController
   def index
       if (params[:tag].present?)
         @questions = Question.latest.tagged_with(params[:tag]).paginate :page => params[:page], :per_page => 8
-      elsif current_user
-        @questions = current_user.category_feeds.paginate :page => params[:page], :per_page => 8
       elsif (params[:search].present?)
         @questions = Question.search(params[:search]).paginate(:per_page => 5, :page => params[:page])
+      elsif current_user
+        @questions = current_user.category_feeds.paginate :page => params[:page], :per_page => 8
       else
         @questions = Question.where('id > ?', params[:after].to_i).latest.paginate :page => params[:page], :per_page => 8
       end
