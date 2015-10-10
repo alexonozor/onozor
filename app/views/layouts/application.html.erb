@@ -2,7 +2,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title><%= yield :title %> Inquire</title>
+  <title><%= yield :title %></title>
+  <meta name="description" content="<%= yield :content %>">
   <%= stylesheet_link_tag "application", 'https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css', media: "all", "data-turbolinks-track" => true %>
   <%= stylesheet_link_tag 'mobile' if mobile_device? %>
   <%= javascript_include_tag "application", "jquery.toaster.js", "data-turbolinks-track" => true %>
