@@ -1632,3 +1632,31 @@ h3 {
   border-bottom: 1px solid;
   margin-bottom: 10px;
 }
+.feed_item .content_header {
+    margin-top: 10px;
+}
+.content_header {
+    position: relative;
+    min-height: 40px;
+    margin-bottom: 5px;
+    font-size: 15px;
+    line-height: 1.4;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    padding-left: 48px;
+}
+.credibility_fact, .edit_link {
+    font-size: 13px;
+    color: #999;
+}
+.photo_tooltip {
+    margin-left: -48px;
+}
+.photo_tooltip {
+    float: left;
+}
+.right {
+  float: right;
+}
+.edit_link {
+  
+}

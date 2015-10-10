@@ -92,11 +92,6 @@ class User < ActiveRecord::Base
     where("username like ?", "%#{search}%")
   end
 
-
-
-
-
-
   #filters
   before_validation :strip_down_username
 

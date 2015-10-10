@@ -1,0 +1,3 @@
+<% if @current_user %>
+  <%= link_to "Add stuffs you love doing", user_edit_interest_path(@current_user), remote: :true %>
+<% end %>

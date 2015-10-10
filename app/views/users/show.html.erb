@@ -17,8 +17,16 @@
    <div class="col-md-6">
      <div class="info-text center_col">
        <h1 class="profile-picture-name"><%=  @user.fullname? ? @user.fullname : @user.username %></h1>
-       <h3><%= @user.intrest %></h3>
-       <p><%= @user.bio %></p>
+       <% if @user.id == @current_user.id %>
+         <% if @user.intrest %>
+          <%= render("current_user_interests")%>
+         <% else %>
+          <%= render("users/add_interest") %>
+         <% end %>
+        <% else %>
+          <h3 class="user_interests"><%= @user.intrest || "<i>No interests yet</i>" %></h3>
+          <p><%= @user.bio || "<i>No bio yet</i>" %></p>
+        <% end %>
        <div id="user-contact-info">
          <ul>
            <li><%= render 'follow_form' if signed_in?  %></li>
@@ -35,8 +43,20 @@
       <% @user.questions.each do |question| %>
        <div class="profile-questions">
          <h4><%=link_to question.name, question %><h4>
+        <div class="content_header">
+          <%=link_to question.user.fullname, user_path(question.user) %>
+          <div class="photo_tooltip">
+            <%= cl_image_tag current_user.avatar.url(:thumb), alt: "" %>
+          </div>
+          <div class="credibility_fact">
+            <%= (pluralize question.user.views, "view") %>, &nbsp;
+            <%= (pluralize question.user.followers.count, "follower") %>
+          </div>
+
+        </div>
+
+        <p class="short-body"><%=truncate question.body, length:150 %></p>
          <span><%= time_ago_in_words question.created_at %> ago, <%= pluralize question.answers_count, "Answer" %> <%= (pluralize question.views, "views") %>  </span>
-         <p class="short-body"><%=truncate question.body, length:150 %></p>
       </div>
        <% end %>
      </div>

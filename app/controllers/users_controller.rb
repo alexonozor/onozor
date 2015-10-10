@@ -4,7 +4,6 @@ class UsersController < ApplicationController
   respond_to :html, :xml, :json, :js, :mobile
   before_filter :load_users
 
-
   def index
    if params[:search].present?
       @user = User.search(params[:search])
@@ -17,10 +16,6 @@ class UsersController < ApplicationController
       format.mobile { render :layout => "application" }
     end
   end
-
-
-
-
 
   def show
     @related_questions = Question.latest.limit(10)
@@ -80,6 +75,21 @@ class UsersController < ApplicationController
      @user = current_user
   end
 
+  def edit_interest
+    respond_to do |format|
+      format.js { render "edit_interest.js" }
+    end
+  end
+
+  def update_interest
+    if user_params && user_params[:intrest]
+      @current_user.update(intrest: user_params[:intrest])
+    end
+    respond_to do |format|
+      format.js { render "update_interest.js" }
+    end
+  end
+
   private
   def load_user
     @user = User.order(:username)
@@ -90,8 +100,7 @@ class UsersController < ApplicationController
     # pry.binding
     params.require(:user).permit(:banned_at, {:category_ids => []},
     :avatar, :last_requested_at, :admin, :avatar_file_name, :username, :gender, :first_name, :last_name, :bio, :occupation, :title,
-                            :intrest, :username, :location, :email, :password, :password_confirmation)
+                            :intrest, :username, :location, :email, :password, :password_confirmation) if params.has_key? "user"
   end
-
 
 end
