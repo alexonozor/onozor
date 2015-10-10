@@ -85,13 +85,13 @@ class QuestionsController < ApplicationController
   # GET /questions/1
   # GET /questions/1.json
   def show
-  @related_questions = @question.find_related_tags.limit(10)
-  @question.update_views! unless @question.user_id == current_user.id  if current_user.present?
-  @answer = Answer.new(:question => @question, :user => current_user)
-  @comment = Comment.new(:commentable_type => @question.class.name, :commentable_id => @question.id, :user => current_user )
-  respond_to do |format|
-    format.mobile {render layout: "application"}
-   end
+    @related_questions = @question.find_related_tags.limit(10)
+    @question.update_views! unless @question.user_id == current_user.id  if current_user.present?
+    @answer = Answer.new(:question => @question, :user => current_user)
+    @comment = Comment.new(:commentable_type => @question.class.name, :commentable_id => @question.id, :user => current_user )
+    respond_to do |format|
+      format.mobile {render layout: "application"}
+     end
   end
 
   # GET /questions/new
@@ -144,7 +144,7 @@ class QuestionsController < ApplicationController
     else
       respond_to do |format|
         format.xml
-        format.html { redirect_to :back, alert: "Unable to vote, perhaps you already did."}
+        format.html { redirect_to :back, alert: "You can't vote twice."}
         format.js {render 'fail_vote.js.erb'}
         format.mobile { render 'vote.js.erb' }
       end
