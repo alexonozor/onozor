@@ -39,6 +39,7 @@ class User < ActiveRecord::Base
   has_many :followers, through: :reverse_relationships
   has_many :categories
   has_many :comments
+  has_many :direct_messages
 
   #validations
   validates_presence_of :username
