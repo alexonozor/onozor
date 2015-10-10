@@ -23,9 +23,10 @@
          <% else %>
           <%= render("users/add_interest") %>
          <% end %>
+         <p><%= (@user.bio && !@user.bio.empty?) ? @user.bio + "Edit" : link_to("You have no bio yet. Say something about yourself") %></p>
         <% else %>
           <h3 class="user_interests"><%= @user.intrest || "<i>No interests yet</i>" %></h3>
-          <p><%= @user.bio || "<i>No bio yet</i>" %></p>
+          <p><%= (@user.bio && !@user.bio.empty?) ? @user.bio : "<i>No bio yet</i>" %></p>
         <% end %>
        <div id="user-contact-info">
          <ul>
