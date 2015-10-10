@@ -6,18 +6,6 @@ class User < ActiveRecord::Base
          :omniauth_providers => [:facebook, :google_oauth2]
 
   mount_uploader :avatar, AvatarUploader
-  #avatar upload
-  # has_attached_file :avatar,
-  #                   :storage => :dropbox,
-  #                   :dropbox_credentials => "#{Rails.root}/config/dropbox.yml",
-  #                   :styles => { :medium => "150x150#", :thumbs => "100x100#", :thumbnails => "70x70#",
-  # :thumb => "50x50#", :home => "30x30>" }, :default_url => "http://res.cloudinary.com/sportbay-co/image/upload/c_scale,w_50/v1441294900/missing_avatar_mqvxnf.png"
-  # validates_attachment :avatar,
-  # :content_type => { :content_type => ["image/jpeg", "image/gif", "image/png"] ,
-  #                      :dropbox_options => {
-  #                          :path => proc { |style| "#{style}/#{id}_#{avatar.original_filename}" }
-  #  }}
-
   extend FriendlyId
   friendly_id :username, use: :slugged
 
@@ -39,7 +27,7 @@ class User < ActiveRecord::Base
   has_many :followers, through: :reverse_relationships
   has_many :categories
   has_many :comments
-  has_many :direct_messages
+  # has_many :direct_messages
 
   #validations
   validates_presence_of :username

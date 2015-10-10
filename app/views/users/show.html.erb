@@ -17,7 +17,7 @@
    <div class="col-md-6">
      <div class="info-text center_col">
        <h1 class="profile-picture-name"><%=  @user.fullname? ? @user.fullname : @user.username %></h1>
-       <% if @user.id == @current_user.id %>
+       <% if current_user && @user.id == current_user.id %>
          <% if @user.intrest %>
           <%= render("current_user_interests")%>
          <% else %>
@@ -31,7 +31,7 @@
          <ul>
            <li><%= render 'follow_form' if signed_in?  %></li>
            <li class="user_action">
-             <%= render "message_user" %>
+             <%#= render "message_user" %>
            </li>
          </ul>
        </div>
