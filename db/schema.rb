@@ -11,7 +11,6 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
 ActiveRecord::Schema.define(version: 20151008223550) do
 
   create_table "alltags", force: true do |t|
@@ -53,7 +52,6 @@ ActiveRecord::Schema.define(version: 20151008223550) do
     t.string   "permalink"
     t.string   "slug"
     t.string   "image"
-    t.integer  "user_id"
   end
 
   create_table "ckeditor_assets", force: true do |t|
@@ -214,6 +212,10 @@ ActiveRecord::Schema.define(version: 20151008223550) do
     t.string   "avatar"
     t.integer  "views",                  default: 0
     t.datetime "last_requested_at"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
     t.boolean  "admin"
     t.integer  "reputation"
     t.string   "slug"

@@ -1,5 +1,5 @@
 class AddColumnToCategories < ActiveRecord::Migration
   def change
-    add_column :categories, :user_id, :integer
+    remove_column :categories, :user_id, :integer
   end
 end
