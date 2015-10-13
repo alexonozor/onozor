@@ -17,8 +17,8 @@
       <h2><%=link_to question.name, question, class: "question-title" %></h2>
       <p><%= truncate (strip_tags question.body), length: 150 %></p>
       <%#= raw question.tag_list.map { |t| link_to t, tag_path(t), class:'tags' }.join('') %>
-      <%= link_to  "Upvote | <span id='vote-count-#{question.id}'>#{question.votes}</sapn>".html_safe, vote_question_path(question.id, value: 1), method: "post", remote: true, class: 'btn btn-secondry btn-sm' %>
-      <%= link_to  "Downvote", vote_question_path(question.id, value: -1), method: "post", remote: true %>
+      <%= allow_ajax_only_if_user_is_signin_for_upvote(question) %>
+      <%= allow_ajax_only_if_user_is_signin_for_downvote(question) %>
       <span class="post-question-info">
         <%=link_to (pluralize question.answers_count, "Answer"), question_path(question, anchor: "answers-area")  %>,
         <%= pluralize question.comments.count, "Comment"  %>,
