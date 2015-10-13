@@ -23,7 +23,7 @@
         <%= render partial: "user_info", locals: {option: "intrest"} %>
         <%= render partial: "user_info", locals: {option: "bio"} %>
         <% else %>
-          <h1 class="profile-picture-name"><%= @current_user.fullname %></h1>
+          <h1 class="profile-picture-name"><%= @user.fullname %></h1>
           <h3 class="user_intrest"><%= @user.intrest || "<i>No interests yet</i>" %></h3>
           <p><%= (@user.bio && !@user.bio.empty?) ? @user.bio : "<i>No bio yet</i>" %></p>
         <% end %>
