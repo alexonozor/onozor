@@ -75,22 +75,23 @@ class UsersController < ApplicationController
      @user = current_user
   end
 
-  def edit_interest
+  def edit_user
+    @option = params[:option]
     respond_to do |format|
-      format.js { render "edit_interest.js" }
-    end
+      format.js { render "show_edit_box.js" }
+    end if @option
   end
 
-  def update_interest
-    if user_params && user_params[:intrest]
-      @current_user.update(intrest: user_params[:intrest])
-    end
+  def update_user
+    @option = (user_params && user_params[:option]) ? user_params[:option] : nil
+    update_user_info if @option
     respond_to do |format|
-      format.js { render "update_interest.js" }
+      format.js { render "update_user.js" }
     end
   end
 
   private
+
   def load_user
     @user = User.order(:username)
   end
@@ -100,7 +101,21 @@ class UsersController < ApplicationController
     # pry.binding
     params.require(:user).permit(:banned_at, {:category_ids => []},
     :avatar, :last_requested_at, :admin, :avatar_file_name, :username, :gender, :first_name, :last_name, :bio, :occupation, :title,
-                            :intrest, :username, :location, :email, :password, :password_confirmation) if params.has_key? "user"
+                            :intrest, :username, :location, :email, :password, :password_confirmation, :option, :fullname) if params.has_key? "user"
   end
 
+  def update_user_info
+    if @option == "fullname"
+      user_fullname
+    else
+      @current_user[@option] = user_params[@option]
+    end
+    @current_user.save
+  end
+
+  def user_fullname
+    fullname = user_params[@option].split(" ")
+    @current_user.first_name = fullname[0]
+    @current_user.last_name = fullname[1]
+  end
 end
