@@ -1678,3 +1678,17 @@ h3 {
   line-height: 1.4;
   font-weight: normal;
 }
+.navbar-header h3 {
+  display: inline-block;
+  font-size: 2.17em;
+  -webkit-margin-before: 0.3em;
+  -webkit-margin-after: 0.2em;
+  -webkit-margin-start: 0px;
+  -webkit-margin-end: 0px;
+  font-weight: bold;
+  margin-right: 20px;
+}
+.navbar-brand {
+  height: 50px;
+  padding: 5px 10px 8px;
+}
