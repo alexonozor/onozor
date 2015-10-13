@@ -25,8 +25,8 @@ NairaOverflow::Application.routes.draw do
   end
 devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks" }
   resources :users do
-    get 'edit_interest' => "users#edit_interest", as: :edit_interest
-    post 'edit_interest' => "users#update_interest", as: :update_interest
+    get 'edit_user/:option' => "users#edit_user", as: :edit_user
+    post 'edit_user/:option' => "users#update_user", as: :update_user
     collection do
       get :tigers
     end

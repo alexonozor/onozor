@@ -1,0 +1,6 @@
+<% @option ||= "" %>
+<% if @option == "fullname" %>
+  $("#user_<%= @option %>").html('<%=j render ("users/add_fullname") %>');
+<% else %>
+  $("#user_<%= @option %>").html('<%=j render ("users/current_user_prop") %>');
+<% end %>

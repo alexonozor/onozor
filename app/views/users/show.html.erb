@@ -16,22 +16,22 @@
     </div>
    <div class="col-md-6">
      <div class="info-text center_col">
-       <h1 class="profile-picture-name"><%=  @user.fullname? ? @user.fullname : @user.username %></h1>
-       <% if current_user && @user.id == current_user.id %>
-         <% if @user.intrest %>
-          <%= render("current_user_interests")%>
-         <% else %>
-          <%= render("users/add_interest") %>
-         <% end %>
+       <% if @user.id == @current_user.id %>
+        <h1 class="profile-picture-name">
+          <%= render partial: "user_info", locals: {option: "fullname"} %>
+        </h1>
+        <%= render partial: "user_info", locals: {option: "intrest"} %>
+        <%= render partial: "user_info", locals: {option: "bio"} %>
         <% else %>
-          <h3 class="user_interests"><%= @user.intrest || "<i>No interests yet</i>".html_safe %></h3>
-          <p><%= @user.bio || "<i>No bio yet</i>".html_safe %></p>
+          <h1 class="profile-picture-name"><%= @current_user.fullname %></h1>
+          <h3 class="user_intrest"><%= @user.intrest || "<i>No interests yet</i>" %></h3>
+          <p><%= (@user.bio && !@user.bio.empty?) ? @user.bio : "<i>No bio yet</i>" %></p>
         <% end %>
        <div id="user-contact-info">
          <ul>
            <li><%= render 'follow_form' if signed_in?  %></li>
            <li class="user_action">
-             <%#= render "message_user" %>
+             <%= render "message_user" %>
            </li>
          </ul>
        </div>
