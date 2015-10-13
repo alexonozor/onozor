@@ -54,11 +54,14 @@
 <button type="button" class="btn btn-primary btn-lg" id="select-category" data-toggle="modal" data-target="#myModal">
   Launch demo modal
 </button>
+<!-- <button type="button" data-toggle="modal" data-target="#myModal">Launch modal</button> -->
 <% end %>
 
-<% if current_user %>
+
+
 <!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-keyboard="false" data-backdrop="static">
+<% if current_user %>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -78,5 +81,6 @@
   </div>
 </div>
 <% end %>
+
 </body>
 </html>

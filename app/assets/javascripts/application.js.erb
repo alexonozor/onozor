@@ -78,6 +78,8 @@ $(document).on('page:restore', function() {
 
 
 $(document).ready(function() {
+  // $('#myModal').modal('hide');
+  // console.log("here")
   $('#add_h1').on("click", function(e) {
     e.preventDefault();
     md_insert_h1_to('question[body]');
@@ -277,7 +279,9 @@ $(function() {
 })
 
 $(function() {
-  $('#select-category').click();
+  if($('#select-category').length>0){
+    $('#select-category').click();
+  }
 })
 
 $(function() {
