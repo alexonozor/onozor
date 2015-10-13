@@ -25,7 +25,8 @@ class User < ActiveRecord::Base
                                    class_name:  "Relationship",
                                    dependent:   :destroy
   has_many :followers, through: :reverse_relationships
-  has_many :categories
+  has_many :user_categories
+  has_many :categories, through: :user_categories
   has_many :comments
   has_many :direct_messages
 
@@ -151,10 +152,20 @@ end
      @alex = feeds.flatten.uniq
   end
 
-  def self.people_you_may_know
-    User.last(3).delete_if{|a| a == self}
-  end
+  def self.people_you_may_know(current_user)
+    # User.last(3).delete_if{|a| a == current_user}
+    # User.where.not(id:current_user.id).limit(3)
+    if current_user
+      q = "Select users.* from users, user_categories where user_categories.user_id = users.id and user_categories.category_id in (
+          select user_categories.category_id from user_categories where user_categories.user_id = #{current_user.id}
+      ) and users.id is not #{current_user.id} and users.id not in (
+          SELECT users.id FROM users INNER JOIN relationships ON users.id = relationships.followed_id and relationships.follower_id = #{current_user.id}
+      ) group by users.id".gsub(/\n|\s{2,}/, "")
 
+      # Finds a user in each category i follow
+      User.find_by_sql(q)
+    end
+  end
 
 
   #schema

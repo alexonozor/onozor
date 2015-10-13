@@ -6,6 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+Category.destroy_all
 category_list = [
     [ "Technology", "http://res.cloudinary.com/sportbay-co/image/upload/v1443569929/main-thumb-t-2177-200-JiR07D1TQSfeQzRvWXomVaY4Poj2f8Yb_obscwy.jpg" ],
     [ "Science", "http://res.cloudinary.com/sportbay-co/image/upload/v1443569928/main-thumb-t-931-200-c8WCPwZ9qPsh5zLGQ5wHh1ddxtc9Cch7_yquqe7.webp" ],
@@ -77,5 +78,3 @@ category_list = [
 category_list.each do |name, image|
   Category.create!( name: name, image: image )
 end
-
-

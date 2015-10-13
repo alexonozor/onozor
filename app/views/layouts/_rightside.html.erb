@@ -1,36 +1,37 @@
 <div class="col-lg-3 col-md-3">
 
   <% if current_user %>
-  <div class="sidebarblock">
-    <h3>People you may Like</h3>
-    <div class="divline"></div>
-    <div class="blocktxt">
+  <% if @people_to_follows %>
+    <div class="sidebarblock">
+      <h3>People you may Like</h3>
+      <div class="divline"></div>
+      <div class="blocktxt">
 
-      <% @people_to_follows.each do |user| %>
-        <div class="media">
-          <div class="media-left">
-            <%= link_to (image_tag user.avatar.url(:thumb), class:'img-rounded'), user_path(user)  %>
-          </div>
-          <div class="media-body">
-            <p class="media-heading"><%= link_to  (user.fullname? ? user.fullname : user.username), user_path(user) %></p>
-             <div id="follow_form">
-              <% if current_user.following?(user) %>
-                <%= form_for(current_user.relationships.find_by(followed_id: user.id), html: { method: :delete }) do |f| %>
-                  <%= f.submit "Unfollow", class: "btn btn-danger btn-sm" %>
-                <% end %>
-            <% else %>
-                <%= form_for(current_user.relationships.build(followed_id: user.id)) do |f| %>
-                  <div><%= f.hidden_field :followed_id %></div>
-                  <%= f.submit "Follow", class: "btn btn-secondry btn-sm" %>
-                <% end %>
-              <% end %>
-             </div>
-          </div>
-        </div>
-
-      <% end %>
+          <% @people_to_follows.each do |user| %>
+              <div class="media">
+                <div class="media-left">
+                  <%= link_to (image_tag user.avatar.url(:thumb), class:'img-rounded'), user_path(user)  %>
+                </div>
+                <div class="media-body">
+                  <p class="media-heading"><%= link_to  (user.fullname? ? user.fullname : user.username), user_path(user) %></p>
+                   <div id="follow_form">
+                        <% if current_user.following?(user) %>
+                          <%= form_for(current_user.relationships.find_by(followed_id: user.id), html: { method: :delete }) do |f| %>
+                            <%= f.submit "Unfollow", class: "btn btn-danger btn-sm" %>
+                          <% end %>
+                        <% else %>
+                          <%= form_for(current_user.relationships.build(followed_id: user.id)) do |f| %>
+                            <div><%= f.hidden_field :followed_id %></div>
+                            <%= f.submit "Follow", class: "btn btn-secondry btn-sm" %>
+                          <% end %>
+                        <% end %>
+                   </div>
+                </div>
+              </div>
+        <% end %>
+      </div>
     </div>
-  </div>
+  <% end %>
     <% else %>
     <div class="sidebarblock">
       <h3>People you may Like</h3>
@@ -50,5 +51,8 @@
         <% end %>
       </div>
     </div>
+    <% end %>
+    <% if controller_name == 'questions' && action_name == 'show'%>
+      <%= render partial: "questions/related_questions"%>
     <% end %>
 </div>

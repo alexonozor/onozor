@@ -33,7 +33,7 @@ class ApplicationController < ActionController::Base
   end
 
   def people_to_follow
-    @people_to_follows = User.people_you_may_know
+    @people_to_follows = User.people_you_may_know(current_user)
   end
 
 
