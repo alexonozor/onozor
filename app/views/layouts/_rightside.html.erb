@@ -45,7 +45,7 @@
             </div>
             <div class="media-body">
               <p class="media-heading"><%= link_to  (user.fullname? ? user.fullname : user.username), user_path(user) %></p>
-              <p>intrested in: <%=  user.categories.map{|a| link_to a.name, a}.join(", ").html_safe %> </p>
+              <p>intrested in: <% #=  user.categories.map{|a| link_to a.name, a}.join(", ").html_safe %> </p>
             </div>
           </div>
         <% end %>
