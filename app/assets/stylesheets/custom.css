@@ -1376,7 +1376,8 @@ a.down:hover {
 }
 
 .selected{
-    background: url("sc.png");
+    background: url("check.png");
+    background-size: contain;
     position: absolute;
     z-index: 1000;
     top: 5px;
