@@ -6,6 +6,6 @@ class CreateDirectMessages < ActiveRecord::Migration
       t.string :body
       t.belongs_to :user
       t.timestamps
-    end
+    end if !ActiveRecord::Base.connection.table_exists? 'direct_messages'
   end
 end
