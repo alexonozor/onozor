@@ -1,8 +1,9 @@
 class Category < ActiveRecord::Base
- #Association 
- belongs_to :user
+ #Association
+ has_many :user_categories
+ has_many :users, through: :user_categories
  has_many :questions
- 
+
  #callbacks
  before_validation :set_permalink
 

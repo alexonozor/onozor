@@ -4,7 +4,10 @@ class RelationshipsController < ApplicationController
     @user = User.find(params[:relationship][:followed_id])
    if current_user.follow!(@user)
       Follower.followers_update(@user, current_user).deliver
+      # @undo_link = view_context.link_to("undo", revert_version_path())
+      # require 'pry' ; binding.pry
     respond_to do |format|
+      flash[:notice] = "Followed #{@user.username}"
       format.html { redirect_to :back, :notice => "Followed Succefully" }
       format.js
     end

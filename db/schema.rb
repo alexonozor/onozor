@@ -47,7 +47,6 @@ ActiveRecord::Schema.define(version: 20151008223550) do
   create_table "categories", force: true do |t|
     t.string   "name"
     t.text     "description"
-    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "permalink"
@@ -95,13 +94,6 @@ ActiveRecord::Schema.define(version: 20151008223550) do
   create_table "favourites", force: true do |t|
     t.integer  "user_id"
     t.integer  "question_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "followers", force: true do |t|
-    t.integer  "user_id"
-    t.integer  "follow"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -196,6 +188,13 @@ ActiveRecord::Schema.define(version: 20151008223550) do
 
   add_index "tags", ["name"], name: "index_tags_on_name", unique: true
 
+  create_table "user_categories", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "category_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "users", force: true do |t|
     t.string   "email",                  default: "",    null: false
     t.string   "encrypted_password",     default: "",    null: false
@@ -232,6 +231,7 @@ ActiveRecord::Schema.define(version: 20151008223550) do
     t.boolean  "only_follower_feed",     default: false
     t.string   "provider"
     t.string   "uid"
+    t.integer  "category_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
