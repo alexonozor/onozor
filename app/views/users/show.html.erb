@@ -1,5 +1,5 @@
-<% title "#{@user.username}" %>
-
+<% title "#{@user.username} Profile" %>
+<% content "#{@user.bio}" %>
 <div class="container-set">
   <div class="row clear-top">
     <div class="col-md-3">
@@ -15,34 +15,72 @@
       </div>
     </div>
    <div class="col-md-6">
-     <div class="info-text">
-       <h1 class="profile-picture-name"><%=  @user.fullname? ? @user.fullname : @user.username %></h1>
-       <h3><%= @user.intrest %></h3>
-       <p><%= @user.bio %></p>
+     <div class="info-text center_col">
+       <% if @user.id == @current_user.id %>
+        <h1 class="profile-picture-name">
+          <%= render partial: "user_info", locals: {option: "fullname"} %>
+        </h1>
+        <%= render partial: "user_info", locals: {option: "intrest"} %>
+        <%= render partial: "user_info", locals: {option: "bio"} %>
+        <% else %>
+          <h1 class="profile-picture-name"><%= @current_user.fullname %></h1>
+          <h3 class="user_intrest"><%= @user.intrest || "<i>No interests yet</i>" %></h3>
+          <p><%= (@user.bio && !@user.bio.empty?) ? @user.bio : "<i>No bio yet</i>" %></p>
+        <% end %>
        <div id="user-contact-info">
          <ul>
            <li><%= render 'follow_form' if signed_in?  %></li>
+           <li class="user_action">
+             <%= render "message_user" %>
+           </li>
          </ul>
        </div>
-       <span class="activities">ACTIVITY<span>
+       <div class="list_header center_col">ACTIVITY</div>
      </div>
+
+
      <div id="feeds">
       <% @user.questions.each do |question| %>
        <div class="profile-questions">
          <h4><%=link_to question.name, question %><h4>
+        <div class="content_header">
+          <%=link_to question.user.fullname, user_path(question.user) %>
+          <div class="photo_tooltip">
+            <%= image_tag question.user.avatar.url(:thumb), alt: "" %>
+          </div>
+          <div class="credibility_fact">
+            <%= (pluralize question.user.views, "view") %>, &nbsp;
+            <%= (pluralize question.user.followers.count, "follower") %>
+          </div>
+
+        </div>
+
+        <p class="short-body"><%=truncate question.body, length:150 %></p>
          <span><%= time_ago_in_words question.created_at %> ago, <%= pluralize question.answers_count, "Answer" %> <%= (pluralize question.views, "views") %>  </span>
-         <p class="short-body"><%=truncate question.body, length:150 %></p>
       </div>
        <% end %>
      </div>
    </div>
    <div class="col-md-3">
-     <div>
-        <div class="recent">Recent Post<div>
-      <% @related_questions.each do |a| %>
-       <p class="similar"><%= link_to a.name, a  %></p>
-      <% end %>
-    </div>
-   </div>
+     <div class="sidebar_right">
+       <%=link_to user_path(@user), class: "views_on_profile" do %>
+        <h3><span class="users_answers"><%= "Views on #{@user.first_name}'s Answers" %></span></h3>
+        <div class="stat">
+          <span class="total_count"><%= @user.views %></span>
+          <div class="stat_label is_increase"> Last 30 Days</div>
+        </div>
+        <div class="stat">
+          <span class="total_count"><%= @user.views %></span>
+          <div class="stat_label">All Time</div>
+        </div>
+       <% end %>
+       <div>
+          <div class="recent">Recent Posts</div>
+        <% @related_questions.each do |a| %>
+         <p class="similar"><%= link_to a.name, a  %></p>
+        <% end %>
+      </div>
+     </div>
   </div>
+</div>
 </div>

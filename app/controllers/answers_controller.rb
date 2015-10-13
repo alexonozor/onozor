@@ -26,12 +26,12 @@ class AnswersController < ApplicationController
   def create
     @answer = current_user.answers.build(answer_params)
     @answer.request = request
-    if @answer.save 
+    if @answer.save
     respond_to do |format|
       format.html { redirect_to @answer.question, :view => "answer-body", :notice => "Thanks for you Answer"}
       format.mobile { redirect_to @answer.question, :notice => "Thanks for you Answer"}
-      format.js 
-     end      
+      format.js
+     end
       else
     respond_to do |format|
         format.html { redirect_to @answer.question, alert: 'Unable to add Answer' }
@@ -40,7 +40,7 @@ class AnswersController < ApplicationController
        end
       end
     end
-  
+
 
   # PATCH/PUT /answers/1
   # PATCH/PUT /answers/1.json
@@ -60,16 +60,17 @@ class AnswersController < ApplicationController
 
 
   def vote
-    vote = current_user.answer_votes.new(value: params[:value], answer_id: params[:id])
-    if vote.save
+    @answer = Answer.find(params[:id])
+    @vote = current_user.answer_votes.new(value: params[:value], answer_id: params[:id])
+    if @vote.save
      respond_to do |format|
       format.html {redirect_to :back, notice: "Thank you for voting."}
-      format.js {render 'vote.js.erb'}
+      format.js
      end
     else
      respond_to do |format|
       format.html { redirect_to :back, alert: "Unable to vote, perhaps you already did."}
-      format.js { render 'fail_vote.js.erb' }  
+      format.js { render 'fail_vote.js.erb' }
       end
     end
   end
@@ -84,7 +85,7 @@ class AnswersController < ApplicationController
    format.js
     end
   end
-  
+
   def undo_link
     if can? :revert, :versions
       version = @answer.versions.scoped.last

@@ -1,1 +1,0 @@
-$("#<%= dom_id(@answer) %>").replaceWith("<%= escape_javascript("<div class='alert'>Comment was deleted #{undo_link}</div>".html_safe) %>");

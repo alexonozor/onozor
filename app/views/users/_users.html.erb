@@ -1,23 +1,25 @@
 
-<nav class="users">
-                    <% for user in @user %>
-                     <div class="follow">
-                      <div class="little-timeline">
-                       <div class="litle-profile"><%=image_tag user.avatar.url(:thumb) %></div>
-                       </div>
-                         <div class="gen-content">
-                           <p><%=link_to user.username, user %></p>
-                          <p>
-                          <small>
-                           <p><%= user.intrest %></p>  
-                          </small>
-                           </p>
-                          
-                        </div>
-                     </div>
-                        
-                     <% end %>
-             
-              </nav>
-       
+<div class="container-set">
+  <%= form_tag(users_path, :method => "get", :remote => true, class:"navbar-form", :id => "users_search") do %>
+        <div class="form-group">
+            <%= text_field_tag :search, params[:search], placeholder: "Search user", class: "form-control" %>
+           </div>
+            <button class="btn btn-default">search</button>
+  <% end %>
+  <div class="row">
+    <% for user in @user %>
+    <div class="col-md-3 user_outer">
+      <div class="user_middle">
+      <div class="user_inner">
+         <div class="litle-profile"><%=image_tag user.avatar.url(:thumb) %></div>
+       </div>
+       <div class="gen-content">
+         <p><%=link_to user.username, user %></p>
+         <p><small><%= user.intrest %></small></p>
+       </div>
+     </div>
+   </div>
 
+     <% end %>
+  </div>
+</div>

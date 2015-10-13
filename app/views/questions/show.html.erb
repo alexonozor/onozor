@@ -1,3 +1,5 @@
+<% title "#{@question.name}" %>
+<% content "#{truncate @question.body, length: 150}" %>
 <!-- POST -->
 <div class="post row">
   <div class="topwrap">
@@ -31,8 +33,8 @@
 
   <div class="postinfobot">
     <nav class="options">
-      <%= link_to  "Upvote | #{@question.votes}", vote_question_path(@question.id, value: 1), method: "post", remote: true, class: 'btn btn-secondry btn-sm' %>
-      <%= link_to  "Downvote", vote_question_path(@question.id, value: -1), method: "post", remote: true %>
+      <%= allow_ajax_only_if_user_is_signin_for_upvote(@question) %>
+      <%= allow_ajax_only_if_user_is_signin_for_downvote(@question) %>
       <% if current_user.present? %>
        <%= link_to " Add comment <i class='fa fa-comments'></i>+".html_safe, new_comment_path(:comment => { :commentable_type => @question.class.name,
                      :commentable_id => @question.id}),
