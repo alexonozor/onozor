@@ -59,4 +59,5 @@ devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks"
   end
 
    root 'questions#index'
+   get '/about' => 'about#index', as: :about
 end

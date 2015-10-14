@@ -34,15 +34,19 @@
   <%= render :partial => 'layouts/nav' %>
 
   <section class="content">
+    <% if request.path != '/about' %>
     <div class="container clear-top">
       <div class="row">
         <%= render :partial => 'layouts/leftside' %>
        <div class="col-lg-6 col-md-6">
+    <% end %>
         <%= yield %>
+    <% if request.path != '/about' %>
        </div>
         <%= render :partial => 'layouts/rightside' %>
       </div>
     </div>
+    <% end %>
   </section>
 
   <%= render :partial => "layouts/footer" %>
