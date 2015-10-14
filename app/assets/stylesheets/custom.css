@@ -1681,14 +1681,43 @@ h3 {
 .navbar-header h3 {
   display: inline-block;
   font-size: 2.17em;
-  -webkit-margin-before: 0.3em !important;
-  -webkit-margin-after: 0.2em !important;
+  -webkit-margin-before: 0.3em;
+  -webkit-margin-after: 0.2em;
   -webkit-margin-start: 0px;
   -webkit-margin-end: 0px;
   font-weight: bold;
   margin-right: 20px;
 }
 .navbar-brand {
-  height: 50px !important;
-  padding: 5px 10px 8px !important;
+  height: 50px;
+  padding: 5px 10px 8px;
+}
+.img-center {
+    margin: 0 auto;
+}
+.about {
+  width: 100% !important;
+  color: #444;
+}
+.about-section-desc {
+  font-size: 20px;
+  margin: 0 50px;
+  line-height: 1.5em;
+  padding: 10px 5% 50px;
+}
+.about-desc {
+  padding: 10px 10% !important;
+}
+.about-person-desc {
+  font-size: 1.57em !important;
+}
+.about-person-desc small {
+  margin:5px;
+  display: block;
+}
+.about .top {
+  margin: 10px 0;
+}
+.white-bg {
+  background-color: #fff;
 }
