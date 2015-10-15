@@ -1,3 +1,4 @@
+<% cache("about_page") do %>
 <!-- Page Content -->
    <div class="container about">
 
@@ -7,7 +8,7 @@
                <h1 class="page-header text-center">Get answers
                    <small>And that's it! Quite simply . . .</small>
                </h1>
-               <p class="about-section-desc">Onozor's mission is to share and grow the world's knowledge. We want to democratize access to knowledge of all kinds—from politics to painting, cooking to coding, etymology to experiences—so if someone out there knows something, anyone else can learn it. Quora makes it easy to get your questions answered, share your own knowledge, and browse the most interesting information people across the world want to share.</p>
+               <p class="about-section-desc">Onozor's mission is to provide a platform where knowledge can be easily shared around the world. Knowing people travel around travel to different places, learn and experience different things, we want to encourage people to share knowledge gained from these experiences. Ranging from Rocket science and quantum physics to basic algebra, professionary culinary to home-cooking, history to Anthropoloy, etheism to extreme religion, and so on - as long as its knowledge people can gain from, then it should be shared. Ononzor makes it super easy to put up knowledge so it can be even easier referenced long after you put it up. Do your part. Make the world better.</p>
            </div>
        </div>
 
@@ -19,25 +20,25 @@
            </div>
            <div class="col-lg-6 col-sm-6 about-desc">
 
-               <h3>We exist so you could ask questions
+               <h3>We exist so you could ask questions and get answers
                </h3>
-               <p>Onozor's mission is to share and grow the world's knowledge. We want to democratize access to knowledge of all kinds—from politics to painting, cooking to coding, etymology to experiences—so if someone out there knows something, anyone else can learn it. Quora makes it easy to get your questions answered, share your own knowledge, and browse the most interesting information people across the world want to share.</p>
+               <p>Onozor's mission is to provide a platform where knowledge can be shared. In our different every day life, there have been times when questions hit us in ways we wish there was a mentor or professional (in that field) close to you. We are pushing towards a platform that will surround you with people with extensive knowledge of different fields and those willing to guide you through your research. </p>
            </div>
            <div class="col-lg-6 col-sm-6 about-desc">
 
-               <h3>You could ask questions
+               <h3>We believe our generation can make it easier for those coming after
                </h3>
-               <p>Onozor's mission is to share and grow the world's knowledge. We want to democratize access to knowledge of all kinds—from politics to painting, cooking to coding, etymology to experiences—so if someone out there knows something, anyone else can learn it. Quora makes it easy to get your questions answered, share your own knowledge, and browse the most interesting information people across the world want to share.</p>
+               <p>Around us, every technology breakthrough and sustainability will testify of the input of open-source. When people share results of their findings in any subject matter, it becomes easier for others to use that knowledge as a springboard to either explore more of the subject matter (possibly improve upon it) or use their solutions to invent useful solutions to identified or overlooked problems. Onozor strives to build this bridge between knowledge gaps in generations.</p>
            </div>
            <div class="col-lg-6 col-sm-6 about-desc">
-               <h3>You could ask questions
+               <h3>Let the knowledge be documented. And free.
                </h3>
-               <p>Onozor's mission is to share and grow the world's knowledge. We want to democratize access to knowledge of all kinds—from politics to painting, cooking to coding, etymology to experiences—so if someone out there knows something, anyone else can learn it. Quora makes it easy to get your questions answered, share your own knowledge, and browse the most interesting information people across the world want to share.</p>
+               <p>Onozor's mission is to share and grow the world's knowledge. We want to democratize access to knowledge of all kinds—from politics to painting, cooking to coding, etymology to experiences—so if someone out there knows something, anyone else can learn it. Onozor makes it easy to get your questions answered, share your own knowledge, and browse the most interesting information people across the world want to share.</p>
            </div>
            <div class="col-lg-6 col-sm-6 about-desc">
-               <h3>You could ask questions
+               <h3>Connect to friends. See what they love reading. And writing.
                </h3>
-               <p>Onozor's mission is to share and grow the world's knowledge. We want to democratize access to knowledge of all kinds—from politics to painting, cooking to coding, etymology to experiences—so if someone out there knows something, anyone else can learn it. Quora makes it easy to get your questions answered, share your own knowledge, and browse the most interesting information people across the world want to share.</p>
+               <p>And its not all serious business. You could find on Onozor friends, people you share common interest with, and people you admire for their guts or something else entirely up to you. Onozor allows you connect with other users so you can see their questions and answer and track other activities. We really hope you connect to people with similar interests and experiences, likes and dislikes.</p>
            </div>
        </div>
 
@@ -47,29 +48,31 @@
                <h2 class="page-header">Meet The Team</h2>
            </div>
            <div class="col-lg-4 col-sm-6">
-               <img class="img-circle img-responsive img-center" src="http://placehold.it/200x200" alt="">
+             <%= image_tag "alex.jpg", class: "img-circle img-responsive img-center img-about-page", alt: "Alex Onozor" %>
                <h3 class="about-person-desc text-center">Alex Onozor
-                   <small>Software Developer at Andela</small>
+                   <small>Software Developer at <%=link_to "Andela", "http://www.andela.com" %></small>
                </h3>
                <p class="about-desc">Alex brings on an experience with Ruby on Rails and seamlessly merges with a dream to provide a platform where just about anyone could ask just about anything, and get really helpful response. He's a lover of soccer and tennis!</p>
+               <p class="about-desc">Alex plays a lot of soccer even in-between <%=link_to "software projects", "https://github.com/andela-obogbare" %> and still manages to get a lot done.</p>
            </div>
            <div class="col-lg-4 col-sm-6">
-               <img class="img-circle img-responsive img-center" src="http://placehold.it/200x200" alt="">
+               <%= image_tag "Innocent Amadi.jpg", class: "img-circle img-responsive img-center img-about-page", alt: "Innocent Amadi" %>
                <h3 class="about-person-desc text-center">Innocent Amadi
-                 <small>Software Developer at Andela</small>
+                 <small>Software Developer at <%=link_to "Andela", "http://www.andela.com" %></small>
                </h3>
                <p class="about-desc">A passion for problem solving fit with machine accuracy when Innocent was introduced to the Onozor project. Since then, he has put in both computer and people skills to ensure Onozor stays friendly and relevant.</p>
-               <p class="about-desc">Innocent swims and explores even more code in his spare time, and blogs about his findings at <a href="http://blog.cent.tech">blog.cent.tech</a>
+               <p class="about-desc">Innocent swims and explores <%=link_to "even more code and projects in his spare time", "https://github.com/andela-iamadi" %>, and blogs about his findings at <a href="http://blog.cent.tech">blog.cent.tech</a></p>
            </div>
 
            <div class="col-lg-4 col-sm-6">
-               <img class="img-circle img-responsive img-center" src="http://placehold.it/200x200" alt="">
+             <%= image_tag "stephen.jpg", class: "img-circle img-responsive img-center img-about-page", alt: "Stephen Sunday" %>
                <h3 class="about-person-desc text-center">Stephen Sunday
-                 <small>Software Developer at Andela</small>
+                 <small>Software Developer at <%=link_to "Andela", "http://www.andela.com" %></small>
                </h3>
                <p class="about-desc">An outstanding communicator with great interpersonal skills, Stephen delights in drawing upon seemingly trivial problems and creating great, indispensible solutions or automations to them using Software development as a tool for this.</p>
-               <p class="about-desc">Stephen contributes greatly to open-source projects in spare time</p>
+               <p class="about-desc">Stephen contributes greatly to <%=link_to "open-source projects", "https://github.com/andela-ssunday" %> in spare time</p>
            </div>
 
        </div>
 </div>
+<% end %>
