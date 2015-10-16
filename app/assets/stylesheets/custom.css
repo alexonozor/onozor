@@ -1699,11 +1699,19 @@ h3 {
   width: 100% !important;
   color: #444;
 }
-.about-section-desc {
+.about-section-desc-2 {
   font-size: 20px;
   margin: 0 50px;
   line-height: 1.5em;
   padding: 10px 5% 50px;
+}
+.about-section-desc {
+  font-size: 20px;
+  margin: 10px 0;
+  line-height: 2.5em;
+  padding: 10px;
+  width: 100%;
+  letter-spacing: 1px;
 }
 .about-desc {
   padding: 10px 10% !important;
@@ -1723,4 +1731,35 @@ h3 {
 }
 .img-about-page {
   height: 200px;
+}
+.col-about {
+  margin: 100px 20%;
+  overflow: hidden;
+  width: 60%;
+  float: left;
+}
+.about-header {
+  padding-bottom: 9px;
+  margin: 40px 0;
+  border-bottom: 1px solid #eee;
+  color: #fff;
+  position: relative;
+  line-height: 60px;
+  top: -20px;
+}
+.sm-about {
+  color: #fff;
+  position: relative;
+  margin: 0 auto;
+  top: -50px;
+  text-align: center;
+  width: 100%;
+}
+.about-main-desc {
+  font-size: 20px;
+  margin: 10px 0 30px ;
+  line-height: 1.5em;
+  padding: 10px;
+  width: 100%;
+  letter-spacing: 1px;
 }
