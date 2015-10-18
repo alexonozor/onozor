@@ -1,5 +1,0 @@
-
-
-<div class="HomeLoggedOutBigSignup" style="">
- <%= render :template => "devise/registrations/new" %>
-</div>

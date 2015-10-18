@@ -1,7 +1,0 @@
-<div id="questions">
-<%= render @questions %>
-</div>   
-
-<%= will_paginate @questions %> 
-
- 

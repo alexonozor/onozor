@@ -1,9 +1,0 @@
-
-
-<% if @questions.next_page %>
-$('#questions').append('<%= j render(@questions) %>');
-  $('.pagination').replaceWith('<%= j will_paginate(@questions) %>');
-<% else %>
-  $('.pagination').remove();
-<% end %>
-

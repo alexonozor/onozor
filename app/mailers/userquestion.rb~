@@ -1,3 +1,0 @@
-class Userquestion < ActionMailer::Base
-  default from: "overflow.com"
-end

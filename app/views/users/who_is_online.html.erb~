@@ -1,4 +1,0 @@
-
-<%= render "users", :users => @users %>
-
-

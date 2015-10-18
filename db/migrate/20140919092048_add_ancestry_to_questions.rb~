@@ -1,5 +1,0 @@
-class AddAncestryToQuestions < ActiveRecord::Migration
-  def change
-    add_column :questions, :ancestry, :string
-  end
-end

@@ -1,6 +1,0 @@
-
-$("#question_vote_count").html('<%= @answer.votes %>');
-alert('Thank you for voting');
-
-
-
