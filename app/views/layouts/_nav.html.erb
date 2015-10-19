@@ -27,14 +27,6 @@
        <!-- <li><%#= link_to "<i class='fa fa-bell-o'></i> NOTIFICATIONS".html_safe %></li> -->
       </ul>
 
-      <%= form_tag nil, class: 'navbar-form navbar-left' do  %>
-        <%= select_tag(:option, options_for_select([['Answered', 'Answered'],
-                                                    ['Unanswered', 'Unanswered'],
-                                                    ['Hot', 'Hot'], ['Latest', 'Latest'],
-                                                    ['Active', 'Active']],
-                                                    selected: :option ), class:'form-control') %>
-      <% end %>
-
       <ul class="nav navbar-nav navbar-right">
        <% if user_signed_in? %>
         <li class="dropdown">

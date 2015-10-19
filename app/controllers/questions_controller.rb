@@ -29,7 +29,7 @@ class QuestionsController < ApplicationController
 
 
   def latest
-    @questions = Question.latest.paginate :page => params[:page], :per_page => 8
+    @questions = Question.paginate :page => params[:page], :per_page => 8
      respond_to do |format|
         format.xml
         format.html { render :index_for_latest }
@@ -38,7 +38,7 @@ class QuestionsController < ApplicationController
   end
 
   def hot
-    @questions = Question.latest.hot.paginate :page => params[:page], :per_page => 8
+    @questions = Question.hot.paginate :page => params[:page], :per_page => 8
     respond_to do |format|
         format.xml
         format.html { render :index_for_hot }
@@ -47,7 +47,7 @@ class QuestionsController < ApplicationController
   end
 
   def active
-    @questions = Question.latest.active.paginate :page => params[:page], :per_page => 8
+    @questions = Question.active.paginate :page => params[:page], :per_page => 8
     respond_to do |format|
         format.xml
         format.html { render :index_for_active }
@@ -56,7 +56,7 @@ class QuestionsController < ApplicationController
   end
 
   def unanswered
-    @questions = Question.latest.unanswered.paginate :page => params[:page], :per_page => 8
+    @questions = Question.unanswered.paginate :page => params[:page], :per_page => 8
     respond_to do |format|
         format.xml
         format.html { render :index_for_unanswered }
@@ -65,22 +65,13 @@ class QuestionsController < ApplicationController
   end
 
   def answered
-    @questions = Question.latest.answered.paginate :page => params[:page], :per_page => 8
+    @questions = Question.answered.paginate :page => params[:page], :per_page => 8
     respond_to do |format|
         format.xml
         format.html { render :index_for_answered }
         format.js { render 'index.js.erb' }
       end
   end
-
- def overflowed
-    @questions = Question.latest.overflowed.paginate :page => params[:page], :per_page => 8
-    respond_to do |format|
-        format.xml
-        format.html { render :index_for_overflowed }
-        format.js { render 'index.js.erb' }
-      end
- end
 
   # GET /questions/1
   # GET /questions/1.json

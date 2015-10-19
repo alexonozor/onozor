@@ -2,9 +2,11 @@
 <div class="post index-question question-body row"  data-question="<%= question.created_at.to_i %>" data-id="<%= question.id %>" >
     <div class="userinfo col-md-3">
       <div class="avatar">
-        <%=link_to image_tag(question.user.avatar.url(:thumb)), question.user    %>
+        <% if question.user.present? %>
+        <%=link_to image_tag(question.user.avatar.url(:thumb)), question.user %>
         <% if question.user.is_online? %>
             <div class="status green">&nbsp;</div>
+        <% end %>
         <% end %>
       </div>
     </div>

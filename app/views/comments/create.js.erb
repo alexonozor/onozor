@@ -1,6 +1,6 @@
 
 <% if @comment.errors.present? %>
-    alert("<%= @comment.errors.full_messages.values.to_sentence.html_safe %>");
+    $.toaster({ priority : 'warning', message : "<%= @comment.errors.full_messages.to_sentence.html_safe %>"});
 <% elsif @comment.commentable_type == "Answer"%>
     $('#new_comment').hide('fast');
 //  $('#comment_link').fadeIn('slow');

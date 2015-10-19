@@ -29,13 +29,17 @@ class Question < ActiveRecord::Base
 
   #scope
   default_scope ->{ order('created_at DESC') }
-  scope :popular, -> {where('questions.views >= ?', "10" ).limit(5)}
-  scope :overflowed, :order => "questions.created_at DESC", :conditions => ["answers_count > ?", "10"]
-  scope :latest, :order => "questions.created_at DESC"
-  scope :hot, :order => "answers_count > 10, questions.updated_at DESC"
-  scope :active, :order => "questions.updated_at DESC, answers_count DESC"
-  scope :unanswered, :order => "questions.created_at DESC", :conditions => ["answers_count = ?", "0"]
-  scope :answered, :order => "questions.created_at DESC", :conditions => ["answers_count > ?", "0"]
+  scope :latest, -> {where("questions.created_at DESC")}
+  scope :popular, -> {where('questions.views >= ?', 10).limit(5)}
+  scope :hot, -> {where("answers_count > 10")}
+  scope :unanswered, -> {where("answers_count = ?", 0)}
+  scope :answered, -> {where("answers_count > ?", 0)}
+  def self.active
+    a = Time.now - 2.days
+    current_date = a.to_s(:db)
+    a = "SELECT * FROM questions WHERE id IN (SELECT question_id FROM answers WHERE created_at > '#{current_date}')"
+     Question.find_by_sql(a)
+  end
 
   def self.by_votes
     select('questions.*, coalesce(value, 0) as votes').
