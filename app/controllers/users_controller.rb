@@ -18,7 +18,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @related_questions = Question.latest.limit(10)
+    @related_questions = Question.limit(10)
     @user = User.friendly.find(params[:id])
     @new_message = @user.direct_messages.new if @user
     @user.count_view! unless current_user == @user

@@ -10,13 +10,13 @@ class QuestionsController < ApplicationController
   # GET /questions.json
   def index
       if (params[:tag].present?)
-        @questions = Question.latest.tagged_with(params[:tag]).paginate :page => params[:page], :per_page => 8
+        @questions = Question.tagged_with(params[:tag]).paginate :page => params[:page], :per_page => 8
       elsif (params[:search].present?)
         @questions = Question.search(params[:search]).paginate(:per_page => 5, :page => params[:page])
       elsif current_user
         @questions = current_user.category_feeds.paginate :page => params[:page], :per_page => 8
       else
-        @questions = Question.where('id > ?', params[:after].to_i).latest.paginate :page => params[:page], :per_page => 8
+        @questions = Question.where('id > ?', params[:after].to_i).paginate :page => params[:page], :per_page => 8
       end
       respond_to do |format|
         format.xml
@@ -76,7 +76,7 @@ class QuestionsController < ApplicationController
   # GET /questions/1
   # GET /questions/1.json
   def show
-    @related_questions = @question.find_related_tags.limit(10)
+    # @related_questions = @question.find_related_tags.limit(10)
     @question.update_views! unless @question.user_id == current_user.id  if current_user.present?
     @answer = Answer.new(:question => @question, :user => current_user)
     @comment = Comment.new(:commentable_type => @question.class.name, :commentable_id => @question.id, :user => current_user )
