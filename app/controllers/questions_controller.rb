@@ -115,11 +115,15 @@ class QuestionsController < ApplicationController
     @question.user = current_user
     @question.tag_list.add(params[:tag_list])
       if @question.save
-       redirect_to @question,  :notice => "Question was successfully created."
+      #  PrivatePub.publish_to("/questions", "function populate(#{@question})")
+       respond_to do |format|
+         format.js
+         format.html { redirect_to @question,  :notice => "Question was successfully created." }
+       end
       else
        render action: 'new'
     end
-      authorize! :create, @question
+      # authorize! :create, @question
   end
 
   def vote
@@ -159,8 +163,8 @@ class QuestionsController < ApplicationController
   # DELETE /questions/1.json
   def destroy
     @question.destroy
-    redirect_to root_path, :notice => "Question has been remove #{undo_link}".html_safe
-    authorize! :destroy, @questions
+    redirect_to root_path, :notice => "Question has been remove"
+    # authorize! :destroy, @questions
   end
 
 

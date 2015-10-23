@@ -1,2 +1,9 @@
- $('.post').append("<%= escape_javascript(render(@answer)) %>");
- $('#post_form')[0].reset();
+
+$('.newtopic')[0].reset();
+$('.newtopic').val("");
+<% publish_to "/questions" do %>
+   $('#questions').prepend("<%= j (render(@question)) %>");
+   $.toaster({ priority : 'info', message : "A new question has arrived" });
+<% end %>
+window.location.replace("/questions/<%=  @question.slug %>");
+$.toaster({ priority : 'success', message : "Question was succefully created!" });

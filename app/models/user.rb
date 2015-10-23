@@ -149,12 +149,10 @@ end
 
   def category_feeds
     feeds = self.categories.map(&:questions) << feed
-     @alex = feeds.flatten.uniq
+     @alex = feeds.flatten.uniq.reverse
   end
 
   def self.people_you_may_know(current_user)
-    # User.last(3).delete_if{|a| a == current_user}
-    # User.where.not(id:current_user.id).limit(3)
     if current_user
       q = "Select users.* from users, user_categories where user_categories.user_id = users.id and user_categories.category_id in (
           select user_categories.category_id from user_categories where user_categories.user_id = #{current_user.id}

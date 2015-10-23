@@ -15,6 +15,7 @@ class ApplicationController < ActionController::Base
   before_action :people_to_follow
 
   def load_category
+    @question = Question.new
     @category  = Category.limit(10)
   end
 

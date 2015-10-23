@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require private_pub
 //= require turbolinks
 //= require_tree .
 
@@ -310,4 +311,19 @@ $(function() {
 });
 $('body').on('hidden.bs.modal', '.modal', function () {
   $(this).removeData('bs.modal');
+});
+
+$(function() {
+  $('#question_name').on('keyup keypress blur change onSubmit', function(e){
+    $('.submit-button').addClass("disabled");
+    var str = $(this).val();
+    if (str == "" || !str){
+      $(".errors-message").show().text("This question needs more detail");
+    }else if ($(this).val().slice(-1) != "?" ) {
+      $(".errors-message").show().text("Must end with a question mark");
+    }else{
+      $('.submit-button').removeClass("disabled");
+      $(".errors-message").hide();
+    }
+  })
 });
