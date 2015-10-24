@@ -149,7 +149,7 @@ end
 
   def category_feeds
     feeds = self.categories.map(&:questions) << feed
-     @alex = feeds.flatten.uniq.reverse
+     @alex = feeds.flatten.uniq.sort! {|a, b|  b.created_at.to_i <=> a.created_at.to_i }
   end
 
   def self.people_you_may_know(current_user)

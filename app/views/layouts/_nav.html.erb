@@ -44,7 +44,9 @@
           <li><%= link_to "Login", new_user_session_path %></li>
         <% end %>
       </ul>
-      <a href="#"  class='btn  navbar-btn offset-2 topic-button pull-right' data-toggle="modal" data-target="#ask-question">Ask a question</a>
+      <% if current_user %>
+        <a href="#"  class='btn  navbar-btn offset-2 topic-button pull-right' data-toggle="modal" data-target="#ask-question">Ask a question</a>
+     <% end %>    
     </nav>
   </div>
 </nav>
