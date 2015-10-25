@@ -30,7 +30,7 @@
       <ul class="nav navbar-nav navbar-right">
        <% if user_signed_in? %>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <%= image_tag current_user.avatar.url(:thumb) %> <%=  current_user.username.titleize %></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <%= image_tag current_user.avatar.url(:thumb) %> <%=  current_user.username.titleize %> <span class="caret"></span></a>
           <ul class="dropdown-menu navbar-right">
             <li><%= link_to "<i class='fa fa-user'></i> My Profile".html_safe, user_path(current_user.username) %></li>
             <li role="separator" class="divider"></li>
@@ -45,8 +45,8 @@
         <% end %>
       </ul>
       <% if current_user %>
-        <a href="#"  class='btn  navbar-btn offset-2 topic-button pull-right' data-toggle="modal" data-target="#ask-question">Ask a question</a>
-     <% end %>    
+        <a href="#"  class='btn  navbar-btn offset-2 topic-button pull-right' data-no-turbolink='true' data-toggle="modal" data-target="#ask-question">Ask a question</a>
+     <% end %>
     </nav>
   </div>
 </nav>

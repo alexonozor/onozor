@@ -1429,10 +1429,19 @@ a.down:hover {
 .post-question-info{
     color: #888;
     margin-left: 10px;
+    font-size: small;
+    font-weight: bold;
 }
 
 .post-question-info a {
     color: #888;
+    text-decoration: none;
+    padding-right: 4px;
+}
+
+.post-question-info a:hover {
+    color: #888;
+    text-decoration: none;
 }
 
 .remove{
@@ -1788,4 +1797,14 @@ h3 {
 .form-modal input {
     position: static;
     display: block;
+}
+
+
+.move-left{
+  position: absolute;
+  right: -20px;
+}
+
+.favorite-color{
+  color: red;
 }

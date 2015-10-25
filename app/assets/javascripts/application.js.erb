@@ -252,7 +252,7 @@ $(function() {
 })
 
 
-$(function() {
+$(document).on('ready page:load', function(event) {
   $('.navbar-form input').focus(function() {
     $('.navbar-form input').animate({
       width: "20em"
@@ -279,19 +279,19 @@ $(function() {
   });
 })
 
-$(function() {
+$(document).on('ready page:load', function(event) {
   if($('#select-category').length>0){
     $('#select-category').click();
   }
 })
 
-$(function() {
+$(document).on('ready page:load', function(event) {
   $('.modal input[type=checkbox]:checked').each(function() {
     $(this).next().children('.marker').addClass('selected');
   })
 })
 
-$(function() {
+$(document).on('ready page:load', function(event) {
   var clickCount = 0;
   $(".save-cat").val("5 Remaining")
   $('.modal input[type=checkbox]').click(function() {
@@ -313,7 +313,7 @@ $('body').on('hidden.bs.modal', '.modal', function () {
   $(this).removeData('bs.modal');
 });
 
-$(function() {
+$(document).on('ready page:load', function(event) {
   $('#question_name').on('keyup keypress blur change onSubmit', function(e){
     $('.submit-button').addClass("disabled");
     var str = $(this).val();
@@ -327,3 +327,8 @@ $(function() {
     }
   })
 });
+
+$(document).on('ready page:load', function(event) {
+  $(".tooltip").tooltip()
+  $('[data-toggle="tooltip"]').tooltip()
+})

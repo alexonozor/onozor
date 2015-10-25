@@ -13,7 +13,6 @@
           <p><%= pluralize @question.user.followers.count, "followers" %>, interested in <%=  @question.user.categories.map{|a| link_to a.name, a}.join(", ").html_safe %> <br />
               Posted on : <%= (@question.created_at).strftime("%-d %b @ %-l:%M%P") %>, <%= pluralize @question.views, "view"  %>
           </p>
-
         </div>
       </div>
     </div>
