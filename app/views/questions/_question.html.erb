@@ -15,7 +15,6 @@
       <%=link_to question.user.username.titleize, question.user %>,
        <%= pluralize question.user.followers.count, "follower"  %>
        <%= question.user.intrest  %>
-       <a href="#"  title="Some tooltip text!">Hover over me</a>
        <%= link_to "<i class='#{question.favourited?(current_user)? 'fa fa-heart favorite-color' : 'fa fa-heart-o' if current_user }'></i> ".html_safe, toggle_favourite_path(question.id), :method => "post", class:'pull-right move-left', id:"favorite-#{question.id}", :title => "favourited by #{pluralize question.favourites_count, 'person'}", 'data-toggle' => 'tooltip', 'data-placement' => 'left',  :remote => true %>
      </div>
       <h2><%=link_to question.name, question, class: "question-title" %></h2>
