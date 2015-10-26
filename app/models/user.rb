@@ -98,11 +98,7 @@ class User < ActiveRecord::Base
  end
 
 def fullname?
-   if fullname
-     return true
-   else
-     return false
-   end
+  fullname.present? ? true : false
 end
 
  def latest_questions
@@ -119,17 +115,12 @@ end
   end
 
   def is_online?
-    if last_requested_at > (Time.now - 5.minutes)
-      true
-    else
-      false
-    end
+      last_requested_at > (Time.now - 5.minutes) ? true : false
   end
 
   def banned?
    banned_at
   end
-
 
  def following?(other_user)
     relationships.find_by(followed_id: other_user.id)

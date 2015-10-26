@@ -62,16 +62,18 @@ gem 'public_activity'
 
 group :development, :test do
   # Use sqlite3 as the database for Active Record
+  gem 'quiet_assets'
   gem 'sqlite3'
-end
-
-group :development do
+  gem 'rspec-rails', '~> 3.0'
+  gem 'factory_girl_rails', "~> 4.0"
+  gem "database_cleaner"
+  gem 'faker'  
   gem 'pry'
   gem 'capistrano',         require: false
   gem 'capistrano-rvm',     require: false
   gem 'capistrano-rails',   require: false
   gem 'capistrano-bundler', require: false
-  gem 'capistrano3-puma',   require: false
+  gem 'capistrano3-puma',   require: false  
 end
 
 gem 'puma'
