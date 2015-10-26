@@ -27,22 +27,16 @@
        <!-- <li><%#= link_to "<i class='fa fa-bell-o'></i> NOTIFICATIONS".html_safe %></li> -->
       </ul>
 
-      <%= form_tag nil, class: 'navbar-form navbar-left' do  %>
-        <%= select_tag(:option, options_for_select([['Answered', 'Answered'],
-                                                    ['Unanswered', 'Unanswered'],
-                                                    ['Hot', 'Hot'], ['Latest', 'Latest'],
-                                                    ['Active', 'Active']],
-                                                    selected: :option ), class:'form-control') %>
-      <% end %>
-
       <ul class="nav navbar-nav navbar-right">
        <% if user_signed_in? %>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <%= image_tag current_user.avatar.url(:thumb) %> <%=  current_user.username.titleize %></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <%= image_tag current_user.avatar.url(:thumb) %> <%=  current_user.username.titleize %> <span class="caret"></span></a>
           <ul class="dropdown-menu navbar-right">
-            <li><%= link_to "My Profile", user_path(current_user.username) %></li>
+            <li><%= link_to "<i class='fa fa-user'></i> My Profile".html_safe, user_path(current_user.username) %></li>
             <li role="separator" class="divider"></li>
-            <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
+            <li><%= link_to "<i class='fa fa-cog'></i> Settings".html_safe, edit_user_path(current_user.username) %></li>
+            <li role="separator" class="divider"></li>
+            <li><%= link_to "<i class='fa fa-sign-out'></i> Logout".html_safe, destroy_user_session_path, method: :delete %></li>
           </ul>
         </li>
         <% else %>
@@ -50,8 +44,9 @@
           <li><%= link_to "Login", new_user_session_path %></li>
         <% end %>
       </ul>
-
-      <%= link_to "Ask a question", new_question_path, class: 'btn  navbar-btn offset-2 topic-button pull-right'  %>
+      <% if current_user %>
+        <a href="#"  class='btn  navbar-btn offset-2 topic-button pull-right' data-no-turbolink='true' data-toggle="modal" data-target="#ask-question">Ask a question</a>
+     <% end %>
     </nav>
   </div>
 </nav>

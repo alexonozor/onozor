@@ -10,7 +10,7 @@
           </div>
           <div class="media-body">
             <p class="media-heading"><%= link_to  (answer.user.fullname? ? answer.user.fullname : answer.user.username), user_path(answer.user) %></p>
-            <p><%= pluralize answer.user.followers.count, "followers" %>, intrested in <%=  answer.user.categories.map{|a| link_to a.name, a}.join(", ").html_safe %> <br />
+            <p><%= pluralize answer.user.followers.count, "followers" %>, interested in <%=  answer.user.categories.map{|a| link_to a.name, a}.join(", ").html_safe %> <br />
                 Posted on : <%= (answer.created_at).strftime("%-d %b @ %-l:%M%P") %>
             </p>
           </div>
@@ -51,6 +51,6 @@
 
       <div class="clearfix"></div>
     </div>
-    
+
   </div><!-- POST -->
  <% end %>

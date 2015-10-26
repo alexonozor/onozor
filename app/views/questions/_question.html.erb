@@ -2,9 +2,11 @@
 <div class="post index-question question-body row"  data-question="<%= question.created_at.to_i %>" data-id="<%= question.id %>" >
     <div class="userinfo col-md-3">
       <div class="avatar">
-        <%=link_to image_tag(question.user.avatar.url(:thumb)), question.user    %>
+        <% if question.user.present? %>
+        <%=link_to image_tag(question.user.avatar.url(:thumb)), question.user %>
         <% if question.user.is_online? %>
             <div class="status green">&nbsp;</div>
+        <% end %>
         <% end %>
       </div>
     </div>
@@ -13,6 +15,7 @@
       <%=link_to question.user.username.titleize, question.user %>,
        <%= pluralize question.user.followers.count, "follower"  %>
        <%= question.user.intrest  %>
+       <%= link_to "<i class='#{question.favourited?(current_user)? 'fa fa-heart favorite-color' : 'fa fa-heart-o' if current_user }'></i> ".html_safe, toggle_favourite_path(question.id), :method => "post", class:'pull-right move-left', id:"favorite-#{question.id}", :title => "favourited by #{pluralize question.favourites_count, 'person'}", 'data-toggle' => 'tooltip', 'data-placement' => 'left',  :remote => true %>
      </div>
       <h2><%=link_to question.name, question, class: "question-title" %></h2>
       <p><%= truncate (strip_tags question.body), length: 150 %></p>
@@ -20,9 +23,17 @@
       <%= allow_ajax_only_if_user_is_signin_for_upvote(question) %>
       <%= allow_ajax_only_if_user_is_signin_for_downvote(question) %>
       <span class="post-question-info">
-        <%=link_to (pluralize question.answers_count, "Answer"), question_path(question, anchor: "answers-area")  %>,
-        <%= pluralize question.comments.count, "Comment"  %>,
-        <%= pluralize question.views, "view"  %>
+        <%=link_to (pluralize question.answers_count, "Answer"), question_path(question, anchor: "answers-area")  %>
+        <%=link_to (pluralize question.comments.count, "Comment"), question_path(question)  %>
+        <%=link_to (pluralize question.views, "View"), question_path(question) %>
+        <!-- <span class="dropdown">
+          <a href="#" class=" dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Share <span class="caret"></span></a>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+          <li><a href="#"><i class="fa fa-facebook"></i> Facebook</a></li>
+          <li><a href="#"><i class="fa fa-twitter"></i> Twitter</a></li>
+          <li><a class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-layout="link" ><i class="fa fa-google-plus"></i> Google plus</a></li>
+        </ul>
+      </span> -->
       </span>
     </div>
     <div class="clearfix"></div>

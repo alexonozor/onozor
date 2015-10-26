@@ -1,0 +1,10 @@
+development:
+  server: "http://localhost:9292/faye"
+  secret_token: "secret"
+test:
+  server: "http://localhost:9292/faye"
+  secret_token: "secret"
+production:
+  server: "http://www.onozor.com:9292/faye"
+  secret_token: "a9ce70fb493d240e55ca0cc6403900c9a89183a50b0945d7c27b1a1d841c98c8"
+  signature_expiration: 3600 # one hour

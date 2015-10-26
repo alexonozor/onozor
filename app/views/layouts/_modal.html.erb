@@ -1,3 +1,4 @@
+<div data-no-turbolink='true'>
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-keyboard="false" data-backdrop="static">
   <div class="modal-dialog modal-lg" role="document">
@@ -6,7 +7,7 @@
         <h4 class="modal-title" id="myModalLabel">Follow topics to see the best answers about them</h4>
         <p>Select all the topics you're interested in.</p>
       </div>
-      <div class="modal-body">
+      <div class="modal-body category-modal">
         <%= form_for @current_user, url: select_category_path(current_user.id), method: :put do |f| %>
           <%= f.collection_check_boxes(:category_ids, Category.all, :id, :name_with_image, class: 'select-category' ) %>
           </div>
@@ -17,4 +18,54 @@
         <% end %>
         </div>
   </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="ask-question"  role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel"><i class="fa fa-commenting"></i> Write your question as a complete sentence then press submit.</h4>
+      </div>
+      <div class="modal-body form-modal">
+        <%= simple_form_for Question.new, remote: true,  html:{class:"form newtopic"} do |f| %>
+          <div class="topwrap">
+            <div class="posttext">
+              <div>
+                <div class="errors-message"></div>
+                <%= f.input :name, placeholder:"Ask Onozor", input_html: { class: 'form-control' }, label: false  %>
+              </div>
+                <div>
+                 <%= f.association :category, collection: current_user.categories.pluck(:name, :id), input_html: {class: 'form-control'}, label: false, prompt: "Select your Category" %>
+                </div>
+              <div>
+                <%= f.input :body, input_html: {class: 'form-control', id: 'desc'}, label: false, placeholder:"Describe your question" %>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+          </div>
+          <div class="postinfobot">
+
+            <div class="notechbox pull-left">
+              <%= f.input :send_mail,  input_html: {class: 'form-control', id: 'desc', style: 'margin-bottom: 0px'}, label: false %>
+            </div>
+
+            <div class="pull-left">
+              <label for="note"> Email me when some one post a reply</label>
+            </div>
+
+            <div class="pull-right postreply">
+              <div class="pull-left smile"><a href="#"><i class="fa fa-smile-o"></i></a></div>
+              <div class="pull-left"><button type="submit" class="btn btn-primary submit-button disabled">Submit</button></div>
+              <div class="clearfix"></div>
+            </div>
+
+
+            <div class="clearfix"></div>
+          </div>
+        <% end %>
+      </div>
+  </div>
+</div>
 </div>

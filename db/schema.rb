@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151008223550) do
+ActiveRecord::Schema.define(version: 20151024192532) do
 
   create_table "alltags", force: true do |t|
     t.string   "name"
@@ -148,17 +148,18 @@ ActiveRecord::Schema.define(version: 20151008223550) do
     t.string   "name"
     t.text     "body"
     t.integer  "user_id"
-    t.integer  "views",          default: 0
-    t.integer  "answers_count",  default: 0
+    t.integer  "views",            default: 0
+    t.integer  "answers_count",    default: 0
     t.string   "permalink"
     t.integer  "answer_id"
-    t.boolean  "send_mail",      default: false
+    t.boolean  "send_mail",        default: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "slug"
     t.integer  "category_id"
     t.string   "ancestry"
-    t.integer  "comments_count", default: 0
+    t.integer  "comments_count",   default: 0
+    t.integer  "favourites_count", default: 0
   end
 
   add_index "questions", ["ancestry"], name: "index_questions_on_ancestry"

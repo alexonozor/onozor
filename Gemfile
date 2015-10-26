@@ -57,6 +57,8 @@ gem 'redis'
 gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'
 gem 'public_activity'
+gem 'private_pub'
+gem 'foreman'
 
 
 

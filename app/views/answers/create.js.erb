@@ -1,2 +1,4 @@
-$('.post_form').val(" ");
- $('.answer-post').append("<%= escape_javascript(render(@answer)) %>");
+<% publish_to "/questions/#{@answer.question.slug}" do %>
+  $('.post_form').val(" ");
+  $('.answer-post').append("<%= escape_javascript(render(@answer)) %>");
+<% end %>

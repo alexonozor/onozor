@@ -10,13 +10,13 @@ class QuestionsController < ApplicationController
   # GET /questions.json
   def index
       if (params[:tag].present?)
-        @questions = Question.latest.tagged_with(params[:tag]).paginate :page => params[:page], :per_page => 8
+        @questions = Question.tagged_with(params[:tag]).paginate :page => params[:page], :per_page => 8
       elsif (params[:search].present?)
         @questions = Question.search(params[:search]).paginate(:per_page => 5, :page => params[:page])
       elsif current_user
         @questions = current_user.category_feeds.paginate :page => params[:page], :per_page => 8
       else
-        @questions = Question.where('id > ?', params[:after].to_i).latest.paginate :page => params[:page], :per_page => 8
+        @questions = Question.where('id > ?', params[:after].to_i).paginate :page => params[:page], :per_page => 8
       end
       respond_to do |format|
         format.xml
@@ -29,7 +29,7 @@ class QuestionsController < ApplicationController
 
 
   def latest
-    @questions = Question.latest.paginate :page => params[:page], :per_page => 8
+    @questions = Question.paginate :page => params[:page], :per_page => 8
      respond_to do |format|
         format.xml
         format.html { render :index_for_latest }
@@ -38,7 +38,7 @@ class QuestionsController < ApplicationController
   end
 
   def hot
-    @questions = Question.latest.hot.paginate :page => params[:page], :per_page => 8
+    @questions = Question.hot.paginate :page => params[:page], :per_page => 8
     respond_to do |format|
         format.xml
         format.html { render :index_for_hot }
@@ -47,7 +47,7 @@ class QuestionsController < ApplicationController
   end
 
   def active
-    @questions = Question.latest.active.paginate :page => params[:page], :per_page => 8
+    @questions = Question.active.paginate :page => params[:page], :per_page => 8
     respond_to do |format|
         format.xml
         format.html { render :index_for_active }
@@ -56,7 +56,7 @@ class QuestionsController < ApplicationController
   end
 
   def unanswered
-    @questions = Question.latest.unanswered.paginate :page => params[:page], :per_page => 8
+    @questions = Question.unanswered.paginate :page => params[:page], :per_page => 8
     respond_to do |format|
         format.xml
         format.html { render :index_for_unanswered }
@@ -65,7 +65,7 @@ class QuestionsController < ApplicationController
   end
 
   def answered
-    @questions = Question.latest.answered.paginate :page => params[:page], :per_page => 8
+    @questions = Question.answered.paginate :page => params[:page], :per_page => 8
     respond_to do |format|
         format.xml
         format.html { render :index_for_answered }
@@ -73,19 +73,10 @@ class QuestionsController < ApplicationController
       end
   end
 
- def overflowed
-    @questions = Question.latest.overflowed.paginate :page => params[:page], :per_page => 8
-    respond_to do |format|
-        format.xml
-        format.html { render :index_for_overflowed }
-        format.js { render 'index.js.erb' }
-      end
- end
-
   # GET /questions/1
   # GET /questions/1.json
   def show
-    @related_questions = @question.find_related_tags.limit(10)
+    # @related_questions = @question.find_related_tags.limit(10)
     @question.update_views! unless @question.user_id == current_user.id  if current_user.present?
     @answer = Answer.new(:question => @question, :user => current_user)
     @comment = Comment.new(:commentable_type => @question.class.name, :commentable_id => @question.id, :user => current_user )
@@ -124,11 +115,15 @@ class QuestionsController < ApplicationController
     @question.user = current_user
     @question.tag_list.add(params[:tag_list])
       if @question.save
-       redirect_to @question,  :notice => "Question was successfully created."
+      #  PrivatePub.publish_to("/questions", "function populate(#{@question})")
+       respond_to do |format|
+         format.js
+         format.html { redirect_to @question,  :notice => "Question was successfully created." }
+       end
       else
        render action: 'new'
     end
-      authorize! :create, @question
+      # authorize! :create, @question
   end
 
   def vote
@@ -168,8 +163,8 @@ class QuestionsController < ApplicationController
   # DELETE /questions/1.json
   def destroy
     @question.destroy
-    redirect_to root_path, :notice => "Question has been remove #{undo_link}".html_safe
-    authorize! :destroy, @questions
+    redirect_to root_path, :notice => "Question has been remove"
+    # authorize! :destroy, @questions
   end
 
 

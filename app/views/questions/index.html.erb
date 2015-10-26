@@ -1,7 +1,6 @@
 <% title "All Questions & Answers - Onozor" %>
-
+<%= subscribe_to "/questions" %>
 <%= content_tag :div, id: "questions", data: { url: questions_path(@question) } do %>
 <%= render @questions, :collection => @question %>
 <% end %>
-
 <%= will_paginate @questions %>

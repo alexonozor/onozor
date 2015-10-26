@@ -10,10 +10,9 @@
         </div>
         <div class="media-body">
           <p class="media-heading"><%= link_to  (@question.user.fullname? ? @question.user.fullname : @question.user.username), user_path(@question.user) %></p>
-          <p><%= pluralize @question.user.followers.count, "followers" %>, intrested in <%=  @question.user.categories.map{|a| link_to a.name, a}.join(", ").html_safe %> <br />
+          <p><%= pluralize @question.user.followers.count, "followers" %>, interested in <%=  @question.user.categories.map{|a| link_to a.name, a}.join(", ").html_safe %> <br />
               Posted on : <%= (@question.created_at).strftime("%-d %b @ %-l:%M%P") %>, <%= pluralize @question.views, "view"  %>
           </p>
-
         </div>
       </div>
     </div>
@@ -59,3 +58,4 @@
 </div>
 
 <%= render "answers/form" %>
+<%= subscribe_to "/questions/#{@question.slug}" %>

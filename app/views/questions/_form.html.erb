@@ -1,11 +1,11 @@
 
-
   <!-- POST -->
   <div class="post">
-    <%= simple_form_for @question,  html:{class:"form newtopic"} do |f| %>
+    <%= simple_form_for @question, remote: true,  html:{class:"form newtopic"} do |f| %>
       <div class="topwrap">
         <div class="posttext">
           <div>
+            <div class="errors-message">this is wrong \!!!</div>
             <%= f.input :name, placeholder:"Enter Topic Title", input_html: { class: 'form-control' }, label: false  %>
           </div>
             <div>
@@ -29,7 +29,7 @@
 
         <div class="pull-right postreply">
           <div class="pull-left smile"><a href="#"><i class="fa fa-smile-o"></i></a></div>
-          <div class="pull-left"><button type="submit" class="btn btn-primary">Post</button></div>
+          <div class="pull-left"><button type="submit" class="btn btn-primary submit-button disabled">Post</button></div>
           <div class="clearfix"></div>
         </div>
 
@@ -44,6 +44,3 @@
     <div class="col-lg-2 loading"><i class="fa fa-spinner fa-pulse"></i></div>
 
   </div>
-<div class="similarquestion">
- <%= render partial: 'questions/similar' %>
-</div>
