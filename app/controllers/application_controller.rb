@@ -3,16 +3,18 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-
   #filters
-  before_filter :last_requested_at
-  before_action :load_users
+  before_action :last_requested_at, :load_users, :prepare_for_mobile, :load_category,
+    :people_to_follow, :suggested_people
+
   before_action :configure_devise_permitted_parameters, if: :devise_controller?
    rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
   # rescue_from  ActionView::Template::Error, with: :no_user_found
-  before_filter :prepare_for_mobile
-  before_filter :load_category
-  before_action :people_to_follow
+  helper_method :mobile_device?, :suggested_people
+
+  def suggested_people
+    User.includes(:categories).group("users.id").order("id desc").limit(3)
+  end
 
   def load_category
     @question = Question.new
@@ -26,11 +28,7 @@ class ApplicationController < ActionController::Base
   end
 
   def is_admin?
-    if user_signed_in? && current_user.admin?
-      true
-    else
-      false
-    end
+    (user_signed_in? && current_user.admin?) ? true : false
   end
 
   def people_to_follow
@@ -60,8 +58,7 @@ class ApplicationController < ActionController::Base
       (request.user_agent =~ /(iPhone|iPod|Android|webOS|Mobile|Opera|BlackBerry|Nokia)/) && (request.user_agent !~ /iPad/)
     end
   end
-  helper_method :mobile_device?
-
+  
   def prepare_for_mobile
     session[:mobile_param] = params[:mobile] if params[:mobile]
     request.format = :mobile if mobile_device?

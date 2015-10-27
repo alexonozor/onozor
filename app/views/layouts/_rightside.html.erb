@@ -53,7 +53,7 @@
       <div class="divline"></div>
       <div class="blocktxt">
 
-        <% User.last(3).each do |user| %>
+        <% suggested_people.each do |user| %>
           <div class="media">
             <div class="media-left">
               <%= link_to (image_tag user.avatar.url(:thumb), class:'img-rounded'), user_path(user)  %>
