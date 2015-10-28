@@ -10,7 +10,6 @@ class OnzorObserver < ActiveRecord::Observer
   end
 
   private
-  
   def should_email_user?(answer)
   	answer.question.send_mail & answer.is_a?(Answer)
   end
