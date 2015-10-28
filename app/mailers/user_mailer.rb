@@ -1,6 +1,7 @@
 class UserMailer < ActionMailer::Base
 require 'pry'
   default :from => "noreply@onozor.com"
+
   def answer_update(answer)
     @question = answer.question
     @question_owner = answer.question.user
