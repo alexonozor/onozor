@@ -39,7 +39,7 @@ gem 'devise'
 
 gem 'simple_form'
 gem 'friendly_id'
-gem 'rmagick'
+gem 'rmagick', '~> 2.15'
 gem 'ancestry'
 gem 'acts-as-taggable-on', '~> 3.4'
 gem 'cancancan'
@@ -77,7 +77,7 @@ group :development, :test do
   gem 'capistrano3-puma',   require: false  
 end
 
-gem 'puma'
+gem 'puma', '~> 2.14.0'
 group :production do
   gem 'pg'
 end
