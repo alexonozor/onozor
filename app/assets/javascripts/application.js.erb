@@ -13,8 +13,16 @@
 //= require jquery
 //= require jquery_ujs
 //= require private_pub
+//= require jquery.remotipart
+//= require jquery.iframe-transport.js
 //= require turbolinks
 //= require_tree .
+
+$(function() {
+  $('form').on("ajax:remotipartComplete", function(e, data){
+    console.log(e, data)
+  });
+});
 
 
 $(function() {
@@ -331,4 +339,11 @@ $(document).on('ready page:load', function(event) {
 $(document).on('ready page:load', function(event) {
   $(".tooltip").tooltip()
   $('[data-toggle="tooltip"]').tooltip()
-})
+});
+
+$(document).on('ready page:load', function(event) {
+  $('.boolean').prop('checked', true);
+  $('.smile').click(function() {
+    $('#question_picture').click();
+  });
+});
