@@ -4,7 +4,7 @@ class Answer < ActiveRecord::Base
   belongs_to :user
   has_many :answer_votes
   has_many :comments, :as => :commentable, :dependent => :destroy
-  has_many :activities, :foreign_key => 'receiver_id'
+  has_many :activities,  as: :notifier, :foreign_key => 'receiver_id'
   has_paper_trail
 
   #validation

@@ -3,7 +3,7 @@ class Comment < ActiveRecord::Base
   has_ancestry
   belongs_to :user
   belongs_to :commentable, :polymorphic => true
-  has_many :activities
+  has_many :activities,  as: :notifier, :foreign_key => 'receiver_id'
   after_create :notify_user
 
   #validations
