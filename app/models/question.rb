@@ -1,5 +1,5 @@
 class Question < ActiveRecord::Base
-
+  mount_uploader :picture, PictureUploader
  #filters
   acts_as_taggable_on :tags
   acts_as_tagger

@@ -1,9 +1,10 @@
 
   <!-- POST -->
   <div class="post">
-    <%= simple_form_for @question, remote: true,  html:{class:"form newtopic"} do |f| %>
+    <%= simple_form_for @question, remote: true,  html:{class:"form newtopic" } do |f| %>
       <div class="topwrap">
         <div class="posttext">
+
           <div>
             <div class="errors-message">this is wrong \!!!</div>
             <%= f.input :name, placeholder:"Enter Topic Title", input_html: { class: 'form-control' }, label: false  %>

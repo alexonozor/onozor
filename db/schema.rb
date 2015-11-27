@@ -11,7 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151024192532) do
+ActiveRecord::Schema.define(version: 20151127013525) do
+
+  create_table "activities", force: true do |t|
+    t.integer  "sender_id"
+    t.integer  "receiver_id"
+    t.integer  "notifier_id"
+    t.string   "notifier_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "alltags", force: true do |t|
     t.string   "name"
@@ -160,6 +169,7 @@ ActiveRecord::Schema.define(version: 20151024192532) do
     t.string   "ancestry"
     t.integer  "comments_count",   default: 0
     t.integer  "favourites_count", default: 0
+    t.string   "picture"
   end
 
   add_index "questions", ["ancestry"], name: "index_questions_on_ancestry"

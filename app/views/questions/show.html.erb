@@ -18,6 +18,7 @@
     </div>
     <div class="posttext">
       <h1 class="show-question-title"><%= (@question.name) %></h1>
+      <%=image_tag (@question.picture.url(:thumb)), class: "question-title" %>
       <p><%=raw markdown(@question.body) %></p>
       <% if @question.comments.present? %>
           <div id="comments">

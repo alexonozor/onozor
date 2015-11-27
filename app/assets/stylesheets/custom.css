@@ -1808,3 +1808,21 @@ h3 {
 .favorite-color{
   color: red;
 }
+
+
+#question_picture {
+    display: none !important;
+
+}
+
+.badge-danger {
+    background-color: #FF0000;
+    color: white;
+    position: relative;
+    bottom: 10px;
+}
+
+.navbar-nav a, span {
+    color: black;
+    font-weight: bolder;
+}

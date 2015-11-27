@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
   #filters
   before_action :last_requested_at, :load_users, :prepare_for_mobile, :load_category,
     :people_to_follow, :suggested_people
+  before_action :load_user_activites
 
   before_action :configure_devise_permitted_parameters, if: :devise_controller?
    rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
@@ -57,6 +58,10 @@ class ApplicationController < ActionController::Base
     else
       (request.user_agent =~ /(iPhone|iPod|Android|webOS|Mobile|Opera|BlackBerry|Nokia)/) && (request.user_agent !~ /iPad/)
     end
+  end
+
+  def load_user_activites
+    @activities = current_user.recent_activities(20) if current_user.present?
   end
   
   def prepare_for_mobile

@@ -115,7 +115,6 @@ class QuestionsController < ApplicationController
     @question.user = current_user
     @question.tag_list.add(params[:tag_list])
       if @question.save
-      #  PrivatePub.publish_to("/questions", "function populate(#{@question})")
        respond_to do |format|
          format.js
          format.html { redirect_to @question,  :notice => "Question was successfully created." }
@@ -180,7 +179,7 @@ class QuestionsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
  def question_params
   params.require(:question).permit(:name, :body, :user_id, :views, :answers_count, :permalink,
-                                   :answer_id, :tag_list,  :send_mail, :category_id, :counter_cache)
+                                   :answer_id, :tag_list,  :send_mail, :category_id, :counter_cache, :picture)
  end
 
 

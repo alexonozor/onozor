@@ -18,6 +18,7 @@
        <%= link_to "<i class='#{question.favourited?(current_user)? 'fa fa-heart favorite-color' : 'fa fa-heart-o' if current_user }'></i> ".html_safe, toggle_favourite_path(question.id), :method => "post", class:'pull-right move-left', id:"favorite-#{question.id}", :title => "favourited by #{pluralize question.favourites_count, 'person'}", 'data-toggle' => 'tooltip', 'data-placement' => 'left',  :remote => true %>
      </div>
       <h2><%=link_to question.name, question, class: "question-title" %></h2>
+      <%=image_tag (question.picture.url(:thumb)), class: "question-title" %>
       <p><%= truncate (strip_tags question.body), length: 150 %></p>
       <%#= raw question.tag_list.map { |t| link_to t, tag_path(t), class:'tags' }.join('') %>
       <%= allow_ajax_only_if_user_is_signin_for_upvote(question) %>
