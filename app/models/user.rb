@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   friendly_id :username, use: :slugged
 
   #association
-  has_many :activities, :foreign_key => 'receiver_id'
+  has_many :activities
   has_many :questions
   has_many :replies, :through => :questions, :source => :answers
   has_many :alltags
@@ -155,12 +155,6 @@ end
       User.find_by_sql(q)
     end
   end
-
-
-  def recent_activities(limit)
-    activities.order('created_at DESC').limit(limit)
-  end
-
 
   #schema
  # t.string   "email",                  default: "", null: false

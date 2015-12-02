@@ -11,16 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151127013525) do
+ActiveRecord::Schema.define(version: 20151202135240) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "activities", force: true do |t|
-    t.integer  "sender_id"
-    t.integer  "receiver_id"
-    t.integer  "notifier_id"
-    t.string   "notifier_type"
+    t.integer  "user_id"
+    t.string   "action"
+    t.integer  "trackable_id"
+    t.string   "trackable_type"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "seen",           default: false
   end
+
+  add_index "activities", ["trackable_id"], name: "index_activities_on_trackable_id", using: :btree
+  add_index "activities", ["user_id"], name: "index_activities_on_user_id", using: :btree
 
   create_table "alltags", force: true do |t|
     t.string   "name"
@@ -76,8 +83,8 @@ ActiveRecord::Schema.define(version: 20151127013525) do
     t.datetime "updated_at"
   end
 
-  add_index "ckeditor_assets", ["assetable_type", "assetable_id"], name: "idx_ckeditor_assetable"
-  add_index "ckeditor_assets", ["assetable_type", "type", "assetable_id"], name: "idx_ckeditor_assetable_type"
+  add_index "ckeditor_assets", ["assetable_type", "assetable_id"], name: "idx_ckeditor_assetable", using: :btree
+  add_index "ckeditor_assets", ["assetable_type", "type", "assetable_id"], name: "idx_ckeditor_assetable_type", using: :btree
 
   create_table "comments", force: true do |t|
     t.text     "body"
@@ -89,7 +96,7 @@ ActiveRecord::Schema.define(version: 20151127013525) do
     t.string   "ancestry"
   end
 
-  add_index "comments", ["ancestry"], name: "index_comments_on_ancestry"
+  add_index "comments", ["ancestry"], name: "index_comments_on_ancestry", using: :btree
 
   create_table "direct_messages", force: true do |t|
     t.string   "created_by"
@@ -107,13 +114,6 @@ ActiveRecord::Schema.define(version: 20151127013525) do
     t.datetime "updated_at"
   end
 
-  create_table "followers", force: true do |t|
-    t.integer  "user_id"
-    t.integer  "follow"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "friendly_id_slugs", force: true do |t|
     t.string   "slug",                      null: false
     t.integer  "sluggable_id",              null: false
@@ -122,10 +122,10 @@ ActiveRecord::Schema.define(version: 20151127013525) do
     t.datetime "created_at"
   end
 
-  add_index "friendly_id_slugs", ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true
-  add_index "friendly_id_slugs", ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
-  add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id"
-  add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
+  add_index "friendly_id_slugs", ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true, using: :btree
+  add_index "friendly_id_slugs", ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type", using: :btree
+  add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id", using: :btree
+  add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
 
   create_table "friendships", force: true do |t|
     t.integer  "user_id"
@@ -133,17 +133,6 @@ ActiveRecord::Schema.define(version: 20151127013525) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  create_table "notifications", force: true do |t|
-    t.integer  "sender_id"
-    t.integer  "receiver_id"
-    t.integer  "notifiable_id"
-    t.string   "notifiable_type"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "notifications", ["notifiable_id", "notifiable_type"], name: "index_notifications_on_notifiable_id_and_notifiable_type"
 
   create_table "question_votes", force: true do |t|
     t.integer  "user_id"
@@ -172,8 +161,8 @@ ActiveRecord::Schema.define(version: 20151127013525) do
     t.string   "picture"
   end
 
-  add_index "questions", ["ancestry"], name: "index_questions_on_ancestry"
-  add_index "questions", ["slug"], name: "index_questions_on_slug", unique: true
+  add_index "questions", ["ancestry"], name: "index_questions_on_ancestry", using: :btree
+  add_index "questions", ["slug"], name: "index_questions_on_slug", unique: true, using: :btree
 
   create_table "relationships", force: true do |t|
     t.integer  "follower_id"
@@ -182,9 +171,9 @@ ActiveRecord::Schema.define(version: 20151127013525) do
     t.datetime "updated_at"
   end
 
-  add_index "relationships", ["followed_id"], name: "index_relationships_on_followed_id"
-  add_index "relationships", ["follower_id", "followed_id"], name: "index_relationships_on_follower_id_and_followed_id", unique: true
-  add_index "relationships", ["follower_id"], name: "index_relationships_on_follower_id"
+  add_index "relationships", ["followed_id"], name: "index_relationships_on_followed_id", using: :btree
+  add_index "relationships", ["follower_id", "followed_id"], name: "index_relationships_on_follower_id_and_followed_id", unique: true, using: :btree
+  add_index "relationships", ["follower_id"], name: "index_relationships_on_follower_id", using: :btree
 
   create_table "taggings", force: true do |t|
     t.integer  "tag_id"
@@ -196,15 +185,15 @@ ActiveRecord::Schema.define(version: 20151127013525) do
     t.datetime "created_at"
   end
 
-  add_index "taggings", ["tag_id", "taggable_id", "taggable_type", "context", "tagger_id", "tagger_type"], name: "taggings_idx", unique: true
-  add_index "taggings", ["taggable_id", "taggable_type", "context"], name: "index_taggings_on_taggable_id_and_taggable_type_and_context"
+  add_index "taggings", ["tag_id", "taggable_id", "taggable_type", "context", "tagger_id", "tagger_type"], name: "taggings_idx", unique: true, using: :btree
+  add_index "taggings", ["taggable_id", "taggable_type", "context"], name: "index_taggings_on_taggable_id_and_taggable_type_and_context", using: :btree
 
   create_table "tags", force: true do |t|
     t.string  "name"
     t.integer "taggings_count", default: 0
   end
 
-  add_index "tags", ["name"], name: "index_tags_on_name", unique: true
+  add_index "tags", ["name"], name: "index_tags_on_name", unique: true, using: :btree
 
   create_table "user_categories", force: true do |t|
     t.integer  "user_id"
@@ -230,10 +219,6 @@ ActiveRecord::Schema.define(version: 20151127013525) do
     t.string   "avatar"
     t.integer  "views",                  default: 0
     t.datetime "last_requested_at"
-    t.string   "avatar_file_name"
-    t.string   "avatar_content_type"
-    t.integer  "avatar_file_size"
-    t.datetime "avatar_updated_at"
     t.boolean  "admin"
     t.integer  "reputation"
     t.string   "slug"
@@ -252,11 +237,11 @@ ActiveRecord::Schema.define(version: 20151127013525) do
     t.integer  "category_id"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["provider"], name: "index_users_on_provider"
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-  add_index "users", ["slug"], name: "index_users_on_slug", unique: true
-  add_index "users", ["uid"], name: "index_users_on_uid"
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["provider"], name: "index_users_on_provider", using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  add_index "users", ["slug"], name: "index_users_on_slug", unique: true, using: :btree
+  add_index "users", ["uid"], name: "index_users_on_uid", using: :btree
 
   create_table "versions", force: true do |t|
     t.string   "item_type",  null: false
@@ -267,6 +252,6 @@ ActiveRecord::Schema.define(version: 20151127013525) do
     t.datetime "created_at"
   end
 
-  add_index "versions", ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id"
+  add_index "versions", ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id", using: :btree
 
 end

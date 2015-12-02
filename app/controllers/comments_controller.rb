@@ -20,7 +20,7 @@ class CommentsController < ApplicationController
   # GET /comments/1/edit
   def edit
    respond_to do |format|
-         format.js
+     format.js
    end
   end
 
@@ -30,6 +30,7 @@ class CommentsController < ApplicationController
     @comment = Comment.new(comment_params)
     @comment.user = current_user
       if @comment.save
+        send_notification(@comment)
         @parent = @comment.commentable
      respond_to do |format|
      format.html { redirect_to @parent, :view => "comments", :notice => "Thanks for you comment"}
@@ -40,7 +41,21 @@ class CommentsController < ApplicationController
           format.js { render "fail_create.js.erb"}
        end   
       end
-    end
+  end
+
+ def send_notification(comment)
+   if comment.commentable.class.name == 'Answer'
+     answers = comment.commentable.class.where(question_id: comment.commentable.question.id)
+     users = answers.map(&:user).uniq
+   else
+     answers = comment.commentable.answers
+     users = answers.map(&:user).uniq
+   end
+   binding.pry
+   users.each do |user|
+     Activity.create!(action: params[:action], trackable: comment, user_id: user.id )
+   end
+ end
 
   # PATCH/PUT /comments/1
   # PATCH/PUT /comments/1.json

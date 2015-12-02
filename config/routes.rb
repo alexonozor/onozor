@@ -1,5 +1,7 @@
 NairaOverflow::Application.routes.draw do
 
+  resources :activities
+
   put 'users/select_category/:id', to: "users#select_category", as: "select_category"
   get "tags/index"
   resources :categories

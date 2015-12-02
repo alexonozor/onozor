@@ -60,10 +60,10 @@ gem 'public_activity'
 gem 'private_pub'
 gem 'foreman'
 gem 'rails-observers'
+gem 'pg'
 group :development, :test do
   # Use sqlite3 as the database for Active Record
   gem 'quiet_assets'
-  gem 'sqlite3'
   gem 'rspec-rails', '~> 3.0'
   gem 'factory_girl_rails', "~> 4.0"
   gem "database_cleaner"
@@ -77,6 +77,4 @@ group :development, :test do
 end
 
 gem 'puma', '~> 2.14.0'
-group :production do
-  gem 'pg'
-end
+

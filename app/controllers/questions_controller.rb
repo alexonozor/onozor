@@ -76,13 +76,14 @@ class QuestionsController < ApplicationController
   # GET /questions/1
   # GET /questions/1.json
   def show
-    # @related_questions = @question.find_related_tags.limit(10)
     @question.update_views! unless @question.user_id == current_user.id  if current_user.present?
     @answer = Answer.new(:question => @question, :user => current_user)
     @comment = Comment.new(:commentable_type => @question.class.name, :commentable_id => @question.id, :user => current_user )
     respond_to do |format|
       format.mobile {render layout: "application"}
-     end
+    end
+    notification = Activity.find(params["notification_id"])
+    notification.update!(:seen => true)
   end
 
   # GET /questions/new
@@ -165,9 +166,6 @@ class QuestionsController < ApplicationController
     redirect_to root_path, :notice => "Question has been remove"
     # authorize! :destroy, @questions
   end
-
-
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_question

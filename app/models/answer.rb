@@ -12,7 +12,7 @@ class Answer < ActiveRecord::Base
   validates_presence_of :body, :question_id, :user_id
   has_many :comments, :as => :commentable, :dependent => :destroy
 
-  after_create :notify_user
+
 
   def self.by_votes
     select('answers.*, coalesce(value, 0) as votes').
@@ -28,25 +28,5 @@ class Answer < ActiveRecord::Base
     self.user_ip    = request.remote_ip
     self.user_agent = request.env['HTTP_USER_AGENT']
     self.referrer   = request.env['HTTP_REFERER']
-  end
-
-  def replyer
-    question.user
-  end
-
-
-  def notify_user
-   (people_who_replied_on_a_question).each do |user|
-      notification_params = Activity.create!(
-          :sender_id => self.user.id,
-          :receiver_id => user.id,
-          :notifier_id => self.id,
-          :notifier_type => self.class.name
-      )
-   end
-  end
-
-  def people_who_replied_on_a_question
-    Answer.where(question_id: question.id).map(&:user).uniq
   end
 end
