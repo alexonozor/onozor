@@ -12,7 +12,7 @@
         <%= link_to (pluralize @user.answers.count, "Answer"), user_path(@user) + "/answers", :remote => true , class: "list-group-item"  %>
         <%= link_to (pluralize @user.followers.count, "Follower"), user_path(@user) + "/followers", :remote => true ,  class: "list-group-item"  %>
         <%= link_to (pluralize @user.followed_users.count, "Following"), user_path(@user) + "/following", :remote => true , class: "list-group-item"  %>
-        <%= link_to (pluralize @user.followed_users.count, "Favorites"), user_path(@user) + "/favorites", :remote => true , class: "list-group-item"  %>
+        <%= link_to (pluralize @user.favourites.count, "Favorites"), user_path(@user) + "/favorites", :remote => true , class: "list-group-item"  %>
       </div>
     </div>
    <div class="col-md-6">
