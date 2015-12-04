@@ -1,24 +1,22 @@
 <div class="col-lg-3 col-md-3">
 
   <% if current_user %>
-  <div class="sidebarblock">
-    <h3><i class="fa fa-rss"></i> My Feeds <a class="fa fa-plus pull-right" data-toggle="modal" data-target="#myModal"></a></h3>
-    <div class="divline"></div>
-    <div class="blocktxt">
-      <ul class="cats">
-        <% current_user.categories.each do |category| %>
-         <li><%= link_to category.name, category %> <span class="remove  fa fa-times  pull-right"></span></li>
-        <% end %>
-      </ul>
+    <div class="sidebarblock">
+      <h3><i class="fa fa-rss"></i> My Feeds <a class="fa fa-plus pull-right" data-toggle="modal" data-target="#myModal"></a></h3>
+      <div class="divline"></div>
+      <div class="blocktxt">
+        <ul class="cats">
+          <% current_user.categories.each do |category| %>
+           <li><%= link_to category.name, category %> <span class="remove  fa fa-times  pull-right"></span></li>
+          <% end %>
+        </ul>
+      </div>
     </div>
-  </div>
 <% end %>
 
 
-
-  <!-- -->
   <div class="sidebarblock">
-    <h3>Popular Threads</h3>
+    <h3><i class="fa fa-fire"></i> Popular Threads</h3>
    <% popular.each do |popular| %>
     <div class="divline"></div>
     <div class="blocktxt">

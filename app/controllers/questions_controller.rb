@@ -82,8 +82,14 @@ class QuestionsController < ApplicationController
     respond_to do |format|
       format.mobile {render layout: "application"}
     end
+    update_notification(params)
+  end
+
+  def update_notification(params)
+   if params['notification_id'].present?
     notification = Activity.find(params["notification_id"])
     notification.update!(:seen => true)
+   end
   end
 
   # GET /questions/new

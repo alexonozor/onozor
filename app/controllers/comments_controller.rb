@@ -51,7 +51,6 @@ class CommentsController < ApplicationController
      answers = comment.commentable.answers
      users = answers.map(&:user).uniq
    end
-   binding.pry
    users.each do |user|
      Activity.create!(action: params[:action], trackable: comment, user_id: user.id )
    end

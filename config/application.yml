@@ -7,8 +7,8 @@
 # stripe_publishable_key: pk_test_ro9jV5SNwGb1yYlQfzG17LHK
 
   password: 'onozorgheneho'
-  email: 'alex.obogbare@andela.com'
+  email: 'alexonozor@gmail.com'
   FACEBOOK_APP_ID: "484766111702543"
-  FACEBOOK_APP_SECRET: "73fe45582ab2101860d6b8972c3bc228"
-  GOOGLE_APP_ID: "229231951350-76429kirhj4k2fklcg68v7tmcj86hdsg.apps.googleusercontent.com"
-  GOOGLE_APP_SECRET: "NNQ4EzFN1mHlCKvwQqoU9wGE"
+  FACEBOOK_APP_SECRET: '73fe45582ab2101860d6b8972c3bc228'
+  GOOGLE_APP_ID: '355480203843-5h4kfo0v0loovrdr64jviup2dr4sg5jc.apps.googleusercontent.com'
+  GOOGLE_APP_SECRET: 'XSLfIHYxgMvyNgcG09tQg_CT'

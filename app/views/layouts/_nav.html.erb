@@ -25,7 +25,7 @@
         <ul class="nav navbar-nav navbar-left">
           <% if user_signed_in? %>
               <li class="dropdown">
-                <a href="#" class="dropdown-toggle" id="get-notification" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class='fa fa-bell-o'></i><span class="badge badge-danger"><%= current_user.activities.unseen.count %></span></a>
+                <a href="#" class="dropdown-toggle" id="get-notification" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class='fa fa-bell-o'></i><% if current_user.activities.unseen.count > 0 %><span class="badge badge-danger"><%= current_user.activities.unseen.count  %></span><% end %></a>
                 <ul class="dropdown-menu navbar-right notification-bed">
                   <li><p class="text-center notification-waiter"><i class="fa fa-circle-o-notch fa-spin"></i></p></li>
                 </ul>
@@ -34,11 +34,6 @@
         </ul>
       </ul>
 
-      <script>
-        $('#get-notification').click( function(){
-          $('.notification-bed').load('/activities #note')
-        });
-      </script>
 
       <ul class="nav navbar-nav navbar-right">
        <% if user_signed_in? %>

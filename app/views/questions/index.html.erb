@@ -1,6 +1,11 @@
 <% title "All Questions & Answers - Onozor" %>
 <%= subscribe_to "/questions" %>
 <%= content_tag :div, id: "questions", data: { url: questions_path(@question) } do %>
-<%= render @questions, :collection => @question %>
+
+    <div class="post greetings">
+       <h1 class="">Hi <%= current_user.first_name.humanize %>,</h1>
+      <p>Compliments of the season!  We're happy to have you here.</p>
+    </div>
+ <%= render @questions, :collection => @question %>
 <% end %>
 <%= will_paginate @questions %>
