@@ -8,10 +8,11 @@
       </div>
       <div class="list-group">
         <a href="#" class="list-group-item disabled">Feeds</a>
-        <%= link_to (pluralize @user.questions.count, "Question"), "#" , class: "list-group-item"  %>
-        <%= link_to (pluralize @user.answers.count, "Answer"), "#" , class: "list-group-item"  %>
-        <%= link_to (pluralize @user.followers.count, "Follower"), "#" , class: "list-group-item"  %>
-        <%= link_to (pluralize @user.followed_users.count, "Following"), "#" , class: "list-group-item"  %>
+        <%= link_to (pluralize @user.questions.count, "Question"), user_path(@user) + "/questions", :remote => true , class: "list-group-item"  %>
+        <%= link_to (pluralize @user.answers.count, "Answer"), user_path(@user) + "/answers", :remote => true , class: "list-group-item"  %>
+        <%= link_to (pluralize @user.followers.count, "Follower"), user_path(@user) + "/followers", :remote => true ,  class: "list-group-item"  %>
+        <%= link_to (pluralize @user.followed_users.count, "Following"), user_path(@user) + "/following", :remote => true , class: "list-group-item"  %>
+        <%= link_to (pluralize @user.followed_users.count, "Favorites"), user_path(@user) + "/favorites", :remote => true , class: "list-group-item"  %>
       </div>
     </div>
    <div class="col-md-6">
@@ -35,30 +36,12 @@
            </li>
          </ul>
        </div>
-       <div class="list_header center_col">ACTIVITY</div>
+
      </div>
 
 
      <div id="feeds">
-      <% @user.questions.each do |question| %>
-       <div class="profile-questions">
-         <h4><%=link_to question.name, question %><h4>
-        <div class="content_header">
-          <%=link_to question.user.fullname, user_path(question.user) %>
-          <div class="photo_tooltip">
-            <%= image_tag question.user.avatar.url(:thumb), alt: "" %>
-          </div>
-          <div class="credibility_fact">
-            <%= (pluralize question.user.views, "view") %>, &nbsp;
-            <%= (pluralize question.user.followers.count, "follower") %>
-          </div>
-
-        </div>
-
-        <p class="short-body"><%=truncate question.body, length:150 %></p>
-         <span><%= time_ago_in_words question.created_at %> ago, <%= pluralize question.answers_count, "Answer" %> <%= (pluralize question.views, "views") %>  </span>
-      </div>
-       <% end %>
+      <%=render "users/all_feeds" %>
      </div>
    </div>
    <div class="col-md-3">

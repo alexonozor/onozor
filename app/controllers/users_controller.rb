@@ -3,12 +3,18 @@ class UsersController < ApplicationController
   layout "display", only: [:index, :show]
   respond_to :html, :xml, :json, :js, :mobile
   before_filter :load_users
+  before_filter :get_user, only: [:show,
+                                  :show_user_questions,
+                                  :show_user_answers,
+                                  :show_user_followers,
+                                  :show_user_following,
+                                  :show_user_favorites]
 
   def index
    if params[:search].present?
       @user = User.search(params[:search])
     else
-     @user = User.order(:username).paginate :page => params[:page], :per_page => 20
+     @users = User.order(:username).paginate :page => params[:page], :per_page => 20
    end
   respond_to do |format|
       format.js {}
@@ -19,12 +25,49 @@ class UsersController < ApplicationController
 
   def show
     @related_questions = Question.limit(10)
-    @user = User.friendly.find(params[:id])
     @new_message = @user.direct_messages.new if @user
     @user.count_view! unless current_user == @user
     respond_to do |format|
       format.js {}
       format.mobile { render :layout => "application" }
+    end
+  end
+
+  def show_user_questions
+    @user_questions = @user.questions.order("created_at ASC").limit(10);
+    respond_to do |format|
+      format.js {render "filter_by_user_questions.js"}
+    end
+  end
+
+  def show_user_answers
+    @user_answers = @user.answers.order("updated_at ASC").limit(10);
+    respond_to do |format|
+      format.js {render "filter_by_user_answers.js"}
+    end
+  end
+
+  def show_user_followers
+    @users = @user.followers.order("updated_at ASC").limit(20);
+    @title = "Followers"
+    respond_to do |format|
+      format.js {render "filter_by_follows.js"}
+    end
+  end
+
+  def show_user_following
+    @user_questions = @user.followed_users.order("updated_at ASC").limit(20);
+    @title = "Following"
+    respond_to do |format|
+      format.js {render "filter_by_follows.js"}
+    end
+  end
+
+
+  def show_user_favorites
+    @user_favorited_questions = @user.favourites.order("updated_at ASC").limit(20);
+    respond_to do |format|
+      format.js {render "filter_by_favorites.js"}
     end
   end
 
@@ -117,5 +160,9 @@ class UsersController < ApplicationController
     fullname = user_params[@option].split(" ")
     @current_user.first_name = fullname[0]
     @current_user.last_name = fullname[1]
+  end
+
+  def get_user
+    @user = User.friendly.find(params[:id])
   end
 end

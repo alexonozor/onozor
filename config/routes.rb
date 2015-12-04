@@ -42,6 +42,11 @@ devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks"
 
  get 'users/who_is_online', to: 'users#who_is_online', as: :online_users
 
+  get 'users/:id/questions', to: "users#show_user_questions", as: :show_user_questions
+  get 'users/:id/answers', to: "users#show_user_answers", as: :show_user_answers
+  get 'users/:id/followers', to: "users#show_user_followers", as: :show_user_followers
+  get 'users/:id/following', to: "users#show_user_following", as: :show_user_following
+  get 'users/:id/favorites', to: "users#show_user_favorites", as: :show_user_favorites
 
 
  resources :relationships, only: [:create, :destroy]

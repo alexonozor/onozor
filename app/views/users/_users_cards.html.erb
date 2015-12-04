@@ -1,0 +1,13 @@
+<% for user in @users %>
+  <div class="col-md-3 user_outer">
+    <div class="user_middle">
+      <div class="user_inner">
+        <div class="litle-profile"><%=image_tag user.avatar.url(:thumb) %></div>
+      </div>
+      <div class="gen-content">
+        <p><%=link_to user.username, user %></p>
+        <p><small><%= user.intrest %></small></p>
+      </div>
+    </div>
+  </div>
+<% end if @users %>

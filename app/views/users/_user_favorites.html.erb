@@ -1,0 +1,5 @@
+<div class="list_header center_col">Favorites</div>
+
+<% @user_favorited_questions.each do |question| %>
+    <%= render partial: "users/question_summary", locals: {question: question} %>
+<% end if @user_favorited_questions %>
