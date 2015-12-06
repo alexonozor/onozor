@@ -3,14 +3,14 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable,
-         :omniauth_providers => [:facebook, :google_oauth2]
+         :omniauth_providers => [:facebook, :google_oauth2, :twitter]
 
   mount_uploader :avatar, AvatarUploader
   extend FriendlyId
   friendly_id :username, use: :slugged
 
   #association
-  has_many :notifications, as: :notifiable
+  has_many :activities
   has_many :questions
   has_many :replies, :through => :questions, :source => :answers
   has_many :alltags
@@ -36,18 +36,29 @@ class User < ActiveRecord::Base
   validates_length_of :username, :within => 4..10, :on => :account_update
   validates_uniqueness_of :username, :on => :account_update
 
-  def self.from_omniauth(auth)
-    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
-       # binding.pry;
-      user.username = auth.info.name.split(' ')[0] + auth.info.name.split(' ')[1]
-      user.email = auth.info.email
-      user.password = Devise.friendly_token[0,20]
-      user.first_name = auth.info.first_name
-      user.last_name = auth.info.last_name
-      user.gender = auth['extra']['raw_info']['gender']
-      user.remote_avatar_url = auth.info.image
+  def self.is_provider_from_twitter?(auth)
+    if auth.provider == 'twitter'
+      return true
+    else
+      return false
     end
   end
+
+  def self.from_omniauth(auth)
+    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+      binding.pry
+      user.username =  is_provider_from_twitter?(auth) ? auth.info.nickname : user.username = auth.info.name.split(' ')[0] + auth.info.name.split(' ')[1]
+      user.email = auth.info.email
+      user.password = Devise.friendly_token[0,20]
+      user.first_name = is_provider_from_twitter?(auth) ? auth.info.name.split(' ')[0] : user.first_name = auth.info.first_name
+      user.last_name =  is_provider_from_twitter?(auth) ?  auth.info.name.split(' ')[1] : user.last_name = auth.info.last_name
+      user.gender =  auth['extra']['raw_info']['gender']
+      user.remote_avatar_url = is_provider_from_twitter?(auth) ? auth['info']['image'] : auth.info.image
+      user.bio = auth.info.description
+    end
+  end
+
+
 
   def self.new_with_session(params, session)
     if session['devise.user_attributes']
@@ -155,7 +166,6 @@ end
       User.find_by_sql(q)
     end
   end
-
 
   #schema
  # t.string   "email",                  default: "", null: false

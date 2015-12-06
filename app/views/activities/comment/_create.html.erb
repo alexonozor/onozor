@@ -1,0 +1,16 @@
+<%  if activity.trackable.present? %>
+  <% if activity.trackable.commentable.class.to_s == 'Question' %>
+     <%= link_to question_path(activity.trackable.commentable, notification_id: activity.id) do %>
+         <p><strong><%=  activity.trackable.user.fullname.humanize  %></strong> commented on your question:  <%=  activity.trackable.commentable.name %><br>
+           <i class="fa fa-comment"></i> <small><%= time_ago_in_words activity.created_at, class:'small' %></small>
+         </p>
+     <% end %>
+  <% else %>
+      <%= link_to question_path(activity.trackable.commentable.question,  notification_id: activity.id) do %>
+          <p>
+            <strong><%=  activity.trackable.user.fullname.humanize  %></strong> commented on your answer to <strong><%=  activity.user.fullname.humanize + "'s" %></strong> question. <br />
+            <i class="fa fa-comment"></i> <small><%= time_ago_in_words activity.created_at, class:'small' %></small>
+          </p>
+      <% end %>
+  <% end %>
+<% end %>

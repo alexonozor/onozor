@@ -8,16 +8,7 @@
 </div>
 
 <div class="col-lg-6 login">
-  <%= render "devise/sessions/sign_in" %>
+  <%= render "devise/sessions/signup" %>
 </div>
 
-<script>
-$("#signup-container").append("<div class='email-signup-form'><%=j render 'devise/sessions/signup' %></div>");
-$(".email-signup-form").hide();
 
-  $(".col-lg-6.signup").on("click", ".email-signup", function(){
-      $(".email-signup-form").toggle();
-      $(".third-party-signup-form").toggle();
-  });
-
-</script>

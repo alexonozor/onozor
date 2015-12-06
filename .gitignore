@@ -10,6 +10,7 @@
 # Ignore the default SQLite database.
 /db/*.sqlite3
 /db/*.sqlite3-journal
+development.sqlite3
 
 # Ignore all logfiles and tempfiles.
 /log/*.log
@@ -17,7 +18,9 @@
 
 # Ignore application configuration
 .idea/
-
+/config/deploy.rb
+/config/puma.rb
+/config/nginx.conf
 
 # Ignore the db/schema.rb file
 db/schema.rb

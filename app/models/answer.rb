@@ -4,13 +4,15 @@ class Answer < ActiveRecord::Base
   belongs_to :user
   has_many :answer_votes
   has_many :comments, :as => :commentable, :dependent => :destroy
-  has_many :notifications, as: :notifiable
+  has_many :activities,  as: :notifier, :foreign_key => 'receiver_id'
   has_paper_trail
 
   #validation
   validates_uniqueness_of :body, { scope: :question_id }
   validates_presence_of :body, :question_id, :user_id
   has_many :comments, :as => :commentable, :dependent => :destroy
+
+
 
   def self.by_votes
     select('answers.*, coalesce(value, 0) as votes').

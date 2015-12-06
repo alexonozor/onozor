@@ -1,3 +1,4 @@
+
 <!-- POST -->
 <div class="post index-question question-body row"  data-question="<%= question.created_at.to_i %>" data-id="<%= question.id %>" >
     <div class="userinfo col-md-3">
@@ -12,31 +13,38 @@
     </div>
     <div class="posttext col-md-10">
      <div class="post-user-infor">
-      <%=link_to question.user.username.titleize, question.user %>,
-       <%= pluralize question.user.followers.count, "follower"  %>
-       <%= question.user.intrest  %>
-       <%= link_to "<i class='#{question.favourited?(current_user)? 'fa fa-heart favorite-color' : 'fa fa-heart-o' if current_user }'></i> ".html_safe, toggle_favourite_path(question.id), :method => "post", class:'pull-right move-left', id:"favorite-#{question.id}", :title => "favourited by #{pluralize question.favourites_count, 'person'}", 'data-toggle' => 'tooltip', 'data-placement' => 'left',  :remote => true %>
+
+         <%=link_to question.user.username.titleize, question.user %>,
+         <%= pluralize question.user.followers.count, "follower"  %>
+         <%= question.user.intrest  %>
+         <%= link_to "<i class='#{question.favourited?(current_user)? 'fa fa-heart favorite-color' : 'fa fa-heart-o' if current_user }'></i> ".html_safe, toggle_favourite_path(question.id), :method => "post", class:'pull-right move-left', id:"favorite-#{question.id}", :title => "favourited by #{pluralize question.favourites_count, 'person'}", 'data-toggle' => 'tooltip', 'data-placement' => 'left',  :remote => true %>
      </div>
+
       <h2><%=link_to question.name, question, class: "question-title" %></h2>
+
+      <%=image_tag (question.picture.url(:thumb)),  class: "question-title" if question.picture.present? %>
       <p><%= truncate (strip_tags question.body), length: 150 %></p>
+
       <%#= raw question.tag_list.map { |t| link_to t, tag_path(t), class:'tags' }.join('') %>
+     <div class="votes-button">
       <%= allow_ajax_only_if_user_is_signin_for_upvote(question) %>
+       <span id='vote-count-<%= question.id %>' class='vote-count'><%= question.votes %></span>
       <%= allow_ajax_only_if_user_is_signin_for_downvote(question) %>
+     </div>
       <span class="post-question-info">
         <%=link_to (pluralize question.answers_count, "Answer"), question_path(question, anchor: "answers-area")  %>
         <%=link_to (pluralize question.comments.count, "Comment"), question_path(question)  %>
         <%=link_to (pluralize question.views, "View"), question_path(question) %>
-        <!-- <span class="dropdown">
+        <span class="dropdown">
           <a href="#" class=" dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Share <span class="caret"></span></a>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
           <li><a href="#"><i class="fa fa-facebook"></i> Facebook</a></li>
           <li><a href="#"><i class="fa fa-twitter"></i> Twitter</a></li>
           <li><a class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-layout="link" ><i class="fa fa-google-plus"></i> Google plus</a></li>
         </ul>
-      </span> -->
+      </span>
       </span>
     </div>
-    <div class="clearfix"></div>
-  <div class="clearfix"></div>
+
 </div>
 <!-- POST -->

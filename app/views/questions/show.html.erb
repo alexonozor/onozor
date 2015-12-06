@@ -16,12 +16,12 @@
         </div>
       </div>
     </div>
-    <div class="posttext">
+    <div class="show-text">
       <h1 class="show-question-title"><%= (@question.name) %></h1>
+      <%=image_tag (@question.picture.url(:thumb)), class: "question-title" if @question.picture.present? %>
       <p><%=raw markdown(@question.body) %></p>
       <% if @question.comments.present? %>
           <div id="comments">
-            <p class="color-andela" id="comment-count"><%=pluralize (@question.comments.count), "comment"   %></p>
              <%= render @question.comments %>
           </div>
       <% end %>
@@ -32,8 +32,10 @@
 
   <div class="postinfobot">
     <nav class="options">
-      <%= allow_ajax_only_if_user_is_signin_for_upvote(@question) %>
-      <%= allow_ajax_only_if_user_is_signin_for_downvote(@question) %>
+      <div class="votes-button">
+        <%= allow_ajax_only_if_user_is_signin_for_upvote(@question) %>
+        <%= allow_ajax_only_if_user_is_signin_for_downvote(@question) %>
+      </div>
       <% if current_user.present? %>
        <%= link_to " Add comment <i class='fa fa-comments'></i>+".html_safe, new_comment_path(:comment => { :commentable_type => @question.class.name,
                      :commentable_id => @question.id}),

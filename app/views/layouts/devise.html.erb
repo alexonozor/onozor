@@ -24,43 +24,14 @@
 
 </head>
 <body class="login">
-  <header class="navbar navbar-inverse navbar-fixed-top bs-docs-na" role="banner">
-   <div class="container">
-     <div class="nav navbar-left">
-      <a href="/" class="my-comic"> <h3>ONOZOR</h3> </a>
-     </div>
-   </div>
- </header>
-
-<div class="bg_container">
-   <div class="HomeLoggedOutBigSignup">
-     <% flash.each do |key, value| %>
-                    <div class="<%= flash_class(key) %>">
-                      <%= value %>
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-    </div>
-     <% end %>
-
-             <div class="tagline">
-              <h1 class="sitename"> Welcome to Onozor.</h1>
-<p class="lead">Experience exicting moments and share ideas with professionals, getting Satisfying  answers to questions in all Categories of life.<br/> Share & Flow</p>
-             </div>
-           <div class="container">
-                 <%= yield %>
-           </div>
-
-
-
- <div class="footer devise-footer">
- <nav class="footer text-center"><p><small> © <%= Date.today.year %> <span class="sitename">ONOZOR</span> &nbsp <a href="#">About</a>&nbsp <a href="#">Help</a>&nbsp <a href="#">Terms</a>&nbsp <a href="#">Privacy</a>
+  <div class="bg_container">
+    <div align="center"><%= image_tag ('logo-small.png') %><p class="slogan">The best answer to any question</p></div>
+   <div class="holder">
+    <div class="login-form">
+     <%= yield %>
    </div>
    </div>
-
-
-</div>
-
-
-</div>
+  </div>
 </body>
 
 <script>

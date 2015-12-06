@@ -29,7 +29,7 @@
         <h4 class="modal-title" id="myModalLabel"><i class="fa fa-commenting"></i> Write your question as a complete sentence then press submit.</h4>
       </div>
       <div class="modal-body form-modal">
-        <%= simple_form_for Question.new, remote: true,  html:{class:"form newtopic"} do |f| %>
+        <%= simple_form_for Question.new,  html:{class:"form newtopic", multipart: true} do |f| %>
           <div class="topwrap">
             <div class="posttext">
               <div>
@@ -56,7 +56,8 @@
             </div>
 
             <div class="pull-right postreply">
-              <div class="pull-left smile"><a href="#"><i class="fa fa-smile-o"></i></a></div>
+              <%= f.input :picture, as: :file, label: false %>
+              <div class="pull-left smile"><a href="#"><i class="fa fa-camera"></i></a></div>
               <div class="pull-left"><button type="submit" class="btn btn-primary submit-button disabled">Submit</button></div>
               <div class="clearfix"></div>
             </div>

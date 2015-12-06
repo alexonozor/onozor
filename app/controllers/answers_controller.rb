@@ -27,6 +27,7 @@ class AnswersController < ApplicationController
     @answer = current_user.answers.build(answer_params)
     @answer.request = request
     if @answer.save
+     send_notification(@answer)
     respond_to do |format|
       format.html { redirect_to @answer.question, :view => "answer-body", :notice => "Thanks for you Answer"}
       format.mobile { redirect_to @answer.question, :notice => "Thanks for you Answer"}
@@ -41,22 +42,31 @@ class AnswersController < ApplicationController
       end
     end
 
+  def send_notification(answer)
+    answers = Answer.where(question_id: answer.question.id)
+    users = answers.map(&:user).uniq << answer.question.user
+    users.each do |user|
+      Activity.create!(action: params[:action], trackable: answer, user_id: user.id ) unless answer.user.id == user.id
+    end
+  end
+
+
 
   # PATCH/PUT /answers/1
   # PATCH/PUT /answers/1.json
   def update
-      if @answer.update(answer_params)
-       respond_to do |format|
-        format.html { redirect_to @answer.question, :notice =>"Edited successfully #{undo_link}".html_safe}
-         format.js
-       end
-      else
-       respond_to do |format|
-        format.html { redirect_to @answer.question, alert: 'Unable to Update' }
-         format.js
-        end
+    if @answer.update(answer_params)
+     respond_to do |format|
+      format.html { redirect_to @answer.question, :notice =>"Edited successfully #{undo_link}".html_safe}
+       format.js
+     end
+    else
+     respond_to do |format|
+      format.html { redirect_to @answer.question, alert: 'Unable to Update' }
+       format.js
       end
     end
+  end
 
 
   def vote

@@ -18,6 +18,7 @@ class FavouritesController < ApplicationController
         @class = "favourite-saved"
         @favourite = Favourite.new({:question => @question, :user => current_user})
         @favourite.save
+          Activity.create!(action: params[:action], trackable: @favourite, user_id:  @question.user.id )
       else
         @message = "Removed as your favourite"
         @class = "favoured"

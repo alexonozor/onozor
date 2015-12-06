@@ -17,6 +17,13 @@
 //= require_tree .
 
 
+$(document).on('ready page:load', function () {
+  $('#get-notification').click( function(){
+    $('.notification-bed').load('/activities #note')
+  });
+});
+
+
 $(function() {
   $('#question_tag_list').tokenInput('/alltags.json', {
     crossDomain: false,
@@ -331,4 +338,11 @@ $(document).on('ready page:load', function(event) {
 $(document).on('ready page:load', function(event) {
   $(".tooltip").tooltip()
   $('[data-toggle="tooltip"]').tooltip()
-})
+});
+
+$(document).on('ready page:load', function(event) {
+  $('.boolean').prop('checked', true);
+  $('.smile').click(function() {
+    $('#question_picture').click();
+  });
+});

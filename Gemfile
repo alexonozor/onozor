@@ -37,7 +37,7 @@ gem 'turbolinks'
 # gem 'debugger', group: [:development, :test]
 gem 'devise'
 
-gem 'simple_form'
+gem 'simple_form', '~>3.2.0'
 gem 'friendly_id'
 gem 'rmagick', '~> 2.15'
 gem 'ancestry'
@@ -54,17 +54,20 @@ gem 'carrierwave'
 gem 'cloudinary'
 gem 'slack-notifier'
 gem 'redis'
+gem 'omniauth-twitter'
 gem 'omniauth-facebook'
-gem 'omniauth-google-oauth2'
+gem 'omniauth-google-oauth2', '~> 0.2.10'
+gem 'judge'
 gem 'public_activity'
 gem 'private_pub'
 gem 'foreman'
 gem 'rails-observers'
+gem 'pg'
+
 
 group :development, :test do
   # Use sqlite3 as the database for Active Record
   gem 'quiet_assets'
-  gem 'sqlite3'
   gem 'rspec-rails', '~> 3.0'
   gem 'factory_girl_rails', "~> 4.0"
   gem "database_cleaner"
@@ -78,6 +81,4 @@ group :development, :test do
 end
 
 gem 'puma', '~> 2.14.0'
-group :production do
-  gem 'pg'
-end
+

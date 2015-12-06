@@ -76,13 +76,20 @@ class QuestionsController < ApplicationController
   # GET /questions/1
   # GET /questions/1.json
   def show
-    # @related_questions = @question.find_related_tags.limit(10)
     @question.update_views! unless @question.user_id == current_user.id  if current_user.present?
     @answer = Answer.new(:question => @question, :user => current_user)
     @comment = Comment.new(:commentable_type => @question.class.name, :commentable_id => @question.id, :user => current_user )
     respond_to do |format|
       format.mobile {render layout: "application"}
-     end
+    end
+    update_notification(params)
+  end
+
+  def update_notification(params)
+   if params['notification_id'].present?
+    notification = Activity.find(params["notification_id"])
+    notification.update!(:seen => true)
+   end
   end
 
   # GET /questions/new
@@ -115,7 +122,6 @@ class QuestionsController < ApplicationController
     @question.user = current_user
     @question.tag_list.add(params[:tag_list])
       if @question.save
-      #  PrivatePub.publish_to("/questions", "function populate(#{@question})")
        respond_to do |format|
          format.js
          format.html { redirect_to @question,  :notice => "Question was successfully created." }
@@ -166,9 +172,6 @@ class QuestionsController < ApplicationController
     redirect_to root_path, :notice => "Question has been remove"
     # authorize! :destroy, @questions
   end
-
-
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_question
@@ -180,7 +183,7 @@ class QuestionsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
  def question_params
   params.require(:question).permit(:name, :body, :user_id, :views, :answers_count, :permalink,
-                                   :answer_id, :tag_list,  :send_mail, :category_id, :counter_cache)
+                                   :answer_id, :tag_list,  :send_mail, :category_id, :counter_cache, :picture)
  end
 
 

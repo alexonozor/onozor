@@ -7,6 +7,7 @@ class ApplicationController < ActionController::Base
   before_action :last_requested_at, :load_users, :prepare_for_mobile, :load_category,
     :people_to_follow, :suggested_people
 
+
   before_action :configure_devise_permitted_parameters, if: :devise_controller?
    rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
   # rescue_from  ActionView::Template::Error, with: :no_user_found
@@ -58,7 +59,27 @@ class ApplicationController < ActionController::Base
       (request.user_agent =~ /(iPhone|iPod|Android|webOS|Mobile|Opera|BlackBerry|Nokia)/) && (request.user_agent !~ /iPad/)
     end
   end
-  
+
+
+
+  def trackable_activity(trackable)
+
+    if trackable.class.name == 'Answer'
+      answers = trackable.class.where(question_id: trackable.question.id)
+      users = answers.map(&:user).uniq
+    elsif trackable.commentable.class.name == 'Answer'
+      answers = trackable.commentable.class.where(question_id: trackable.commentable.question.id)
+      users = answers.map(&:user).uniq
+    else
+      answers = trackable.commentable.answers
+      users = answers.map(&:user).uniq
+    end
+    binding.pry
+    users.each do |user|
+      Activity.create!(action: params[:action], trackable: trackable, user_id: user.id ) unless trackable.user.id == user.id
+    end
+  end
+
   def prepare_for_mobile
     session[:mobile_param] = params[:mobile] if params[:mobile]
     request.format = :mobile if mobile_device?

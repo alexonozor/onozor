@@ -1,0 +1,13 @@
+<% unless current_user.activities.empty? %>
+  <% current_user.activities.each do |activity| %>
+  <li class='<%= activity.seen %>' id="note">
+    <% if activity.trackable.present? %>
+            <%= div_for(activity, class: "foo") do %>
+                <%= render "activities/#{activity.trackable_type}/#{activity.action}", activity: activity %>
+            <% end %>
+       <% end %>
+      <li>
+  <% end %>
+<% else %>
+    <li id="note" ><a href="#" class="text-danger">You don't have any notification yet.</a></li>
+<% end %>

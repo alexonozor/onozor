@@ -1,21 +1,25 @@
 <div class="col-lg-12 form-group">
     <%= link_to user_omniauth_authorize_path(:facebook), class: "btn  form-control facebook_button", id: 'fb-signup'  do %>
     <i class="fa fa-facebook left input-font"></i>
-    Login with Facebook
+    Continue with Facebook
   <% end %>
 </div>
 <div class="col-lg-12 form-group">
     <%= link_to user_omniauth_authorize_path(:google_oauth2),  class: "btn form-control google_button", id: 'google-signup'  do %>
   <i class="fa fa-google left input-font"></i>
-  Login with Google
+      Continue with Google
   <% end %>
 </div>
+
 <div class="col-lg-12 form-group">
-  <%= link_to user_omniauth_authorize_path(:facebook), class: "btn form-control twitter_button", id: 'twitter-signup' do %>
-    <i class="fa fa-twitter left input-font"></i>
-    Login with Twitter
+  <%= link_to  user_omniauth_authorize_path(:twitter),  class: "btn form-control twitter_button", id: 'twitter-signup'  do %>
+      <i class="fa fa-twitter left input-font"></i>
+      Continue with twitter
   <% end %>
 </div>
 <div class="col-lg-12 tos_disclaimer">
-  <p><%= link_to "Continue With Email.", "#", class: "email-signup", "data-email-signup"=>false %> By signing up you indicate that you have read and agree to the Terms of Service.</p>
+  <p>By signing up you indicate that you have read and agree to the <%= link_to "Terms of Service.", "#", class: "email-signup", "data-email-signup"=>false %></p>
+  <hr>
 </div>
+
+

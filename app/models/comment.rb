@@ -3,6 +3,8 @@ class Comment < ActiveRecord::Base
   has_ancestry
   belongs_to :user
   belongs_to :commentable, :polymorphic => true
+  has_many :activities,  as: :notifier, :foreign_key => 'receiver_id'
+
 
   #validations
   validates_uniqueness_of :body, :message => "Similar comment are not allowed, say somthing different", uniqueness: { scope: :user_id }
