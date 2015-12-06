@@ -4,3 +4,11 @@
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
     </div>
      <% end %>
+
+
+     <div class="col-lg-12 form-group">
+       <%= link_to user_omniauth_authorize_path(:facebook), class: "btn form-control twitter_button", id: 'twitter-signup' do %>
+         <i class="fa fa-twitter left input-font"></i>
+         Login with Twitter
+       <% end %>
+     </div>

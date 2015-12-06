@@ -1246,13 +1246,7 @@ a.down:hover {
   box-sizing: border-box;
   width: 50%;
 }
-.bg_container {
-  position: absolute;
-  overflow: hidden;
-  height: 100%;
-  width: 100%;
-  background-image: url("/assets/inq-bg.jpg")
-}
+
 .HomeLoggedOutBigSignup .container:after {
     display: table;
     content: "";
@@ -1605,15 +1599,15 @@ h3 {
     -webkit-margin-end: 0px;
     font-weight: bold;
 }
-.center_col .list_header {
+.center_col.list_header {
     font-size: 11px;
     color: #666;
     text-transform: uppercase;
     letter-spacing: .5px;
     font-weight: bold;
-  //  padding-bottom: 8px;
+    padding-bottom: 8px;
   //  margin-bottom: 16px;
-  // border-bottom: 1px solid #e2e2e2;
+    border-bottom: 1px solid #e2e2e2;
 }
 .center_col {
     padding-top: 16px;
@@ -1697,6 +1691,7 @@ h3 {
   -webkit-margin-end: 0px;
   font-weight: bold;
   margin-right: 20px;
+  color: #1db4c1;
 }
 .navbar-brand {
   height: 50px;
@@ -1886,3 +1881,46 @@ h3 {
   line-height: 1.4;
   font-weight: 400;
 }
+
+.feeds {
+    opacity: 1;
+    transition: opacity 2s ease-in-out;
+    -moz-transition: opacity 2s ease-in-out;
+    -webkit-transition: opacity 2s ease-in-out;
+}
+
+.font-logo {
+  width: 100px;
+}
+
+.holder {
+  padding: 20px;
+  width: 650px;
+  position: absolute;
+  top: 20%;
+  bottom: initial;
+  left: 0;
+  right: 0;
+  margin: auto;
+  background: #fff;
+  border: 1px solid #dcdcdc;
+  box-shadow: 0 2px 4px 0 #dcdcdc;
+  margin-top: 70px;
+  input {
+    border-radius: 0px !important;
+    outline: none;
+  }
+}
+
+.slogan {
+  margin: 10px 0px;
+  font-size: 19px;
+}
+
+.bg_container {
+  margin-top: 100px;
+}
+
+
+
+

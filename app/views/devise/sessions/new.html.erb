@@ -1,4 +1,14 @@
-
-<div class="" style="">
- <%= render :template => "devise/registrations/new" %>
+<% title "signup | Sigin - Onozor" %>
+<div class="col-lg-6 signup">
+  <div id="signup-container">
+    <div class="third-party-signup-form">
+      <%= render "devise/sessions/third_party_sign_ups" %>
+    </div>
+  </div>
 </div>
+
+<div class="col-lg-6 login">
+  <%= render "devise/sessions/sign_in" %>
+</div>
+
+

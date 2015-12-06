@@ -5,7 +5,6 @@ NairaOverflow::Application.routes.draw do
   put 'users/select_category/:id', to: "users#select_category", as: "select_category"
   get "tags/index"
   resources :categories
-
   post "versions/:id/revert" => "versions#revert", :as => "revert_version"
   get 'questions/advise', to: 'questions#advise', :as => "question_advise"
 
@@ -25,7 +24,8 @@ NairaOverflow::Application.routes.draw do
       get :latest
     end
   end
-devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks" }
+
+  devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks" }
   resources :users do
     get 'edit_user/:option' => "users#edit_user", as: :edit_user
     post 'edit_user/:option' => "users#update_user", as: :update_user
@@ -42,6 +42,11 @@ devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks"
 
  get 'users/who_is_online', to: 'users#who_is_online', as: :online_users
 
+  get 'users/:id/questions', to: "users#show_user_questions", as: :show_user_questions
+  get 'users/:id/answers', to: "users#show_user_answers", as: :show_user_answers
+  get 'users/:id/followers', to: "users#show_user_followers", as: :show_user_followers
+  get 'users/:id/following', to: "users#show_user_following", as: :show_user_following
+  get 'users/:id/favorites', to: "users#show_user_favorites", as: :show_user_favorites
 
 
  resources :relationships, only: [:create, :destroy]

@@ -22,6 +22,7 @@ Devise.setup do |config|
   # :mongoid (bson_ext recommended) by default. Other ORMs may be
   # available as additional gems.
   require 'devise/orm/active_record'
+  config.omniauth :twitter, ENV["API_KEY"], ENV["API_SECRET"]
   config.omniauth :facebook, ENV['FACEBOOK_APP_ID'], ENV['FACEBOOK_APP_SECRET'],  scope: 'email',  info_fields: 'email,name,first_name,last_name,gender'
   config.omniauth :google_oauth2, '355480203843-5h4kfo0v0loovrdr64jviup2dr4sg5jc.apps.googleusercontent.com', 'XSLfIHYxgMvyNgcG09tQg_CT', :client_options => { :ssl => { :verify => !Rails.env.development? } }
   # ==> Configuration for any authentication mechanism

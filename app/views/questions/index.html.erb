@@ -3,7 +3,12 @@
 <%= content_tag :div, id: "questions", data: { url: questions_path(@question) } do %>
 
     <div class="post greetings">
-       <h1 class="">Hi <%= current_user.first_name.humanize %>,</h1>
+      <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>-->
+      <% if current_user%>
+       <h1 class="">Hi <%= current_user.fullname.humanize  %>,</h1>
+      <% else %>
+         <h1> Hi Friend,</h1>
+      <% end %>
       <p>Compliments of the season!  We're happy to have you here.</p>
     </div>
  <%= render @questions, :collection => @question %>

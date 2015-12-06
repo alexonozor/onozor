@@ -1,0 +1,19 @@
+
+<% if answer %>
+  <div class="profile-questions">
+    <h4><%=link_to answer.name, answer %><h4>
+      <div class="content_header">
+        <%=link_to answer.user.fullname, user_path(answer.user) %>
+        <div class="photo_tooltip">
+          <%= image_tag answer.user.avatar.url(:thumb), alt: "" %>
+        </div>
+        <div class="credibility_fact">
+          <%= (pluralize answer.user.views, "view") %>, &nbsp;
+          <%= (pluralize answer.user.followers.count, "follower") %>
+        </div>
+      </div>
+
+      <p class="short-body"><%=truncate answer.body, length:150 %></p>
+      <span><%= time_ago_in_words answer.created_at %> ago, <%= pluralize answer.question.answers_count || 0, "Answer" %> <%= (pluralize question.views, "views") %>  </span>
+  </div>
+<% end %>
