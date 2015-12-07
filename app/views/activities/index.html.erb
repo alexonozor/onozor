@@ -3,7 +3,7 @@
   <li class='<%= activity.seen %>' id="note">
     <% if activity.trackable.present? %>
             <%= div_for(activity, class: "foo") do %>
-                <%= render "activities/#{activity.trackable_type}/#{activity.action}", activity: activity %>
+                <%= render "activities/#{activity.trackable_type.underscore}/#{activity.action}", activity: activity %>
             <% end %>
        <% end %>
       <li>
