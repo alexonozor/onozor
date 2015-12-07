@@ -1,7 +1,7 @@
 # Use this hook to configure devise mailer, warden hooks and so forth.
 # Many of these configuration options can be set straight in your model.
 require "omniauth-google-oauth2"
-# OmniAuth.config.full_host = 'http://localhost:3000'
+OmniAuth.config.full_host = Rails.env.production? ? 'https://www.onozor.com' : 'http://localhost:3000'
 Devise.setup do |config|
   # The secret key used by Devise. Devise uses this key to generate
   # random tokens. Changing this key will render invalid all existing
@@ -24,7 +24,7 @@ Devise.setup do |config|
   require 'devise/orm/active_record'
   config.omniauth :twitter, ENV["API_KEY"], ENV["API_SECRET"]
   config.omniauth :facebook, ENV['FACEBOOK_APP_ID'], ENV['FACEBOOK_APP_SECRET'],  scope: 'email',  info_fields: 'email,name,first_name,last_name,gender'
-  config.omniauth :google_oauth2, '355480203843-5h4kfo0v0loovrdr64jviup2dr4sg5jc.apps.googleusercontent.com', 'XSLfIHYxgMvyNgcG09tQg_CT', :client_options => { :ssl => { :verify => !Rails.env.development? } }
+  config.omniauth :google_oauth2, '229231951350-76429kirhj4k2fklcg68v7tmcj86hdsg.apps.googleusercontent.com', 'NNQ4EzFN1mHlCKvwQqoU9wGE', :client_options => { :ssl => { :verify => !Rails.env.development? } }
   # ==> Configuration for any authentication mechanism
   # Configure which keys are used when authenticating a user. The default is
   # just :email. You can configure it to use [:username, :subdomain], so for
