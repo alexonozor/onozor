@@ -1,0 +1,49 @@
+<h1>Listing pages</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Address</th>
+      <th>Zip code</th>
+      <th>Phone</th>
+      <th>Privacy</th>
+      <th>Website</th>
+      <th>Long description</th>
+      <th>Short description</th>
+      <th>Cover picture</th>
+      <th>Logo</th>
+      <th>User</th>
+      <th>Page type</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @pages.each do |page| %>
+      <tr>
+        <td><%= page.name %></td>
+        <td><%= page.address %></td>
+        <td><%= page.zip_code %></td>
+        <td><%= page.phone %></td>
+        <td><%= page.privacy_id %></td>
+        <td><%= page.website %></td>
+        <td><%= page.long_description %></td>
+        <td><%= page.short_description %></td>
+        <td><%= page.cover_picture %></td>
+        <td><%= page.logo %></td>
+        <td><%= page.user_id %></td>
+        <td><%= page.page_type_id %></td>
+        <td><%= link_to 'Show', page %></td>
+        <td><%= link_to 'Edit', edit_page_path(page) %></td>
+        <td><%= link_to 'Destroy', page, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Page', new_page_path %>

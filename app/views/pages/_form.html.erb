@@ -1,0 +1,54 @@
+
+<div class="page-form">
+  <p><i class="fa fa-flag"></i> Create a Page</p>
+  <p class="text-small">Create a Onozor Page to build a closer relationship with your audience and customers.</p>
+  <hr>
+    <div class="wizard-step">Invite Friends</div>
+
+
+  <%= simple_form_for(@page, html: { class:'form-horizontal', multipart: true}) do |f| %>
+     <div class="row">
+      <div class="col-md-6">
+       <%= f.input :name, :label => "Enter Page Name", input_html: { class:'form-control'} %>
+      </div>
+       <div class="col-md-3">
+         <%= f.association :page_type, :label => "Select Category", prompt: 'Select Category', input_html: { class:'form-control'} %>
+       </div>
+
+       <div class="col-md-3">
+         <%= f.association :privacy, :label => "Choose Privacy", include_blank: false,  input_html: { class:'form-control'} %>
+       </div>
+     </div>
+
+      <div class="row">
+        <div class="col-md-3">
+          <%= f.input :zip_code, input_html: { class:'form-control'} %>
+        </div>
+        <div class="col-md-3">
+          <%= f.input :phone, input_html: { class:'form-control'} %>
+        </div>
+        <div class="col-md-6">
+          <%= f.input :website, as: :url, input_html: { class:'form-control'} %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <%= f.input :long_description, input_html: { class:'form-control'} %>
+        </div>
+        <div class="col-md-6">
+          <%= f.input :short_description, input_html: { class:'form-control'} %>
+        </div>
+      </div>
+
+      <%= f.input :address, input_html: { class:'form-control'} %>
+      <hr>
+      <div class="row">
+        <div class="col-md-6">
+         <button  class="btn topic-button btn-primary btn-lg"> Create Page</button>
+        </div>
+      </div>
+
+  <% end %>
+</div>
+

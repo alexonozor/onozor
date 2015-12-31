@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151202135240) do
+ActiveRecord::Schema.define(version: 20151228104039) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -134,6 +134,44 @@ ActiveRecord::Schema.define(version: 20151202135240) do
     t.datetime "updated_at"
   end
 
+  create_table "page_types", force: true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "icon"
+  end
+
+  create_table "page_users", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "page_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "pages", force: true do |t|
+    t.string   "name"
+    t.text     "address"
+    t.string   "zip_code"
+    t.string   "phone"
+    t.integer  "privacy_id"
+    t.string   "website"
+    t.text     "long_description"
+    t.text     "short_description"
+    t.string   "cover_picture"
+    t.string   "logo"
+    t.integer  "user_id"
+    t.integer  "page_type_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "privacies", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "question_votes", force: true do |t|
     t.integer  "user_id"
     t.integer  "question_id"
@@ -146,19 +184,21 @@ ActiveRecord::Schema.define(version: 20151202135240) do
     t.string   "name"
     t.text     "body"
     t.integer  "user_id"
-    t.integer  "views",            default: 0
-    t.integer  "answers_count",    default: 0
+    t.integer  "views",             default: 0
+    t.integer  "answers_count",     default: 0
     t.string   "permalink"
     t.integer  "answer_id"
-    t.boolean  "send_mail",        default: false
+    t.boolean  "send_mail",         default: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "slug"
     t.integer  "category_id"
     t.string   "ancestry"
-    t.integer  "comments_count",   default: 0
-    t.integer  "favourites_count", default: 0
+    t.integer  "comments_count",    default: 0
+    t.integer  "favourites_count",  default: 0
     t.string   "picture"
+    t.integer  "page_id"
+    t.string   "questionable_type"
   end
 
   add_index "questions", ["ancestry"], name: "index_questions_on_ancestry", using: :btree

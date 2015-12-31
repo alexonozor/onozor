@@ -6,6 +6,8 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+Question.update_all(questionable_type: "Random")
+
 Category.destroy_all
 category_list = [
     [ "Technology", "http://res.cloudinary.com/sportbay-co/image/upload/v1443569929/main-thumb-t-2177-200-JiR07D1TQSfeQzRvWXomVaY4Poj2f8Yb_obscwy.jpg" ],

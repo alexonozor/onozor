@@ -1,5 +1,17 @@
 NairaOverflow::Application.routes.draw do
 
+  resources :pages do
+    member { get :invite_friends  }
+    member { get :edit_question   }
+    member { put :update_question }
+    collection do 
+      post :questions
+      get  'answer', as: 'new_answer'
+      post 'create_answer'
+    end
+  end
+  resources :page_users
+
   resources :activities
 
   put 'users/select_category/:id', to: "users#select_category", as: "select_category"

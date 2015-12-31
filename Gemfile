@@ -63,10 +63,14 @@ gem 'private_pub'
 gem 'foreman'
 gem 'rails-observers'
 gem 'pg'
+gem 'whenever', :require => false
 
 
 group :development, :test do
   # Use sqlite3 as the database for Active Record
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'meta_request'
   gem 'quiet_assets'
   gem 'rspec-rails', '~> 3.0'
   gem 'factory_girl_rails', "~> 4.0"

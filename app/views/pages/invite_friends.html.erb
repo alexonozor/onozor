@@ -1,0 +1,17 @@
+<div class="page-form">
+  <p class="text-center">Invite your friends to your Page</p>
+  <hr>
+ <div class="row">
+  <% current_user.followed_users.each do |user| %>
+   <div class=" followers-invitation">
+     <div class="img-frame"><%=image_tag user.avatar.url(:thumb) %></div>
+     <div class="name-frame">
+       <%= link_to user.fullname, user %>
+       <p><%= pluralize user.followers.count, "followers" %></p>
+     </div>
+     <div class="invite-button"><a href="#" class="btn btn-sm btn-default">Invite</a></div>
+   </div>
+  <% end %>
+ </div>
+</div>
+

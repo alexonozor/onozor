@@ -10,6 +10,9 @@ class User < ActiveRecord::Base
   friendly_id :username, use: :slugged
 
   #association
+  has_many :owned_pages, class_name: 'Page', :foreign_key => 'user_id'
+  has_many :page_users
+  has_many :pages, :through => :page_users
   has_many :activities
   has_many :questions
   has_many :replies, :through => :questions, :source => :answers
@@ -59,17 +62,17 @@ class User < ActiveRecord::Base
 
 
 
-  # def self.new_with_session(params, session)
-  #   binding.pry
-  #   if session['devise.user_attributes']
-  #     new(session['devise.user_attributes'], without_protection: true) do |user|
-  #       user.attributes = params
-  #       user.valid?
-  #     end
-  #   else
-  #     super
-  #   end
-  # end
+    # def self.new_with_session(params, session)
+    #   binding.pry
+    #   if session['devise.user_attributes']
+    #     new(session['devise.user_attributes'], without_protection: true) do |user|
+    #       user.attributes = params
+    #       user.valid?
+    #     end
+    #   else
+    #     super
+    #   end
+    # end
 
   def password_required?
     super && provider.blank?

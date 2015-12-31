@@ -168,9 +168,12 @@ class QuestionsController < ApplicationController
   # DELETE /questions/1
   # DELETE /questions/1.json
   def destroy
-    @question.destroy
-    redirect_to root_path, :notice => "Question has been remove"
+   @question.destroy
+   respond_to do |format| 
+    format.html { redirect_to root_path, :notice => "Question has been remove" }
+    format.js
     # authorize! :destroy, @questions
+   end 
   end
   private
     # Use callbacks to share common setup or constraints between actions.
