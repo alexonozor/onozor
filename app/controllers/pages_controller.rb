@@ -1,8 +1,13 @@
 class PagesController < ApplicationController
   layout "display"
-  before_action :set_page, only: [:show, :edit, :update, :destroy]
-
+  before_action :set_page, only: [:show, :edit,
+                                  :update, :destroy,
+                                  :upload_page_logo,
+                                  :upload_page_cover_picture,
+                                  :invite_friends]
+  impressionist :actions=>[:show]
   respond_to :html
+  helper_method :current_page
 
   def index
     @pages = Page.all
@@ -21,6 +26,13 @@ class PagesController < ApplicationController
   end
 
   def edit
+  end
+
+  def invitess
+    @page = Page.find(params[:page_id])
+    respond_to do |format|
+      format.js
+    end
   end
 
   def create
@@ -48,7 +60,7 @@ class PagesController < ApplicationController
         format.html { redirect_to @question.page, notice: 'Page was successfully created.' }
         format.js
       end
-    end 
+    end
   end
 
   def answer
@@ -56,7 +68,7 @@ class PagesController < ApplicationController
    @answer = Answer.new(question_id: @question.id, user_id: current_user.id)
      respond_to do |format|
       format.js {'answer.js.erb'}
-     end 
+     end
   end
 
   def create_answer
@@ -71,7 +83,7 @@ class PagesController < ApplicationController
       respond_to do |format|
         format.js { render 'create_answer'}
       end
-    end  
+    end
   end
 
   def edit_question
@@ -90,12 +102,20 @@ class PagesController < ApplicationController
     end
   end
 
-  def invite_friends
+  def upload_page_logo
+    if @page.update(page_params)
+      respond_to do |format|
+        format.js
+      end
+    end
   end
 
-  def invite
-    page = Page.find(params[:page_id])
-    inviting_user = User.find(params[:user_id])
+  def upload_page_cover_picture
+    if @page.update(page_params)
+      respond_to do |format|
+        format.js
+      end
+    end
   end
 
   def destroy

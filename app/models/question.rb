@@ -16,13 +16,14 @@ class Question < ActiveRecord::Base
  belongs_to :user
  belongs_to :category
  has_many   :alltags
- has_many   :answers, :dependent => :destroy
- has_many   :favourites, :dependent => :destroy
- has_many   :question_votes, :dependent => :destroy
- has_many   :comments, :as => :commentable, :dependent => :destroy
+ has_many   :answers,                       :dependent => :destroy
+ has_many   :favourites,                    :dependent => :destroy
+ has_many   :question_votes,                :dependent => :destroy
+ has_many   :comments, as:    :commentable, :dependent => :destroy
+ belongs_to :accepted_answer, :class_name => "Answer", :foreign_key => :answer_id
 
  #validation
- #validates_presence_of    :name, :body, :user_id #:tag_list
+ validates_presence_of    :name, :body, :user_id #:tag_list
  validates_length_of      :name, :within => 5..2000
  #validates_length_of      :body, :within => 10...20000
  #validates_uniqueness_of  :name, :body
@@ -30,15 +31,15 @@ class Question < ActiveRecord::Base
   #scope
   default_scope          ->{ order('created_at DESC')}
   scope :latest,         ->{ where("questions.created_at DESC")}
-  scope :popular,        ->{ where('questions.views >= ?', 10).limit(5)}
+  scope :popular,        ->{ where('questions.views >= ? AND questions.questionable_type <> ?', 10, 'Questions').limit(5)}
   scope :hot,            ->{ where("answers_count > 10")}
   scope :unanswered,     ->{ where("answers_count = ?", 0)}
   scope :answered,       ->{ where("answers_count > ?", 0)}
   scope :page_questions, ->{ where("questionable_type = ?", "question")}
-  
+
   def self.page_question?(question)
     return true if question.questionable_type ='question' && question.questionable_type != nil
-    return false 
+    return false
   end
 
   def self.active

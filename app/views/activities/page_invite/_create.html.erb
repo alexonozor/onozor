@@ -1,0 +1,8 @@
+  <% if activity.trackable %>
+    <%= link_to page_path(activity.trackable.page, notification_id: activity.id) do %>
+        <p>
+          <strong><%= User.page_inviter(activity.trackable.inviter_id).fullname.humanize  %></strong> invited you to like <strong><%=  activity.trackable.page.name %>'s</strong> Page.<br />
+          <i class="fa fa-flag"></i> <small><%= time_ago_in_words activity.created_at, class:'small' %> ago</small>
+        </p>
+    <% end %>
+<% end %>

@@ -1,8 +1,8 @@
 
-<%= render partial: 'question_form' %>
-<% @questions.each do |question| %>  
-  
-   <%= content_tag_for(:div, question, class:'page-post') do  %> 
+<%= render partial: 'question_form' if current_user %>
+<% @questions.each do |question| %>
+
+   <%= content_tag_for(:div, question, class:'page-post') do  %>
     <div class='page-user-info clearfix'>
       <div class='avatar'>
         <%= image_tag question.user.avatar.url %>
@@ -10,15 +10,17 @@
       <div class='page-user-name'>
        <%= link_to question.user.fullname, question.user %>
        <span><%= question.created_at.strftime("%B %-d at %-l:%M%P") %></span>
-      </div> 
-      <span class="dropdown pull-right">
-          <a href="#" class=" dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
-        <li><%= link_to "<i class='fa fa-trash'></i> Delete".html_safe, question_path(question), :remote => true, method: :delete %></li>
+      </div>
+      <% if current_user && current_user.is_the_owner?(current_user, question) %>
+        <span class="dropdown pull-right">
+            <a href="#" class=" dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+          <li><%= link_to "<i class='fa fa-trash'></i> Delete".html_safe, question_path(question), :remote => true, method: :delete %></li>
 
-          <li><%= link_to "<i class='fa fa-pencil'></i> Edit".html_safe, edit_question_page_path(question), :remote => true %></li>
-        </ul>
-      </span>
+            <li><%= link_to "<i class='fa fa-pencil'></i> Edit".html_safe, edit_question_page_path(question), :remote => true %></li>
+          </ul>
+        </span>
+      <% end %>
     </div>
     <div class='user-question-on-page' id='edit_question_<%= question.id %>-form'>
       <p><strong><%= question.name %></strong></p>
@@ -41,6 +43,6 @@
     </div>
      <%= render partial: 'question_answers', :locals => {:question => question} %>
    <% end %>
-  <% end %> 
+  <% end %>
 </div>
 </div>

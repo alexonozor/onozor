@@ -1,14 +1,23 @@
 <div class="time-line">
+  <p class='upload_cover_photo'><i class="fa fa-camera"></i></p>
   <div class="page-profile-picture">
-    <%= image_tag ('defaultpage.png') %>
+    <%= image_tag @page.logo.url(:thumb), id: 'defaultpage' %>
     <div class="add-image">
-      <i class="fa fa-camera"></i> Add photo
+      <i class="fa fa-camera"></i>
+      <i class="fa fa-spinner fa-pulse" id='ajaxStart'></i>
     </div>
   </div>
-
+  <div class='page_name'>
+    <h2><%= @page.name %></h2>
+    <p><%= @page.page_type.name %></p>
+  </div>
   <div class="timeline-button">
     <ul>
-     <li><a href="#"><i class="fa fa-thumbs-up"></i> Like</a></li>
+    <% unless @page.has_current_user_liked_this_page?(current_user) %>
+     <li><%= link_to "<i class='fa fa-thumbs-up'></i> Like".html_safe, page_users_path(:page_id => @page.id), method: 'POST' %></li>
+    <% else %>
+      <li><%= link_to "<i class='fa fa-thumbs-down'></i> Dislike".html_safe, page_user_path(:page_id => @page.id), method: 'DELETE' %></li>
+    <% end %>
      <li><a href="#"><i class="fa fa-commenting-o"></i> Message</a></li>
     </ul>
   </div>
@@ -26,3 +35,27 @@
     </ul>
   </div>
 </nav>
+
+<%= form_for @page, url: upload_page_logo_page_path(@page), remote: true, html: {class: 'upload_log_form'}, method: 'PUT' do |f| %>
+  <%= f.file_field :logo %>
+<% end %>
+
+<%= form_for @page, url: upload_page_cover_picture_page_path(@page), remote: true, html: {class: 'upload_cover_form', id: 'upload_cover_form'}, method: 'PUT' do |f| %>
+  <%= f.file_field :cover_picture %>
+<% end %>
+
+<style>
+.page-background .time-line {
+    box-shadow: 0 1px 2px #c9cccd;
+    position: relative;
+    border-left: 1px;
+    width: 100%;
+    height: <%= @page.timeline_height %>px;
+    background: url('<%= @page.cover_picture.url %>');
+    background-repeat: repeat-x;
+    background-size: 351px 195px;
+    background-position: 0 0;
+    background-color: #6a7180;
+    background-size: cover;
+  }
+</style>

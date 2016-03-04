@@ -7,7 +7,7 @@ class PageUsersController < ApplicationController
   end
 
   def destroy
-    @pageUser = PageUsers.find_by(user_id: current_user.id, page_id: params[:page_id])
+    @pageUser = PageUser.find_by(user_id: current_user.id, page_id: params[:page_id])
     @pageUser.destroy
     redirect_to :back, notice: 'unlike!'
   end

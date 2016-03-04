@@ -32,6 +32,7 @@
 
     <div class="postinfobot">
       <nav class="options">
+        <%= link_to 'Accept answer', accepted_answer_question_path(answer_id: answer.id), class: 'accept', remote: true %>
         <%= link_to  "Upvote | <span id='answer-vote-count-#{answer.id}'>#{answer.votes}</sapn>".html_safe, vote_answer_path(answer.id, value: 1), method: "post", remote: true, class: 'btn btn-secondry btn-sm' %>
         <%= link_to  "Downvote", vote_answer_path(answer.id, value: -1), method: "post", remote: true %>
         <% if current_user.present? %>

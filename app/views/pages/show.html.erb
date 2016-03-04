@@ -14,11 +14,16 @@
       <div class="col-md-2 page-analytics">
         <div class="list-group">
           <a href="#" class="list-group-item disabled">
-            This week
+            impression
           </a>
-          <a href="#" class="list-group-item"><p class="analytics-number">2</p><p class="analytics">Page Reach</p></a>
-          <a href="#" class="list-group-item"><p class="analytics-number">2</p><p class="analytics">Page Reach</p></a>
-          <a href="#" class="list-group-item"><p class="analytics-number">2</p><p class="analytics">Page Reach</p></a>
+          <a href="#" class="list-group-item"><p class="analytics-number"><%= @page.view_count_yesterday %></p><p class="analytics">Yesterday</p></a>
+
+          <a href="#" class="list-group-item"><p class="analytics-number"><%= @page.view_count_this_week %></p><p class="analytics">This week</p></a>
+
+          <a href="#" class="list-group-item"><p class="analytics-number"><%= @page.view_count_for_the_month %></p><p class="analytics">This month</p>
+
+          <a href="#" class="list-group-item"><p class="analytics-number"><%= @page.users.count %></p><p class="analytics">Page Likes</p></a>
+        </a>
         </div>
       </div>
     </div>

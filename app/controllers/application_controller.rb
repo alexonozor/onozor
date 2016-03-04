@@ -7,6 +7,8 @@ class ApplicationController < ActionController::Base
   before_action :last_requested_at, :load_users, :prepare_for_mobile, :load_category,
     :people_to_follow, :suggested_people
 
+  before_action :update_notification
+
 
   before_action :configure_devise_permitted_parameters, if: :devise_controller?
    rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
@@ -21,6 +23,16 @@ class ApplicationController < ActionController::Base
     @question = Question.new
     @category  = Category.limit(10)
   end
+
+
+
+  def update_notification
+   if params['notification_id'].present?
+    notification = Activity.find(params["notification_id"])
+    notification.update!(:seen => true)
+   end
+  end
+
 
   layout :layout_by_resource
 

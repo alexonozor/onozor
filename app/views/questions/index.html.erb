@@ -1,16 +1,16 @@
 <% title "All Questions & Answers - Onozor" %>
 <%= subscribe_to "/questions" %>
-<%= content_tag :div, id: "questions", data: { url: questions_path(@question) } do %>
-
-    <div class="post greetings">
-      <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>-->
-      <% if current_user%>
-       <h1 class="">Hi <%= current_user.fullname.humanize  %>,</h1>
-      <% else %>
-         <h1> Hi Friend,</h1>
-      <% end %>
-      <p>Compliments of the season!  We're happy to have you here.</p>
-    </div>
- <%= render @questions, :collection => @question %>
+<%= content_tag :div, id: "questions", class: 'panel panel-default', data: { url: questions_path(@question) } do %>
+<div class="panel-heading">
+  <nav class="sort">
+    <a href='#' class="active">Answers</a>
+    <a href='#'>Hot</a> <a href='#'>Active</a>
+    <a href='#'>Unanswer</a>
+    <a class="pull-right">Settings <i class="fa fa-cog"></i></a>
+  </nav>
+</div>
+  <ul class="list-group">
+    <%= render @questions, :collection => @question %>
+  </ul>
 <% end %>
 <%= will_paginate @questions %>

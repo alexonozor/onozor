@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.remotipart
 //= require private_pub
 //= require turbolinks
 //= require_tree .
@@ -19,7 +20,7 @@
 
 $(document).on('ready page:load', function () {
   $('#get-notification').click( function(){
-    $('.notification-bed').load('/activities #note')
+    $('.notifications-wrapper').load('/activities #notifications')
   });
 });
 
@@ -321,7 +322,7 @@ $('body').on('hidden.bs.modal', '.modal', function () {
 });
 
 $(document).on('ready page:load', function(event) {
-  $('#question_name').on('keyup keypress blur change onSubmit', function(e){
+  $('#question_name').on('keyup keypress blur change onSubmit', function(e) {
     $('.submit-button').addClass("disabled");
     var str = $(this).val();
     if (str == "" || !str){
@@ -346,3 +347,70 @@ $(document).on('ready page:load', function(event) {
     $('#question_picture').click();
   });
 });
+
+$(document).on('ready page:load', function(event) {
+ $('.add-image').click(function(){
+   $('#page_logo').click();
+   $('#page_logo').change(function() {
+     $('.upload_log_form').submit()
+   });
+ });
+});
+
+
+
+$(document).on('ready page:load', function(event) {
+ $('.upload_cover_photo').click(function(){
+   $('#page_cover_picture').click();
+   $('#page_cover_picture').change(function() {
+     $('.upload_cover_form').submit()
+   });
+ });
+});
+
+$(document).ajaxStart(function() {
+  $('#ajaxStart').show();
+});
+
+$(document).ajaxStop(function() {
+  $('#ajaxStart').hide();
+});
+
+
+function timeLineSetting() {
+  var timeLineHeight = $('.time-line').innerHeight();
+  var timeLine = $('.time-line');
+  var timeLineWidth = $('.time-line').width();
+  if (timeLineHeight < 315) {
+    $('.page-profile-picture').css({'position':'static', 'top':'18px'});
+    $('.add-image').css('top','18px');
+  } else {
+  }
+}
+
+$(function(){
+  timeLineSetting();
+})
+
+$(function() {
+  $('.details-link').click(function() {
+    $('.question-details').toggle()
+  })
+})
+
+$(function () {
+  $('.question-field').keypress(function() {
+    $('.call-count').show();
+    var len = $(this).val().length;
+    $('.call-count').text(len);
+  })
+})
+
+$(function () {
+  $('.expand-it').click(function () {
+    var titleVal = $('.question-field').val();
+    var details  = $('.question-details').val();
+    $('.dec').val(titleVal)
+    $('.desc_question').val(details);
+  })
+})

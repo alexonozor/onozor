@@ -2,16 +2,25 @@
   <p class="text-center">Invite your friends to your Page</p>
   <hr>
  <div class="row">
-  <% current_user.followed_users.each do |user| %>
-   <div class=" followers-invitation">
+  <% current_user.invite_friends(current_user, @page).each do |user| %>
+   <div class="followers-invitation" id="invitee-<%= user.id %>">
      <div class="img-frame"><%=image_tag user.avatar.url(:thumb) %></div>
      <div class="name-frame">
        <%= link_to user.fullname, user %>
        <p><%= pluralize user.followers.count, "followers" %></p>
      </div>
-     <div class="invite-button"><a href="#" class="btn btn-sm btn-default">Invite</a></div>
+     <div class="invite-button">
+       <%= link_to "Invite", page_invites_path(
+                                                invitee_id: user.id,
+                                                inviter_id: current_user.id,
+                                                page_id: @page.id),
+                                                class:"btn btn-sm btn-default",
+                                                method: "POST",
+                                                remote: :true
+       %>
+     </div>
    </div>
   <% end %>
  </div>
+ <%= link_to 'Go to Page', page_path(@page), class: 'pull-right btn btn-primary' %>
 </div>
-

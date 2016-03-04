@@ -1,32 +1,36 @@
 NairaOverflow::Application.routes.draw do
 
+  resources :page_invites, only: [:create]
   resources :pages do
-    member { get :invite_friends  }
-    member { get :edit_question   }
-    member { put :update_question }
-    collection do 
+    member { get :invite_friends            }
+    member { get :edit_question             }
+    member { put :update_question           }
+    member { put :upload_page_logo          }
+    member { put :upload_page_cover_picture }
+    collection do
       post :questions
       get  'answer', as: 'new_answer'
       post 'create_answer'
+      get 'invitess'
     end
   end
-  resources :page_users
 
-  resources :activities
-
-  put 'users/select_category/:id', to: "users#select_category", as: "select_category"
-  get "tags/index"
-  resources :categories
+  put  'users/select_category/:id', to: "users#select_category", as: "select_category"
+  get  "tags/index"
   post "versions/:id/revert" => "versions#revert", :as => "revert_version"
-  get 'questions/advise', to: 'questions#advise', :as => "question_advise"
+  get  'questions/advise', to: 'questions#advise', :as => "question_advise"
 
+  resources :categories
   resources :friendships
   resources :followers
   resources :comments
+  resources :page_users
+  resources :activities
   resources :tags, :only => [:index]
 
   resources :questions do
-    member {post :vote}
+    member { post :vote }
+    member { get  :accepted_answer }
     collection do
       get :hot
       get :active
@@ -52,14 +56,12 @@ NairaOverflow::Application.routes.draw do
 
 
 
- get 'users/who_is_online', to: 'users#who_is_online', as: :online_users
-
+  get 'users/who_is_online', to: 'users#who_is_online',       as: :online_users
   get 'users/:id/questions', to: "users#show_user_questions", as: :show_user_questions
-  get 'users/:id/answers', to: "users#show_user_answers", as: :show_user_answers
+  get 'users/:id/answers',   to: "users#show_user_answers",   as: :show_user_answers
   get 'users/:id/followers', to: "users#show_user_followers", as: :show_user_followers
   get 'users/:id/following', to: "users#show_user_following", as: :show_user_following
   get 'users/:id/favorites', to: "users#show_user_favorites", as: :show_user_favorites
-
 
  resources :relationships, only: [:create, :destroy]
 

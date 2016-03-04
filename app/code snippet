@@ -1,64 +1,64 @@
-<p id="notice"><%= notice %></p>
-<%= link_to 'like Page', page_users_path(:page_id => @page.id), method: :post %>
-<p>
-  <strong>Name:</strong>
-  <%= @page.name %>
-</p>
+<div class="post index-question question-body row"  data-question="<%= question.created_at.to_i %>" data-id="<%= question.id %>" >
+    <div class="userinfo col-md-3">
+      <div class="avatar">
+        <% if question.user.present? %>
+        <%=link_to image_tag(question.user.avatar.url(:thumb)), question.user %>
+        <% if question.user.is_online? %>
+            <div class="status green">&nbsp;</div>
+        <% end %>
+        <% end %>
+      </div>
+    </div>
+    <div class="posttext col-md-10">
+     <div class="post-user-infor">
 
-<p>
-  <strong>Address:</strong>
-  <%= @page.address %>
-</p>
+         <%=link_to question.user.username.titleize, question.user %>,
+         <%= pluralize question.user.followers.count, "follower"  %>
+         <%= question.user.intrest  %>
+         <%= link_to "<i class='#{question.favourited?(current_user)? 'fa fa-heart favorite-color' : 'fa fa-heart-o' if current_user }'></i> ".html_safe, toggle_favourite_path(question.id), :method => "post", class:'pull-right move-left', id:"favorite-#{question.id}", :title => "favourited by #{pluralize question.favourites_count, 'person'}", 'data-toggle' => 'tooltip', 'data-placement' => 'left',  :remote => true %>
+     </div>
 
-<p>
-  <strong>Zip code:</strong>
-  <%= @page.zip_code %>
-</p>
+      <h2><%=link_to question.name, question, class: "question-title" %></h2>
 
-<p>
-  <strong>Phone:</strong>
-  <%= @page.phone %>
-</p>
+      <%=image_tag (question.picture.url(:thumb)),  class: "question-title" if question.picture.present? %>
+      <p><%= truncate (strip_tags question.body), length: 150 %></p>
 
-<p>
-  <strong>Privacy:</strong>
-  <%= @page.privacy_id %>
-</p>
+      <%#= raw question.tag_list.map { |t| link_to t, tag_path(t), class:'tags' }.join('') %>
+     <div class="votes-button">
+      <%= allow_ajax_only_if_user_is_signin_for_upvote(question) %>
+       <span id='vote-count-<%= question.id %>' class='vote-count'><%= question.votes %></span>
+      <%= allow_ajax_only_if_user_is_signin_for_downvote(question) %>
+     </div>
+      <span class="post-question-info">
+        <%=link_to (pluralize question.answers_count, "Answer"), question_path(question, anchor: "answers-area")  %>
+        <%=link_to (pluralize question.comments.count, "Comment"), question_path(question)  %>
+        <%=link_to (pluralize question.views, "View"), question_path(question) %>
+        <span class="dropdown">
+          <a href="#" class=" dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Share <span class="caret"></span></a>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+          <li><a href="#"><i class="fa fa-facebook"></i> Facebook</a></li>
+          <li><a href="#"><i class="fa fa-twitter"></i> Twitter</a></li>
+          <li><a class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-layout="link" ><i class="fa fa-google-plus"></i> Google plus</a></li>
+        </ul>
+      </span>
+      </span>
+    </div>
 
-<p>
-  <strong>Website:</strong>
-  <%= @page.website %>
-</p>
+</div>
 
-<p>
-  <strong>Long description:</strong>
-  <%= @page.long_description %>
-</p>
 
-<p>
-  <strong>Short description:</strong>
-  <%= @page.short_description %>
-</p>
 
-<p>
-  <strong>Cover picture:</strong>
-  <%= @page.cover_picture %>
-</p>
-
-<p>
-  <strong>Logo:</strong>
-  <%= @page.logo %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @page.user_id %>
-</p>
-
-<p>
-  <strong>Page type:</strong>
-  <%= @page.page_type_id %>
-</p>
-
-<%= link_to 'Edit', edit_page_path(@page) %> |
-<%= link_to 'Back', pages_path %>
+  <div class="leftside">
+    <p> Sort Questions</p>
+    <div class="blocktxt">
+      <ul class="cats">
+         <li><% if action_name == "answered" %><i class="fa fa-long-arrow-right"></i> <% end %> <%= link_to "Answered", answered_questions_path %></li>
+         <div class="divline"></div>
+         <li><% if action_name == "hot" %><i class="fa fa-long-arrow-right"></i> <% end %>  <%= link_to "Hot", hot_questions_path %></li>
+         <div class="divline"></div>
+        <li><% if action_name == "active" %><i class="fa fa-long-arrow-right"></i> <% end %> <%= link_to "Active", active_questions_path %></li>
+        <div class="divline"></div>
+          <li><% if action_name == "unanswered" %><i class="fa fa-long-arrow-right"></i> <% end %> <%= link_to "Unanswered", unanswered_questions_path %></li>
+      </ul>
+    </div>
+  </div>

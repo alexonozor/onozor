@@ -4,17 +4,17 @@
                 <div class="media">
                   <div class="media-left">
                     <a href="#">
-                      <img class="media-object" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xfa1/v/t1.0-1/c0.0.480.480/p480x480/11221350_745680205576787_1610145033967326062_n.jpg?oh=7044d129a0087bb920de1a4858815459&oe=571194AF&__gda__=1460681031_35ba7818844bacf9cd723326c2e108fd" alt="...">
+                      <%= image_tag current_user.friends(current_user).sample.avatar.url(:thumb) if current_user && !current_user.friends(current_user).empty? %>
                     </a>
                   </div>
                   <div class="media-body">
-                    <a class="media-heading">1,434,479 people like this</a></br>
-                    <a>People Talking About This</p>
+                    <p class="media-heading"><%= @page.users.count %> people like this</br>
+                    People Talking About This</p>
                   </div>
                 </div>
               </div>
-              <a href="#" class="list-group-item">6,667 people have been here</a>
-              <a href="#" class="list-group-item">Invite friends to like this Page</a>
+              <a href="#" class="list-group-item"><%= pluralize @page.total_impression, "person" %> have been here</a>
+              <%= link_to 'Invite friends to like this Page', invitess_pages_path(page_id: @page), class:'list-group-item invite_friend', remote: true %>
             </div>
 
             <div class="list-group about">
@@ -22,21 +22,39 @@
                 About
               </a>
               <div class='page-about-map'>
-                <img src="https://fbexternal-a.akamaihd.net/static_map.php?v=17&size=322x98&zoom=14&markers=6.45114%2C3.3884&language=en_US&scale=2">
+                <%= image_tag "http://maps.google.com/maps/api/staticmap?size=300x200&sensor=false&zoom=16&markers=#{@page.latitude}%2C#{@page.longitude}" %>
               </div>
               <p class="list-group-item">
-                Y-trader.com Buying and selling close to you Y-trader.com, is an online marketplace founded in 2012. The site is the brainchild of y-soft Nigeria...
+                <%= @page.short_description %>
               </p>
               <p class="list-group-item">
-                <i class="fa fa-location-arrow"></i>  No. 4 ISRAEL OLUBIYI UNITY, IBA, OJO, LAGOS
-Lagos, Nigeria
-              </p>
-
-              <p class="list-group-item">
-                <i class="fa fa-phone"></i> 08035656130
+                <i class="fa fa-location-arrow"></i> <%= @page.address %>
               </p>
 
               <p class="list-group-item">
-                <i class="fa fa-globe"></i> 08035656130
+                <i class="fa fa-phone"></i> <%= @page.phone %>
+              </p>
+
+              <p class="list-group-item">
+                <i class="fa fa-globe"></i> <%= @page.website %>
               </p>
             </div>
+
+
+
+<!-- Modal -->
+
+<!-- Small modal -->
+<div class="modal invitess fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <small class="modal-title" id="mySmallModalLabel">Invite your friends to like <%= @page.name %></small>
+       </div>
+       <div class="modal-body">
+         <div align='center'><i class="fa fa-circle-o-notch inivteloader fa-spin"></i></div>
+      </div>
+    </div>
+  </div>
+</div>
