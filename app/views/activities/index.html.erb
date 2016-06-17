@@ -1,13 +1,21 @@
+<ul class="activities">
 <% unless current_user.activities.empty? %>
   <% current_user.activities.each do |activity| %>
-  <li class='<%= activity.seen %>' id="note">
-    <% if activity.trackable.present? %>
-            <%= div_for(activity, class: "foo") do %>
-                <%= render "activities/#{activity.trackable_type.underscore}/#{activity.action}", activity: activity %>
-            <% end %>
+    <li class='<%= activity.seen %>' id="notifications">
+      <% if activity.trackable.present? %>
+              <%= div_for(activity, class: "foo") do %>
+              <%= link_to '<i class="fa fa-times text-danger"></i>'.html_safe, activity_path(activity.id), method: :delete, class: 'pull-right' %>
+                  <%= render "activities/#{activity.trackable_type.underscore}/#{activity.action}", activity: activity %>
+              <% end %>
+       <% else %>
+            <div class="activity">
+             <i class="fa fa-trash"></i> <%= link_to  activity.user.fullname.humanize, activity.user %> added a <%=  activity.trackable_type.downcase %> which has since removed
+             <%= link_to '<i class="fa fa-times text-danger"></i>'.html_safe, activity_path(activity.id), method: :delete, class: 'pull-right' %>
+            </div>
        <% end %>
       <li>
   <% end %>
 <% else %>
     <li id="note" ><a href="#" class="text-danger">You don't have any notification yet.</a></li>
 <% end %>
+</ul>

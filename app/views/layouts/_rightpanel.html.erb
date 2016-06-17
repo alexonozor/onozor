@@ -1,0 +1,29 @@
+<div class="right-panel">
+  <div class="inner-right">
+    <% @people_to_follows.each do |user| %>
+    <div class="media media-setter">
+      <div class="media-left">
+        <%= link_to (image_tag user.avatar.url(:thumb), class:'img-rounded'), user_path(user)  %>
+      </div>
+      <div class="media-body">
+        <h5 class="media-heading"><%= link_to  (user.fullname.humanize), user_path(user) %></h5>
+        <p> <%= pluralize user.followed_users.count, "following" %>, <%= pluralize user.questions.count, "question" %></p>
+      </div>
+      <div class="media-right">
+        <div id="follow_form">
+             <% if current_user.following?(user) %>
+               <%= form_for(current_user.relationships.find_by(followed_id: user.id), html: { method: :delete }) do |f| %>
+                 <%= f.submit "Unfollow", class: "btn btn-danger btn-sm" %>
+               <% end %>
+             <% else %>
+               <%= form_for(current_user.relationships.build(followed_id: user.id)) do |f| %>
+                 <div><%= f.hidden_field :followed_id %></div>
+                 <%= f.submit "Follow", class: "btn btn-secondry btn-sm" %>
+               <% end %>
+             <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  </div>
+</div>

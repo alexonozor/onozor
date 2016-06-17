@@ -2,7 +2,7 @@ module ApplicationHelper
 
  def markdown(body)
   @markdown ||= Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true, space_after_headers: true,  hard_wrap: true, filter_html: true, no_intraemphasis: true, fenced_code: true, gh_blockcode: true, fenced_code_blocks: true)
-  @markdown.render(body)
+  @markdown.render(body) if body.present?
 end
 
 

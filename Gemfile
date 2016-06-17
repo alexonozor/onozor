@@ -40,6 +40,7 @@ gem 'devise'
 gem 'simple_form', '~>3.2.0'
 gem 'friendly_id'
 gem 'rmagick', '~> 2.15'
+gem 'remotipart'
 gem 'ancestry'
 gem 'acts-as-taggable-on', '~> 3.4'
 gem 'cancancan'
@@ -63,10 +64,16 @@ gem 'private_pub'
 gem 'foreman'
 gem 'rails-observers'
 gem 'pg'
+gem 'impressionist'
+gem 'geocoder'
+gem 'whenever', :require => false
 
 
 group :development, :test do
   # Use sqlite3 as the database for Active Record
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'meta_request'
   gem 'quiet_assets'
   gem 'rspec-rails', '~> 3.0'
   gem 'factory_girl_rails', "~> 4.0"

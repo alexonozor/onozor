@@ -1,5 +1,5 @@
 class QuestionsController < ApplicationController
-  before_action :set_question, only: [:show, :edit, :update, :destroy, :vote, :undo_link]
+  before_action :set_question, only: [:show, :edit, :update, :destroy, :accepted_answer, :vote, :undo_link]
   before_action :authenticate_user!, only: [:edit, :new, :create, :vote ]
   respond_to :html, :xml, :json, :js, :mobile
 
@@ -24,6 +24,18 @@ class QuestionsController < ApplicationController
         format.js
         format.json
       end
+  end
+
+  def accepted_answer
+    respond_to do |format|
+      format.js {
+          @answer = Answer.find(params[:answer_id])
+          if @answer.present?
+            Reputation.toggle_acceptance(@question, @answer)
+            @answer.reload
+          end
+      }
+    end
   end
 
 
@@ -82,15 +94,9 @@ class QuestionsController < ApplicationController
     respond_to do |format|
       format.mobile {render layout: "application"}
     end
-    update_notification(params)
   end
 
-  def update_notification(params)
-   if params['notification_id'].present?
-    notification = Activity.find(params["notification_id"])
-    notification.update!(:seen => true)
-   end
-  end
+
 
   # GET /questions/new
   def new
@@ -168,9 +174,12 @@ class QuestionsController < ApplicationController
   # DELETE /questions/1
   # DELETE /questions/1.json
   def destroy
-    @question.destroy
-    redirect_to root_path, :notice => "Question has been remove"
+   @question.destroy
+   respond_to do |format|
+    format.html { redirect_to root_path, :notice => "Question has been remove" }
+    format.js
     # authorize! :destroy, @questions
+   end
   end
   private
     # Use callbacks to share common setup or constraints between actions.

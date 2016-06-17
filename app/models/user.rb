@@ -10,6 +10,9 @@ class User < ActiveRecord::Base
   friendly_id :username, use: :slugged
 
   #association
+  has_many :owned_pages, class_name: 'Page', :foreign_key => 'user_id'
+  has_many :page_users
+  has_many :pages, :through => :page_users
   has_many :activities
   has_many :questions
   has_many :replies, :through => :questions, :source => :answers
@@ -29,6 +32,7 @@ class User < ActiveRecord::Base
   has_many :categories, through: :user_categories
   has_many :comments
   has_many :direct_messages
+  has_many :page_invites
 
   #validations
   validates_presence_of :username
@@ -42,6 +46,20 @@ class User < ActiveRecord::Base
     else
       return false
     end
+  end
+
+  # Friends contain both your followers and your following
+  def friends(user)
+    user_friends = "SELECT users.*
+                      from users
+                      INNER JOIN relationships
+                      ON relationships.follower_id = #{user.id}
+                     UNION
+                      SELECT users.*
+                      from users
+                      INNER JOIN relationships
+                      ON relationships.followed_id = #{user.id}"
+    User.find_by_sql(user_friends)
   end
 
   def self.from_omniauth(auth)
@@ -59,17 +77,17 @@ class User < ActiveRecord::Base
 
 
 
-  # def self.new_with_session(params, session)
-  #   binding.pry
-  #   if session['devise.user_attributes']
-  #     new(session['devise.user_attributes'], without_protection: true) do |user|
-  #       user.attributes = params
-  #       user.valid?
-  #     end
-  #   else
-  #     super
-  #   end
-  # end
+    # def self.new_with_session(params, session)
+    #   binding.pry
+    #   if session['devise.user_attributes']
+    #     new(session['devise.user_attributes'], without_protection: true) do |user|
+    #       user.attributes = params
+    #       user.valid?
+    #     end
+    #   else
+    #     super
+    #   end
+    # end
 
   def password_required?
     super && provider.blank?
@@ -133,6 +151,11 @@ end
    banned_at
   end
 
+  def is_the_owner?(current_user, question)
+    return true if  (current_user.id == question.user.id) || current_user.admin?
+    return false
+  end
+
  def following?(other_user)
     relationships.find_by(followed_id: other_user.id)
   end
@@ -156,15 +179,27 @@ end
 
   def self.people_you_may_know(current_user)
     if current_user
-      q = "Select users.* from users, user_categories where user_categories.user_id = users.id and user_categories.category_id in (
-          select user_categories.category_id from user_categories where user_categories.user_id = #{current_user.id}
-      ) and users.id not in (#{current_user.id}) and users.id not in (
-          SELECT users.id FROM users INNER JOIN relationships ON users.id = relationships.followed_id and relationships.follower_id = #{current_user.id}
-      ) group by users.id limit 5".gsub(/\n|\s{2,}/, "")
-
-      # Finds a user in each category i follow
-      User.find_by_sql(q)
+        q = "Select users.* from users, user_categories where user_categories.user_id = users.id and user_categories.category_id in (
+            select user_categories.category_id from user_categories where user_categories.user_id = #{current_user.id}
+        ) and users.id not in (#{current_user.id}) and users.id not in (
+            SELECT users.id FROM users INNER JOIN relationships ON users.id = relationships.followed_id and relationships.follower_id = #{current_user.id}
+        ) group by users.id limit 5".gsub(/\n|\s{2,}/, "")
+    User.find_by_sql(q)
     end
+  end
+
+  def invite_friends(current_user, current_page)
+    user_friends = friends(current_user).map(&:id).join(', ')
+    q = "SELECT * FROM users WHERE users.id IN (#{user_friends}) AND users.id NOT IN (
+            SELECT page_invites.invitee_id FROM page_invites
+            WHERE page_invites.page_id = #{current_page.id}
+            AND page_invites.inviter_id = #{current_user.id}
+          ) AND users.id <> #{current_user.id}"
+    User.find_by_sql(q)
+  end
+
+  def self.page_inviter(inviter_id)
+    self.find_by_id(inviter_id)
   end
 
   #schema

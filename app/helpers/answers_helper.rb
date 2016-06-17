@@ -14,5 +14,4 @@ module AnswersHelper
       link_to  "<i class='fa fa-thumbs-down'></i>".html_safe, vote_question_path(question.id, value: -1), method: "post", class: 'down-button'
     end
   end
-
 end

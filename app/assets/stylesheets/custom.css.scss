@@ -35,62 +35,101 @@
 /*-----------------------------------------------------------------*/
 /*--- General ---*/
 
-body {
-    font-family: 'Open Sans Light', sans-serif;
-    font-size: 14px;
-    color: #989c9e;
+.panel-default>.panel-heading {
+    color: #333;
+    background-color: #f8f9fa;
+    border-color: #ddd;
 }
 
+.question-box {
+  width: 100%;
+  height: auto;
+  padding: 10px 15px;
+  margin-bottom: -1px;
+  background-color: #fff;
+  border: 1px solid #23527c;
+  box-shadow: 0 0 3px #23527c;
+  .question-details{
+    display: none;
+  }
+  textarea {
+    border-radius: 0px;
+    border: 1px solid #e2e2e6;
+    border-bottom: none;
+  }
+  .panel-footer {
+    background-color: #f8f9fa;
+    border:  1px solid #e2e2e6;
+    a {
+      color: black;
+      font-size: small;
+      text-decoration: none;
+    }
+  }
+
+  .call-count {
+    display: none;
+  }
+}
+
+.expand-it {
+  position: absolute;
+  right: 40px;
+  top: 20px;
+  color: black;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+
+
+.question-label {
+  padding: 5px;
+  h2 {
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 5px;
+  }
+}
+
+.increase-width {
+  width: 19%;
+}
+.increase-width-col-2 {
+  width: 10.55%;
+}
+.sort  a {
+  font-size: 15px;
+  padding-right: 20px;
+  color: black;
+  font-weight: 400;
+}
+.front-avater img {
+    width: 48px;
+    height: 48px;
+}
 
 .index-question {
   padding: 15px 0px !important;
 }
-
+.container-fluid {
+  margin: 10px;
+}
 
 /*-----------------------------------------------------------------*/
 /*--- Footer ---*/
 
-footer {
-    height: 69px;
-    line-height: 69px;
-    color: #363838;
-}
 
-footer .logo {
-    line-height: normal;
-}
-
-
-ul.socialicons li {
-    display: inline-block;
-    list-style: none;
-    font-size: 18px;
-    color:#bdc3c7;
-    margin-left: 15px;
-}
-
-ul.socialicons li a {
-    color:#bdc3c7;
-}
-
-ul.socialicons li a:hover {
-    color:#363838;
-
-}
 
 
 /*-----------------------------------------------------------------*/
 /*--- Header ---*/
 .headernav {
     height: 70px;
-    border-bottom: 1px solid #c9cccd;
 }
 
 
-.content {
-    background-color: #ecf0f1;
-    border-top: solid 1px #e0e4e5;
-}
+
 
 .selecttopic {
     line-height: 69px;
@@ -287,7 +326,11 @@ ul.socialicons li a:hover {
     background-color: #ffffff;
     border-radius: 2px;
     box-shadow: 0 1px 2px #c9cccd;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
+}
+
+.leftside {
+  margin-bottom: 25px;
 }
 
 .sidebarblock h3 {
@@ -324,8 +367,6 @@ ul.cats {
 
 ul.cats li a {
     font-size: 14px;
-    color: #363838;
-    font-family: 'Open Sans Light', sans-serif;
     line-height: 30px;
 }
 
@@ -1920,7 +1961,3 @@ h3 {
 .bg_container {
   margin-top: 100px;
 }
-
-
-
-

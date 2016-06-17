@@ -34,12 +34,12 @@ class CommentsController < ApplicationController
         @parent = @comment.commentable
      respond_to do |format|
      format.html { redirect_to @parent, :view => "comments", :notice => "Thanks for you comment"}
-      format.js {render "create.js.erb"}  
-     end      
+      format.js {render "create.js.erb"}
+     end
       else
         respond_to do |format|
           format.js { render "fail_create.js.erb"}
-       end   
+       end
       end
   end
 
@@ -52,7 +52,7 @@ class CommentsController < ApplicationController
      users = answers.map(&:user).uniq
    end
    users.each do |user|
-     Activity.create!(action: params[:action], trackable: comment, user_id: user.id )
+     Activity.create!(action: params[:action], trackable: comment, user_id: user.id) unless user.id == current_user.id
    end
  end
 
@@ -95,4 +95,3 @@ class CommentsController < ApplicationController
       params.require(:comment).permit(:body, :user_id, :commentable_id, :commentable_type, :user_agent, :user_ip, :referrer)
     end
   end
-

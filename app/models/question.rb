@@ -12,28 +12,36 @@ class Question < ActiveRecord::Base
   friendly_id :name, use: [:slugged, :finders]
 
  #association
+ belongs_to :page
  belongs_to :user
  belongs_to :category
- has_many :alltags
- has_many :answers, :dependent => :destroy
- has_many :favourites, :dependent => :destroy
- has_many :question_votes, :dependent => :destroy
- has_many :comments, :as => :commentable, :dependent => :destroy
+ has_many   :alltags
+ has_many   :answers,                       :dependent => :destroy
+ has_many   :favourites,                    :dependent => :destroy
+ has_many   :question_votes,                :dependent => :destroy
+ has_many   :comments, as:    :commentable, :dependent => :destroy
+ belongs_to :accepted_answer, :class_name => "Answer", :foreign_key => :answer_id
 
  #validation
- validates_presence_of :name, :body, :user_id #:tag_list
- validates_length_of   :name, :within => 5..2000
- validates_length_of   :body, :within => 10...20000
- # validates_length_of   :tag_list, :minimum => 2, :maximum => 8
- validates_uniqueness_of :name, :body
+ validates_presence_of    :name, :body, :user_id #:tag_list
+ validates_length_of      :name, :within => 5..2000
+ #validates_length_of      :body, :within => 10...20000
+ #validates_uniqueness_of  :name, :body
 
   #scope
-  default_scope ->{ order('created_at DESC') }
-  scope :latest, -> {where("questions.created_at DESC")}
-  scope :popular, -> {where('questions.views >= ?', 10).limit(5)}
-  scope :hot, -> {where("answers_count > 10")}
-  scope :unanswered, -> {where("answers_count = ?", 0)}
-  scope :answered, -> {where("answers_count > ?", 0)}
+  default_scope          ->{ order('created_at DESC')}
+  scope :latest,         ->{ where("questions.created_at DESC")}
+  scope :popular,        ->{ where('questions.views >= ? AND questions.questionable_type <> ?', 10, 'Questions').limit(5)}
+  scope :hot,            ->{ where("answers_count > 10")}
+  scope :unanswered,     ->{ where("answers_count = ?", 0)}
+  scope :answered,       ->{ where("answers_count > ?", 0)}
+  scope :page_questions, ->{ where("questionable_type = ?", "question")}
+
+  def self.page_question?(question)
+    return true if question.questionable_type ='question' && question.questionable_type != nil
+    return false
+  end
+
   def self.active
     a = Time.now - 2.days
     current_date = a.to_s(:db)
@@ -71,21 +79,6 @@ class Question < ActiveRecord::Base
           user_id: user.id)
   end
 
-
-  def vote_class
-   self.votes.to_i
-  end
-
- def vote_status
-   case vote_class
-    when 11..30 then 'text-success'
-    when 8..10 then 'text-primary'
-    when 7 then 'text-warning'
-     else
-      'text-danger'
-    end
- end
-
   def favourited?(user)
     Favourite.find_by_user_id_and_question_id(user.id, self).present?
   end
@@ -102,5 +95,10 @@ class Question < ActiveRecord::Base
   def send_slack_message
     SLACK_NOTIFIER.ping("<!channel> New Question from #{self.user.username} :
                  #{self.name} <http://www.onozor.com/questions/#{self.slug}|Click here> to answer", http_options: { open_timeout: 5 }) unless Rails.env == 'test'
+  end
+
+  def self.news_letter_mailer
+    latest_question = self.unanswered
+    NewsLetter.deliver_letter(latest_question).deliver
   end
 end

@@ -1,73 +1,22 @@
-<div class="col-lg-3 col-md-3">
-  <div class="sidebarblock">
-    <h3><i class="fa fa-sort-amount-desc"></i> Sort Questions</h3>
-    <div class="divline"></div>
-    <div class="blocktxt">
-      <ul class="cats">
-         <li><% if action_name == "answered" %><i class="fa fa-long-arrow-left"></i> <% end %> <%= link_to "Answered", answered_questions_path %></li>
-         <div class="divline"></div>
-         <li><% if action_name == "hot" %><i class="fa fa-long-arrow-left"></i> <% end %>  <%= link_to "Hot", hot_questions_path %></li>
-         <div class="divline"></div>
-        <li><% if action_name == "active" %><i class="fa fa-long-arrow-left"></i> <% end %> <%= link_to "Active", active_questions_path %></li>
-        <div class="divline"></div>
-          <li><% if action_name == "unanswered" %><i class="fa fa-long-arrow-left"></i> <% end %> <%= link_to "Unanswered", unanswered_questions_path %></li>
-      </ul>
+<div class="question-box">
+ <div class="question-label">
+   <div class="row">
+    <div class="col-sm-1"><h2><i class="fa fa-flag-checkered"></i></h2></div>
+    <div class="col-sm-9">
+     <h2>Ask a question</h2>
+     <p class="small">usually answered in minutes!</p>
     </div>
   </div>
-
-  <% if current_user %>
-  <% if @people_to_follows %>
-    <div class="sidebarblock">
-      <h3><i class="fa fa-users"></i> People you may Like</h3>
-      <div class="divline"></div>
-      <div class="blocktxt">
-
-          <% @people_to_follows.each do |user| %>
-              <div class="media">
-                <div class="media-left">
-                  <%= link_to (image_tag user.avatar.url(:thumb), class:'img-rounded'), user_path(user)  %>
-                </div>
-                <div class="media-body">
-                  <p class="media-heading"><%= link_to  (user.fullname? ? user.fullname : user.username), user_path(user) %></p>
-                   <div id="follow_form">
-                        <% if current_user.following?(user) %>
-                          <%= form_for(current_user.relationships.find_by(followed_id: user.id), html: { method: :delete }) do |f| %>
-                            <%= f.submit "Unfollow", class: "btn btn-danger btn-sm" %>
-                          <% end %>
-                        <% else %>
-                          <%= form_for(current_user.relationships.build(followed_id: user.id)) do |f| %>
-                            <div><%= f.hidden_field :followed_id %></div>
-                            <%= f.submit "Follow", class: "btn btn-secondry btn-sm" %>
-                          <% end %>
-                        <% end %>
-                   </div>
-                </div>
-              </div>
-        <% end %>
-      </div>
+  <form style='display:block;'>
+    <textarea class="form-control question-field" maxlength="140" rows="4" placeholder="what's up?"></textarea>
+    <textarea class="form-control question-details" rows="4" placeholder="Explain..."></textarea>
+    <a class="fa fa-arrows-alt expand-it" data-no-turbolink='true' data-toggle="modal" data-target="#ask-question"></a>
+    <div class="panel-footer">
+      <a href='#'><i class="fa fa-camera"></i> Photo</a>
+      &nbsp;
+      <a href='#' class="details-link"><i class="fa fa-list-alt"></i> Details</a>
+       &nbsp; <button type="button" class="btn btn-success btn-sm"><span class="call-count">0</span> Submit</button>
     </div>
-  <% end %>
-    <% else %>
-    <div class="sidebarblock">
-      <h3>People you may Like</h3>
-      <div class="divline"></div>
-      <div class="blocktxt">
-
-        <% suggested_people.each do |user| %>
-          <div class="media">
-            <div class="media-left">
-              <%= link_to (image_tag user.avatar.url(:thumb), class:'img-rounded'), user_path(user)  %>
-            </div>
-            <div class="media-body">
-              <p class="media-heading"><%= link_to  (user.fullname? ? user.fullname : user.username), user_path(user) %></p>
-              <p>interested in: <%=  user.categories.map{|a| link_to a.name, a}.join(", ").html_safe %> </p>
-            </div>
-          </div>
-        <% end %>
-      </div>
-    </div>
-    <% end %>
-    <% if controller_name == 'questions' && action_name == 'show'%>
-      <%= render partial: "questions/related_questions"%>
-    <% end %>
+  </form>
+ </div>
 </div>

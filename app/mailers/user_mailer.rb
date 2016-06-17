@@ -1,5 +1,4 @@
 class UserMailer < ActionMailer::Base
-require 'pry'
   default :from => "noreply@onozor.com"
 
   def answer_update(answer)

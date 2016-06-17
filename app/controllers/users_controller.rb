@@ -34,21 +34,21 @@ class UsersController < ApplicationController
   end
 
   def show_user_questions
-    @user_questions = @user.questions.order("created_at ASC").limit(10);
+    @user_questions = @user.questions.order("created_at ASC").limit(10)
     respond_to do |format|
       format.js {render "filter_by_user_questions.js"}
     end
   end
 
   def show_user_answers
-    @user_answers = @user.answers.order("updated_at ASC").limit(10);
+    @user_answers = @user.answers.order("updated_at ASC").limit(10)
     respond_to do |format|
       format.js {render "filter_by_user_answers.js"}
     end
   end
 
   def show_user_followers
-    @users = @user.followers.order("updated_at ASC").limit(20);
+    @users = @user.followers.order("updated_at ASC").limit(20)
     @title = "Followers"
     respond_to do |format|
       format.js {render "filter_by_follows.js"}
@@ -56,7 +56,7 @@ class UsersController < ApplicationController
   end
 
   def show_user_following
-    @user_questions = @user.followed_users.order("updated_at ASC").limit(20);
+    @user_questions = @user.followed_users.order("updated_at ASC").limit(20)
     @title = "Following"
     respond_to do |format|
       format.js {render "filter_by_follows.js"}
@@ -65,7 +65,7 @@ class UsersController < ApplicationController
 
 
   def show_user_favorites
-    @user_favorited_questions = @user.favourites.order("updated_at ASC").limit(20);
+    @user_favorited_questions = @user.favourites.order("updated_at ASC").limit(20)
     respond_to do |format|
       format.js {render "filter_by_favorites.js"}
     end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151202135240) do
+ActiveRecord::Schema.define(version: 20160203115504) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -134,6 +134,79 @@ ActiveRecord::Schema.define(version: 20151202135240) do
     t.datetime "updated_at"
   end
 
+  create_table "impressions", force: true do |t|
+    t.string   "impressionable_type"
+    t.integer  "impressionable_id"
+    t.integer  "user_id"
+    t.string   "controller_name"
+    t.string   "action_name"
+    t.string   "view_name"
+    t.string   "request_hash"
+    t.string   "ip_address"
+    t.string   "session_hash"
+    t.text     "message"
+    t.text     "referrer"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "impressions", ["controller_name", "action_name", "ip_address"], name: "controlleraction_ip_index", using: :btree
+  add_index "impressions", ["controller_name", "action_name", "request_hash"], name: "controlleraction_request_index", using: :btree
+  add_index "impressions", ["controller_name", "action_name", "session_hash"], name: "controlleraction_session_index", using: :btree
+  add_index "impressions", ["impressionable_type", "impressionable_id", "ip_address"], name: "poly_ip_index", using: :btree
+  add_index "impressions", ["impressionable_type", "impressionable_id", "request_hash"], name: "poly_request_index", using: :btree
+  add_index "impressions", ["impressionable_type", "impressionable_id", "session_hash"], name: "poly_session_index", using: :btree
+  add_index "impressions", ["impressionable_type", "message", "impressionable_id"], name: "impressionable_type_message_index", using: :btree
+  add_index "impressions", ["user_id"], name: "index_impressions_on_user_id", using: :btree
+
+  create_table "page_invites", force: true do |t|
+    t.integer  "invitee_id"
+    t.integer  "inviter_id"
+    t.integer  "page_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "page_types", force: true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "icon"
+  end
+
+  create_table "page_users", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "page_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "pages", force: true do |t|
+    t.string   "name"
+    t.text     "address"
+    t.string   "zip_code"
+    t.string   "phone"
+    t.integer  "privacy_id"
+    t.string   "website"
+    t.text     "long_description"
+    t.text     "short_description"
+    t.string   "cover_picture"
+    t.string   "logo"
+    t.integer  "user_id"
+    t.integer  "page_type_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.float    "latitude"
+    t.float    "longitude"
+  end
+
+  create_table "privacies", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "question_votes", force: true do |t|
     t.integer  "user_id"
     t.integer  "question_id"
@@ -146,19 +219,21 @@ ActiveRecord::Schema.define(version: 20151202135240) do
     t.string   "name"
     t.text     "body"
     t.integer  "user_id"
-    t.integer  "views",            default: 0
-    t.integer  "answers_count",    default: 0
+    t.integer  "views",             default: 0
+    t.integer  "answers_count",     default: 0
     t.string   "permalink"
     t.integer  "answer_id"
-    t.boolean  "send_mail",        default: false
+    t.boolean  "send_mail",         default: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "slug"
     t.integer  "category_id"
     t.string   "ancestry"
-    t.integer  "comments_count",   default: 0
-    t.integer  "favourites_count", default: 0
+    t.integer  "comments_count",    default: 0
+    t.integer  "favourites_count",  default: 0
     t.string   "picture"
+    t.integer  "page_id"
+    t.string   "questionable_type"
   end
 
   add_index "questions", ["ancestry"], name: "index_questions_on_ancestry", using: :btree
@@ -174,6 +249,17 @@ ActiveRecord::Schema.define(version: 20151202135240) do
   add_index "relationships", ["followed_id"], name: "index_relationships_on_followed_id", using: :btree
   add_index "relationships", ["follower_id", "followed_id"], name: "index_relationships_on_follower_id_and_followed_id", unique: true, using: :btree
   add_index "relationships", ["follower_id"], name: "index_relationships_on_follower_id", using: :btree
+
+  create_table "reputation_histories", force: true do |t|
+    t.string   "user_id"
+    t.string   "context"
+    t.integer  "points"
+    t.integer  "reputation"
+    t.integer  "vote_id"
+    t.integer  "answer_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "taggings", force: true do |t|
     t.integer  "tag_id"
@@ -220,7 +306,6 @@ ActiveRecord::Schema.define(version: 20151202135240) do
     t.integer  "views",                  default: 0
     t.datetime "last_requested_at"
     t.boolean  "admin"
-    t.integer  "reputation"
     t.string   "slug"
     t.datetime "banned_at"
     t.string   "first_name"
@@ -235,6 +320,7 @@ ActiveRecord::Schema.define(version: 20151202135240) do
     t.string   "provider"
     t.string   "uid"
     t.integer  "category_id"
+    t.integer  "reputation",             default: 0
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
