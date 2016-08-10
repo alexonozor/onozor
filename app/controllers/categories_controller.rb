@@ -9,7 +9,11 @@ class CategoriesController < ApplicationController
   # GET /categories/1
   # GET /categories/1.json
   def show
-   @question =  @category.questions
+   @questions =  @category.questions
+   respond_to do |format|
+     format.xml
+     format.js { render 'question_sort.js.erb' }
+   end
   end
 
   # GET /categories/new

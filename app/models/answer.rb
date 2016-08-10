@@ -5,7 +5,6 @@ class Answer < ActiveRecord::Base
   has_many :answer_votes
   has_many :comments, :as => :commentable, :dependent => :destroy
   has_many :activities,  as: :notifier, :foreign_key => 'receiver_id'
-  has_paper_trail
 
   #validation
   validates_uniqueness_of :body, { scope: :question_id }

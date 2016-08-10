@@ -1,13 +1,31 @@
-<% for user in @users %>
-  <div class="col-md-3 user_outer">
-    <div class="user_middle">
-      <div class="user_inner">
-        <div class="litle-profile"><%=image_tag user.avatar.url(:thumb) %></div>
-      </div>
-      <div class="gen-content">
-        <p><%=link_to user.username, user %></p>
-        <p><small><%= user.intrest %></small></p>
+<div class="ui four column grid">
+  <% for user in @users %>
+  <div class="column">
+    <div class="ui link cards">
+      <div class="card">
+        <div class="image">
+          <%=image_tag user.avatar.url(:thumb) %>
+        </div>
+        <div class="content">
+          <div class="header"><%= user.fullname %></div>
+          <div class="meta">
+            <a>Friends</a>
+          </div>
+          <div class="description">
+            Matthew is an interior designer living in New York.
+          </div>
+        </div>
+        <div class="extra content">
+          <span class="right floated">
+            Joined in 2013
+          </span>
+          <span>
+            <i class="user icon"></i>
+            75 Friends
+          </span>
+        </div>
       </div>
     </div>
   </div>
-<% end if @users %>
+  <% end if @users %>
+</div>

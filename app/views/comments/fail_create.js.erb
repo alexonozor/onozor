@@ -1,1 +1,1 @@
-$.toaster({ priority : 'warning', message : "<%= @comment.errors.full_messages.to_sentence.html_safe %>"});
+$('.error-message').show().text("<%= @comment.errors.full_messages.to_sentence.html_safe %>");

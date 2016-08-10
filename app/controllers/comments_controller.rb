@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
+
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
-  respond_to :html, :xml, :json, :js
   # GET /comments
   # GET /comments.json
   def index
@@ -15,12 +15,15 @@ class CommentsController < ApplicationController
   # GET /comments/new
   def new
     @comment = Comment.new(comment_params)
+    respond_to do |format|
+      format.js { render layout: false }
+    end
   end
 
   # GET /comments/1/edit
   def edit
    respond_to do |format|
-     format.js
+     format.js { render layout: false }
    end
   end
 
@@ -34,11 +37,12 @@ class CommentsController < ApplicationController
         @parent = @comment.commentable
      respond_to do |format|
      format.html { redirect_to @parent, :view => "comments", :notice => "Thanks for you comment"}
-      format.js {render "create.js.erb"}
+      format.js {render "create.js.erb",  layout: false }
      end
       else
+        @parent = @comment.commentable
         respond_to do |format|
-          format.js { render "fail_create.js.erb"}
+          format.js { render "fail_create.js.erb", layout: false }
        end
       end
   end

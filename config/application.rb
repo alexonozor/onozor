@@ -10,8 +10,12 @@ module NairaOverflow
   class Application < Rails::Application
 
     config.to_prepare do
-      Devise::SessionsController.layout proc{ |controller| action_name == 'new' ? "devise"   : "application" }
+      Devise::SessionsController.layout proc { |controller| action_name == 'new' ? "devise"   : "layouts" }
     end
+
+    config.action_view.field_error_proc = Proc.new { |html_tag, instance|
+      html_tag
+    }
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers

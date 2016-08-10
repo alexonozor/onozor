@@ -13,17 +13,203 @@
  */
 
 
-
-.alex {
+ html.turbolinks-progress-bar::before {
+   background-color: red !important;
+   height: 5px !important;
+ }
+/*.alex {
     width: 100%;
     height: 100%;
     background: url('http://forbetterweb.com/html/hybrid/1.4/img/header.jpg');
+}*/
+
+
+.ui.fixed.menu+.ui.grid {
+    padding-top: 10rem;
+}
+
+.top-header {
+    padding: 40px 0;
+    margin-top: 50px;
+    background: linear-gradient( rgba(33, 29, 29, 0.55), rgba(4, 2, 2, 0.62) ), url('header.jpg') no-repeat;
+    background-size: cover;
+    height: 500px;
+    color: #fff;
+}
+
+.padding-settings {
+  padding-top: 13%;
+}
+
+.top-header h1 {
+  font-size: 39px;
+  font-weight: 700;
+  line-height: normal;
+  color: #fff;
+}
+
+.top-header h3 {
+  color: #fff !important;
+}
+
+body {
+  background: #eceff1 !important;
 }
 
 
+.done {
+  text-decoration: line-through !important;
+}
+
+.read-text, .answer p  {
+  font-size: 17px;
+  color: #455A64;
+}
+
+.space-level-0 {
+  margin-top: 3% !important;
+}
+
+.space-level-1 {
+  margin-top: 15% !important;
+}
+
+.space-level-2 {
+  margin-top: 20% !important;
+}
+
+.space-level-3 {
+  margin-top: 30% !important;
+}
 
 
+.commnet-form {
+  height: 4em !important;
+}
+
+.you-may-like a {
+  margin-top: 15px;
+  font-size: 17px;
+  color: #495D41 !important;
+}
 
 
+.side-label {
+    margin-bottom: -5px;
+    font-size: larger;
+    font-weight: 800;
+}
+
+.align-logo {
+  padding: 5px 0px;
+}
+
+.notification {
+  color: #455A64;
+}
+
+.notification:hover {
+  color: #455A64;
+}
+
+.notification-label {
+  padding: 15px;
+  border-bottom: 1px solid #ccc;
+  color: #455A64;
+}
+
+.notifications {
+  padding: 15px;
+  border-bottom: 1px solid #ccc;
+  /*margin-bottom: 10px;*/
+  border-radius: 0px !important;
+}
+
+.notifications a {
+  font-weight: 400;
+  color: #455A64;
+}
 
 
+.notifications:last-child {
+  border-bottom: 0px;
+}
+.unseen {
+  background: rgba(33, 133, 208, 0.09);
+}
+
+.pull-left {
+  float: left;
+  text-align: left;
+}
+
+.pull-right {
+  float: right;
+  text-align: right;
+}
+
+#timeline {
+  height: 50vh;
+  width: 100%;
+  background: #455A64;
+}
+
+.timeline-details {
+  margin-top: -136.5px;
+  padding-top: 32px;
+  padding-bottom: 32px;
+  border-bottom: 1px solid #cfd8dc;
+  background: #fff;
+  position: relative;
+}
+
+.absolute {
+  position: absolute;
+}
+
+.profile-picture {
+  top: -70px;
+  left: 100px;
+  position: absolute !important;
+  border: 4px solid #ECEFF1;
+  background: #ECEFF1;
+  width: 200px !important;
+}
+
+.profile-details {
+  margin-left: 10px;
+  color: #455A64;
+}
+
+.profile-name {
+  font-size: 38px;
+  color: #455A64;
+}
+
+.tagline {
+  line-height: 0;
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.profile-social {
+
+}
+
+.following {
+  margin-top: 30px;
+}
+
+.following a {
+  color: #455A64;
+  padding-left: 10px;
+  font-weight: bold;
+}
+
+
+.notification-image {
+  width: 30px;
+  height: 10%;
+  margin-right: 20px;
+  float: left;
+}

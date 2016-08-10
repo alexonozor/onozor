@@ -1,47 +1,90 @@
 
   <!-- POST -->
-  <div class="post">
-    <%= simple_form_for @question, remote: true,  html:{class:"form newtopic" } do |f| %>
-      <div class="topwrap">
-        <div class="posttext">
 
-          <div>
-            <div class="errors-message">this is wrong \!!!</div>
-            <%= f.input :name, placeholder:"Enter Topic Title", input_html: { class: 'form-control' }, label: false  %>
-          </div>
-            <div>
-             <%= f.association :category, collection: current_user.categories.pluck(:name, :id), input_html: {class: 'form-control'}, label: false, prompt: "Select your Category" %>
+  <div class="ui stackable container one column grid left-menu">
+      <div class="ui sixteen card wide column">
+        <%= simple_form_for @question,  html:{class:"form newtopic" } do |f| %>
+       <% if @question.errors.any? %>
+
+        <div class="ui error message">
+            <i class="close icon"></i>
+            <div class="header">
+              There was some errors with your submission
             </div>
-          <div>
-            <%= f.input :body, input_html: {class: 'form-control', id: 'desc'}, label: false, placeholder:"Description" %>
+            <ul class="list">
+              <% @question.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+        <div class="ui form">
+          <div class="field">
+            <label>Enter your question</label>
+            <%= f.input :name, placeholder:"What is your question?", input_html: { class: 'huge' }, label: false  %>
+          </div>
+
+          <h2 class="ui  header"></h2>
+
+          <div class="field">
+            <label>Describe your question</label>
+            <%= f.input :body, input_html: {class: 'form-control', id: 'mytextarea'}, label: false, placeholder:"Description your question, insert code block, links and more.. [Markdown Supported]" %>
+          </div>
+
+            <div class="field">
+              <%= f.association :category, collection: Category.all.pluck(:name, :id), input_html: {class: 'ui fluid dropdown'}, label: 'Select Category', prompt: "Select your Category" %>
+            </div>
+
+          <h2 class="ui  header"></h2>
+          <!-- <div class="field">
+            <label>Tag your question</label>
+            <div class="ui fluid multiple search selection dropdown">
+              <input type="hidden" name="receipt">
+              <i class="dropdown icon"></i>
+              <div class="default text">Select tags</div>
+              <div class="menu">
+                <div class="item" data-value="jenny" data-text="Jenny">
+                  <img class="ui mini avatar image" src="/images/avatar/small/jenny.jpg">
+                  Jenny Hess
+                </div>
+                <div class="item" data-value="elliot" data-text="Elliot">
+                  <img class="ui mini avatar image" src="/images/avatar/small/elliot.jpg">
+                  Elliot Fu
+                </div>
+                <div class="item" data-value="stevie" data-text="Stevie">
+                  <img class="ui mini avatar image" src="/images/avatar/small/stevie.jpg">
+                  Stevie Feliciano
+                </div>
+                <div class="item" data-value="christian" data-text="Christian">
+                  <img class="ui mini avatar image" src="/images/avatar/small/christian.jpg">
+                  Christian
+                </div>
+                <div class="item" data-value="matt" data-text="Matt">
+                  <img class="ui mini avatar image" src="/images/avatar/small/matt.jpg">
+                  Matt
+                </div>
+                <div class="item" data-value="justen" data-text="Justen">
+                  <img class="ui mini avatar image" src="/images/avatar/small/justen.jpg">
+                  Justen Kitsune
+                </div>
+              </div>
+            </div>
+          </div> -->
+
+    <h2 class="ui  header"></h2>
+         <div class="ui segment">
+          <div class="field">
+            <div class="ui toggle checkbox">
+              <input type="checkbox" name="question[send_mail]"  tabindex="0" class="hidden">
+              <label>Do you want to receive mail?</label>
+            </div>
           </div>
         </div>
-        <div class="clearfix"></div>
+        <button class="ui button green huge"><i class="  military icon"></i>Submit</button>
+        </div>
+        <% end %>
       </div>
-      <div class="postinfobot">
-
-        <div class="notechbox pull-left">
-          <%= f.input :send_mail,  input_html: {class: 'form-control', id: 'desc', style: 'margin-bottom: 0px'}, label: false %>
-        </div>
-
-        <div class="pull-left">
-          <label for="note"> Email me when some one post a reply</label>
-        </div>
-
-        <div class="pull-right postreply">
-          <div class="pull-left smile"><a href="#"><i class="fa fa-smile-o"></i></a></div>
-          <div class="pull-left"><button type="submit" class="btn btn-primary submit-button disabled">Post</button></div>
-          <div class="clearfix"></div>
-        </div>
-
-
-        <div class="clearfix"></div>
-      </div>
-    <% end %>
-  </div><!-- POST -->
-
-  <div class="row similarposts">
-    <div class="col-lg-10"><i class="fa fa-info-circle"></i> <p>Similar Posts according to your <a href="/">Topic Title</a>.</p></div>
-    <div class="col-lg-2 loading"><i class="fa fa-spinner fa-pulse"></i></div>
-
-  </div>
+    </div>
+    <!-- <script type="text/javascript">
+      var simplemde = new SimpleMDE({toolbar: ["bold", "italic", "heading", "|", "quote", "code", "image", "link", "|", "unordered-list", "ordered-list", "|", "preview"], autosave: { enabled: true, uniqueId: true }});
+    </script> -->

@@ -1,9 +1,9 @@
 class QuestionsController < ApplicationController
   before_action :set_question, only: [:show, :edit, :update, :destroy, :accepted_answer, :vote, :undo_link]
   before_action :authenticate_user!, only: [:edit, :new, :create, :vote ]
-  respond_to :html, :xml, :json, :js, :mobile
+  layout "display", only: [:show, :new, :create]
 
-
+ respond_to :html, :xml, :json, :js, :mobile
 
   require 'will_paginate/array'
   # GET /questions
@@ -45,7 +45,7 @@ class QuestionsController < ApplicationController
      respond_to do |format|
         format.xml
         format.html { render :index_for_latest }
-        format.js { render 'index.js.erb' }
+        format.js { render 'question_sort.js.erb' }
       end
   end
 
@@ -54,7 +54,7 @@ class QuestionsController < ApplicationController
     respond_to do |format|
         format.xml
         format.html { render :index_for_hot }
-        format.js { render 'index.js.erb' }
+        format.js { render 'question_sort.js.erb' }
       end
   end
 
@@ -63,7 +63,7 @@ class QuestionsController < ApplicationController
     respond_to do |format|
         format.xml
         format.html { render :index_for_active }
-        format.js { render 'index.js.erb' }
+        format.js { render 'question_sort.js.erb' }
       end
   end
 
@@ -72,7 +72,7 @@ class QuestionsController < ApplicationController
     respond_to do |format|
         format.xml
         format.html { render :index_for_unanswered }
-        format.js { render 'index.js.erb' }
+        format.js { render 'question_sort.js.erb' }
       end
   end
 
@@ -81,7 +81,7 @@ class QuestionsController < ApplicationController
     respond_to do |format|
         format.xml
         format.html { render :index_for_answered }
-        format.js { render 'index.js.erb' }
+        format.js { render 'question_sort.js.erb' }
       end
   end
 
@@ -91,6 +91,12 @@ class QuestionsController < ApplicationController
     @question.update_views! unless @question.user_id == current_user.id  if current_user.present?
     @answer = Answer.new(:question => @question, :user => current_user)
     @comment = Comment.new(:commentable_type => @question.class.name, :commentable_id => @question.id, :user => current_user )
+    if params[:notification_id]
+      notification = Activity.find(params[:notification_id])
+      if notification
+        notification.update(seen: true) if notification.seen == false
+      end
+    end
     respond_to do |format|
       format.mobile {render layout: "application"}
     end
@@ -186,6 +192,7 @@ class QuestionsController < ApplicationController
     def set_question
       @question = Question.friendly.find(params[:id])
     end
+
 
 
 

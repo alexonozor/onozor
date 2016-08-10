@@ -1,0 +1,27 @@
+<div class="three wide column">
+  <div class="ui secondary fluid vertical pointing menu">
+   <% if current_user %>
+     <div class="ui fluid category  search">
+      <div class="ui left icon input" style="margin-bottom: 15px;">
+        <input class="prompt" type="text" placeholder="Add Category" style="width:100%; border: none; border-bottom: 1px solid #ccc !important; border-radius: 0px;">
+        <i class="add plus icon"></i>
+      </div>
+     </div>
+    <span class="user_category">
+      <% current_user.categories.take(6).each do |category|  %>
+          <%= link_to category.name, category, class: 'item', remote: true %>
+      <% end %>
+     </span>
+     <% else %>
+     <span class="user_category">
+       <% Category.take(6).each do |category|  %>
+           <%= link_to category.name, category, class: 'item', remote: true %>
+       <% end %>
+      </span>
+     <% end %>
+  </div>
+  <% unless current_user %>
+    <p style="font-size: 1.1em">Don't stay behind. Hang out with smart developers!</p>
+    <button class="ui primary button call-modal"> Sign up </button>
+  <% end %>
+</div>

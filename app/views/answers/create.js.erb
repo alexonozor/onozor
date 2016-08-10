@@ -1,4 +1,22 @@
+simplemde.value("");
 <%# publish_to "/questions/#{@answer.question.slug}" do %>
-  $('.post_form').val(" ");
+var showNotification = function() {
+  $('.ui.dropdown').dropdown();
+     $('html, body').animate({
+        scrollTop: $('#answer_<%= @answer.id %>').offset().top
+     }, 2000)
+     $('#add_notifications_<%= @answer.id %>').addClass('notifiaction-light');
+};
+
+<% if @answer.question.answers.count == 1 %>
+    d = document.createElement('div');
+    d.setAttribute("id", "first-answer");
+    $(d).insertAfter('#new_answer');
+    $("<%= escape_javascript(render(@answer)) %>").insertAfter('#first-answer');
+    showNotification();
+<% else %>
   $('.answer-post').append("<%= escape_javascript(render(@answer)) %>");
+  showNotification()
+<% end %>
+
 <%# end %>

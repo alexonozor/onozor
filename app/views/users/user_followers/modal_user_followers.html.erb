@@ -1,0 +1,28 @@
+   <div class="ui cards">
+     <%  @people_to_follows.each do |user| %>
+     <div class="card">
+       <div class="content">
+         <%= image_tag user.avatar.url(:thumb), class: 'right floated mini ui image'  %>
+         <div class="header">
+           <%= link_to (user.fullname.titleize), user_path(user) %>
+         </div>
+         <div class="meta">
+           Also interested in <%=  user.categories.map{|a| a.name }.take(3).join(", ").html_safe %>
+         </div>
+         <div class="description">
+           <%=  user.bio %>
+         </div>
+       </div>
+       <div class="extra content">
+     <% unless current_user.following?(user) %>
+       <%= form_for(current_user.relationships.build(followed_id: user.id), remote: true) do |f| %>
+         <%= f.hidden_field :followed_id %>
+         <div class="ui fluid one buttons">
+            <button class="ui fluid toggle button">Follow</button>
+         </div>
+         <% end %>
+       <% end %>
+       </div>
+     </div>
+    <% end %>
+   </div>

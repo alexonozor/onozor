@@ -15,12 +15,12 @@ class Page < ActiveRecord::Base
   has_many   :impressions, :as=>:impressionable
   has_many   :page_invites
   #validation
-  validates_presence_of :name, :zip_code, :privacy_id, :website, :address, :short_description
+  # validates_presence_of :name, :zip_code, :privacy_id, :website, :address, :short_description
 
   def has_current_user_liked_this_page?(user)
     self.users.include?(user)
   end
-  
+
   def total_impression
     self.impressionist_count(:filter=>:ip_address)
   end
@@ -28,15 +28,15 @@ class Page < ActiveRecord::Base
   def view_count_yesterday
     impressions.where("created_at >= ? AND created_at < ?", 1.day.ago.beginning_of_day, 1.day.ago.end_of_day).size
   end
-   
+
   def view_count_this_week
     impressions.where("created_at >= ? AND created_at < ?",  Time.now.beginning_of_week, Time.now.end_of_week).size
-  end 
+  end
 
   def view_count_for_the_month
     impressions.where("created_at >= ? AND created_at < ?",  Time.now.beginning_of_month, Time.now.end_of_month).size
   end
-  
+
   def check_if_profile_is_complete?
     if self.cover_picture.present? && self.cover_picture.present?
       self.profile_complete = true
@@ -50,7 +50,7 @@ class Page < ActiveRecord::Base
      self.timeline_height = 315
    else
     self.timeline_height = 200
-   end  
+   end
   end
 
   def invite_friends_to_page(page, current_user)

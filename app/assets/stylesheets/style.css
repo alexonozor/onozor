@@ -1,38 +1,375 @@
-/*-----------------------------------------------------------------------------
+a {
+    background: 0 0;
+    color: #262626;
+    text-decoration: none;
+}
 
-KENBURNER RESPONSIVE BASIC STYLES OF HTML DOCUMENT
+a:hover {
+  color: #0AB3C1;
+}
 
-Screen Stylesheet
+.ui.fixed.menu+.ui.grid {
+    padding-top: 10rem;
+}
 
-version:   	1.0
-date:      	07/27/11
-author:		themepunch
-email:     	support@themepunch.com
-website:   	http://www.themepunch.com
------------------------------------------------------------------------------*/
+.top-header {
+    padding: 40px 0;
+    margin-top: 50px;
+    background: linear-gradient( rgba(33, 29, 29, 0.55), rgba(4, 2, 2, 0.62) ), url('header.jpg') no-repeat;
+    background-size: cover;
+    height: 500px;
+    color: #fff;
+}
+
+.padding-settings {
+  padding-top: 13%;
+}
+
+.top-header h1 {
+  font-size: 39px;
+  font-weight: 700;
+  line-height: normal;
+  color: #fff;
+}
+
+.top-header h3 {
+  color: #fff !important;
+}
+
+body {
+  background: #eceff1;
+}
 
 
+.done {
+  text-decoration: line-through !important;
+}
 
-.boxedcontainer		{	max-width: 1170px; margin:auto; padding:0px 30px;}
+.read-text, .answer p  {
+  font-size: 17px;
+  color: #455A64;
+}
 
-/*********************************************
-	-	SETTINGS FOR BANNER CONTAINERS	-
-**********************************************/
+.space-level {
+  margin-top: 1% !important;
+}
 
-.tp-banner-container{
-	width:100%;
-	position:relative;
-	padding:0;
+.space-level-0 {
+  margin-top: 3% !important;
+}
+
+.space-level-1 {
+  margin-top: 15% !important;
+}
+
+.space-level-2 {
+  margin-top: 20% !important;
+}
+
+.space-level-3 {
+  margin-top: 30% !important;
+}
+
+
+.commnet-form {
+  height: 4em !important;
+}
+
+.you-may-like a {
+  margin-top: 15px;
+  font-size: 17px;
+  color: #495D41 !important;
+}
+
+
+.side-label {
+    margin-bottom: -5px;
+    font-size: larger;
+    font-weight: 800;
+}
+
+.align-logo {
+  padding: 5px 0px;
+}
+
+.notification {
+  color: #455A64;
+}
+
+.notification:hover {
+  color: #455A64;
+}
+
+.notification-label {
+  padding: 15px;
+  border-bottom: 1px solid #ccc;
+  color: #455A64;
+}
+
+.notifications {
+  padding: 15px;
+  border-bottom: 1px solid #ccc;
+  /*margin-bottom: 10px;*/
+  border-radius: 0px !important;
+}
+
+.notifications a {
+  font-weight: 400;
+  color: #455A64;
+}
+
+
+.notifications:last-child {
+  border-bottom: 0px;
+}
+.unseen {
+  background: rgba(33, 133, 208, 0.09);
+}
+
+.pull-left {
+  float: left;
+  text-align: left;
+}
+
+.pull-right {
+  float: right;
+  text-align: right;
+}
+
+#timeline {
+  height: 50vh;
+  width: 100%;
+  background: #455A64;
+}
+
+.timeline-details {
+  margin-top: -136.5px;
+  padding-top: 32px;
+  padding-bottom: 32px;
+  border-bottom: 1px solid #cfd8dc;
+  background: #fff;
+  position: relative;
+}
+
+.absolute {
+  position: absolute;
+}
+
+.profile-picture {
+  top: -70px;
+  left: 100px;
+  position: absolute !important;
+  border: 4px solid #ECEFF1;
+  background: #ECEFF1;
+  width: 200px !important;
+}
+
+.profile-details {
+  margin-left: 10px;
+  color: #455A64;
+}
+
+.profile-name {
+  font-size: 38px;
+  color: #455A64;
+}
+
+.tagline {
+  line-height: 0;
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.profile-social {
 
 }
 
-.tp-banner{
-	width:100%;
-	position:relative;
+.following {
+  margin-top: 30px;
 }
 
-.tp-banner-fullscreen-container {
-		width:100%;
-		position:relative;
-		padding:0;
+.following a {
+  color: #455A64;
+  padding-left: 10px;
+  font-weight: bold;
+}
+
+
+.ui.secondary.pointing.menu {
+    background: #fff;
+    margin-left: 0;
+    margin-right: 0;
+    border-bottom: 2px solid rgba(34,36,38,.15);
+}
+
+.set-category-form {
+  width: 100%;
+}
+
+.question-link a {
+  color: black !important;
+  font-size: 1.2em;
+  line-height: 1em;
+}
+
+.question-description {
+  color: #757575 !important;
+  text-align: justify;
+}
+
+.icon-size {
+  font-size: 1.5em !important;
+  color: rgb(224, 225, 226);
+  outline: 0px;
+  cursor: pointer;
+}
+
+
+.reply {
+  margin: 30px 0px;
+}
+
+.author {
+  text-transform: capitalize;
+}
+
+#question-submit-button {
+  margin-bottom: 20px;
+  clear: both;
+  position: absolute;
+  bottom: -19px;
+  right: -5px;
+  border-radius: 0px;
+  border-left: none;
+}
+
+.answer-settings, #first-answer {
+  margin-bottom: 30px;
+}
+
+.ui.comments {
+    margin: 1.5em 0;
+    max-width: 100%;
+}
+
+.notifiaction-light {
+  -webkit-animation-name: example !important; /* Chrome, Safari, Opera */
+  -webkit-animation-duration: 4s !important; /* Chrome, Safari, Opera */
+  animation-name: example !important;
+  animation-duration: 4s !important;
+}
+
+/* Chrome, Safari, Opera */
+@-webkit-keyframes example {
+  from {background-color: red;}
+  to {background-color: yellow;}
+}
+
+/* Standard syntax */
+@keyframes example {
+  from {background-color: red;}
+  to {background-color: yellow;}
+}
+
+.vote-count {
+  font-weight: bolder !important;
+  font-size: large;
+  color: black;
+  margin: 0px 10px;
+}
+
+#comment_link {
+  margin-left: 20px;
+}
+
+.user_details {
+  font-weight: normal;
+  color: #9E9E9E;
+  font-size: smaller;
+}
+
+.share-name {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.content-margin {
+  margin: 20px 0px !important;
+}
+
+
+.loader-margin {
+  margin-top: 20px  !important;
+  margin-bottom: 20px  !important;
+}
+
+
+.result .description {
+  display: none !important;
+}
+
+
+.ui.search>.results .result .image {
+    float: right;
+    overflow: hidden;
+    background: 0 0;
+    width: 30px;
+    height: 2em;
+    border-radius: .25em;
+}
+
+.error-message, .error-message-answer {
+  display: none;
+}
+
+.popup {
+  color: #FF0000 !important;
+}
+
+#follow_form > form {
+  display: inline !important;
+}
+
+pre {
+  display: block;
+  padding: 7.5px;
+  margin: 0 0 10px;
+  font-size: 15px;
+  line-height: 1.42857143;
+  color: #333;
+  word-break: break-all;
+  word-wrap: break-word;
+  background-color: #f5f5f5;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  max-width: 100%;
+  overflow: auto;
+}
+
+.turbolinks-progress-bar {
+  height: 5px;
+  background-color: green;
+}
+
+.badge {
+    position: absolute;
+    right: 13px;
+    padding: 5px;
+    background: #b30000;
+    border-radius: 20px;
+    color: #fff;
+}
+
+.display {
+  display: block !important;
+}
+
+.ui.small.select-friends {
+  width: 640px;
+  margin: 0 0 0 -360px;
+}
+
+
+body.pushable>.pusher {
+  background: #eceff1;
 }

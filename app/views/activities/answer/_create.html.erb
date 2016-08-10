@@ -1,10 +1,8 @@
 <% if activity.trackable.present? %>
     <%= link_to question_path(activity.trackable.question, notification_id: activity.id ) do %>
-        <p>
-          <strong><%=  activity.trackable.user.fullname.humanize  %></strong> has an answer to your question <%=  activity.trackable.question.name %><br />
-          <i class="fa fa-exclamation-circle"></i> <small><%= time_ago_in_words activity.created_at, class:'small' %> ago</small>
-        </p>
+          <strong><%= image_tag  activity.trackable.user.avatar.url(:thumb), class: 'notification-image'  %><%=  activity.trackable.user.fullname.humanize  %></strong> has an answer to your question.
+          <span class="ui pull-right"><%= time_ago_in_words activity.created_at, class:'small' %></span>
     <% end %>
 <% else %>
-   <li>Which as since been remove</li>
+   Which as since been remove
 <% end %>

@@ -1,17 +1,17 @@
 module AnswersHelper
-  def allow_ajax_only_if_user_is_signin_for_upvote(question)
+  def allow_ajax_only_if_user_is_signin_for_upvote(answer)
     if current_user.present?
-      link_to  "<i class='fa fa-thumbs-up'></i>".html_safe, vote_question_path(question.id, value: 1), method: "post", remote: true, class: 'up-button'
+      link_to  "<i class='chevron up  icon'></i>".html_safe, vote_answer_path(answer.id, value: 1), method: "post", remote: true, class: 'ui basic icon button vote'
     else
-      link_to  "<i class='fa fa-thumbs-up'></i>".html_safe, vote_question_path(question.id, value: 1), method: "post", class: 'up-button'
+      link_to  "<i class='chevron up  icon'></i>".html_safe, vote_answer_path(answer.id, value: 1), method: "post", remote: true, class: 'ui basic call-modal icon button'
     end
   end
 
-  def allow_ajax_only_if_user_is_signin_for_downvote(question)
+  def allow_ajax_only_if_user_is_signin_for_downvote(answer)
     if current_user.present?
-      link_to  "<i class='fa fa-thumbs-down'></i>".html_safe, vote_question_path(question.id, value: -1), method: "post", remote: true, class: 'down-button'
+      link_to  "<i class='chevron down  icon'></i>".html_safe, vote_answer_path(answer.id, value: -1), method: "post", remote: true, class: 'ui basic icon button vote'
     else
-      link_to  "<i class='fa fa-thumbs-down'></i>".html_safe, vote_question_path(question.id, value: -1), method: "post", class: 'down-button'
+      link_to  "<i class='chevron down  icon'></i>".html_safe, vote_answer_path(answer.id, value: -1), method: "post", remote: true, class: 'ui call-modal basic icon button'
     end
   end
 end

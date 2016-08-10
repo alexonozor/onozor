@@ -1,6 +1,6 @@
 class AnswersController < ApplicationController
-  before_action :set_answer, only: [:show, :edit, :update, :destroy, :undo_link]
-   respond_to :html, :xml, :mobile
+  before_action :set_answer, only: [:show, :edit, :update, :destroy]
+  respond_to :html, :json, :js, :mobile
   # GET /answers
   # GET /answers.json
   def index
@@ -31,7 +31,7 @@ class AnswersController < ApplicationController
     respond_to do |format|
       format.html { redirect_to @answer.question, :view => "answer-body", :notice => "Thanks for you Answer"}
       format.mobile { redirect_to @answer.question, :notice => "Thanks for you Answer"}
-      format.js
+      format.js { render layout: false }
      end
       else
     respond_to do |format|
@@ -44,8 +44,8 @@ class AnswersController < ApplicationController
 
   def send_notification(answer)
     answers = Answer.where(question_id: answer.question.id)
-    users = answers.map(&:user).uniq << answer.question.user
-    users.each do |user|
+    users = answers.map(&:user) << answer.question.user
+    users.uniq.each do |user|
       Activity.create!(action: params[:action], trackable: answer, user_id: user.id ) unless answer.user.id == user.id
     end
   end
@@ -75,12 +75,12 @@ class AnswersController < ApplicationController
     if @vote.save
      respond_to do |format|
       format.html {redirect_to :back, notice: "Thank you for voting."}
-      format.js
+      format.js {render layout: false}
      end
     else
      respond_to do |format|
       format.html { redirect_to :back, alert: "Unable to vote, perhaps you already did."}
-      format.js { render 'fail_vote.js.erb' }
+      format.js { render 'fail_vote.js.erb', layout: false }
       end
     end
   end

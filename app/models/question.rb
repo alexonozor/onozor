@@ -5,7 +5,6 @@ class Question < ActiveRecord::Base
   acts_as_tagger
   before_validation :set_permalink
   after_create :send_slack_message if Rails.env.production?
-  #has_paper_trail
   has_ancestry
 
  extend FriendlyId
@@ -23,7 +22,7 @@ class Question < ActiveRecord::Base
  belongs_to :accepted_answer, :class_name => "Answer", :foreign_key => :answer_id
 
  #validation
- validates_presence_of    :name, :body, :user_id #:tag_list
+ validates_presence_of    :name, :user_id #:tag_list
  validates_length_of      :name, :within => 5..2000
  #validates_length_of      :body, :within => 10...20000
  #validates_uniqueness_of  :name, :body

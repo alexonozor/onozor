@@ -19,7 +19,9 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'turbolinks'
+gem 'turbolinks', '~> 2.5.3'
+gem 'jquery-turbolinks'
+
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 #gem 'jbuilder', '~> 1.2'
@@ -44,7 +46,6 @@ gem 'remotipart'
 gem 'ancestry'
 gem 'acts-as-taggable-on', '~> 3.4'
 gem 'cancancan'
-gem 'paper_trail'
 gem 'will_paginate'
 gem 'redcarpet'
 gem 'albino'
@@ -58,6 +59,7 @@ gem 'redis'
 gem 'omniauth-twitter'
 gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2', '~> 0.2.10'
+gem 'omniauth-linkedin-oauth2'
 gem 'judge'
 gem 'public_activity'
 gem 'private_pub'
@@ -69,6 +71,7 @@ gem 'geocoder'
 gem 'whenever', :require => false
 
 
+
 group :development, :test do
   # Use sqlite3 as the database for Active Record
   gem 'better_errors'
@@ -78,14 +81,11 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.0'
   gem 'factory_girl_rails', "~> 4.0"
   gem "database_cleaner"
-  gem 'faker'  
+  gem 'faker'
   gem 'pry'
   gem 'capistrano',         require: false
   gem 'capistrano-rvm',     require: false
   gem 'capistrano-rails',   require: false
   gem 'capistrano-bundler', require: false
-  gem 'capistrano3-puma',   require: false  
+  gem 'capistrano3-puma',   require: false
 end
-
-gem 'puma', '~> 2.14.0'
-

@@ -1,19 +1,18 @@
-<%= content_tag_for(:blockquote, comment)  do %>
-    <%= raw (comment.body) %>
-    <span class="original">Posted by - <%=link_to comment.user.username, user_path(comment.user)%> ,
-    on: <%= distance_of_time_in_words_to_now comment.created_at(),
-                                             :include_seconds => true %> ago</span>
-    <%= link_to(("Edit"),
-                edit_comment_path(comment),
-                :remote => true,
-        ) if user_signed_in? && comment.user == current_user %>
-    &nbsp
-    <%= link_to((" <i class='fa fa-trash'></i> Delete".html_safe),
-                comment_path(comment),
-                method: :delete,
-                :remote => true,
-                class: 'text-danger',
-        ) if user_signed_in? && comment.user == current_user %>
+<%= div_for(comment, class: "comment") do %>
+    <%= link_to (image_tag comment.user.avatar.url(:thumb)), comment.user, class: "avatar" %>
+    <div class="content">
+      <%= link_to comment.user.username, user_path(comment.user), class: "author" %>
+      <div class="metadata">
+        <div class="date"><%= distance_of_time_in_words_to_now comment.created_at(), :include_seconds => true %> ago</div>
+      </div>
+      <div class="text">
+        <%= raw (comment.body) %>
+      </div>
+     <% if user_signed_in? && (comment.user == current_user || current_user.admin?) %>
+      <div class="actions">
+        <%= link_to "Edit", edit_comment_path(comment), :remote => true, class: 'reply' %>
+        <%= link_to "Delete", comment_path(comment), method: :delete, :remote => true, class: 'delete', "data-no-turbolink" => true  %>
+      </div>
+    <% end %>
+    </div>
 <% end %>
-
-

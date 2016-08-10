@@ -6,7 +6,6 @@ class PagesController < ApplicationController
                                   :upload_page_cover_picture,
                                   :invite_friends]
   impressionist :actions=>[:show]
-  respond_to :html
   helper_method :current_page
 
   def index
@@ -39,7 +38,7 @@ class PagesController < ApplicationController
     @page = Page.new(page_params)
     @page.user_id = current_user.id if current_user
     flash[:notice] = 'Page was successfully created.' if @page.save
-    redirect_to invite_friends_page_path(@page)
+    redirect_to page_path(@page)
   end
 
   def update
