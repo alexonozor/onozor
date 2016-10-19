@@ -3,20 +3,13 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   #filters
-  before_action :last_requested_at,  :prepare_for_mobile
-  before_action :people_to_follow, :suggested_people, :load_users
+  before_action :suggested_people, :load_users, :last_requested_at
 
   before_action :update_notification
   before_action :configure_devise_permitted_parameters, if: :devise_controller?
    rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
   # rescue_from  ActionView::Template::Error, with: :no_user_found
   helper_method :mobile_device?, :suggested_people
-
-  def suggested_people
-    User.includes(:categories).group("users.id").order("id desc").limit(3)
-  end
-
-
 
 
 
@@ -35,21 +28,15 @@ class ApplicationController < ActionController::Base
 
 
 
-  def load_users
-    @users = User.all
-  end
+
 
   def is_admin?
     (user_signed_in? && current_user.admin?) ? true : false
   end
 
-  def people_to_follow
-    @people_to_follows = User.people_you_may_know(current_user)
-    respond_to do |format|
-      format.html { return @people_to_follows }
-      format.json { render json: @people_to_follows }
-    end
-  end
+
+
+
 
 
 
@@ -125,4 +112,11 @@ class ApplicationController < ActionController::Base
     resource.update_without_password(params)
   end
 
+  def load_users
+    @users = User.all
+  end
+
+  def suggested_people
+    User.includes(:categories).group("users.id").order("id desc").limit(3)
+  end
 end

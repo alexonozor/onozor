@@ -171,7 +171,7 @@ end
 
  def can_vote?(answer)
     answer_votes.build(value: 1, answer: answer).valid?
-  end
+end
 
 
 

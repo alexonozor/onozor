@@ -69,14 +69,15 @@ gem 'pg'
 gem 'impressionist'
 gem 'geocoder'
 gem 'whenever', :require => false
+gem 'tire'
 
 
 
 group :development, :test do
   # Use sqlite3 as the database for Active Record
   # gem 'puma'
-  # gem 'better_errors'
-  # gem 'binding_of_caller'
+  gem 'better_errors'
+  gem 'binding_of_caller'
   # gem 'meta_request'
   # gem 'quiet_assets'
   gem 'rspec-rails', '~> 3.0'

@@ -10,7 +10,7 @@
            Also interested in <%=  user.categories.map{|a| a.name }.take(3).join(", ").html_safe %>
          </div>
          <div class="description">
-           <%=  user.bio %>
+           <%=  truncate user.bio, length: 150 %>
          </div>
        </div>
        <div class="extra content">

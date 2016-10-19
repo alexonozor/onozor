@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  respond_to :html, :xml, :json, :js, :mobile
+  respond_to  :json, :js
   #load_and_authorize_resource
   layout "display", only: [:index, :show]
   before_filter :load_users
@@ -14,12 +14,11 @@ class UsersController < ApplicationController
    if params[:search].present?
       @user = User.search(params[:search])
     else
-     @users = User.order(:username).paginate :page => params[:page], :per_page => 20
+     @users = User.order(:username)
    end
   respond_to do |format|
       format.js {}
       format.html { render :index }
-      format.mobile { render :layout => "application" }
     end
   end
 
@@ -29,7 +28,8 @@ class UsersController < ApplicationController
     @user.count_view! unless current_user == @user
     respond_to do |format|
       format.js {}
-      format.mobile { render :layout => "application" }
+      format.html
+      format.json { render json: @user }
     end
   end
 
@@ -48,7 +48,7 @@ class UsersController < ApplicationController
   end
 
   def show_user_followers
-    @users = @user.followers.order("updated_at ASC").limit(20)
+    @users = @user.followers.order("updated_at ASC")
     @title = "Followers"
     respond_to do |format|
       format.js {render "filter_by_follows.js"}
@@ -56,7 +56,7 @@ class UsersController < ApplicationController
   end
 
   def show_user_following
-    @user_questions = @user.followed_users.order("updated_at ASC").limit(20)
+    @users = @user.followed_users.order("updated_at ASC")
     @title = "Following"
     respond_to do |format|
       format.js {render "filter_by_follows.js"}
@@ -108,7 +108,7 @@ class UsersController < ApplicationController
    if current_user.update(user_params)
      @people_to_follows = User.people_you_may_know(current_user)
      respond_to do |format|
-       format.js { render "user_select_category.js" }
+       format.js { render "user_select_category.js", layout: false, content_type: 'text/javascript'  }
        format.html {redirect_to root_path}
      end
    else
@@ -142,7 +142,7 @@ class UsersController < ApplicationController
     @option = (user_params && user_params[:option]) ? user_params[:option] : nil
     update_user_info if @option
     respond_to do |format|
-      format.js { render "update_user.js" }
+      format.js { render "update_user.js", layout: false, content_type: 'text/javascript' }
     end
   end
 

@@ -31,7 +31,7 @@ class AnswersController < ApplicationController
     respond_to do |format|
       format.html { redirect_to @answer.question, :view => "answer-body", :notice => "Thanks for you Answer"}
       format.mobile { redirect_to @answer.question, :notice => "Thanks for you Answer"}
-      format.js { render layout: false }
+      format.js
      end
       else
     respond_to do |format|
@@ -80,7 +80,7 @@ class AnswersController < ApplicationController
     else
      respond_to do |format|
       format.html { redirect_to :back, alert: "Unable to vote, perhaps you already did."}
-      format.js { render 'fail_vote.js.erb', layout: false }
+      format.js { render 'fail_vote.js.erb' }
       end
     end
   end

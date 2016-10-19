@@ -1,31 +1,33 @@
-<div class="ui four column grid">
+<div class="ui four column container grid">
   <% for user in @users %>
-  <div class="column">
-    <div class="ui link cards">
-      <div class="card">
-        <div class="image">
-          <%=image_tag user.avatar.url(:thumb) %>
-        </div>
-        <div class="content">
-          <div class="header"><%= user.fullname %></div>
-          <div class="meta">
-            <a>Friends</a>
+    <div class="column">
+      <%= link_to((user),  class:"ui link cards") do %>
+        <div class="card">
+
+          <div class="image">
+            <%= image_tag user.avatar.url(:thumb) %>
           </div>
-          <div class="description">
-            Matthew is an interior designer living in New York.
+          <div class="content">
+            <div><%= user.fullname.upcase %></div>
+            <!-- <div class="meta">
+              <a>Friends</a>
+            </div> -->
+            <div class="description">
+              <%= (user.bio && !user.bio.empty?) ? (truncate user.bio, length: 30) : "#{user.categories.map{|a| a.name }.take(3).join(", ")}".html_safe %>
+            </div>
           </div>
+          <div class="extra content">
+            <span class="right floated">
+
+            </span>
+            <span>
+              <i class="user icon"></i>
+              <%= pluralize user.followers.count, "Follower"   %>
+            </span>
+          </div>
+
         </div>
-        <div class="extra content">
-          <span class="right floated">
-            Joined in 2013
-          </span>
-          <span>
-            <i class="user icon"></i>
-            75 Friends
-          </span>
-        </div>
+        <% end %>
       </div>
-    </div>
-  </div>
   <% end if @users %>
 </div>

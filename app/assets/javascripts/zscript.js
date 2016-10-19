@@ -51,16 +51,16 @@ var changeJsonResponse = function(data) {
 
 
 
-$(".prompt").focus(function(){
+$(".prompt").focus(function() {
     $.get("http://localhost:3000/users/categories.json", function(data, status) {
         var content = changeJsonResponse(data);
-        console.log(data);
+        console.table("Alex", data);
         $('.ui.search')
         .search({
           searchFields: ['title'],
           source: data,
           error: {
-            noResults: 'Somthing went wrong'
+            noResults: 'Something went wrong'
           },
           onSelect : function(event) {
             var intId =  parseInt(event.id)
