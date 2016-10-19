@@ -4,7 +4,7 @@ class Question < ActiveRecord::Base
   acts_as_taggable_on :tags
   acts_as_tagger
   before_validation :set_permalink
-  after_create :send_slack_message if Rails.env.production?
+  # after_create :send_slack_message if Rails.env.production?
   has_ancestry
 
  extend FriendlyId
