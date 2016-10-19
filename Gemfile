@@ -72,6 +72,7 @@ gem 'geocoder'
 gem 'whenever', :require => false
 gem 'tire'
 gem 'pry'
+gem 'seed_dump'
 
 
 

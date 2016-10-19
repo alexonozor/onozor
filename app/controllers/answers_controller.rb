@@ -27,7 +27,7 @@ class AnswersController < ApplicationController
     @answer = current_user.answers.build(answer_params)
     @answer.request = request
     if @answer.save
-     send_notification(@answer)
+    #  send_notification(@answer)
     respond_to do |format|
       format.html { redirect_to @answer.question, :view => "answer-body", :notice => "Thanks for you Answer"}
       format.mobile { redirect_to @answer.question, :notice => "Thanks for you Answer"}
