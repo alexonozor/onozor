@@ -71,6 +71,7 @@ gem 'impressionist'
 gem 'geocoder'
 gem 'whenever', :require => false
 gem 'tire'
+gem 'pry'
 
 
 
