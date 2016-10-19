@@ -153,9 +153,7 @@ class UsersController < ApplicationController
     @user = User.order(:username)
   end
 
-
   def user_params
-
     params.require(:user).permit(:banned_at, {:category_ids => []},
     :avatar, :last_requested_at, :admin, :avatar_file_name, :username, :gender, :first_name, :last_name, :bio, :occupation, :title,
                             :intrest, :username, :location, :email, :password, :password_confirmation, :option, :fullname, :city, :country,
