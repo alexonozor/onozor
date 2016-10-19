@@ -1,5 +1,5 @@
 --
--- obogbarealexonozorQL database dump
+-- ufvlh6sgjb1ikvQL database dump
 --
 
 SET statement_timeout = 0;
@@ -30,7 +30,7 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- Name: activities; Type: TABLE; Schema: public; Owner: deploy; Tablespace:
+-- Name: activities; Type: TABLE; Schema: public; Owner: ufvlh6sgjb1ikv; Tablespace:
 --
 
 CREATE TABLE activities (
@@ -45,10 +45,10 @@ CREATE TABLE activities (
 );
 
 
-ALTER TABLE public.activities OWNER TO deploy;
+ALTER TABLE public.activities OWNER TO ufvlh6sgjb1ikv;
 
 --
--- Name: activities_id_seq; Type: SEQUENCE; Schema: public; Owner: deploy
+-- Name: activities_id_seq; Type: SEQUENCE; Schema: public; Owner: ufvlh6sgjb1ikv
 --
 
 CREATE SEQUENCE activities_id_seq
@@ -59,17 +59,17 @@ CREATE SEQUENCE activities_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.activities_id_seq OWNER TO deploy;
+ALTER TABLE public.activities_id_seq OWNER TO ufvlh6sgjb1ikv;
 
 --
--- Name: activities_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: deploy
+-- Name: activities_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ufvlh6sgjb1ikv
 --
 
 ALTER SEQUENCE activities_id_seq OWNED BY activities.id;
 
 
 --
--- Name: alltags; Type: TABLE; Schema: public; Owner: deploy; Tablespace:
+-- Name: alltags; Type: TABLE; Schema: public; Owner: ufvlh6sgjb1ikv; Tablespace:
 --
 
 CREATE TABLE alltags (
@@ -83,10 +83,10 @@ CREATE TABLE alltags (
 );
 
 
-ALTER TABLE public.alltags OWNER TO deploy;
+ALTER TABLE public.alltags OWNER TO ufvlh6sgjb1ikv;
 
 --
--- Name: alltags_id_seq; Type: SEQUENCE; Schema: public; Owner: deploy
+-- Name: alltags_id_seq; Type: SEQUENCE; Schema: public; Owner: ufvlh6sgjb1ikv
 --
 
 CREATE SEQUENCE alltags_id_seq
@@ -97,17 +97,17 @@ CREATE SEQUENCE alltags_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.alltags_id_seq OWNER TO deploy;
+ALTER TABLE public.alltags_id_seq OWNER TO ufvlh6sgjb1ikv;
 
 --
--- Name: alltags_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: deploy
+-- Name: alltags_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ufvlh6sgjb1ikv
 --
 
 ALTER SEQUENCE alltags_id_seq OWNED BY alltags.id;
 
 
 --
--- Name: answer_votes; Type: TABLE; Schema: public; Owner: deploy; Tablespace:
+-- Name: answer_votes; Type: TABLE; Schema: public; Owner: ufvlh6sgjb1ikv; Tablespace:
 --
 
 CREATE TABLE answer_votes (
@@ -120,10 +120,10 @@ CREATE TABLE answer_votes (
 );
 
 
-ALTER TABLE public.answer_votes OWNER TO deploy;
+ALTER TABLE public.answer_votes OWNER TO ufvlh6sgjb1ikv;
 
 --
--- Name: answer_votes_id_seq; Type: SEQUENCE; Schema: public; Owner: deploy
+-- Name: answer_votes_id_seq; Type: SEQUENCE; Schema: public; Owner: ufvlh6sgjb1ikv
 --
 
 CREATE SEQUENCE answer_votes_id_seq
@@ -134,17 +134,17 @@ CREATE SEQUENCE answer_votes_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.answer_votes_id_seq OWNER TO deploy;
+ALTER TABLE public.answer_votes_id_seq OWNER TO ufvlh6sgjb1ikv;
 
 --
--- Name: answer_votes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: deploy
+-- Name: answer_votes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ufvlh6sgjb1ikv
 --
 
 ALTER SEQUENCE answer_votes_id_seq OWNED BY answer_votes.id;
 
 
 --
--- Name: answers; Type: TABLE; Schema: public; Owner: deploy; Tablespace:
+-- Name: answers; Type: TABLE; Schema: public; Owner: ufvlh6sgjb1ikv; Tablespace:
 --
 
 CREATE TABLE answers (
@@ -163,10 +163,10 @@ CREATE TABLE answers (
 );
 
 
-ALTER TABLE public.answers OWNER TO deploy;
+ALTER TABLE public.answers OWNER TO ufvlh6sgjb1ikv;
 
 --
--- Name: answers_id_seq; Type: SEQUENCE; Schema: public; Owner: deploy
+-- Name: answers_id_seq; Type: SEQUENCE; Schema: public; Owner: ufvlh6sgjb1ikv
 --
 
 CREATE SEQUENCE answers_id_seq
@@ -177,17 +177,17 @@ CREATE SEQUENCE answers_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.answers_id_seq OWNER TO deploy;
+ALTER TABLE public.answers_id_seq OWNER TO ufvlh6sgjb1ikv;
 
 --
--- Name: answers_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: deploy
+-- Name: answers_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ufvlh6sgjb1ikv
 --
 
 ALTER SEQUENCE answers_id_seq OWNED BY answers.id;
 
 
 --
--- Name: categories; Type: TABLE; Schema: public; Owner: deploy; Tablespace:
+-- Name: categories; Type: TABLE; Schema: public; Owner: ufvlh6sgjb1ikv; Tablespace:
 --
 
 CREATE TABLE categories (
@@ -202,10 +202,10 @@ CREATE TABLE categories (
 );
 
 
-ALTER TABLE public.categories OWNER TO deploy;
+ALTER TABLE public.categories OWNER TO ufvlh6sgjb1ikv;
 
 --
--- Name: categories_id_seq; Type: SEQUENCE; Schema: public; Owner: deploy
+-- Name: categories_id_seq; Type: SEQUENCE; Schema: public; Owner: ufvlh6sgjb1ikv
 --
 
 CREATE SEQUENCE categories_id_seq
@@ -216,17 +216,17 @@ CREATE SEQUENCE categories_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.categories_id_seq OWNER TO deploy;
+ALTER TABLE public.categories_id_seq OWNER TO ufvlh6sgjb1ikv;
 
 --
--- Name: categories_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: deploy
+-- Name: categories_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ufvlh6sgjb1ikv
 --
 
 ALTER SEQUENCE categories_id_seq OWNED BY categories.id;
 
 
 --
--- Name: ckeditor_assets; Type: TABLE; Schema: public; Owner: deploy; Tablespace:
+-- Name: ckeditor_assets; Type: TABLE; Schema: public; Owner: ufvlh6sgjb1ikv; Tablespace:
 --
 
 CREATE TABLE ckeditor_assets (
@@ -244,10 +244,10 @@ CREATE TABLE ckeditor_assets (
 );
 
 
-ALTER TABLE public.ckeditor_assets OWNER TO deploy;
+ALTER TABLE public.ckeditor_assets OWNER TO ufvlh6sgjb1ikv;
 
 --
--- Name: ckeditor_assets_id_seq; Type: SEQUENCE; Schema: public; Owner: deploy
+-- Name: ckeditor_assets_id_seq; Type: SEQUENCE; Schema: public; Owner: ufvlh6sgjb1ikv
 --
 
 CREATE SEQUENCE ckeditor_assets_id_seq
@@ -258,17 +258,17 @@ CREATE SEQUENCE ckeditor_assets_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.ckeditor_assets_id_seq OWNER TO deploy;
+ALTER TABLE public.ckeditor_assets_id_seq OWNER TO ufvlh6sgjb1ikv;
 
 --
--- Name: ckeditor_assets_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: deploy
+-- Name: ckeditor_assets_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ufvlh6sgjb1ikv
 --
 
 ALTER SEQUENCE ckeditor_assets_id_seq OWNED BY ckeditor_assets.id;
 
 
 --
--- Name: comments; Type: TABLE; Schema: public; Owner: deploy; Tablespace:
+-- Name: comments; Type: TABLE; Schema: public; Owner: ufvlh6sgjb1ikv; Tablespace:
 --
 
 CREATE TABLE comments (
@@ -283,10 +283,10 @@ CREATE TABLE comments (
 );
 
 
-ALTER TABLE public.comments OWNER TO deploy;
+ALTER TABLE public.comments OWNER TO ufvlh6sgjb1ikv;
 
 --
--- Name: comments_id_seq; Type: SEQUENCE; Schema: public; Owner: deploy
+-- Name: comments_id_seq; Type: SEQUENCE; Schema: public; Owner: ufvlh6sgjb1ikv
 --
 
 CREATE SEQUENCE comments_id_seq
@@ -297,17 +297,17 @@ CREATE SEQUENCE comments_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.comments_id_seq OWNER TO deploy;
+ALTER TABLE public.comments_id_seq OWNER TO ufvlh6sgjb1ikv;
 
 --
--- Name: comments_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: deploy
+-- Name: comments_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ufvlh6sgjb1ikv
 --
 
 ALTER SEQUENCE comments_id_seq OWNED BY comments.id;
 
 
 --
--- Name: direct_messages; Type: TABLE; Schema: public; Owner: deploy; Tablespace:
+-- Name: direct_messages; Type: TABLE; Schema: public; Owner: ufvlh6sgjb1ikv; Tablespace:
 --
 
 CREATE TABLE direct_messages (
@@ -321,10 +321,10 @@ CREATE TABLE direct_messages (
 );
 
 
-ALTER TABLE public.direct_messages OWNER TO deploy;
+ALTER TABLE public.direct_messages OWNER TO ufvlh6sgjb1ikv;
 
 --
--- Name: direct_messages_id_seq; Type: SEQUENCE; Schema: public; Owner: deploy
+-- Name: direct_messages_id_seq; Type: SEQUENCE; Schema: public; Owner: ufvlh6sgjb1ikv
 --
 
 CREATE SEQUENCE direct_messages_id_seq
@@ -335,17 +335,17 @@ CREATE SEQUENCE direct_messages_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.direct_messages_id_seq OWNER TO deploy;
+ALTER TABLE public.direct_messages_id_seq OWNER TO ufvlh6sgjb1ikv;
 
 --
--- Name: direct_messages_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: deploy
+-- Name: direct_messages_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ufvlh6sgjb1ikv
 --
 
 ALTER SEQUENCE direct_messages_id_seq OWNED BY direct_messages.id;
 
 
 --
--- Name: favourites; Type: TABLE; Schema: public; Owner: deploy; Tablespace:
+-- Name: favourites; Type: TABLE; Schema: public; Owner: ufvlh6sgjb1ikv; Tablespace:
 --
 
 CREATE TABLE favourites (
@@ -357,10 +357,10 @@ CREATE TABLE favourites (
 );
 
 
-ALTER TABLE public.favourites OWNER TO deploy;
+ALTER TABLE public.favourites OWNER TO ufvlh6sgjb1ikv;
 
 --
--- Name: favourites_id_seq; Type: SEQUENCE; Schema: public; Owner: deploy
+-- Name: favourites_id_seq; Type: SEQUENCE; Schema: public; Owner: ufvlh6sgjb1ikv
 --
 
 CREATE SEQUENCE favourites_id_seq
@@ -371,17 +371,17 @@ CREATE SEQUENCE favourites_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.favourites_id_seq OWNER TO deploy;
+ALTER TABLE public.favourites_id_seq OWNER TO ufvlh6sgjb1ikv;
 
 --
--- Name: favourites_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: deploy
+-- Name: favourites_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ufvlh6sgjb1ikv
 --
 
 ALTER SEQUENCE favourites_id_seq OWNED BY favourites.id;
 
 
 --
--- Name: friendly_id_slugs; Type: TABLE; Schema: public; Owner: deploy; Tablespace:
+-- Name: friendly_id_slugs; Type: TABLE; Schema: public; Owner: ufvlh6sgjb1ikv; Tablespace:
 --
 
 CREATE TABLE friendly_id_slugs (
@@ -394,10 +394,10 @@ CREATE TABLE friendly_id_slugs (
 );
 
 
-ALTER TABLE public.friendly_id_slugs OWNER TO deploy;
+ALTER TABLE public.friendly_id_slugs OWNER TO ufvlh6sgjb1ikv;
 
 --
--- Name: friendly_id_slugs_id_seq; Type: SEQUENCE; Schema: public; Owner: deploy
+-- Name: friendly_id_slugs_id_seq; Type: SEQUENCE; Schema: public; Owner: ufvlh6sgjb1ikv
 --
 
 CREATE SEQUENCE friendly_id_slugs_id_seq
@@ -408,17 +408,17 @@ CREATE SEQUENCE friendly_id_slugs_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.friendly_id_slugs_id_seq OWNER TO deploy;
+ALTER TABLE public.friendly_id_slugs_id_seq OWNER TO ufvlh6sgjb1ikv;
 
 --
--- Name: friendly_id_slugs_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: deploy
+-- Name: friendly_id_slugs_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ufvlh6sgjb1ikv
 --
 
 ALTER SEQUENCE friendly_id_slugs_id_seq OWNED BY friendly_id_slugs.id;
 
 
 --
--- Name: friendships; Type: TABLE; Schema: public; Owner: deploy; Tablespace:
+-- Name: friendships; Type: TABLE; Schema: public; Owner: ufvlh6sgjb1ikv; Tablespace:
 --
 
 CREATE TABLE friendships (
@@ -430,10 +430,10 @@ CREATE TABLE friendships (
 );
 
 
-ALTER TABLE public.friendships OWNER TO deploy;
+ALTER TABLE public.friendships OWNER TO ufvlh6sgjb1ikv;
 
 --
--- Name: friendships_id_seq; Type: SEQUENCE; Schema: public; Owner: deploy
+-- Name: friendships_id_seq; Type: SEQUENCE; Schema: public; Owner: ufvlh6sgjb1ikv
 --
 
 CREATE SEQUENCE friendships_id_seq
@@ -444,17 +444,17 @@ CREATE SEQUENCE friendships_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.friendships_id_seq OWNER TO deploy;
+ALTER TABLE public.friendships_id_seq OWNER TO ufvlh6sgjb1ikv;
 
 --
--- Name: friendships_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: deploy
+-- Name: friendships_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ufvlh6sgjb1ikv
 --
 
 ALTER SEQUENCE friendships_id_seq OWNED BY friendships.id;
 
 
 --
--- Name: notifications; Type: TABLE; Schema: public; Owner: deploy; Tablespace:
+-- Name: notifications; Type: TABLE; Schema: public; Owner: ufvlh6sgjb1ikv; Tablespace:
 --
 
 CREATE TABLE notifications (
@@ -468,10 +468,10 @@ CREATE TABLE notifications (
 );
 
 
-ALTER TABLE public.notifications OWNER TO deploy;
+ALTER TABLE public.notifications OWNER TO ufvlh6sgjb1ikv;
 
 --
--- Name: notifications_id_seq; Type: SEQUENCE; Schema: public; Owner: deploy
+-- Name: notifications_id_seq; Type: SEQUENCE; Schema: public; Owner: ufvlh6sgjb1ikv
 --
 
 CREATE SEQUENCE notifications_id_seq
@@ -482,17 +482,17 @@ CREATE SEQUENCE notifications_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.notifications_id_seq OWNER TO deploy;
+ALTER TABLE public.notifications_id_seq OWNER TO ufvlh6sgjb1ikv;
 
 --
--- Name: notifications_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: deploy
+-- Name: notifications_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ufvlh6sgjb1ikv
 --
 
 ALTER SEQUENCE notifications_id_seq OWNED BY notifications.id;
 
 
 --
--- Name: question_votes; Type: TABLE; Schema: public; Owner: deploy; Tablespace:
+-- Name: question_votes; Type: TABLE; Schema: public; Owner: ufvlh6sgjb1ikv; Tablespace:
 --
 
 CREATE TABLE question_votes (
@@ -505,10 +505,10 @@ CREATE TABLE question_votes (
 );
 
 
-ALTER TABLE public.question_votes OWNER TO deploy;
+ALTER TABLE public.question_votes OWNER TO ufvlh6sgjb1ikv;
 
 --
--- Name: question_votes_id_seq; Type: SEQUENCE; Schema: public; Owner: deploy
+-- Name: question_votes_id_seq; Type: SEQUENCE; Schema: public; Owner: ufvlh6sgjb1ikv
 --
 
 CREATE SEQUENCE question_votes_id_seq
@@ -519,17 +519,17 @@ CREATE SEQUENCE question_votes_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.question_votes_id_seq OWNER TO deploy;
+ALTER TABLE public.question_votes_id_seq OWNER TO ufvlh6sgjb1ikv;
 
 --
--- Name: question_votes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: deploy
+-- Name: question_votes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ufvlh6sgjb1ikv
 --
 
 ALTER SEQUENCE question_votes_id_seq OWNED BY question_votes.id;
 
 
 --
--- Name: questions; Type: TABLE; Schema: public; Owner: deploy; Tablespace:
+-- Name: questions; Type: TABLE; Schema: public; Owner: ufvlh6sgjb1ikv; Tablespace:
 --
 
 CREATE TABLE questions (
@@ -553,10 +553,10 @@ CREATE TABLE questions (
 );
 
 
-ALTER TABLE public.questions OWNER TO deploy;
+ALTER TABLE public.questions OWNER TO ufvlh6sgjb1ikv;
 
 --
--- Name: questions_id_seq; Type: SEQUENCE; Schema: public; Owner: deploy
+-- Name: questions_id_seq; Type: SEQUENCE; Schema: public; Owner: ufvlh6sgjb1ikv
 --
 
 CREATE SEQUENCE questions_id_seq
@@ -567,17 +567,17 @@ CREATE SEQUENCE questions_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.questions_id_seq OWNER TO deploy;
+ALTER TABLE public.questions_id_seq OWNER TO ufvlh6sgjb1ikv;
 
 --
--- Name: questions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: deploy
+-- Name: questions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ufvlh6sgjb1ikv
 --
 
 ALTER SEQUENCE questions_id_seq OWNED BY questions.id;
 
 
 --
--- Name: relationships; Type: TABLE; Schema: public; Owner: deploy; Tablespace:
+-- Name: relationships; Type: TABLE; Schema: public; Owner: ufvlh6sgjb1ikv; Tablespace:
 --
 
 CREATE TABLE relationships (
@@ -589,10 +589,10 @@ CREATE TABLE relationships (
 );
 
 
-ALTER TABLE public.relationships OWNER TO deploy;
+ALTER TABLE public.relationships OWNER TO ufvlh6sgjb1ikv;
 
 --
--- Name: relationships_id_seq; Type: SEQUENCE; Schema: public; Owner: deploy
+-- Name: relationships_id_seq; Type: SEQUENCE; Schema: public; Owner: ufvlh6sgjb1ikv
 --
 
 CREATE SEQUENCE relationships_id_seq
@@ -603,17 +603,17 @@ CREATE SEQUENCE relationships_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.relationships_id_seq OWNER TO deploy;
+ALTER TABLE public.relationships_id_seq OWNER TO ufvlh6sgjb1ikv;
 
 --
--- Name: relationships_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: deploy
+-- Name: relationships_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ufvlh6sgjb1ikv
 --
 
 ALTER SEQUENCE relationships_id_seq OWNED BY relationships.id;
 
 
 --
--- Name: schema_migrations; Type: TABLE; Schema: public; Owner: deploy; Tablespace:
+-- Name: schema_migrations; Type: TABLE; Schema: public; Owner: ufvlh6sgjb1ikv; Tablespace:
 --
 
 CREATE TABLE schema_migrations (
@@ -621,10 +621,10 @@ CREATE TABLE schema_migrations (
 );
 
 
-ALTER TABLE public.schema_migrations OWNER TO deploy;
+ALTER TABLE public.schema_migrations OWNER TO ufvlh6sgjb1ikv;
 
 --
--- Name: taggings; Type: TABLE; Schema: public; Owner: deploy; Tablespace:
+-- Name: taggings; Type: TABLE; Schema: public; Owner: ufvlh6sgjb1ikv; Tablespace:
 --
 
 CREATE TABLE taggings (
@@ -639,10 +639,10 @@ CREATE TABLE taggings (
 );
 
 
-ALTER TABLE public.taggings OWNER TO deploy;
+ALTER TABLE public.taggings OWNER TO ufvlh6sgjb1ikv;
 
 --
--- Name: taggings_id_seq; Type: SEQUENCE; Schema: public; Owner: deploy
+-- Name: taggings_id_seq; Type: SEQUENCE; Schema: public; Owner: ufvlh6sgjb1ikv
 --
 
 CREATE SEQUENCE taggings_id_seq
@@ -653,17 +653,17 @@ CREATE SEQUENCE taggings_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.taggings_id_seq OWNER TO deploy;
+ALTER TABLE public.taggings_id_seq OWNER TO ufvlh6sgjb1ikv;
 
 --
--- Name: taggings_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: deploy
+-- Name: taggings_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ufvlh6sgjb1ikv
 --
 
 ALTER SEQUENCE taggings_id_seq OWNED BY taggings.id;
 
 
 --
--- Name: tags; Type: TABLE; Schema: public; Owner: deploy; Tablespace:
+-- Name: tags; Type: TABLE; Schema: public; Owner: ufvlh6sgjb1ikv; Tablespace:
 --
 
 CREATE TABLE tags (
@@ -673,10 +673,10 @@ CREATE TABLE tags (
 );
 
 
-ALTER TABLE public.tags OWNER TO deploy;
+ALTER TABLE public.tags OWNER TO ufvlh6sgjb1ikv;
 
 --
--- Name: tags_id_seq; Type: SEQUENCE; Schema: public; Owner: deploy
+-- Name: tags_id_seq; Type: SEQUENCE; Schema: public; Owner: ufvlh6sgjb1ikv
 --
 
 CREATE SEQUENCE tags_id_seq
@@ -687,17 +687,17 @@ CREATE SEQUENCE tags_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.tags_id_seq OWNER TO deploy;
+ALTER TABLE public.tags_id_seq OWNER TO ufvlh6sgjb1ikv;
 
 --
--- Name: tags_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: deploy
+-- Name: tags_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ufvlh6sgjb1ikv
 --
 
 ALTER SEQUENCE tags_id_seq OWNED BY tags.id;
 
 
 --
--- Name: user_categories; Type: TABLE; Schema: public; Owner: deploy; Tablespace:
+-- Name: user_categories; Type: TABLE; Schema: public; Owner: ufvlh6sgjb1ikv; Tablespace:
 --
 
 CREATE TABLE user_categories (
@@ -709,10 +709,10 @@ CREATE TABLE user_categories (
 );
 
 
-ALTER TABLE public.user_categories OWNER TO deploy;
+ALTER TABLE public.user_categories OWNER TO ufvlh6sgjb1ikv;
 
 --
--- Name: user_categories_id_seq; Type: SEQUENCE; Schema: public; Owner: deploy
+-- Name: user_categories_id_seq; Type: SEQUENCE; Schema: public; Owner: ufvlh6sgjb1ikv
 --
 
 CREATE SEQUENCE user_categories_id_seq
@@ -723,17 +723,17 @@ CREATE SEQUENCE user_categories_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.user_categories_id_seq OWNER TO deploy;
+ALTER TABLE public.user_categories_id_seq OWNER TO ufvlh6sgjb1ikv;
 
 --
--- Name: user_categories_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: deploy
+-- Name: user_categories_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ufvlh6sgjb1ikv
 --
 
 ALTER SEQUENCE user_categories_id_seq OWNED BY user_categories.id;
 
 
 --
--- Name: users; Type: TABLE; Schema: public; Owner: deploy; Tablespace:
+-- Name: users; Type: TABLE; Schema: public; Owner: ufvlh6sgjb1ikv; Tablespace:
 --
 
 CREATE TABLE users (
@@ -777,10 +777,10 @@ CREATE TABLE users (
 );
 
 
-ALTER TABLE public.users OWNER TO deploy;
+ALTER TABLE public.users OWNER TO ufvlh6sgjb1ikv;
 
 --
--- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: deploy
+-- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: ufvlh6sgjb1ikv
 --
 
 CREATE SEQUENCE users_id_seq
@@ -791,17 +791,17 @@ CREATE SEQUENCE users_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.users_id_seq OWNER TO deploy;
+ALTER TABLE public.users_id_seq OWNER TO ufvlh6sgjb1ikv;
 
 --
--- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: deploy
+-- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ufvlh6sgjb1ikv
 --
 
 ALTER SEQUENCE users_id_seq OWNED BY users.id;
 
 
 --
--- Name: versions; Type: TABLE; Schema: public; Owner: deploy; Tablespace:
+-- Name: versions; Type: TABLE; Schema: public; Owner: ufvlh6sgjb1ikv; Tablespace:
 --
 
 CREATE TABLE versions (
@@ -815,10 +815,10 @@ CREATE TABLE versions (
 );
 
 
-ALTER TABLE public.versions OWNER TO deploy;
+ALTER TABLE public.versions OWNER TO ufvlh6sgjb1ikv;
 
 --
--- Name: versions_id_seq; Type: SEQUENCE; Schema: public; Owner: deploy
+-- Name: versions_id_seq; Type: SEQUENCE; Schema: public; Owner: ufvlh6sgjb1ikv
 --
 
 CREATE SEQUENCE versions_id_seq
@@ -829,157 +829,157 @@ CREATE SEQUENCE versions_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.versions_id_seq OWNER TO deploy;
+ALTER TABLE public.versions_id_seq OWNER TO ufvlh6sgjb1ikv;
 
 --
--- Name: versions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: deploy
+-- Name: versions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ufvlh6sgjb1ikv
 --
 
 ALTER SEQUENCE versions_id_seq OWNED BY versions.id;
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: deploy
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ufvlh6sgjb1ikv
 --
 
 ALTER TABLE ONLY activities ALTER COLUMN id SET DEFAULT nextval('activities_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: deploy
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ufvlh6sgjb1ikv
 --
 
 ALTER TABLE ONLY alltags ALTER COLUMN id SET DEFAULT nextval('alltags_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: deploy
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ufvlh6sgjb1ikv
 --
 
 ALTER TABLE ONLY answer_votes ALTER COLUMN id SET DEFAULT nextval('answer_votes_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: deploy
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ufvlh6sgjb1ikv
 --
 
 ALTER TABLE ONLY answers ALTER COLUMN id SET DEFAULT nextval('answers_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: deploy
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ufvlh6sgjb1ikv
 --
 
 ALTER TABLE ONLY categories ALTER COLUMN id SET DEFAULT nextval('categories_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: deploy
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ufvlh6sgjb1ikv
 --
 
 ALTER TABLE ONLY ckeditor_assets ALTER COLUMN id SET DEFAULT nextval('ckeditor_assets_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: deploy
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ufvlh6sgjb1ikv
 --
 
 ALTER TABLE ONLY comments ALTER COLUMN id SET DEFAULT nextval('comments_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: deploy
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ufvlh6sgjb1ikv
 --
 
 ALTER TABLE ONLY direct_messages ALTER COLUMN id SET DEFAULT nextval('direct_messages_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: deploy
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ufvlh6sgjb1ikv
 --
 
 ALTER TABLE ONLY favourites ALTER COLUMN id SET DEFAULT nextval('favourites_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: deploy
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ufvlh6sgjb1ikv
 --
 
 ALTER TABLE ONLY friendly_id_slugs ALTER COLUMN id SET DEFAULT nextval('friendly_id_slugs_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: deploy
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ufvlh6sgjb1ikv
 --
 
 ALTER TABLE ONLY friendships ALTER COLUMN id SET DEFAULT nextval('friendships_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: deploy
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ufvlh6sgjb1ikv
 --
 
 ALTER TABLE ONLY notifications ALTER COLUMN id SET DEFAULT nextval('notifications_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: deploy
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ufvlh6sgjb1ikv
 --
 
 ALTER TABLE ONLY question_votes ALTER COLUMN id SET DEFAULT nextval('question_votes_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: deploy
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ufvlh6sgjb1ikv
 --
 
 ALTER TABLE ONLY questions ALTER COLUMN id SET DEFAULT nextval('questions_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: deploy
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ufvlh6sgjb1ikv
 --
 
 ALTER TABLE ONLY relationships ALTER COLUMN id SET DEFAULT nextval('relationships_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: deploy
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ufvlh6sgjb1ikv
 --
 
 ALTER TABLE ONLY taggings ALTER COLUMN id SET DEFAULT nextval('taggings_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: deploy
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ufvlh6sgjb1ikv
 --
 
 ALTER TABLE ONLY tags ALTER COLUMN id SET DEFAULT nextval('tags_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: deploy
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ufvlh6sgjb1ikv
 --
 
 ALTER TABLE ONLY user_categories ALTER COLUMN id SET DEFAULT nextval('user_categories_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: deploy
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ufvlh6sgjb1ikv
 --
 
 ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: deploy
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ufvlh6sgjb1ikv
 --
 
 ALTER TABLE ONLY versions ALTER COLUMN id SET DEFAULT nextval('versions_id_seq'::regclass);
 
 
 --
--- Data for Name: activities; Type: TABLE DATA; Schema: public; Owner: deploy
+-- Data for Name: activities; Type: TABLE DATA; Schema: public; Owner: ufvlh6sgjb1ikv
 --
 
 COPY activities (id, user_id, action, trackable_id, trackable_type, created_at, updated_at, seen) FROM stdin;
@@ -1157,14 +1157,14 @@ COPY activities (id, user_id, action, trackable_id, trackable_type, created_at, 
 
 
 --
--- Name: activities_id_seq; Type: SEQUENCE SET; Schema: public; Owner: deploy
+-- Name: activities_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ufvlh6sgjb1ikv
 --
 
 SELECT pg_catalog.setval('activities_id_seq', 170, true);
 
 
 --
--- Data for Name: alltags; Type: TABLE DATA; Schema: public; Owner: deploy
+-- Data for Name: alltags; Type: TABLE DATA; Schema: public; Owner: ufvlh6sgjb1ikv
 --
 
 COPY alltags (id, name, description, user_id, question_id, created_at, updated_at) FROM stdin;
@@ -1174,14 +1174,14 @@ COPY alltags (id, name, description, user_id, question_id, created_at, updated_a
 
 
 --
--- Name: alltags_id_seq; Type: SEQUENCE SET; Schema: public; Owner: deploy
+-- Name: alltags_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ufvlh6sgjb1ikv
 --
 
 SELECT pg_catalog.setval('alltags_id_seq', 2, true);
 
 
 --
--- Data for Name: answer_votes; Type: TABLE DATA; Schema: public; Owner: deploy
+-- Data for Name: answer_votes; Type: TABLE DATA; Schema: public; Owner: ufvlh6sgjb1ikv
 --
 
 COPY answer_votes (id, user_id, answer_id, value, created_at, updated_at) FROM stdin;
@@ -1309,14 +1309,14 @@ COPY answer_votes (id, user_id, answer_id, value, created_at, updated_at) FROM s
 
 
 --
--- Name: answer_votes_id_seq; Type: SEQUENCE SET; Schema: public; Owner: deploy
+-- Name: answer_votes_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ufvlh6sgjb1ikv
 --
 
 SELECT pg_catalog.setval('answer_votes_id_seq', 120, true);
 
 
 --
--- Data for Name: answers; Type: TABLE DATA; Schema: public; Owner: deploy
+-- Data for Name: answers; Type: TABLE DATA; Schema: public; Owner: ufvlh6sgjb1ikv
 --
 
 COPY answers (id, body, question_id, user_id, accepted, body_plain, send_mail, created_at, updated_at, user_agent, user_ip, referrer) FROM stdin;
@@ -1430,14 +1430,14 @@ COPY answers (id, body, question_id, user_id, accepted, body_plain, send_mail, c
 
 
 --
--- Name: answers_id_seq; Type: SEQUENCE SET; Schema: public; Owner: deploy
+-- Name: answers_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ufvlh6sgjb1ikv
 --
 
 SELECT pg_catalog.setval('answers_id_seq', 160, true);
 
 
 --
--- Data for Name: categories; Type: TABLE DATA; Schema: public; Owner: deploy
+-- Data for Name: categories; Type: TABLE DATA; Schema: public; Owner: ufvlh6sgjb1ikv
 --
 
 COPY categories (id, name, description, created_at, updated_at, permalink, slug, image) FROM stdin;
@@ -1462,14 +1462,14 @@ COPY categories (id, name, description, created_at, updated_at, permalink, slug,
 
 
 --
--- Name: categories_id_seq; Type: SEQUENCE SET; Schema: public; Owner: deploy
+-- Name: categories_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ufvlh6sgjb1ikv
 --
 
 SELECT pg_catalog.setval('categories_id_seq', 17, true);
 
 
 --
--- Data for Name: ckeditor_assets; Type: TABLE DATA; Schema: public; Owner: deploy
+-- Data for Name: ckeditor_assets; Type: TABLE DATA; Schema: public; Owner: ufvlh6sgjb1ikv
 --
 
 COPY ckeditor_assets (id, data_file_name, data_content_type, data_file_size, assetable_id, assetable_type, type, width, height, created_at, updated_at) FROM stdin;
@@ -1477,14 +1477,14 @@ COPY ckeditor_assets (id, data_file_name, data_content_type, data_file_size, ass
 
 
 --
--- Name: ckeditor_assets_id_seq; Type: SEQUENCE SET; Schema: public; Owner: deploy
+-- Name: ckeditor_assets_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ufvlh6sgjb1ikv
 --
 
 SELECT pg_catalog.setval('ckeditor_assets_id_seq', 1, false);
 
 
 --
--- Data for Name: comments; Type: TABLE DATA; Schema: public; Owner: deploy
+-- Data for Name: comments; Type: TABLE DATA; Schema: public; Owner: ufvlh6sgjb1ikv
 --
 
 COPY comments (id, body, user_id, commentable_id, commentable_type, created_at, updated_at, ancestry) FROM stdin;
@@ -1566,14 +1566,14 @@ COPY comments (id, body, user_id, commentable_id, commentable_type, created_at, 
 
 
 --
--- Name: comments_id_seq; Type: SEQUENCE SET; Schema: public; Owner: deploy
+-- Name: comments_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ufvlh6sgjb1ikv
 --
 
 SELECT pg_catalog.setval('comments_id_seq', 127, true);
 
 
 --
--- Data for Name: direct_messages; Type: TABLE DATA; Schema: public; Owner: deploy
+-- Data for Name: direct_messages; Type: TABLE DATA; Schema: public; Owner: ufvlh6sgjb1ikv
 --
 
 COPY direct_messages (id, created_by, title, body, user_id, created_at, updated_at) FROM stdin;
@@ -13627,14 +13627,14 @@ COPY direct_messages (id, created_by, title, body, user_id, created_at, updated_
 
 
 --
--- Name: direct_messages_id_seq; Type: SEQUENCE SET; Schema: public; Owner: deploy
+-- Name: direct_messages_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ufvlh6sgjb1ikv
 --
 
 SELECT pg_catalog.setval('direct_messages_id_seq', 12046, true);
 
 
 --
--- Data for Name: favourites; Type: TABLE DATA; Schema: public; Owner: deploy
+-- Data for Name: favourites; Type: TABLE DATA; Schema: public; Owner: ufvlh6sgjb1ikv
 --
 
 COPY favourites (id, user_id, question_id, created_at, updated_at) FROM stdin;
@@ -13720,14 +13720,14 @@ COPY favourites (id, user_id, question_id, created_at, updated_at) FROM stdin;
 
 
 --
--- Name: favourites_id_seq; Type: SEQUENCE SET; Schema: public; Owner: deploy
+-- Name: favourites_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ufvlh6sgjb1ikv
 --
 
 SELECT pg_catalog.setval('favourites_id_seq', 101, true);
 
 
 --
--- Data for Name: friendly_id_slugs; Type: TABLE DATA; Schema: public; Owner: deploy
+-- Data for Name: friendly_id_slugs; Type: TABLE DATA; Schema: public; Owner: ufvlh6sgjb1ikv
 --
 
 COPY friendly_id_slugs (id, slug, sluggable_id, sluggable_type, scope, created_at) FROM stdin;
@@ -13735,14 +13735,14 @@ COPY friendly_id_slugs (id, slug, sluggable_id, sluggable_type, scope, created_a
 
 
 --
--- Name: friendly_id_slugs_id_seq; Type: SEQUENCE SET; Schema: public; Owner: deploy
+-- Name: friendly_id_slugs_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ufvlh6sgjb1ikv
 --
 
 SELECT pg_catalog.setval('friendly_id_slugs_id_seq', 1, false);
 
 
 --
--- Data for Name: friendships; Type: TABLE DATA; Schema: public; Owner: deploy
+-- Data for Name: friendships; Type: TABLE DATA; Schema: public; Owner: ufvlh6sgjb1ikv
 --
 
 COPY friendships (id, user_id, friend_id, created_at, updated_at) FROM stdin;
@@ -13750,14 +13750,14 @@ COPY friendships (id, user_id, friend_id, created_at, updated_at) FROM stdin;
 
 
 --
--- Name: friendships_id_seq; Type: SEQUENCE SET; Schema: public; Owner: deploy
+-- Name: friendships_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ufvlh6sgjb1ikv
 --
 
 SELECT pg_catalog.setval('friendships_id_seq', 1, false);
 
 
 --
--- Data for Name: notifications; Type: TABLE DATA; Schema: public; Owner: deploy
+-- Data for Name: notifications; Type: TABLE DATA; Schema: public; Owner: ufvlh6sgjb1ikv
 --
 
 COPY notifications (id, sender_id, receiver_id, notifiable_id, notifiable_type, created_at, updated_at) FROM stdin;
@@ -13765,14 +13765,14 @@ COPY notifications (id, sender_id, receiver_id, notifiable_id, notifiable_type, 
 
 
 --
--- Name: notifications_id_seq; Type: SEQUENCE SET; Schema: public; Owner: deploy
+-- Name: notifications_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ufvlh6sgjb1ikv
 --
 
 SELECT pg_catalog.setval('notifications_id_seq', 1, false);
 
 
 --
--- Data for Name: question_votes; Type: TABLE DATA; Schema: public; Owner: deploy
+-- Data for Name: question_votes; Type: TABLE DATA; Schema: public; Owner: ufvlh6sgjb1ikv
 --
 
 COPY question_votes (id, user_id, question_id, created_at, updated_at, value) FROM stdin;
@@ -14009,14 +14009,14 @@ COPY question_votes (id, user_id, question_id, created_at, updated_at, value) FR
 
 
 --
--- Name: question_votes_id_seq; Type: SEQUENCE SET; Schema: public; Owner: deploy
+-- Name: question_votes_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ufvlh6sgjb1ikv
 --
 
 SELECT pg_catalog.setval('question_votes_id_seq', 230, true);
 
 
 --
--- Data for Name: questions; Type: TABLE DATA; Schema: public; Owner: deploy
+-- Data for Name: questions; Type: TABLE DATA; Schema: public; Owner: ufvlh6sgjb1ikv
 --
 
 COPY questions (id, name, body, user_id, views, answers_count, permalink, answer_id, send_mail, created_at, updated_at, slug, category_id, ancestry, comments_count, favourites_count, picture) FROM stdin;
@@ -14135,14 +14135,14 @@ COPY questions (id, name, body, user_id, views, answers_count, permalink, answer
 
 
 --
--- Name: questions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: deploy
+-- Name: questions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ufvlh6sgjb1ikv
 --
 
 SELECT pg_catalog.setval('questions_id_seq', 113, true);
 
 
 --
--- Data for Name: relationships; Type: TABLE DATA; Schema: public; Owner: deploy
+-- Data for Name: relationships; Type: TABLE DATA; Schema: public; Owner: ufvlh6sgjb1ikv
 --
 
 COPY relationships (id, follower_id, followed_id, created_at, updated_at) FROM stdin;
@@ -15002,14 +15002,14 @@ COPY relationships (id, follower_id, followed_id, created_at, updated_at) FROM s
 
 
 --
--- Name: relationships_id_seq; Type: SEQUENCE SET; Schema: public; Owner: deploy
+-- Name: relationships_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ufvlh6sgjb1ikv
 --
 
 SELECT pg_catalog.setval('relationships_id_seq', 910, true);
 
 
 --
--- Data for Name: schema_migrations; Type: TABLE DATA; Schema: public; Owner: deploy
+-- Data for Name: schema_migrations; Type: TABLE DATA; Schema: public; Owner: ufvlh6sgjb1ikv
 --
 
 COPY schema_migrations (version) FROM stdin;
@@ -15066,7 +15066,7 @@ COPY schema_migrations (version) FROM stdin;
 
 
 --
--- Data for Name: taggings; Type: TABLE DATA; Schema: public; Owner: deploy
+-- Data for Name: taggings; Type: TABLE DATA; Schema: public; Owner: ufvlh6sgjb1ikv
 --
 
 COPY taggings (id, tag_id, taggable_id, taggable_type, tagger_id, tagger_type, context, created_at) FROM stdin;
@@ -15082,14 +15082,14 @@ COPY taggings (id, tag_id, taggable_id, taggable_type, tagger_id, tagger_type, c
 
 
 --
--- Name: taggings_id_seq; Type: SEQUENCE SET; Schema: public; Owner: deploy
+-- Name: taggings_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ufvlh6sgjb1ikv
 --
 
 SELECT pg_catalog.setval('taggings_id_seq', 8, true);
 
 
 --
--- Data for Name: tags; Type: TABLE DATA; Schema: public; Owner: deploy
+-- Data for Name: tags; Type: TABLE DATA; Schema: public; Owner: ufvlh6sgjb1ikv
 --
 
 COPY tags (id, name, taggings_count) FROM stdin;
@@ -15099,14 +15099,14 @@ COPY tags (id, name, taggings_count) FROM stdin;
 
 
 --
--- Name: tags_id_seq; Type: SEQUENCE SET; Schema: public; Owner: deploy
+-- Name: tags_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ufvlh6sgjb1ikv
 --
 
 SELECT pg_catalog.setval('tags_id_seq', 2, true);
 
 
 --
--- Data for Name: user_categories; Type: TABLE DATA; Schema: public; Owner: deploy
+-- Data for Name: user_categories; Type: TABLE DATA; Schema: public; Owner: ufvlh6sgjb1ikv
 --
 
 COPY user_categories (id, user_id, category_id, created_at, updated_at) FROM stdin;
@@ -16156,14 +16156,14 @@ COPY user_categories (id, user_id, category_id, created_at, updated_at) FROM std
 
 
 --
--- Name: user_categories_id_seq; Type: SEQUENCE SET; Schema: public; Owner: deploy
+-- Name: user_categories_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ufvlh6sgjb1ikv
 --
 
 SELECT pg_catalog.setval('user_categories_id_seq', 1085, true);
 
 
 --
--- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: deploy
+-- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: ufvlh6sgjb1ikv
 --
 
 COPY users (id, email, encrypted_password, reset_password_token, reset_password_sent_at, remember_created_at, sign_in_count, current_sign_in_at, last_sign_in_at, current_sign_in_ip, last_sign_in_ip, created_at, updated_at, username, avatar, views, last_requested_at, avatar_file_name, avatar_content_type, avatar_file_size, avatar_updated_at, admin, reputation, slug, banned_at, first_name, last_name, gender, bio, occupation, title, intrest, moderator, only_follower_feed, provider, uid, category_id) FROM stdin;
@@ -16342,14 +16342,14 @@ COPY users (id, email, encrypted_password, reset_password_token, reset_password_
 
 
 --
--- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: deploy
+-- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ufvlh6sgjb1ikv
 --
 
 SELECT pg_catalog.setval('users_id_seq', 171, true);
 
 
 --
--- Data for Name: versions; Type: TABLE DATA; Schema: public; Owner: deploy
+-- Data for Name: versions; Type: TABLE DATA; Schema: public; Owner: ufvlh6sgjb1ikv
 --
 
 COPY versions (id, item_type, item_id, event, whodunnit, object, created_at) FROM stdin;
@@ -16560,14 +16560,14 @@ COPY versions (id, item_type, item_id, event, whodunnit, object, created_at) FRO
 
 
 --
--- Name: versions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: deploy
+-- Name: versions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ufvlh6sgjb1ikv
 --
 
 SELECT pg_catalog.setval('versions_id_seq', 203, true);
 
 
 --
--- Name: activities_pkey; Type: CONSTRAINT; Schema: public; Owner: deploy; Tablespace:
+-- Name: activities_pkey; Type: CONSTRAINT; Schema: public; Owner: ufvlh6sgjb1ikv; Tablespace:
 --
 
 ALTER TABLE ONLY activities
@@ -16575,7 +16575,7 @@ ALTER TABLE ONLY activities
 
 
 --
--- Name: alltags_pkey; Type: CONSTRAINT; Schema: public; Owner: deploy; Tablespace:
+-- Name: alltags_pkey; Type: CONSTRAINT; Schema: public; Owner: ufvlh6sgjb1ikv; Tablespace:
 --
 
 ALTER TABLE ONLY alltags
@@ -16583,7 +16583,7 @@ ALTER TABLE ONLY alltags
 
 
 --
--- Name: answer_votes_pkey; Type: CONSTRAINT; Schema: public; Owner: deploy; Tablespace:
+-- Name: answer_votes_pkey; Type: CONSTRAINT; Schema: public; Owner: ufvlh6sgjb1ikv; Tablespace:
 --
 
 ALTER TABLE ONLY answer_votes
@@ -16591,7 +16591,7 @@ ALTER TABLE ONLY answer_votes
 
 
 --
--- Name: answers_pkey; Type: CONSTRAINT; Schema: public; Owner: deploy; Tablespace:
+-- Name: answers_pkey; Type: CONSTRAINT; Schema: public; Owner: ufvlh6sgjb1ikv; Tablespace:
 --
 
 ALTER TABLE ONLY answers
@@ -16599,7 +16599,7 @@ ALTER TABLE ONLY answers
 
 
 --
--- Name: categories_pkey; Type: CONSTRAINT; Schema: public; Owner: deploy; Tablespace:
+-- Name: categories_pkey; Type: CONSTRAINT; Schema: public; Owner: ufvlh6sgjb1ikv; Tablespace:
 --
 
 ALTER TABLE ONLY categories
@@ -16607,7 +16607,7 @@ ALTER TABLE ONLY categories
 
 
 --
--- Name: ckeditor_assets_pkey; Type: CONSTRAINT; Schema: public; Owner: deploy; Tablespace:
+-- Name: ckeditor_assets_pkey; Type: CONSTRAINT; Schema: public; Owner: ufvlh6sgjb1ikv; Tablespace:
 --
 
 ALTER TABLE ONLY ckeditor_assets
@@ -16615,7 +16615,7 @@ ALTER TABLE ONLY ckeditor_assets
 
 
 --
--- Name: comments_pkey; Type: CONSTRAINT; Schema: public; Owner: deploy; Tablespace:
+-- Name: comments_pkey; Type: CONSTRAINT; Schema: public; Owner: ufvlh6sgjb1ikv; Tablespace:
 --
 
 ALTER TABLE ONLY comments
@@ -16623,7 +16623,7 @@ ALTER TABLE ONLY comments
 
 
 --
--- Name: direct_messages_pkey; Type: CONSTRAINT; Schema: public; Owner: deploy; Tablespace:
+-- Name: direct_messages_pkey; Type: CONSTRAINT; Schema: public; Owner: ufvlh6sgjb1ikv; Tablespace:
 --
 
 ALTER TABLE ONLY direct_messages
@@ -16631,7 +16631,7 @@ ALTER TABLE ONLY direct_messages
 
 
 --
--- Name: favourites_pkey; Type: CONSTRAINT; Schema: public; Owner: deploy; Tablespace:
+-- Name: favourites_pkey; Type: CONSTRAINT; Schema: public; Owner: ufvlh6sgjb1ikv; Tablespace:
 --
 
 ALTER TABLE ONLY favourites
@@ -16639,7 +16639,7 @@ ALTER TABLE ONLY favourites
 
 
 --
--- Name: friendly_id_slugs_pkey; Type: CONSTRAINT; Schema: public; Owner: deploy; Tablespace:
+-- Name: friendly_id_slugs_pkey; Type: CONSTRAINT; Schema: public; Owner: ufvlh6sgjb1ikv; Tablespace:
 --
 
 ALTER TABLE ONLY friendly_id_slugs
@@ -16647,7 +16647,7 @@ ALTER TABLE ONLY friendly_id_slugs
 
 
 --
--- Name: friendships_pkey; Type: CONSTRAINT; Schema: public; Owner: deploy; Tablespace:
+-- Name: friendships_pkey; Type: CONSTRAINT; Schema: public; Owner: ufvlh6sgjb1ikv; Tablespace:
 --
 
 ALTER TABLE ONLY friendships
@@ -16655,7 +16655,7 @@ ALTER TABLE ONLY friendships
 
 
 --
--- Name: notifications_pkey; Type: CONSTRAINT; Schema: public; Owner: deploy; Tablespace:
+-- Name: notifications_pkey; Type: CONSTRAINT; Schema: public; Owner: ufvlh6sgjb1ikv; Tablespace:
 --
 
 ALTER TABLE ONLY notifications
@@ -16663,7 +16663,7 @@ ALTER TABLE ONLY notifications
 
 
 --
--- Name: question_votes_pkey; Type: CONSTRAINT; Schema: public; Owner: deploy; Tablespace:
+-- Name: question_votes_pkey; Type: CONSTRAINT; Schema: public; Owner: ufvlh6sgjb1ikv; Tablespace:
 --
 
 ALTER TABLE ONLY question_votes
@@ -16671,7 +16671,7 @@ ALTER TABLE ONLY question_votes
 
 
 --
--- Name: questions_pkey; Type: CONSTRAINT; Schema: public; Owner: deploy; Tablespace:
+-- Name: questions_pkey; Type: CONSTRAINT; Schema: public; Owner: ufvlh6sgjb1ikv; Tablespace:
 --
 
 ALTER TABLE ONLY questions
@@ -16679,7 +16679,7 @@ ALTER TABLE ONLY questions
 
 
 --
--- Name: relationships_pkey; Type: CONSTRAINT; Schema: public; Owner: deploy; Tablespace:
+-- Name: relationships_pkey; Type: CONSTRAINT; Schema: public; Owner: ufvlh6sgjb1ikv; Tablespace:
 --
 
 ALTER TABLE ONLY relationships
@@ -16687,7 +16687,7 @@ ALTER TABLE ONLY relationships
 
 
 --
--- Name: taggings_pkey; Type: CONSTRAINT; Schema: public; Owner: deploy; Tablespace:
+-- Name: taggings_pkey; Type: CONSTRAINT; Schema: public; Owner: ufvlh6sgjb1ikv; Tablespace:
 --
 
 ALTER TABLE ONLY taggings
@@ -16695,7 +16695,7 @@ ALTER TABLE ONLY taggings
 
 
 --
--- Name: tags_pkey; Type: CONSTRAINT; Schema: public; Owner: deploy; Tablespace:
+-- Name: tags_pkey; Type: CONSTRAINT; Schema: public; Owner: ufvlh6sgjb1ikv; Tablespace:
 --
 
 ALTER TABLE ONLY tags
@@ -16703,7 +16703,7 @@ ALTER TABLE ONLY tags
 
 
 --
--- Name: user_categories_pkey; Type: CONSTRAINT; Schema: public; Owner: deploy; Tablespace:
+-- Name: user_categories_pkey; Type: CONSTRAINT; Schema: public; Owner: ufvlh6sgjb1ikv; Tablespace:
 --
 
 ALTER TABLE ONLY user_categories
@@ -16711,7 +16711,7 @@ ALTER TABLE ONLY user_categories
 
 
 --
--- Name: users_pkey; Type: CONSTRAINT; Schema: public; Owner: deploy; Tablespace:
+-- Name: users_pkey; Type: CONSTRAINT; Schema: public; Owner: ufvlh6sgjb1ikv; Tablespace:
 --
 
 ALTER TABLE ONLY users
@@ -16719,7 +16719,7 @@ ALTER TABLE ONLY users
 
 
 --
--- Name: versions_pkey; Type: CONSTRAINT; Schema: public; Owner: deploy; Tablespace:
+-- Name: versions_pkey; Type: CONSTRAINT; Schema: public; Owner: ufvlh6sgjb1ikv; Tablespace:
 --
 
 ALTER TABLE ONLY versions
@@ -16727,190 +16727,190 @@ ALTER TABLE ONLY versions
 
 
 --
--- Name: idx_ckeditor_assetable; Type: INDEX; Schema: public; Owner: deploy; Tablespace:
+-- Name: idx_ckeditor_assetable; Type: INDEX; Schema: public; Owner: ufvlh6sgjb1ikv; Tablespace:
 --
 
 CREATE INDEX idx_ckeditor_assetable ON ckeditor_assets USING btree (assetable_type, assetable_id);
 
 
 --
--- Name: idx_ckeditor_assetable_type; Type: INDEX; Schema: public; Owner: deploy; Tablespace:
+-- Name: idx_ckeditor_assetable_type; Type: INDEX; Schema: public; Owner: ufvlh6sgjb1ikv; Tablespace:
 --
 
 CREATE INDEX idx_ckeditor_assetable_type ON ckeditor_assets USING btree (assetable_type, type, assetable_id);
 
 
 --
--- Name: index_activities_on_trackable_id; Type: INDEX; Schema: public; Owner: deploy; Tablespace:
+-- Name: index_activities_on_trackable_id; Type: INDEX; Schema: public; Owner: ufvlh6sgjb1ikv; Tablespace:
 --
 
 CREATE INDEX index_activities_on_trackable_id ON activities USING btree (trackable_id);
 
 
 --
--- Name: index_activities_on_user_id; Type: INDEX; Schema: public; Owner: deploy; Tablespace:
+-- Name: index_activities_on_user_id; Type: INDEX; Schema: public; Owner: ufvlh6sgjb1ikv; Tablespace:
 --
 
 CREATE INDEX index_activities_on_user_id ON activities USING btree (user_id);
 
 
 --
--- Name: index_comments_on_ancestry; Type: INDEX; Schema: public; Owner: deploy; Tablespace:
+-- Name: index_comments_on_ancestry; Type: INDEX; Schema: public; Owner: ufvlh6sgjb1ikv; Tablespace:
 --
 
 CREATE INDEX index_comments_on_ancestry ON comments USING btree (ancestry);
 
 
 --
--- Name: index_friendly_id_slugs_on_slug_and_sluggable_type; Type: INDEX; Schema: public; Owner: deploy; Tablespace:
+-- Name: index_friendly_id_slugs_on_slug_and_sluggable_type; Type: INDEX; Schema: public; Owner: ufvlh6sgjb1ikv; Tablespace:
 --
 
 CREATE INDEX index_friendly_id_slugs_on_slug_and_sluggable_type ON friendly_id_slugs USING btree (slug, sluggable_type);
 
 
 --
--- Name: index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope; Type: INDEX; Schema: public; Owner: deploy; Tablespace:
+-- Name: index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope; Type: INDEX; Schema: public; Owner: ufvlh6sgjb1ikv; Tablespace:
 --
 
 CREATE UNIQUE INDEX index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope ON friendly_id_slugs USING btree (slug, sluggable_type, scope);
 
 
 --
--- Name: index_friendly_id_slugs_on_sluggable_id; Type: INDEX; Schema: public; Owner: deploy; Tablespace:
+-- Name: index_friendly_id_slugs_on_sluggable_id; Type: INDEX; Schema: public; Owner: ufvlh6sgjb1ikv; Tablespace:
 --
 
 CREATE INDEX index_friendly_id_slugs_on_sluggable_id ON friendly_id_slugs USING btree (sluggable_id);
 
 
 --
--- Name: index_friendly_id_slugs_on_sluggable_type; Type: INDEX; Schema: public; Owner: deploy; Tablespace:
+-- Name: index_friendly_id_slugs_on_sluggable_type; Type: INDEX; Schema: public; Owner: ufvlh6sgjb1ikv; Tablespace:
 --
 
 CREATE INDEX index_friendly_id_slugs_on_sluggable_type ON friendly_id_slugs USING btree (sluggable_type);
 
 
 --
--- Name: index_notifications_on_notifiable_id_and_notifiable_type; Type: INDEX; Schema: public; Owner: deploy; Tablespace:
+-- Name: index_notifications_on_notifiable_id_and_notifiable_type; Type: INDEX; Schema: public; Owner: ufvlh6sgjb1ikv; Tablespace:
 --
 
 CREATE INDEX index_notifications_on_notifiable_id_and_notifiable_type ON notifications USING btree (notifiable_id, notifiable_type);
 
 
 --
--- Name: index_questions_on_ancestry; Type: INDEX; Schema: public; Owner: deploy; Tablespace:
+-- Name: index_questions_on_ancestry; Type: INDEX; Schema: public; Owner: ufvlh6sgjb1ikv; Tablespace:
 --
 
 CREATE INDEX index_questions_on_ancestry ON questions USING btree (ancestry);
 
 
 --
--- Name: index_questions_on_slug; Type: INDEX; Schema: public; Owner: deploy; Tablespace:
+-- Name: index_questions_on_slug; Type: INDEX; Schema: public; Owner: ufvlh6sgjb1ikv; Tablespace:
 --
 
 CREATE UNIQUE INDEX index_questions_on_slug ON questions USING btree (slug);
 
 
 --
--- Name: index_relationships_on_followed_id; Type: INDEX; Schema: public; Owner: deploy; Tablespace:
+-- Name: index_relationships_on_followed_id; Type: INDEX; Schema: public; Owner: ufvlh6sgjb1ikv; Tablespace:
 --
 
 CREATE INDEX index_relationships_on_followed_id ON relationships USING btree (followed_id);
 
 
 --
--- Name: index_relationships_on_follower_id; Type: INDEX; Schema: public; Owner: deploy; Tablespace:
+-- Name: index_relationships_on_follower_id; Type: INDEX; Schema: public; Owner: ufvlh6sgjb1ikv; Tablespace:
 --
 
 CREATE INDEX index_relationships_on_follower_id ON relationships USING btree (follower_id);
 
 
 --
--- Name: index_relationships_on_follower_id_and_followed_id; Type: INDEX; Schema: public; Owner: deploy; Tablespace:
+-- Name: index_relationships_on_follower_id_and_followed_id; Type: INDEX; Schema: public; Owner: ufvlh6sgjb1ikv; Tablespace:
 --
 
 CREATE UNIQUE INDEX index_relationships_on_follower_id_and_followed_id ON relationships USING btree (follower_id, followed_id);
 
 
 --
--- Name: index_taggings_on_taggable_id_and_taggable_type_and_context; Type: INDEX; Schema: public; Owner: deploy; Tablespace:
+-- Name: index_taggings_on_taggable_id_and_taggable_type_and_context; Type: INDEX; Schema: public; Owner: ufvlh6sgjb1ikv; Tablespace:
 --
 
 CREATE INDEX index_taggings_on_taggable_id_and_taggable_type_and_context ON taggings USING btree (taggable_id, taggable_type, context);
 
 
 --
--- Name: index_tags_on_name; Type: INDEX; Schema: public; Owner: deploy; Tablespace:
+-- Name: index_tags_on_name; Type: INDEX; Schema: public; Owner: ufvlh6sgjb1ikv; Tablespace:
 --
 
 CREATE UNIQUE INDEX index_tags_on_name ON tags USING btree (name);
 
 
 --
--- Name: index_users_on_email; Type: INDEX; Schema: public; Owner: deploy; Tablespace:
+-- Name: index_users_on_email; Type: INDEX; Schema: public; Owner: ufvlh6sgjb1ikv; Tablespace:
 --
 
 CREATE UNIQUE INDEX index_users_on_email ON users USING btree (email);
 
 
 --
--- Name: index_users_on_provider; Type: INDEX; Schema: public; Owner: deploy; Tablespace:
+-- Name: index_users_on_provider; Type: INDEX; Schema: public; Owner: ufvlh6sgjb1ikv; Tablespace:
 --
 
 CREATE INDEX index_users_on_provider ON users USING btree (provider);
 
 
 --
--- Name: index_users_on_reset_password_token; Type: INDEX; Schema: public; Owner: deploy; Tablespace:
+-- Name: index_users_on_reset_password_token; Type: INDEX; Schema: public; Owner: ufvlh6sgjb1ikv; Tablespace:
 --
 
 CREATE UNIQUE INDEX index_users_on_reset_password_token ON users USING btree (reset_password_token);
 
 
 --
--- Name: index_users_on_slug; Type: INDEX; Schema: public; Owner: deploy; Tablespace:
+-- Name: index_users_on_slug; Type: INDEX; Schema: public; Owner: ufvlh6sgjb1ikv; Tablespace:
 --
 
 CREATE UNIQUE INDEX index_users_on_slug ON users USING btree (slug);
 
 
 --
--- Name: index_users_on_uid; Type: INDEX; Schema: public; Owner: deploy; Tablespace:
+-- Name: index_users_on_uid; Type: INDEX; Schema: public; Owner: ufvlh6sgjb1ikv; Tablespace:
 --
 
 CREATE INDEX index_users_on_uid ON users USING btree (uid);
 
 
 --
--- Name: index_versions_on_item_type_and_item_id; Type: INDEX; Schema: public; Owner: deploy; Tablespace:
+-- Name: index_versions_on_item_type_and_item_id; Type: INDEX; Schema: public; Owner: ufvlh6sgjb1ikv; Tablespace:
 --
 
 CREATE INDEX index_versions_on_item_type_and_item_id ON versions USING btree (item_type, item_id);
 
 
 --
--- Name: taggings_idx; Type: INDEX; Schema: public; Owner: deploy; Tablespace:
+-- Name: taggings_idx; Type: INDEX; Schema: public; Owner: ufvlh6sgjb1ikv; Tablespace:
 --
 
 CREATE UNIQUE INDEX taggings_idx ON taggings USING btree (tag_id, taggable_id, taggable_type, context, tagger_id, tagger_type);
 
 
 --
--- Name: unique_schema_migrations; Type: INDEX; Schema: public; Owner: deploy; Tablespace:
+-- Name: unique_schema_migrations; Type: INDEX; Schema: public; Owner: ufvlh6sgjb1ikv; Tablespace:
 --
 
 CREATE UNIQUE INDEX unique_schema_migrations ON schema_migrations USING btree (version);
 
 
 --
--- Name: public; Type: ACL; Schema: -; Owner: obogbarealexonozor
+-- Name: public; Type: ACL; Schema: -; Owner: ufvlh6sgjb1ikv
 --
 
 REVOKE ALL ON SCHEMA public FROM PUBLIC;
-REVOKE ALL ON SCHEMA public FROM obogbarealexonozor;
-GRANT ALL ON SCHEMA public TO obogbarealexonozor;
+REVOKE ALL ON SCHEMA public FROM ufvlh6sgjb1ikv;
+GRANT ALL ON SCHEMA public TO ufvlh6sgjb1ikv;
 GRANT ALL ON SCHEMA public TO PUBLIC;
 
 
 --
--- obogbarealexonozorQL database dump complete
+-- ufvlh6sgjb1ikvQL database dump complete
 --
