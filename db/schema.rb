@@ -159,17 +159,6 @@ ActiveRecord::Schema.define(version: 20160730210922) do
   add_index "impressions", ["impressionable_type", "message", "impressionable_id"], name: "impressionable_type_message_index", using: :btree
   add_index "impressions", ["user_id"], name: "index_impressions_on_user_id", using: :btree
 
-  create_table "notifications", force: true do |t|
-    t.integer  "sender_id"
-    t.integer  "receiver_id"
-    t.integer  "notifiable_id"
-    t.string   "notifiable_type"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "notifications", ["notifiable_id", "notifiable_type"], name: "index_notifications_on_notifiable_id_and_notifiable_type", using: :btree
-
   create_table "page_types", force: true do |t|
     t.string   "name"
     t.text     "description"
@@ -310,10 +299,6 @@ ActiveRecord::Schema.define(version: 20160730210922) do
     t.string   "avatar"
     t.integer  "views",                  default: 0
     t.datetime "last_requested_at"
-    t.string   "avatar_file_name"
-    t.string   "avatar_content_type"
-    t.integer  "avatar_file_size"
-    t.datetime "avatar_updated_at"
     t.boolean  "admin"
     t.string   "slug"
     t.datetime "banned_at"
