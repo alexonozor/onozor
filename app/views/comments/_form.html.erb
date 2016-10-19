@@ -1,17 +1,13 @@
-<%= form_for @comment,  :remote => true do |f| %>
-  
-  <br />
-  <div class="field">
-  
-    <%= f.text_area :body, class:"form-control" %>
-  </div>
-  <div class="field">
-    <%= f.hidden_field :user_id %>
-    <%= f.hidden_field :commentable_type %>
-    <%= f.hidden_field :commentable_id %>
-  <br />
+
+
+<%= form_for @comment, html: { class: 'ui reply form comment-form' },  :remote => true do |f| %>
+<div class="ui mini message yellow error-message"><i class="close icon"></i></div>
+  <%= f.hidden_field :user_id %>
+  <%= f.hidden_field :commentable_type %>
+  <%= f.hidden_field :commentable_id %>
+    <div class="field">
+      <%= f.text_area :body, rows: 50, class:"commnet-form", placeholder: "Use comments to ask for more information or suggest improvements. Avoid answering questions in comments." %>
     </div>
-  <div class="actions">
-    <%= f.submit (@comment.new_record? ? "Post comment" : "Update comment"), class:'btn btn-primary btn-lg' %>
-  </div>
+    <%= f.submit (@comment.new_record? ? "Post comment" : "Update comment"), class:'ui mini blue button pull-right' %>
+    <button type="button" class='pull-right ui mini yellow button cancel-comment' name="button">Cancel</button>
 <% end %>

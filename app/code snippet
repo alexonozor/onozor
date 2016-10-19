@@ -1,64 +1,69 @@
-<div class="post index-question question-body row"  data-question="<%= question.created_at.to_i %>" data-id="<%= question.id %>" >
-    <div class="userinfo col-md-3">
-      <div class="avatar">
-        <% if question.user.present? %>
-        <%=link_to image_tag(question.user.avatar.url(:thumb)), question.user %>
-        <% if question.user.is_online? %>
-            <div class="status green">&nbsp;</div>
-        <% end %>
-        <% end %>
+<% title "#{@user.username} Profile" %>
+<% content "#{@user.bio}" %>
+<div class="container-set">
+  <div class="row clear-top">
+    <div class="col-md-3">
+      <div class="profile-picture-image">
+       <%= image_tag @user.avatar.url(:medium), class:"profile-picture", class: 'img-circle' %>
+      </div>
+      <div class="list-group">
+        <a href="#" class="list-group-item disabled">Feeds</a>
+        <%= link_to (pluralize @user.questions.count, "Question"), user_path(@user) + "/questions", :remote => true , class: "list-group-item"  %>
+        <%= link_to (pluralize @user.answers.count, "Answer"), user_path(@user) + "/answers", :remote => true , class: "list-group-item"  %>
+        <%= link_to (pluralize @user.followers.count, "Follower"), user_path(@user) + "/followers", :remote => true ,  class: "list-group-item"  %>
+        <%= link_to (pluralize @user.followed_users.count, "Following"), user_path(@user) + "/following", :remote => true , class: "list-group-item"  %>
+        <%= link_to (pluralize @user.favourites.count, "Favorites"), user_path(@user) + "/favorites", :remote => true , class: "list-group-item"  %>
       </div>
     </div>
-    <div class="posttext col-md-10">
-     <div class="post-user-infor">
+   <div class="col-md-6">
+     <div class="info-text center_col">
+       <% if @current_user && @user.id == @current_user.id %>
+        <h1 class="profile-picture-name">
+          <%= render partial: "user_info", locals: {option: "fullname"} %>
+        </h1>
+        <%= render partial: "user_info", locals: {option: "intrest"} %>
+        <%= render partial: "user_info", locals: {option: "bio"} %>
+        <% else %>
+          <h1 class="profile-picture-name"><%= @user.fullname %></h1>
+          <h3 class="user_intrest"><%= @user.intrest || "<i>No interests yet</i>".html_safe %></h3>
+          <p><%= (@user.bio && !@user.bio.empty?) ? @user.bio : "<i>No bio yet</i>".html_safe %></p>
+        <% end %>
+       <div id="user-contact-info">
+         <ul>
+           <li><%= render 'follow_form' if signed_in?  %></li>
+           <li class="user_action">
+             <%= render "message_user" %>
+           </li>
+         </ul>
+       </div>
 
-         <%=link_to question.user.username.titleize, question.user %>,
-         <%= pluralize question.user.followers.count, "follower"  %>
-         <%= question.user.intrest  %>
-         <%= link_to "<i class='#{question.favourited?(current_user)? 'fa fa-heart favorite-color' : 'fa fa-heart-o' if current_user }'></i> ".html_safe, toggle_favourite_path(question.id), :method => "post", class:'pull-right move-left', id:"favorite-#{question.id}", :title => "favourited by #{pluralize question.favourites_count, 'person'}", 'data-toggle' => 'tooltip', 'data-placement' => 'left',  :remote => true %>
      </div>
 
-      <h2><%=link_to question.name, question, class: "question-title" %></h2>
 
-      <%=image_tag (question.picture.url(:thumb)),  class: "question-title" if question.picture.present? %>
-      <p><%= truncate (strip_tags question.body), length: 150 %></p>
-
-      <%#= raw question.tag_list.map { |t| link_to t, tag_path(t), class:'tags' }.join('') %>
-     <div class="votes-button">
-      <%= allow_ajax_only_if_user_is_signin_for_upvote(question) %>
-       <span id='vote-count-<%= question.id %>' class='vote-count'><%= question.votes %></span>
-      <%= allow_ajax_only_if_user_is_signin_for_downvote(question) %>
+     <div id="feeds">
+      <%=render "users/all_feeds" %>
      </div>
-      <span class="post-question-info">
-        <%=link_to (pluralize question.answers_count, "Answer"), question_path(question, anchor: "answers-area")  %>
-        <%=link_to (pluralize question.comments.count, "Comment"), question_path(question)  %>
-        <%=link_to (pluralize question.views, "View"), question_path(question) %>
-        <span class="dropdown">
-          <a href="#" class=" dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Share <span class="caret"></span></a>
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
-          <li><a href="#"><i class="fa fa-facebook"></i> Facebook</a></li>
-          <li><a href="#"><i class="fa fa-twitter"></i> Twitter</a></li>
-          <li><a class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-layout="link" ><i class="fa fa-google-plus"></i> Google plus</a></li>
-        </ul>
-      </span>
-      </span>
-    </div>
-
-</div>
-
-
-
-  <div class="leftside">
-    <p> Sort Questions</p>
-    <div class="blocktxt">
-      <ul class="cats">
-         <li><% if action_name == "answered" %><i class="fa fa-long-arrow-right"></i> <% end %> <%= link_to "Answered", answered_questions_path %></li>
-         <div class="divline"></div>
-         <li><% if action_name == "hot" %><i class="fa fa-long-arrow-right"></i> <% end %>  <%= link_to "Hot", hot_questions_path %></li>
-         <div class="divline"></div>
-        <li><% if action_name == "active" %><i class="fa fa-long-arrow-right"></i> <% end %> <%= link_to "Active", active_questions_path %></li>
-        <div class="divline"></div>
-          <li><% if action_name == "unanswered" %><i class="fa fa-long-arrow-right"></i> <% end %> <%= link_to "Unanswered", unanswered_questions_path %></li>
-      </ul>
-    </div>
+   </div>
+   <div class="col-md-3">
+     <div class="sidebar_right">
+       <%=link_to user_path(@user), class: "views_on_profile" do %>
+        <h3><span class="users_answers"><%= "Views on #{@user.first_name}'s Answers" %></span></h3>
+        <div class="stat">
+          <span class="total_count"><%= @user.views %></span>
+          <div class="stat_label is_increase"> Last 30 Days</div>
+        </div>
+        <div class="stat">
+          <span class="total_count"><%= @user.views %></span>
+          <div class="stat_label">All Time</div>
+        </div>
+       <% end %>
+       <div>
+          <div class="recent">Recent Posts</div>
+        <% @related_questions.each do |a| %>
+         <p class="similar"><%= link_to a.name, a  %></p>
+        <% end %>
+      </div>
+     </div>
   </div>
+</div>
+</div>

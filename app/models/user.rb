@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable,
-         :omniauth_providers => [:facebook, :google_oauth2, :twitter]
+         :omniauth_providers => [:facebook, :google_oauth2, :twitter, :linkedin]
 
   mount_uploader :avatar, AvatarUploader
   extend FriendlyId
@@ -18,6 +18,7 @@ class User < ActiveRecord::Base
   has_many :replies, :through => :questions, :source => :answers
   has_many :alltags
   has_many :answers
+  has_many :answered_questions, through: :answers, :source => :question
   has_many :favourites
   has_many :favourite_questions, :through => :favourites, :source => :question
   has_many :question_votes, :dependent => :destroy
@@ -62,18 +63,82 @@ class User < ActiveRecord::Base
     User.find_by_sql(user_friends)
   end
 
+
+
+
   def self.from_omniauth(auth)
-    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
-      user.username =  is_provider_from_twitter?(auth) ? auth.info.nickname : user.username = auth.info.name.split(' ')[0] + auth.info.name.split(' ')[1]
-      user.email = auth.info.email
-      user.password = Devise.friendly_token[0,20]
-      user.first_name = is_provider_from_twitter?(auth) ? auth.info.name.split(' ')[0] : user.first_name = auth.info.first_name
-      user.last_name =  is_provider_from_twitter?(auth) ?  auth.info.name.split(' ')[1] : user.last_name = auth.info.last_name
-      user.gender =  auth['extra']['raw_info']['gender']
-      user.remote_avatar_url = is_provider_from_twitter?(auth) ? auth['info']['image'] : auth.info.image
-      user.bio = auth.info.description
+    # user = find_or_create_by(uid: auth_hash['uid'], provider: auth_hash['provider'])
+    find_or_create_by(provider: auth.provider, uid: auth.uid) do |user|
+      if auth.provider == "facebook"
+        save_facebook_details(auth, user)
+      elsif auth.provider == "twitter"
+        save_twitter_details(auth, user)
+      elsif auth.provider == "google_oauth2"
+        save_google_details(auth, user)
+      elsif auth.provider == "linkedin"
+        save_linkedin_details(auth, user)
+      else
+        raise "provider not find"
+      end
     end
   end
+
+
+
+
+  def self.save_twitter_details(auth, user)
+    # binding.pry
+    user.username = auth.info.nickname
+    user.password = Devise.friendly_token[0,20]
+    user.first_name = auth['info']['name'].split(' ')[0]
+    user.last_name =  auth.info.name.split(' ')[1]
+    user.remote_avatar_url = auth['info']['image']
+    user.bio = auth.info.description
+    user.location = auth.info.location
+    user.twitter_url = auth['info']['urls']['Twitter']
+    user.personal_website = auth['info']['urls']['Website']
+    user.save
+  end
+
+
+   def self.save_facebook_details(auth, user)
+     user.username =  user.username = auth.info.name.split(' ')[0] + auth.info.name.split(' ')[1]
+     user.email = auth.info.email
+     user.password = Devise.friendly_token[0,20]
+     user.first_name = auth.info.first_name
+     user.last_name  = auth.info.last_name
+     user.gender =  auth['extra']['raw_info']['gender']
+     user.facebook_url = auth['extra']['raw_info']['link']
+     user.remote_avatar_url = auth['info']['image']
+     user.save
+   end
+
+
+
+   def self.save_linkedin_details(auth, user)
+     user.username = auth['info']['nickname']
+     user.email = auth['info']['email']
+     user.password = Devise.friendly_token[0,20]
+     user.first_name = auth['info']['name'].split(' ').first
+     user.last_name =  auth['info']['name'].split(' ').last
+     user.remote_avatar_url = auth[:extra][:raw_info][:pictureUrls][:values].first
+     user.bio = auth['info']['description']
+     user.country = auth['info']["location"]['name']
+     user.save
+   end
+
+
+   def self.save_google_details(auth, user)
+     user.username = auth['extra']['raw_info']["given_name"]
+     user.first_name = auth['info']['first_name']
+     user.last_name = auth['info']['last_name']
+     user.email = auth['info']['email']
+     user.password = Devise.friendly_token[0,20]
+     user.remote_avatar_url = auth['info']['image']
+     user.gender = auth['extra']['raw_info']['gender']
+     user.save
+
+   end
 
 
 
@@ -93,6 +158,10 @@ class User < ActiveRecord::Base
     super && provider.blank?
   end
 
+  def email_required?
+  super && provider.blank?
+end
+
   #scoping
   scope :online, -> {where('last_requested_at > ? ', Time.now - 5.minute)}
 
@@ -102,7 +171,7 @@ class User < ActiveRecord::Base
 
  def can_vote?(answer)
     answer_votes.build(value: 1, answer: answer).valid?
-  end
+end
 
 
 

@@ -1,15 +1,23 @@
 class CategoriesController < ApplicationController
+  respond_to  :json, :js
   before_action :set_category, only: [:show, :edit, :update, :destroy]
   # GET /categories
   # GET /categories.json
   def index
     @categories = Category.all
+    respond_to do |format|
+      format.json { render json: @categories }
+    end
   end
 
   # GET /categories/1
   # GET /categories/1.json
   def show
-   @question =  @category.questions
+   @questions =  @category.questions
+   respond_to do |format|
+     format.xml
+     format.js { render 'question_sort.js.erb', layout: false, content_type: 'text/javascript' }
+   end
   end
 
   # GET /categories/new

@@ -1,14 +1,17 @@
-<% title "signup | Sigin - Onozor" %>
-<div class="col-lg-6 signup">
-  <div id="signup-container">
-    <div class="third-party-signup-form">
-      <%= render "devise/sessions/third_party_sign_ups" %>
+<% title "Sigin - Onozor" %>
+<div class="ui middle aligned center aligned grid">
+  <div class="column">
+    <%= render partial: 'layouts/flash_messages/flash' %>
+
+    <h2 class="ui teal image header">
+      <%= link_to (image_tag "logo-icon.png"), "/", class:"image" %>
+    </h2>
+    <div class="content">
+      <h3>Login to your account</h3>
     </div>
+     <%= render "devise/sessions/sign_in" %>
+     <div class="ui message">
+       <%= render "devise/sessions/third_party_sign_ups" %>
+     </div>
+   </div>
   </div>
-</div>
-
-<div class="col-lg-6 login">
-  <%= render "devise/sessions/sign_in" %>
-</div>
-
-

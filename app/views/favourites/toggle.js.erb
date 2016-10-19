@@ -1,8 +1,6 @@
 $(".favourite-counter-<%= @question.id %>").text(<%= @question.favourites_count %>);
 <% if @question.favourited?(current_user) %>
-  $('#favorite-<%= @question.id %>').html("<i class='fa fa-heart favorite-color'></i>");
-  $.toaster({ priority : 'success', message : '<%= @message.html_safe %>'});
+  $('#favorite-<%= @question.id %>').removeClass("yellow").addClass('yellow');
 <% else %>
-  $('#favorite-<%= @question.id %>').html("<i class='fa fa-heart-o'></i>");
-  $.toaster({ priority : 'warning', message : '<%= @message.html_safe %>'});
+  $('#favorite-<%= @question.id %>').removeClass("yellow");
  <% end %>

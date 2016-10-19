@@ -44,7 +44,7 @@ NairaOverflow::Application.configure do
   config.action_mailer.raise_delivery_errors = true
 =end
   # in development env it's good to use gem 'mailcatcher' so install it with gem install mailcatcher
-  # then open a tab with localhost:1025 & whatever mail app fires will be caught by mailcatcher. :) 
+  # then open a tab with localhost:1025 & whatever mail app fires will be caught by mailcatcher. :)
   config.action_mailer.default_url_options = { host: 'localhost:3000' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = { address: 'localhost', port: 1025 }

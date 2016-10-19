@@ -1,5 +1,8 @@
-<div class="list_header center_col">Questions</div>
-
+<div class="ui icon message">
+  <div class="content">
+    <p><%= @user.fullname %> Questions</p>
+  </div>
+</div>
 <% @user_questions.each do |question| %>
     <%= render partial: "users/question_summary", locals: {question: question} %>
 <% end if @user_questions %>

@@ -1,16 +1,19 @@
 
 <% if @comment.errors.present? %>
-    $.toaster({ priority : 'warning', message : "<%= @comment.errors.full_messages.to_sentence.html_safe %>"});
+    $('.error-message').show().text("<%= @comment.errors.full_messages.to_sentence.html_safe %>");
 <% elsif @comment.commentable_type == "Answer"%>
-    $('#new_comment').hide('fast');
-//  $('#comment_link').fadeIn('slow');
+    $('#new_comment, .comment-form').hide('fast');
     $('.comment_link').show();
     $("#comment-form_<%= @comment.commentable_id %>").append("<%=raw escape_javascript render(@comment) %>");
     $('.new_comment').hide('fast');
 <% else %>
-    $('#new_comment').fadeOut('slow');
-    //  $('#comment_link').fadeIn('slow');
-    $('.comment_link').show();
-    $("#comments").append("<%=raw escape_javascript render(@comment) %>");
-    $('.new_comment').hide('fast');
+      $('.new_comment').hide('fast');
+      $('#new_comment').fadeOut('slow');
+      $('.comment_link').show();
+    <% if @comment.commentable.comments.length == 1 %>
+      $("#first-comments").append("<%=raw escape_javascript render(@comment) %>");
+    <% else %>
+      $("#comments").append("<%=raw escape_javascript render(@comment) %>");
+    <% end %>
+
 <% end %>

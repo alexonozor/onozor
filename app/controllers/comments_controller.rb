@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
+
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
-  respond_to :html, :xml, :json, :js
   # GET /comments
   # GET /comments.json
   def index
@@ -15,12 +15,15 @@ class CommentsController < ApplicationController
   # GET /comments/new
   def new
     @comment = Comment.new(comment_params)
+    respond_to do |format|
+      format.js { render layout: false, content_type: 'text/javascript' }
+    end
   end
 
   # GET /comments/1/edit
   def edit
    respond_to do |format|
-     format.js
+     format.js { render layout: false,  content_type: 'text/javascript' }
    end
   end
 
@@ -34,11 +37,12 @@ class CommentsController < ApplicationController
         @parent = @comment.commentable
      respond_to do |format|
      format.html { redirect_to @parent, :view => "comments", :notice => "Thanks for you comment"}
-      format.js {render "create.js.erb"}
+      format.js {render "create.js.erb",  layout: false, content_type: 'text/javascript' }
      end
       else
+        @parent = @comment.commentable
         respond_to do |format|
-          format.js { render "fail_create.js.erb"}
+          format.js { render "fail_create.js.erb", layout: false, content_type: 'text/javascript' }
        end
       end
   end
@@ -62,12 +66,12 @@ class CommentsController < ApplicationController
       if @comment.update(comment_params)
        respond_to do |format|
         format.html { redirect_to @comment.question, :notice =>"Edited successfully #{undo_link}".html_safe}
-        format.js {render "update.js.erb"}
+        format.js {render "update.js.erb", layout: false, content_type: 'text/javascript' }
        end
       else
        respond_to do |format|
         format.html { redirect_to @comment.question, alert: 'Unable to Update' }
-        format.js  {render "update_fail.js.erb"}
+        format.js  { render "update_fail.js.erb", layout: false, content_type: 'text/javascript' }
         end
       end
   end
@@ -79,7 +83,7 @@ class CommentsController < ApplicationController
     @comment.destroy
     respond_to do |format|
       format.html { redirect_to :back }
-      format.js
+      format.js { render layout: false, content_type: 'text/javascript' }
       format.json { head :no_content }
     end
   end

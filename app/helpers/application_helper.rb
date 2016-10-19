@@ -1,9 +1,20 @@
 module ApplicationHelper
 
- def markdown(body)
-  @markdown ||= Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true, space_after_headers: true,  hard_wrap: true, filter_html: true, no_intraemphasis: true, fenced_code: true, gh_blockcode: true, fenced_code_blocks: true)
-  @markdown.render(body) if body.present?
-end
+  def markdown(text)
+    # options = { hard_wrap: true, :filter_html, :autolink, :no_intraemphasis, :fenced_code, :gh_blockcode }
+    # markdown = Redcarpet::Markdown.new(autolink: true, fenced_code: true, filter_html: true, gh_blockcode: true ).to_html
+    markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, fenced_code_blocks: true, no_intra_emphasis: true, footnotes: true, highlight: true )
+    html = markdown.render(text)
+    syntax_highlighter(html.html_safe)
+  end
+
+  def syntax_highlighter(html)
+    doc = Nokogiri::HTML(html)
+    doc.search("//pre[@lang]").each do |pre|
+      pre.replace Albino.colorize(pre.text.rstrip, pre[:lang])
+    end
+    doc.to_s
+  end
 
 
   def title(text)
@@ -14,24 +25,26 @@ end
     content_for(:content, "#{text}" ) if text.present?
   end
 
- def syntax_highlighter(html)
-    doc = Nokogiri::HTML(html)
-    doc.search("//pre[@lang]").each do |pre|
-      pre.replace Albino.colorize(pre.text.rstrip, pre[:lang])
+
+  def an_or_a(text)
+    if text == "comment"
+      return 'a'
+    else
+      return 'an'
     end
-    doc.to_s
- end
+  end
 
 
 
 
 
-  def flash_class(level)
-    case level
-      when :notice then "alert alert-success"
-      when :success then "alert alert-success"
-      when :error then "alert alert-danger"
-      when :alert then "alert alert-danger"
-    end
+
+  def semantic_flash(flash_type)
+    {
+      :success => 'success',
+      :error => 'negative',
+      :alert => 'warning',
+      :notice => 'info'
+    }[flash_type.to_sym] || flash_type.to_s
   end
 end

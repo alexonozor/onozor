@@ -7,11 +7,13 @@ development:
   password:
   timeout: 5000
 
-
 test:
-  adapter: sqlite3
-  database: db/test.sqlite3
+  adapter: postgresql
+  encoding: unicode
+  database: inquire_production
   pool: 5
+  username:
+  password:
   timeout: 5000
 
 production:

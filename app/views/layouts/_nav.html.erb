@@ -1,70 +1,35 @@
-<nav class="nav-bar navbar-fixed-top">
-  <div class="container">
-    <div class="navbar-header">
-      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#bs-navbar" aria-controls="bs-navbar" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <%= link_to root_path do %>
-        <%= image_tag 'logo1.png', class:'navbar-brand resize-logo' %>
-        <h3>Onozor</h3>
-      <% end%>
+<div class="ui top big fixed small menu">
+  <div class="ui stacked container">
+    <div class="align-logo">
+        <%= link_to (image_tag ("logo-small.png"), width:"150px"), root_url %>
     </div>
-    <nav id="bs-navbar" class="collapse navbar-collapse">
-    <%= form_tag questions_path, class:"navbar-form navbar-left", :method => 'get' do %>
-      <div class="form-group  has-feedback">
-        <%= text_field_tag :search,  params[:search], class:"form-control", placeholder:"Search Questions" %>
-        <span class="fa fa-search form-control-feedback" style="margin-top: 10px;" aria-hidden="true"></span>
-      </div>
-    <% end %>
-
-      <ul class="nav navbar-nav navbar-left col-sm-offset-10">
-        <ul class="nav navbar-nav navbar-left">
-          <% if user_signed_in? %>
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" id="get-notification" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class='fa fa-bell-o'></i>
-                  <% if current_user.activities.unseen.count > 0 %>
-                  <span class="badge badge-danger">
-                    <%= current_user.activities.unseen.count  %>
-                  </span>
-                  <% end %>
-                </a>
-                <ul class="dropdown-menu notifications" role="menu" aria-labelledby="dLabel">
-                  <div class="notification-heading"><h4 class="menu-title"><strong>Notifications</strong></h4></h4></div>
-                  <li class="divider"></li>
-                 <div class="notifications-wrapper">
-
-                 </div>
-                 <div class="divider"></div>
-                  <div class="notification-footer"><%= link_to 'See all', activities_path, class:"menu-title text-center"  %></div>
-                </ul>
-              </li>
+    <div class="right menu">
+        <div class="item">
+          <%= form_tag questions_path, class:"navbar-form navbar-left", :method => 'get' do %>
+            <div class="ui icon input">
+                <%= text_field_tag :search,  params[:search], placeholder:"Search Questions" %>
+                <i class="search link icon"></i>
+            </div>
           <% end %>
-        </ul>
-      </ul>
-
-
-
-
-      <ul class="nav navbar-nav navbar-right">
-       <% if user_signed_in? %>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <%= image_tag current_user.avatar.url(:thumb) %> <%=  current_user.username.titleize %> <span class="caret"></span></a>
-          <ul class="dropdown-menu navbar-right">
-            <li><%= link_to "<i class='fa fa-user'></i> My Profile".html_safe, user_path(current_user.username) %></li>
-            <li role="separator" class="divider"></li>
-            <li><%= link_to "<i class='fa fa-cog'></i> Settings".html_safe, edit_user_path(current_user.username) %></li>
-            <li role="separator" class="divider"></li>
-            <li><%= link_to "<i class='fa fa-sign-out'></i> Logout".html_safe, destroy_user_session_path, method: :delete %></li>
-          </ul>
-        </li>
-        <% else %>
-          <li><%= link_to "Signup", new_user_registration_path %></li>
-          <li><%= link_to "Login", new_user_session_path %></li>
-        <% end %>
-      </ul>
-    </nav>
+        </div>
+      <% if user_signed_in? %>
+        <div class="item">
+          <% if current_user.activities.unseen.count > 0 %>
+          <span class="badge badge-danger">
+            <%= current_user.activities.unseen.count  %>
+          </span>
+          <% end %>
+          <%= link_to '<i class="bell big icon"></i>'.html_safe, activities_path %>
+        </div>
+        <div class="item">
+            <%=link_to (image_tag current_user.avatar.url(:thumb), class:'ui mini circular image'), current_user  %>
+            <i style="cursor: pointer;" class="big  sidebar icon"></i>
+        </div>
+      <% else %>
+        <div class="item">
+          <%= link_to "Login / Signup", new_user_registration_path, class: 'ui facebook button' %>
+        </div>
+      <% end %>
+    </div>
   </div>
-</nav>
+</div>

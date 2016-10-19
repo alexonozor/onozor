@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160203115504) do
+ActiveRecord::Schema.define(version: 20160730210922) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -159,14 +159,6 @@ ActiveRecord::Schema.define(version: 20160203115504) do
   add_index "impressions", ["impressionable_type", "message", "impressionable_id"], name: "impressionable_type_message_index", using: :btree
   add_index "impressions", ["user_id"], name: "index_impressions_on_user_id", using: :btree
 
-  create_table "page_invites", force: true do |t|
-    t.integer  "invitee_id"
-    t.integer  "inviter_id"
-    t.integer  "page_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "page_types", force: true do |t|
     t.string   "name"
     t.text     "description"
@@ -251,15 +243,17 @@ ActiveRecord::Schema.define(version: 20160203115504) do
   add_index "relationships", ["follower_id"], name: "index_relationships_on_follower_id", using: :btree
 
   create_table "reputation_histories", force: true do |t|
-    t.string   "user_id"
+    t.integer  "user_id"
     t.string   "context"
-    t.integer  "points"
-    t.integer  "reputation"
-    t.integer  "vote_id"
-    t.integer  "answer_id"
+    t.integer  "points",     default: 0
+    t.integer  "reputation", default: 0
+    t.integer  "vote_id",    default: 0
+    t.integer  "answer_id",  default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "reputation_histories", ["user_id", "context"], name: "index_reputation_histories_on_user_id_and_context", using: :btree
 
   create_table "taggings", force: true do |t|
     t.integer  "tag_id"
@@ -321,6 +315,13 @@ ActiveRecord::Schema.define(version: 20160203115504) do
     t.string   "uid"
     t.integer  "category_id"
     t.integer  "reputation",             default: 0
+    t.string   "city"
+    t.string   "country"
+    t.string   "twitter_url"
+    t.string   "facebook_url"
+    t.string   "personal_website"
+    t.string   "cover_photo"
+    t.string   "location"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

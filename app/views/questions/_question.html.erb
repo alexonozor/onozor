@@ -1,17 +1,53 @@
 
 <!-- POST -->
- <li class="list-group-item">
-  <div class="row">
-  <div class='col-md-1'>
-    <div class="front-avater">
-        <%=link_to image_tag(question.user.avatar.url(:thumb), class: 'img-rounded'), question.user %>
+<%= div_for(question, class: 'ui card fluid ') do %>
+  <div class="ui link items content">
+    <div class="ui feed">
+      <div class="event">
+        <div class="label">
+          <%=link_to image_tag(question.user.avatar.url(:thumb), class: 'avatar'), question.user %>
+        </div>
+        <div class="content">
+          <% if user_signed_in? && (question.user == current_user || current_user.admin?) %>
+          <div class="ui right floated  dropdown">
+            <i class="dropdown icon"></i>
+             <div class="menu">
+               <%= link_to "<i class='write icon'></i> Edit".html_safe, edit_question_path(question), class:"item" %>
+               <%= link_to "<i class='trash icon'></i> Delete".html_safe, question_path(question), :remote => true, method: :delete, class:"item" %>
+             </div>
+           </div>
+          <% end %>
+          <div class="date">
+            <%= time_ago_in_words question.created_at %> ago
+          </div>
+          <div class="summary" id='user_details' style="font-size: smaller; color: #676868;">
+             <%= link_to  (question.user.fullname? ? question.user.fullname : question.user.username), user_path(question.user) %>. interested in <%=   question.user.intrest %>
+             <%= pluralize question.user.followers.count, "followers" %>. <%=  question.user.categories.map{|a|  a.name }.take(3).join(", ").html_safe %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="content">
+        <div class="header question-link"><%=link_to question.name, question %></div>
+        <div class="description question-description">
+          <p><%= truncate (strip_tags question.body), length: 150 %></p>
+        </div>
+      </div>
     </div>
   </div>
-  <div class="col-md-10">
-   <h4 class="list-group-item-heading"><%=link_to question.name, question %></h4>
-   <p class="list-group-item-text"><%= truncate (strip_tags question.body), length: 150 %></p>
-   <a href='#'  class="small">7 comments</a> . <a href='#'  class="small">Categories</a> . <a href="#" class='small'>2 days ago</a> . <a href="#" class='small'>2 views</a>
+  <div class="extra content">
+    <span class="left floated">
+      <%= allow_ajax_only_if_user_is_signin_for_upvote_question(question) %>
+      <span id='vote-count-<%= question.id %>' class='vote-count'><%= question.votes %></span>
+      <%= allow_ajax_only_if_user_is_signin_for_downvote_question(question) %>
+       &nbsp; &nbsp;<i class="comments outline icon-size icon gray"> </i><%= question.answers_count %>
+    </span>
+
+    <span class="right floated" style="margin-top: 8px;">
+      <span><i class="share alternate icon-size icon share-caller" id='modal-setting' data-id="<%= question.id %>" data-question='{ name: "<%= question.name %>", url: "<%= question_url(question) %>", user: "<%= question.user.fullname %>"}'></i></span>
+      <%= link_to "<i class='#{question.favourited?(current_user)? 'star icon icon-size yellow' : 'star gray icon-size  icon' if current_user }' id='favorite-#{question.id}'></i> ".html_safe, toggle_favourite_path(question.id), :method => "post",   :remote => true %>
+    </span>
   </div>
-  </div>
- </li>
+  <% end %>
 <!-- POST -->

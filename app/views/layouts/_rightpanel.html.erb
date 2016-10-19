@@ -1,29 +1,102 @@
-<div class="right-panel">
-  <div class="inner-right">
-    <% @people_to_follows.each do |user| %>
-    <div class="media media-setter">
-      <div class="media-left">
-        <%= link_to (image_tag user.avatar.url(:thumb), class:'img-rounded'), user_path(user)  %>
-      </div>
-      <div class="media-body">
-        <h5 class="media-heading"><%= link_to  (user.fullname.humanize), user_path(user) %></h5>
-        <p> <%= pluralize user.followed_users.count, "following" %>, <%= pluralize user.questions.count, "question" %></p>
-      </div>
-      <div class="media-right">
-        <div id="follow_form">
-             <% if current_user.following?(user) %>
-               <%= form_for(current_user.relationships.find_by(followed_id: user.id), html: { method: :delete }) do |f| %>
-                 <%= f.submit "Unfollow", class: "btn btn-danger btn-sm" %>
-               <% end %>
-             <% else %>
-               <%= form_for(current_user.relationships.build(followed_id: user.id)) do |f| %>
-                 <div><%= f.hidden_field :followed_id %></div>
-                 <%= f.submit "Follow", class: "btn btn-secondry btn-sm" %>
-               <% end %>
-             <% end %>
+<div class="four wide column">
+    <div class="ui card  fluid">
+        <div class="content">
+            <div class="header">Getting started
+            </div>
+            <p>You're 40% closer to being an awesome Onozor.</p>
         </div>
+        <div class="content">
+            <div class="ui relaxed divided list">
+                <div class="item">
+
+                    <div class="content">
+                        <div class="ui teal progress">
+                            <div class="bar"></div>
+                        </div>
+                        <i class="check circle yellow icon"></i>
+                        <a class="done">Creat your profile</a>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="content">
+                        <i class="check circle yellow icon"></i>
+                        <a class="done">Write Profile Bio</a>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="content">
+                        <i class="check circle green icon"></i>
+                        <a class="">Upvote question</a>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="content">
+                        <i class="check circle green icon"></i>
+                        <a href='#'>Ask Question</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="ui card  fluid">
+      <div class="content">
+        <div class="header">People you may know </div>
+      </div>
+      <div class="content">
+      <div class="ui middle aligned divided list">
+      <% if current_user %>
+        <%  @people_to_follows.each do |user| %>
+          <div class="item">
+            <div class="right floated content">
+              <% unless current_user.following?(user) %>
+                <%= form_for(current_user.relationships.build(followed_id: user.id)) do |f| %>
+                  <%= f.hidden_field :followed_id %>
+                  <button class="compact ui button">Follow</button>
+                <% end %>
+              <% end %>
+            </div>
+            <%= (image_tag user.avatar.url(:thumb), class:'ui avatar image')  %>
+            <div class="content">
+              <%= link_to (truncate user.fullname.titleize, length: 13), user_path(user) %>
+            </div>
+          </div>
+        <% end %>
+        <% end %>
       </div>
     </div>
-  <% end %>
-  </div>
+    </div>
+
+
+
+
+    <div class="ui card  fluid">
+        <div class="ui middle aligned selection list">
+            <div class="item">
+                <i class="idea icon"></i>
+                <div class="content">
+                    <a class="header">House of Rules</a>
+                </div>
+            </div>
+            <div class="item">
+                <i class="star icon"></i>
+                <div class="content">
+                    <a class="header">Request a Feature</a>
+                </div>
+            </div>
+            <div class="item">
+                <i class="gift icon"></i>
+                <div class="content">
+                    <a class="header">Refer a Friend</a>
+                </div>
+            </div>
+            <div class="item">
+                <i class="mail icon"></i>
+                <div class="content">
+                    <a class="header">Send Feedback</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

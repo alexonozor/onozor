@@ -1,5 +1,5 @@
 NairaOverflow::Application.routes.draw do
-
+  get 'users/categories', to: 'users#user_categories', as: :user_categories
   resources :page_invites, only: [:create]
   resources :pages do
     member { get :invite_friends            }
@@ -26,6 +26,7 @@ NairaOverflow::Application.routes.draw do
   resources :comments
   resources :page_users
   resources :activities
+  resources :user_category
   resources :tags, :only => [:index]
 
   resources :questions do
@@ -40,6 +41,7 @@ NairaOverflow::Application.routes.draw do
       get :latest
     end
   end
+
 
   devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks" }
   resources :users do
@@ -57,6 +59,7 @@ NairaOverflow::Application.routes.draw do
 
 
   get 'users/who_is_online', to: 'users#who_is_online',       as: :online_users
+  get 'people_to_follow', to: "users#people_to_follow",       as: :people_to_follow
   get 'users/:id/questions', to: "users#show_user_questions", as: :show_user_questions
   get 'users/:id/answers',   to: "users#show_user_answers",   as: :show_user_answers
   get 'users/:id/followers', to: "users#show_user_followers", as: :show_user_followers

@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
+  respond_to  :json, :js
   #load_and_authorize_resource
   layout "display", only: [:index, :show]
-  respond_to :html, :xml, :json, :js, :mobile
   before_filter :load_users
   before_filter :get_user, only: [:show,
                                   :show_user_questions,
@@ -14,12 +14,11 @@ class UsersController < ApplicationController
    if params[:search].present?
       @user = User.search(params[:search])
     else
-     @users = User.order(:username).paginate :page => params[:page], :per_page => 20
+     @users = User.order(:username)
    end
   respond_to do |format|
       format.js {}
       format.html { render :index }
-      format.mobile { render :layout => "application" }
     end
   end
 
@@ -29,26 +28,27 @@ class UsersController < ApplicationController
     @user.count_view! unless current_user == @user
     respond_to do |format|
       format.js {}
-      format.mobile { render :layout => "application" }
+      format.html
+      format.json { render json: @user }
     end
   end
 
   def show_user_questions
-    @user_questions = @user.questions.order("created_at ASC").limit(10)
+    @user_questions = @user.questions
     respond_to do |format|
       format.js {render "filter_by_user_questions.js"}
     end
   end
 
   def show_user_answers
-    @user_answers = @user.answers.order("updated_at ASC").limit(10)
+    @user_answers = @user.answered_questions
     respond_to do |format|
       format.js {render "filter_by_user_answers.js"}
     end
   end
 
   def show_user_followers
-    @users = @user.followers.order("updated_at ASC").limit(20)
+    @users = @user.followers.order("updated_at ASC")
     @title = "Followers"
     respond_to do |format|
       format.js {render "filter_by_follows.js"}
@@ -56,7 +56,7 @@ class UsersController < ApplicationController
   end
 
   def show_user_following
-    @user_questions = @user.followed_users.order("updated_at ASC").limit(20)
+    @users = @user.followed_users.order("updated_at ASC")
     @title = "Following"
     respond_to do |format|
       format.js {render "filter_by_follows.js"}
@@ -65,7 +65,7 @@ class UsersController < ApplicationController
 
 
   def show_user_favorites
-    @user_favorited_questions = @user.favourites.order("updated_at ASC").limit(20)
+    @user_favorited_questions = @user.favourite_questions
     respond_to do |format|
       format.js {render "filter_by_favorites.js"}
     end
@@ -92,9 +92,23 @@ class UsersController < ApplicationController
     end
   end
 
+  def user_categories
+    if current_user
+      @user_categories = Category.all.where.not(id: current_user.categories.all.map {|a| a.id})
+      respond_to do |format|
+        format.json { render :json => @user_categories.to_json  }
+      end
+    end
+  end
+
+
+
   def select_category
+
    if current_user.update(user_params)
+     @people_to_follows = User.people_you_may_know(current_user)
      respond_to do |format|
+       format.js { render "user_select_category.js", layout: false, content_type: 'text/javascript'  }
        format.html {redirect_to root_path}
      end
    else
@@ -114,7 +128,6 @@ class UsersController < ApplicationController
   end
 
   def edit
-
      @user = current_user
   end
 
@@ -129,9 +142,10 @@ class UsersController < ApplicationController
     @option = (user_params && user_params[:option]) ? user_params[:option] : nil
     update_user_info if @option
     respond_to do |format|
-      format.js { render "update_user.js" }
+      format.js { render "update_user.js", layout: false, content_type: 'text/javascript' }
     end
   end
+
 
   private
 
@@ -139,12 +153,11 @@ class UsersController < ApplicationController
     @user = User.order(:username)
   end
 
-
   def user_params
-    # pry.binding
     params.require(:user).permit(:banned_at, {:category_ids => []},
     :avatar, :last_requested_at, :admin, :avatar_file_name, :username, :gender, :first_name, :last_name, :bio, :occupation, :title,
-                            :intrest, :username, :location, :email, :password, :password_confirmation, :option, :fullname) if params.has_key? "user"
+                            :intrest, :username, :location, :email, :password, :password_confirmation, :option, :fullname, :city, :country,
+                            :twitter_url, :facebook_url, :personal_website, :cover_photo) if params.has_key? "user"
   end
 
   def update_user_info

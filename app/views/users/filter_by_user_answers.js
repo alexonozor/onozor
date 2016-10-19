@@ -1,1 +1,1 @@
-$("#feeds").html('<%=j render ("users/user_answers") %>').fadeIn("slow");
+$("#show_user_followers").html('<%=j render ("users/user_answers") %>').removeClass('thirteen wide').addClass('ten wide').fadeIn(5000);

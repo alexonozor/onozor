@@ -1,57 +1,65 @@
 
 
   <!-- POST -->
-  <%= div_for(answer) do %>
-  <div class="post row">
-    <div class="topwrap">
-        <div class="media">
-          <div class="media-left">
-            <%= link_to (image_tag answer.user.avatar.url(:thumb), class:'img-circle'), answer.user %>
-          </div>
-          <div class="media-body">
-            <p class="media-heading"><%= link_to  (answer.user.fullname? ? answer.user.fullname : answer.user.username), user_path(answer.user) %></p>
-            <p><%= pluralize answer.user.followers.count, "followers" %>, interested in <%=  answer.user.categories.map{|a| link_to a.name, a}.join(", ").html_safe %> <br />
-                Posted on : <%= (answer.created_at).strftime("%-d %b @ %-l:%M%P") %>
-            </p>
-          </div>
-        </div>
 
-
-      <div class="answers" id="comment-form_<%= answer.id %>">
-        <p><%= markdown(answer.body).html_safe %></p>
-        <% if answer.comments.present? %>
-            <div id="comments" class="comments" style="text-align: left">
-                <%= render answer.comments %>
+<%= div_for(answer, class: 'answer-settings') do %>
+  <div class="ui card  fluid" id='add_notifications_<%= answer.id %>'>
+   <div class="ui link items content overflowed-code">
+     <div class="ui feed">
+       <div class="event">
+         <div class="label">
+           <%= link_to (image_tag answer.user.avatar.url(:thumb)), answer.user %>
+         </div>
+         <div class="content">
+          <% if user_signed_in? && (answer.user == current_user || current_user.admin?) %>
+           <div class="ui right floated  dropdown">
+             <i class="dropdown icon"></i>
+              <div class="menu">
+                <%= link_to "<i class='write icon'></i> Edit".html_safe, edit_answer_path(answer), :remote => true, class:"item" %>
+                <%= link_to "<i class='trash icon'></i> Delete".html_safe, answer_path(answer), :remote => true, method: :delete, class:"item" %>
+              </div>
             </div>
-        <% end %>
+          <% end %>
+           <div class="date">
+             <%= (answer.created_at).strftime("%-d %b @ %-l:%M%P") %> ago
+           </div>
+           <div class="summary" id='user_details' style="font-size: smaller; color: #676868;">
+              <%= link_to  (answer.user.fullname? ? answer.user.fullname : answer.user.username), user_path(answer.user) %>,  <%=   answer.user.intrest %>
+              <%= pluralize answer.user.followers.count, "followers" %>, interested in <%=  answer.user.categories.map{|a|  a.name }.take(3).join(", ").html_safe %>
+           </div>
+         </div>
+       </div>
+     </div>
+     <div class="item">
+       <div class="content" style="
+    max-width: 100%;">
 
+         <div class="description answer">
+           <%= markdown(answer.body).html_safe %>
+         </div>
+       </div>
+     </div>
+
+     <div class="ui comments" id="comment-form_<%= answer.id %>">
+       <% if answer.comments.present? %>
+         <h4 class="ui horizontal divider header">Commnets</h4>
+            <%= render answer.comments %>
+       <% end %>
       </div>
-      <div class="clearfix"></div>
-    </div>
+   </div>
 
+   <div class="extra content">
+     <span class="floated">
+      <%= allow_ajax_only_if_user_is_signin_for_upvote(answer) %>
+       <span id='answer-vote-count-<%= answer.id %>' class='vote-count'><%= answer.votes %></span>
+       <%= allow_ajax_only_if_user_is_signin_for_downvote(answer) %>
+       <%= link_to "<i class='reply small icon'></i> Reply".html_safe, new_comment_path(:comment => { :commentable_type => answer.class.name, :commentable_id => answer.id}), :remote => true,  :class => " comment_link", id:"comment_link" if current_user %>
+     </span>
 
-    <div class="postinfobot">
-      <nav class="options">
-        <%= link_to 'Accept answer', accepted_answer_question_path(answer_id: answer.id), class: 'accept', remote: true %>
-        <%= link_to  "Upvote | <span id='answer-vote-count-#{answer.id}'>#{answer.votes}</sapn>".html_safe, vote_answer_path(answer.id, value: 1), method: "post", remote: true, class: 'btn btn-secondry btn-sm' %>
-        <%= link_to  "Downvote", vote_answer_path(answer.id, value: -1), method: "post", remote: true %>
-        <% if current_user.present? %>
-         <%= link_to " Add comment <i class='fa fa-comments'></i>+".html_safe, new_comment_path(:comment => { :commentable_type => answer.class.name,
-                       :commentable_id => answer.id}),
-                       :remote => true,
-                       :class => "comment_link",
-                       id:"comment_link"    %>
-         <%  if user_signed_in? && answer.user == current_user  %>
-          <div class="next pull-right">
-            <%= link_to "<i class='fa fa-pencil'></i>".html_safe, edit_answer_path(answer), :remote => true %>
-            <%= link_to "<i class='fa fa-trash'></i>".html_safe, answer_path(answer), :remote => true, method: :delete %>
-          </div>
-         <% end %>
-      <% end %>
-      </nav>
+     <span class="right floated star">
+       <i class="area mini chart icon"></i>
+     </span>
+   </div>
 
-      <div class="clearfix"></div>
-    </div>
-
-  </div><!-- POST -->
+  </div>
  <% end %>

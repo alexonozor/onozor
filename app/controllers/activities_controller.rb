@@ -1,5 +1,6 @@
 class ActivitiesController < ApplicationController
   before_action :authenticate_user!
+  layout "display"
  def index
   @activities = Activity.order('created_at DESC')
  end

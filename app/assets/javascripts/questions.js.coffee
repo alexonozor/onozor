@@ -8,40 +8,36 @@ jQuery ->
     $(window).scroll ->
       url = $('.pagination .next_page').attr('href')
       if url && $(window).scrollTop() > $(document).height() - $(window).height() - 50
-        $('.pagination').fadeIn(500000).html("Fetching more questions...").addClass('flow')
+        $('.pagination').fadeIn(500000).html("<div class='ui active large centered loader-margin inline loader'></div>").addClass('flow')
         $.getScript(url)
     $(window).scroll()
 
 
-jQuery ->
-  $('.help-toggle').click ->
-    $('.editing-help').slideToggle('fast')
-
-
-
-jQuery ->
-  $('.question-title').focus ->
-    $('.error-holder').addClass('has-error')
-
-jQuery ->
-  $('.post_form').focus ->
-    $('.editing-help').slideDown('slow')
-
-
-jQuery ->
-  $('.question-title').keydown ->
-    if this.value.length >= 10
-      $('.error-holder').removeClass('has-error')
-    else
-      $('.error-holder').addClass('has-error')
-
-
-jQuery ->
-  $(document).ajaxStart ->
-    $('.posting').show()
-  $(document).ajaxComplete ->
-    $('.posting').hide()
-
-
-
-
+# jQuery ->
+#   $('.help-toggle').click ->
+#     $('.editing-help').slideToggle('fast')
+#
+#
+#
+# jQuery ->
+#   $('.question-title').focus ->
+#     $('.error-holder').addClass('has-error')
+#
+# jQuery ->
+#   $('.post_form').focus ->
+#     $('.editing-help').slideDown('slow')
+#
+#
+# jQuery ->
+#   $('.question-title').keydown ->
+#     if this.value.length >= 10
+#       $('.error-holder').removeClass('has-error')
+#     else
+#       $('.error-holder').addClass('has-error')
+#
+#
+# jQuery ->
+#   $(document).ajaxStart ->
+#     $('.posting').show()
+#   $(document).ajaxComplete ->
+#     $('.posting').hide()

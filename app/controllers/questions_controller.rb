@@ -1,9 +1,9 @@
 class QuestionsController < ApplicationController
   before_action :set_question, only: [:show, :edit, :update, :destroy, :accepted_answer, :vote, :undo_link]
   before_action :authenticate_user!, only: [:edit, :new, :create, :vote ]
-  respond_to :html, :xml, :json, :js, :mobile
-
-
+  layout "display", only: [:show, :new, :create]
+  before_filter :people_to_follow, only: [:index], if: :html_request?
+  respond_to :html, :json, js: { layout: false, content_type: 'text/javascript' }
 
   require 'will_paginate/array'
   # GET /questions
@@ -19,10 +19,9 @@ class QuestionsController < ApplicationController
         @questions = Question.where('id > ?', params[:after].to_i).paginate :page => params[:page], :per_page => 8
       end
       respond_to do |format|
-        format.xml
         format.html
         format.js
-        format.json
+        format.json { render json: @questions }
       end
   end
 
@@ -45,7 +44,7 @@ class QuestionsController < ApplicationController
      respond_to do |format|
         format.xml
         format.html { render :index_for_latest }
-        format.js { render 'index.js.erb' }
+        format.js { render 'question_sort.js.erb'}
       end
   end
 
@@ -54,7 +53,7 @@ class QuestionsController < ApplicationController
     respond_to do |format|
         format.xml
         format.html { render :index_for_hot }
-        format.js { render 'index.js.erb' }
+        format.js { render 'question_sort.js.erb' }
       end
   end
 
@@ -63,7 +62,7 @@ class QuestionsController < ApplicationController
     respond_to do |format|
         format.xml
         format.html { render :index_for_active }
-        format.js { render 'index.js.erb' }
+        format.js { render 'question_sort.js.erb' }
       end
   end
 
@@ -72,16 +71,15 @@ class QuestionsController < ApplicationController
     respond_to do |format|
         format.xml
         format.html { render :index_for_unanswered }
-        format.js { render 'index.js.erb' }
+        format.js { render 'question_sort.js.erb' }
       end
   end
 
   def answered
     @questions = Question.answered.paginate :page => params[:page], :per_page => 8
     respond_to do |format|
-        format.xml
-        format.html { render :index_for_answered }
-        format.js { render 'index.js.erb' }
+        format.json { render @questions.to_json }
+        format.js { render 'question_sort.js.erb' }
       end
   end
 
@@ -91,9 +89,13 @@ class QuestionsController < ApplicationController
     @question.update_views! unless @question.user_id == current_user.id  if current_user.present?
     @answer = Answer.new(:question => @question, :user => current_user)
     @comment = Comment.new(:commentable_type => @question.class.name, :commentable_id => @question.id, :user => current_user )
-    respond_to do |format|
-      format.mobile {render layout: "application"}
+    if params[:notification_id]
+      notification = Activity.find(params[:notification_id])
+      if notification
+        notification.update(seen: true) if notification.seen == false
+      end
     end
+
   end
 
 
@@ -101,17 +103,13 @@ class QuestionsController < ApplicationController
   # GET /questions/new
   def new
     @question = Question.new
-    # @tags = Question.tag_counts_on(:tags)
-
     param =  params[:question] ||= ""
     convert = param["name"]
     @similar_question =  Question.search(convert)
-    # require 'pry'; binding.pry
     respond_to do |format|
-      format.xml
       format.json
       format.js
-      format.mobile { render :layout => "application" }
+      format.html
     end
   end
 
@@ -144,7 +142,7 @@ class QuestionsController < ApplicationController
       respond_to do |format|
         format.xml
         format.html { redirect_to :back, notice: "Thank you for voting." }
-        format.js { render 'vote.js.erb' }
+        format.js { render 'vote.js.erb'}
         format.json
         format.mobile { render 'vote.js.erb' }
       end
@@ -152,7 +150,7 @@ class QuestionsController < ApplicationController
       respond_to do |format|
         format.xml
         format.html { redirect_to :back, alert: "You can't vote twice."}
-        format.js {render 'fail_vote.js.erb'}
+        format.js {render 'fail_vote.js.erb', layout: false, content_type: 'text/javascript'}
         format.mobile { render 'vote.js.erb' }
       end
     end
@@ -177,7 +175,7 @@ class QuestionsController < ApplicationController
    @question.destroy
    respond_to do |format|
     format.html { redirect_to root_path, :notice => "Question has been remove" }
-    format.js
+    format.js { render layout: false, content_type: 'text/javascript' }
     # authorize! :destroy, @questions
    end
   end
@@ -186,6 +184,20 @@ class QuestionsController < ApplicationController
     def set_question
       @question = Question.friendly.find(params[:id])
     end
+
+
+    def people_to_follow
+      @people_to_follows = User.people_you_may_know(current_user)
+      respond_to do |format|
+        format.html {  }
+      end
+    end
+
+  private
+  def html_request?
+    request.format.symbol == :html
+  end
+
 
 
 

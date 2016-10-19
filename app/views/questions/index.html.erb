@@ -1,16 +1,6 @@
 <% title "All Questions & Answers - Onozor" %>
-<%= subscribe_to "/questions" %>
 <%= content_tag :div, id: "questions", class: 'panel panel-default', data: { url: questions_path(@question) } do %>
-<div class="panel-heading">
-  <nav class="sort">
-    <a href='#' class="active">Answers</a>
-    <a href='#'>Hot</a> <a href='#'>Active</a>
-    <a href='#'>Unanswer</a>
-    <a class="pull-right">Settings <i class="fa fa-cog"></i></a>
-  </nav>
-</div>
-  <ul class="list-group">
-    <%= render @questions, :collection => @question %>
-  </ul>
+  <%= render @questions, :collection => @question %>
 <% end %>
 <%= will_paginate @questions %>
+<%= render :partial => "questions/share_modal" %>
