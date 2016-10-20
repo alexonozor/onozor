@@ -1,5 +1,4 @@
 class NewsLetter < ActionMailer::Base
-  require 'pry'
   default :from => "noreply@onozor.com"
 
   def deliver_questions(latest_question)
