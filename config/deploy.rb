@@ -1,8 +1,8 @@
 # Change these
-server '178.62.24.144', port: 80, roles: [:web, :app, :db], primary: true
+server '104.131.88.254', port: 80, roles: [:web, :app, :db], primary: true
 
-set :repo_url,        'git@github.com:andela-obogbare/inquire.git'
-set :application,     'inquire'
+set :repo_url,        'git@github.com:alexonozor/onozor.git'
+set :application,     'onozor'
 set :user,            'deploy'
 set :puma_threads,    [4, 16]
 set :puma_workers,    0
