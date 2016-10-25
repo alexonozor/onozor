@@ -87,8 +87,6 @@ group :development, :test do
   gem "database_cleaner"
   gem 'faker'
   gem 'pry'
-  gem 'capistrano'
-  gem 'capistrano-rails'
-  gem 'capistrano-rvm'
-  gem 'capistrano3-unicorn'
+  gem 'capistrano', '2.15.5'
+  gem 'rvm-capistrano'
 end
