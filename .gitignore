@@ -18,9 +18,7 @@ development.sqlite3
 
 # Ignore application configuration
 .idea/
-/config/deploy.rb
-/config/puma.rb
-/config/nginx.conf
+/config/database.yml
 
 # Ignore the db/schema.rb file
 db/schema.rb

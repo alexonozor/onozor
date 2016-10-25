@@ -1,0 +1,26 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: inquire_production
+  pool: 5
+  username:
+  password:
+  timeout: 5000
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: inquire_production
+  pool: 5
+  username:
+  password:
+  timeout: 5000
+
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: inquire_production
+  pool: 5
+  username:
+  password:
+  timeout: 5000
