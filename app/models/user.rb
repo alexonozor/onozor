@@ -95,7 +95,7 @@ class User < ActiveRecord::Base
     user.last_name =  auth.info.name.split(' ')[1]
     user.remote_avatar_url = auth['info']['image']
     user.bio = auth.info.description
-    user.location = auth.info.location
+    user.location = auth.info.location if auth.info.location.present?
     user.twitter_url = auth['info']['urls']['Twitter']
     user.personal_website = auth['info']['urls']['Website']
     user.save
@@ -109,7 +109,6 @@ class User < ActiveRecord::Base
      user.first_name = auth.info.first_name
      user.last_name  = auth.info.last_name
      user.gender =  auth['extra']['raw_info']['gender']
-     user.facebook_url = auth['extra']['raw_info']['link']
      user.remote_avatar_url = auth['info']['image']
      user.save
    end
