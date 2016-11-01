@@ -69,9 +69,14 @@ gem 'impressionist'
 gem 'geocoder'
 gem 'whenever', :require => false
 gem 'tire'
+<<<<<<< HEAD
+gem 'puma'
+
+=======
 gem 'unicorn'
 gem 'devise'
 gem 'puma'
+>>>>>>> 5e740083a3f924f6090de8300433fddd408ba085
 
 
 

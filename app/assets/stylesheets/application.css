@@ -213,3 +213,7 @@ body {
   margin-right: 20px;
   float: left;
 }
+
+#answer-form-center {
+  display: none;
+}
