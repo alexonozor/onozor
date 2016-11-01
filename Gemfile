@@ -70,6 +70,7 @@ gem 'geocoder'
 gem 'whenever', :require => false
 gem 'tire'
 gem 'puma'
+gem 'devise'
 
 
 
