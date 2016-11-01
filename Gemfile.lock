@@ -45,12 +45,6 @@ GEM
     builder (3.1.4)
     callsite (0.0.11)
     cancancan (1.15.0)
-    capistrano (2.15.5)
-      highline
-      net-scp (>= 1.0.0)
-      net-sftp (>= 2.0.0)
-      net-ssh (>= 2.0.14)
-      net-ssh-gateway (>= 1.1.0)
     carrierwave (0.11.2)
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
@@ -125,7 +119,6 @@ GEM
     git-version-bump (0.15.1)
     hashie (3.4.6)
     hashr (0.0.22)
-    highline (1.7.8)
     hike (1.2.3)
     http-cookie (1.0.3)
       domain_name (~> 0.5)
@@ -159,13 +152,6 @@ GEM
     multi_json (1.12.1)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
-    net-scp (1.2.1)
-      net-ssh (>= 2.6.5)
-    net-sftp (2.1.2)
-      net-ssh (>= 2.6.5)
-    net-ssh (3.2.0)
-    net-ssh-gateway (1.2.0)
-      net-ssh (>= 2.6.5)
     netrc (0.11.0)
     nokogiri (1.6.8.1)
       mini_portile2 (~> 2.1.0)
@@ -214,6 +200,7 @@ GEM
       activerecord (>= 3.0)
       i18n (>= 0.5.0)
       railties (>= 3.0.0)
+    puma (3.6.0)
     quiet_assets (1.1.0)
       railties (>= 3.1, < 5.0)
     rack (1.5.5)
@@ -273,8 +260,6 @@ GEM
       rspec-mocks (~> 3.5.0)
       rspec-support (~> 3.5.0)
     rspec-support (3.5.0)
-    rvm-capistrano (1.5.6)
-      capistrano (~> 2.15.4)
     sass (3.2.19)
     sass-rails (4.0.5)
       railties (>= 4.0.0, < 5.0)
@@ -344,7 +329,6 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   cancancan
-  capistrano (= 2.15.5)
   carrierwave
   cloudinary
   coffee-rails (~> 4.0.0)
@@ -370,6 +354,7 @@ DEPENDENCIES
   private_pub
   pry
   public_activity
+  puma
   quiet_assets
   rails (= 4.0.6)
   rails-observers
@@ -379,7 +364,6 @@ DEPENDENCIES
   remotipart
   rmagick (~> 2.15)
   rspec-rails (~> 3.0)
-  rvm-capistrano
   sass-rails (~> 4.0.0)
   sidekiq
   simple_form (~> 3.2.0)

@@ -71,7 +71,7 @@ gem 'whenever', :require => false
 gem 'tire'
 gem 'unicorn'
 gem 'devise'
-
+gem 'puma'
 
 
 
@@ -86,6 +86,4 @@ group :development, :test do
   gem "database_cleaner"
   gem 'faker'
   gem 'pry'
-  gem 'capistrano', '2.15.5'
-  gem 'rvm-capistrano'
 end
