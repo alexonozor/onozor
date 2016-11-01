@@ -1,4 +1,7 @@
+
+
 <div class="four wide column">
+  <% if current_user %>
     <div class="ui card  fluid">
         <div class="content">
             <div class="header">Getting started
@@ -13,25 +16,25 @@
                         <div class="ui teal progress">
                             <div class="bar"></div>
                         </div>
-                        <i class="check circle yellow icon"></i>
+                        <i class="check circle green icon"></i>
                         <a class="done">Creat your profile</a>
                     </div>
                 </div>
                 <div class="item">
                     <div class="content">
-                        <i class="check circle yellow icon"></i>
+                        <i class="check circle green icon"></i>
                         <a class="done">Write Profile Bio</a>
                     </div>
                 </div>
                 <div class="item">
                     <div class="content">
-                        <i class="check circle green icon"></i>
+                        <i class="check circle yellow icon"></i>
                         <a class="">Upvote question</a>
                     </div>
                 </div>
                 <div class="item">
                     <div class="content">
-                        <i class="check circle green icon"></i>
+                        <i class="check circle yellow icon"></i>
                         <a href='#'>Ask Question</a>
                     </div>
                 </div>
@@ -46,7 +49,7 @@
       </div>
       <div class="content">
       <div class="ui middle aligned divided list">
-      <% if current_user %>
+
         <%  @people_to_follows.each do |user| %>
           <div class="item">
             <div class="right floated content">
@@ -63,11 +66,11 @@
             </div>
           </div>
         <% end %>
-        <% end %>
+
       </div>
     </div>
     </div>
-
+<% end %>
 
 
 

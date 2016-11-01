@@ -3,11 +3,12 @@
   <head>
     <meta charset="utf-8">
     <title>Onozor</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
       <%= csrf_meta_tags %>
       <%= stylesheet_link_tag 'https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.0.0/semantic.min.css', "application", media: "all", "data-turbolinks-track" => true %>
       <%= javascript_include_tag  "application", "data-turbolinks-track" => true %>
    </head>
-  <body>
+  <body data-no-turbolink>
 
   <% if current_user %>
    <div class="ui sidebar right inverted vertical menu">
@@ -23,11 +24,11 @@
     <div class="ui stackable ui tall stacked segment container one column top-header" >
       <div class="padding-settings">
         <h1 class="ui center aligned icon header dash_header" style="color: #fff; font-size: 32px;">
-          Helping Children and other's stay relevant & connected
+          Where Everyone meet
         </h1>
         <div class="ui stackable center aligned vertically  grid">
         <div class="eight wide  column">
-          <h4>You are in the right place to help the children and everyone clear thier doubt</h4>
+          <h4>An open, friendly and conversational community for everyone</h4>
           <a class="ui large right call-modal labeled blue icon button" style='margin-top: 30px' href="#">
             <i class="right chevron icon"></i>
             Get Started Now

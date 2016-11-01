@@ -27,12 +27,6 @@ $(document).on('ready page:load', function () {
   });
 });
 
-$(function() {
-  $("#show-answer-form").click(function() {
-    $("#answer-form-center").toggle();
-  })
-});
-
 
 
 
