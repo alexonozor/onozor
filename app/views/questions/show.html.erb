@@ -46,13 +46,13 @@
            <%= allow_ajax_only_if_user_is_signin_for_downvote_question(@question) %>
 
           <% if current_user.present? %>
+          &nbsp;  &nbsp; &nbsp; &nbsp; <button class="ui mini secondary button" id="show-answer-form">  <i class="icon write"></i> Answer</button>
            &nbsp;  &nbsp; <%= link_to " Add a comment", new_comment_path(:comment => { :commentable_type => @question.class.name,
                          :commentable_id => @question.id}),
                          :remote => true,
                          :class => "comment_link",
                          id:"comment_link"  %>
-
-        <% end %>
+          <% end %>
         </span>
         <span class="right floated" style="margin-top: 8px;">
           <span><i class="share alternate icon-size icon share-caller" id='modal-setting' data-id="<%= @question.id %>" data-question='{ name: "<%= @question.name %>", url: "<%= question_url(@question) %>", user: "<%= @question.user.fullname %>"}'></i></span>
@@ -61,7 +61,10 @@
       </div>
     </div>
 
-    <%= render "answers/form" %>
+    <div id="answer-form-center">
+        <%= render "answers/form" %>
+    </div>
+
     <% if @question.answers.present? %>
       <h4 class="ui horizontal divider header dash_header">Answers</h4>
       <!-- Answer start   -->
