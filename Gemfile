@@ -38,8 +38,6 @@ gem 'rails_12factor', group: :production
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
-gem 'devise'
-
 gem 'simple_form', '~>3.2.0'
 gem 'friendly_id'
 gem 'rmagick', '~> 2.15'
@@ -72,6 +70,7 @@ gem 'geocoder'
 gem 'whenever', :require => false
 gem 'tire'
 gem 'unicorn'
+gem 'devise'
 
 
 
