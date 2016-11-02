@@ -18,42 +18,40 @@
     <%= link_to "<i class='sign in  icon'></i> Logout".html_safe, destroy_user_session_path, method: :delete, class: 'item' %>
    </div>
   <% end %>
-  <div class="pusher">
-    <%= render partial: 'layouts/nav' %>
-  <% unless current_user %>
-    <div class="ui stackable ui tall stacked segment container one column top-header" >
-      <div class="padding-settings">
-        <h1 class="ui center aligned icon header dash_header" style="color: #fff; font-size: 32px;">
-          Where Everyone meet
-        </h1>
-        <div class="ui stackable center aligned vertically  grid">
-        <div class="eight wide  column">
-          <h4>An open, friendly and conversational community for everyone</h4>
-          <a class="ui large right call-modal labeled blue icon button" style='margin-top: 30px' href="#">
-            <i class="right chevron icon"></i>
-            Get Started Now
-          </a>
-          <div>
-          <a class="ui small " style='color: #fff; line-height: 5' href="#">
-            See 5 reason's why you need to Join   <i class="right chevron icon"></i>
-          </a>
+      <div class="pusher">
+        <%= render partial: 'layouts/nav' %>
+      <% unless current_user %>
+        <div class="ui stackable ui tall stacked segment container one column top-header" >
+          <div class="padding-settings">
+            <h1 class="ui center aligned icon header dash_header" style="color: #fff; font-size: 32px;">
+              Where Everyone meet
+            </h1>
+            <div class="ui stackable center aligned vertically  grid">
+            <div class="eight wide  column">
+              <h4>An open, friendly and conversational community for everyone</h4>
+              <a class="ui large right call-modal labeled blue icon button" style='margin-top: 30px' href="#">
+                <i class="right chevron icon"></i>
+                Get Started Now
+              </a>
+              <div>
+              <a class="ui small " style='color: #fff; line-height: 5' href="#">
+                See 5 reason's why you need to Join   <i class="right chevron icon"></i>
+              </a>
+            </div>
+            </div>
+          </div>
+         </div>
         </div>
-        </div>
+    <% end %>
+    <div class="ui stackable container three column grid left-menu">
+      <%= render :partial => "layouts/app_sidenav" %>
+      <div class="nine wide column">
+        <%= render :partial => 'layouts/mini_nav' %>
+        <%= yield %>
       </div>
-     </div>
+        <%= render partial: 'layouts/rightpanel' %>
+        <%= render partial: 'layouts/modal' %>
     </div>
-<% end %>
-<div class="ui stackable container three column grid left-menu">
-  <%= render :partial => "layouts/app_sidenav" %>
-  <div class="nine wide column">
-    <%= render :partial => 'layouts/mini_nav' %>
-    <%= yield %>
-  </div>
-
-    <%= render partial: 'layouts/rightpanel' %>
-    <%= render partial: 'layouts/modal' %>
-</div>
-
-</div>
+    </div>
   </body>
 </html>
