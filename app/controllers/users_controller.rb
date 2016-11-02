@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   respond_to  :json, :js
   #load_and_authorize_resource
-  layout "display", only: [:index, :show]
+  layout "display", only: [:index, :show, :edit]
   before_filter :load_users
   before_filter :get_user, only: [:show,
                                   :show_user_questions,

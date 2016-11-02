@@ -245,3 +245,9 @@ $(function () {
     $('.desc_question').val(details);
   })
 })
+
+$(function () {
+  $('#show-answer-form').click(function() {
+   $('#answer-form-center').toggle();
+  })
+})

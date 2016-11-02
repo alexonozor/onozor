@@ -52,7 +52,7 @@ var changeJsonResponse = function(data) {
 
 
 $(".prompt").focus(function() {
-    $.get("http://www.onozor.com/users/categories.json", function(data, status) {
+    $.get("/users/categories.json", function(data, status) {
         var content = changeJsonResponse(data);
         console.table("Alex", data);
         $('.ui.search')

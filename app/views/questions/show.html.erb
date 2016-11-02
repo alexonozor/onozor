@@ -46,7 +46,7 @@
            <%= allow_ajax_only_if_user_is_signin_for_downvote_question(@question) %>
 
           <% if current_user.present? %>
-          &nbsp;  &nbsp; &nbsp; &nbsp; <button class="ui mini secondary button" id="show-answer-form">  <i class="icon write"></i> Answer</button>
+          &nbsp;  &nbsp; &nbsp; <button class="ui mini secondary button" id="show-answer-form">  <i class="icon write"></i> Add Answer</button>
            &nbsp;  &nbsp; <%= link_to " Add a comment", new_comment_path(:comment => { :commentable_type => @question.class.name,
                          :commentable_id => @question.id}),
                          :remote => true,
