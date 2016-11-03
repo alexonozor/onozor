@@ -32,7 +32,7 @@ NairaOverflow::Application.configure do
   config.action_mailer.default_url_options = { host: "localhost:3000" }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-      :address              => "smtp.google.com",
+      :address              => "smtp.gmail.com",
       :port                 => 587,
       :domain               => "localhost:3000",
       :user_name            => "alexonozor@gmail.com",
@@ -45,7 +45,5 @@ NairaOverflow::Application.configure do
 
   # in development env it's good to use gem 'mailcatcher' so install it with gem install mailcatcher
   # then open a tab with localhost:1025 & whatever mail app fires will be caught by mailcatcher. :)
-  config.action_mailer.default_url_options = { host: 'localhost:3000' }
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = { address: 'localhost', port: 1025 }
 end
