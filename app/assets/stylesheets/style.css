@@ -355,12 +355,14 @@ pre {
 }
 
 .badge {
-    position: absolute;
-    right: 13px;
-    padding: 5px;
-    background: #b30000;
-    border-radius: 20px;
-    color: #fff;
+  top: 7px;
+  position: absolute;
+  right: 17px;
+  padding: 6px;
+  background: #00b360;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 10px;
 }
 
 .display {
