@@ -4,6 +4,6 @@ class Follower < ActionMailer::Base
     @following = following
     @follower = follower
     mail :to => @following.email,
-         :subject => "#{@follower.username.titleize} is now following you - Onozor"
+         :subject => "#{@follower.fullname.titleize} You have a new follower - Onozor"
   end
 end
