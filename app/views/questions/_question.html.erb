@@ -6,6 +6,7 @@
       <div class="event">
         <div class="label">
           <%=link_to image_tag(question.user.avatar.url(:thumb), class: 'avatar'), question.user %>
+          
         </div>
         <div class="content">
           <% if user_signed_in? && (question.user == current_user || current_user.admin?) %>

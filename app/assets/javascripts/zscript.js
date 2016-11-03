@@ -24,6 +24,12 @@ $('.share-caller').click(function() {
   }).modal('setting', 'transition', 'horizontal flip').modal('show');
   $('.share-name').text(obj.name);
   $('#share-link-form').val(obj.url)
+  $('#twitter').attr("href", "https://twitter.com/share?url="+obj.url+'&text='+obj.name);
+  $('#facebook').attr("href", "https://www.facebook.com/dialog/share?app_id=176729339340246&href="+obj.url+"redirect_uri=http://www.onozor.com");
+  $('#linkedin').attr("href", "https://www.linkedin.com/cws/share?url="+obj.url);
+  $('#google-plus').attr("href", "https://plus.google.com/share?url="+obj.url);
+  $('#reddit').attr("href", "http://www.reddit.com/submit?url="+ obj.url +"&title="+obj.name);
+  $('#hacker').attr("href", "http://news.ycombinator.com/submitlink?u="+ obj.url + "&t="+obj.name);
 });
 
 
