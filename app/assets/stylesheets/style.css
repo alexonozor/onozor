@@ -9,7 +9,7 @@ a:hover {
 }
 
 .ui.fixed.menu+.ui.grid {
-    padding-top: 10rem;
+    padding-top: 6rem;
 }
 
 .top-header {
@@ -208,8 +208,8 @@ body {
 
 .question-link a {
   color: black !important;
-  font-size: 1.2em;
-  line-height: 1em;
+  font-size: 1.1em;
+  line-height: 1.250em;
 }
 
 .question-description {

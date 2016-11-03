@@ -508,6 +508,7 @@ body {
   color: black !important;
   font-size: 1.2em;
   line-height: 1em;
+  text-transform: lowercase;
 }
 
 .question-description {
