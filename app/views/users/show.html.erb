@@ -9,7 +9,7 @@
 
      </div>
      <div class="eight wide column profile-details">
-       <h1 class="profile-name"><%= @user.fullname.capitalize %></h1>
+       <h1 class="profile-name"><%= @user.fullname.titleize %></h1>
        <h4 class="tagline"><%=  @user.categories.map{|a| a.name }.take(3).join(", ").html_safe %></h4>
        <p class="social">@<%= @user.username %>,  <i class="marker icon"></i><%= @user.city  %>, <%= @user.country %> &nbsp; <i class="twitter icon"></i> <i class="facebook icon"></i> <i class="github icon"></i></p>
        <div class="following">
