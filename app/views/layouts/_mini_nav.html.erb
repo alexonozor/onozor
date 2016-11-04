@@ -5,9 +5,9 @@
     <div class="ui dropdown item">
       <i class="filter icon"></i> Filters <i class="dropdown icon"></i>
       <div class="menu">
-        <%= link_to "Answered", answered_questions_path, class: 'item', remote: :true %>
-        <%= link_to "Unanswered", unanswered_questions_path, class: 'item', remote: :true %>
-        <%= link_to "Hot", hot_questions_path, class: 'item', remote: :true %>
+        <%= link_to "Answered", answered_questions_path, class: 'item unselect', remote: :true %>
+        <%= link_to "Unanswered", unanswered_questions_path, class: 'item unselect', remote: :true %>
+        <%= link_to "Hot", hot_questions_path, class: 'item unselect', remote: :true %>
       </div>
     </div>
 </div>

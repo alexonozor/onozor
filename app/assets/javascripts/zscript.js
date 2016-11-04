@@ -2,7 +2,7 @@
 
 $(function() {
 
-$('.top.menu .item').tab();
+// $('.top.menu .item').tab();
 
 $('.ui.dropdown').dropdown();
 
