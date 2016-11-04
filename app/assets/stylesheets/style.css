@@ -13,7 +13,9 @@ a:hover {
 }
 
 
-
+.ui.grid+.grid {
+  margin-top: 7rem !important;
+}
 
 .top-header {
     padding: 40px 0;
@@ -79,8 +81,8 @@ body {
 }
 
 .you-may-like a {
-  margin-top: 15px;
-  font-size: 17px;
+  margin-top: 12px;
+  font-size: 15px;
   color: #495D41 !important;
 }
 

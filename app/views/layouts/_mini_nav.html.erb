@@ -1,13 +1,16 @@
-<div class="ui secondary pointing menu">
-  <%= link_to "All Question", root_path, class: 'item active' %>
-  <%= link_to "Answered", answered_questions_path, class: 'item', remote: :true %>
-  <%= link_to "Unanswered", unanswered_questions_path, class: 'item', remote: :true %>
-  <%= link_to "Hot", hot_questions_path, class: 'item', remote: :true %>
-  <div class="right menu">
-    <div class="item">
-      <%= link_to "<i class='comment icon'></i> Ask Question".html_safe, new_question_path, class:"ui teal button" %>
+<div class="ui fluid stackable labeled icon massive three item menu">
+  <%= link_to "<i class='plus square outline icon'></i> Ask Question".html_safe, new_question_path,  class:"item" %>
+  <a class="item"><i class="write icon"></i>Write A Story</a>
+
+    <div class="ui dropdown item">
+      <i class="filter icon"></i> Filters <i class="dropdown icon"></i>
+      <div class="menu">
+        <%= link_to "Answered", answered_questions_path, class: 'item', remote: :true %>
+        <%= link_to "Unanswered", unanswered_questions_path, class: 'item', remote: :true %>
+        <%= link_to "Hot", hot_questions_path, class: 'item', remote: :true %>
+      </div>
     </div>
-  </div>
 </div>
 
-<div class="ui active centered loader-margin inline  loader" style="display: none"></div>
+
+<!-- <div class="ui active centered loader-margin inline  loader" style="display: none"></div> -->

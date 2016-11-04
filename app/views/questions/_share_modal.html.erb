@@ -50,3 +50,24 @@
     <div class="ui button">OK</div>
   </div>
 </div>
+
+<div class="ui small modal ask-some-one">
+  <div class="header" style="text-align: center;">
+    <i class="share alternate mail"></i>Ask someone you know that can answer this question.
+  </div>
+
+  <div class="content">
+    <%= form_tag  class:"ui form" do %>
+      <div class="field">
+        <%= text_field_tag  placeholder:"Search Onozor" %>
+      </div>
+    <% end %>
+    <div  class="ui centered content-margin grid">
+
+    </div>
+  </div>
+  <div class="actions">
+    <div class="ui button">Cancel</div>
+    <div class="ui button">OK</div>
+  </div>
+</div>

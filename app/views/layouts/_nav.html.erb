@@ -1,18 +1,26 @@
-<div class="ui top big fixed small menu">
-  <div class="ui stacked container">
-    <div class="align-logo">
+
+<div class="ui page grid">
+  <div class="ui top fixed small menu computer tablet only row" style="padding: 0px;">
+    <div class="ui stacked container">
+      <div class="align-logo">
         <%= link_to (image_tag ("logo-small.png"), width:"150px"), root_url, turbolinks: false %>
-    </div>
-    <div class="right menu">
+      </div>
+      <div class="right menu">
         <div class="item">
+          <%= link_to '<i class="users link icon"></i> Users'.html_safe, users_path %>
+        </div>
+        <div class="item">
+          <%= link_to '<i class="newspaper link icon"></i> Topics'.html_safe, categories_path %>
+        </div>
+        <div class="item large screen only">
           <%= form_tag questions_path, class:"navbar-form navbar-left", :method => 'get' do %>
-            <div class="ui icon input">
-                <%= text_field_tag :search,  params[:search], placeholder:"Search Questions" %>
-                <i class="search link icon"></i>
-            </div>
+          <div class="ui icon input">
+            <%= text_field_tag :search,  params[:search], placeholder:"Search Questions" %>
+            <i class="search link icon"></i>
+          </div>
           <% end %>
         </div>
-      <% if user_signed_in? %>
+        <% if user_signed_in? %>
         <div class="item">
           <% if current_user.activities.unseen.count > 0 %>
           <span class="badge badge-danger">
@@ -22,14 +30,16 @@
           <%= link_to '<i class="bell big icon"></i>'.html_safe, activities_path %>
         </div>
         <div class="item">
-            <%=link_to (image_tag current_user.avatar.url(:thumb), class:'ui mini circular image'), current_user  %>
-            <i style="cursor: pointer;" class="big  sidebar icon"></i>
+          <%=link_to (image_tag current_user.avatar.url(:thumb), class:'ui mini circular image'), current_user  %>
+          <i style="cursor: pointer;" class="big  sidebar icon"></i>
         </div>
-      <% else %>
+        <% else %>
         <div class="item">
           <%= link_to "Login / Signup", new_user_registration_path, class: 'ui facebook button' %>
         </div>
-      <% end %>
+        <% end %>
+      </div>
     </div>
   </div>
+
 </div>

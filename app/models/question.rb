@@ -90,6 +90,11 @@ class Question < ActiveRecord::Base
     end
   end
 
+  def self.similar_question(question)
+    sql = "select name, slug from questions where category_id = #{question.category_id} limit 9"
+    Question.find_by_sql(sql)
+  end
+
 
   def send_slack_message
     SLACK_NOTIFIER.ping("<!channel> New Question from #{self.user.username} :
