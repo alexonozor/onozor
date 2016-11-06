@@ -9,19 +9,25 @@
      </div>
     <span class="user_category">
       <% current_user.categories.take(6).each do |category|  %>
-          <%= link_to category.name, category, class: 'item', remote: true %>
+            <%= link_to(category, class: 'item', remote: true) do  %>
+              <%= image_tag category.image, class: 'category_image' %>
+              <%= category.name %>
+            <% end %>
       <% end %>
      </span>
      <% else %>
      <span class="user_category">
        <% Category.take(6).each do |category|  %>
-           <%= link_to category.name, category, class: 'item', remote: true %>
+           <%= link_to(category, class: 'item', remote: true) do  %>
+             <%= image_tag category.image, class: 'category_image' %>
+             <%= category.name %>
+           <% end %>
        <% end %>
       </span>
      <% end %>
   </div>
   <% unless current_user %>
-    <p style="font-size: 1.1em">Don't stay behind. Hang out with smart people!</p>
+    <p style="font-size: 1.1em; color: #607D8B !important;">Don't stay behind. Hang out with smart people!</p>
     <button class="ui primary button call-modal"> Sign up </button>
   <% end %>
 </div>

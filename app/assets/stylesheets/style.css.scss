@@ -201,10 +201,10 @@ body {
 
 
 .ui.secondary.pointing.menu {
-    background: #fff;
     margin-left: 0;
     margin-right: 0;
     border-bottom: 2px solid rgba(34,36,38,.15);
+    border: 0px !important;
 }
 
 .set-category-form {
@@ -220,6 +220,7 @@ body {
 .question-description {
   color: #757575 !important;
   text-align: justify;
+  font-size: 12px !important;
 }
 
 .icon-size {
@@ -424,3 +425,31 @@ box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15) inset;
 }
 
 progress:not { background-color: #000000; }
+
+
+.footer-settings p {
+  font-size: 12px!important;
+  color: #607D8B!important;
+}
+
+.date {
+  font-size: 12px !important;
+  color: #607D8B !important;
+}
+
+
+.user_category {
+  a {
+    font-size: 16px !important;
+    color: #607D8B !important;
+    font-weight: 400 !important;
+    padding-left: 0px !important;
+  }
+  img {
+    width: 30px !important;
+    display: inline !important;
+    border-radius: 100% !important;
+    margin-right: 2px !important;
+    border: 1px solid rgba(0,0,0,.1) !important;
+  }
+}

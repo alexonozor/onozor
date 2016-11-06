@@ -23,8 +23,8 @@
             <%= time_ago_in_words question.created_at %> ago
           </div>
           <div class="summary" id='user_details' >
-            <%= link_to  (question.user.fullname.titleize), user_path(question.user), style:"font-size: 15px;" %>
-            <span style="color: #757575 !important;">asked a question</span>
+            <%= link_to  (question.user.fullname.titleize), user_path(question.user), style:"font-size: 14px; font-weight: bolder;" %>
+            <span style="font-size: 12px !important; color: #607d8b !important">asked a question</span>
           </div>
         </div>
       </div>

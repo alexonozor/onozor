@@ -1,1 +1,1 @@
-$('.user_category').append("<%=j link_to @category.category.name, category_path(@category.category), class: 'item', remote: true %>")
+$('.user_category').append('<a href="/categories/<%= j @category.category.slug %>" class="item" data-remote="true"><img src="<%= j @category.category.image %>"> <%=j @category.category.name %></a>')
