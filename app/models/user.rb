@@ -282,7 +282,13 @@ end
     return false
   end
 
-  
+  def have_upvoted_a_content?
+    upvoted_content = self.question_votes + self.answer_votes
+    return true if upvoted_content.present?
+    return false
+  end
+
+
 
 
 

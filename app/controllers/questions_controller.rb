@@ -124,7 +124,6 @@ class QuestionsController < ApplicationController
     @question.user = current_user
     @question.tag_list.add(params[:tag_list])
       if @question.save
-        binding.pry
         ProfileProgress.update_profile_for_question(current_user) unless current_user.have_asked_a_question?
        respond_to do |format|
          format.js
@@ -137,6 +136,7 @@ class QuestionsController < ApplicationController
   end
 
   def vote
+    ProfileProgress.update_profile_for_upvoted_content(current_user) unless current_user.have_upvoted_a_content?
     vote = current_user.question_votes.new(value: params[:value], question_id: params[:id] )
     if vote.save
       respond_to do |format|
