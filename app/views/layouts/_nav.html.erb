@@ -6,12 +6,6 @@
         <%= link_to (image_tag ("logo-small.png"), width:"150px"), root_url, turbolinks: false %>
       </div>
       <div class="right menu">
-        <div class="item">
-          <%= link_to '<i class="users link icon"></i> Users'.html_safe, users_path %>
-        </div>
-        <div class="item">
-          <%= link_to '<i class="newspaper link icon"></i> Topics'.html_safe, categories_path %>
-        </div>
         <div class="item large screen only">
           <%= form_tag questions_path, class:"navbar-form navbar-left", :method => 'get' do %>
           <div class="ui icon input">
@@ -27,7 +21,7 @@
             <%= current_user.activities.unseen.count  %>
           </span>
           <% end %>
-          <%= link_to '<i class="bell big icon"></i>'.html_safe, activities_path %>
+          <%= link_to '<i class="bell big outline icon"></i>'.html_safe, activities_path %>
         </div>
         <div class="item">
           <%=link_to (image_tag current_user.avatar.url(:thumb), class:'ui mini circular image'), current_user  %>

@@ -70,7 +70,7 @@
               <% unless current_user.following?(user) %>
                 <%= form_for(current_user.relationships.build(followed_id: user.id)) do |f| %>
                   <%= f.hidden_field :followed_id %>
-                  <button class="compact ui button">Follow</button>
+                  <button class="tiny teal ui button"><i class="icon add sign box"></i><i class="icon small user"></i></button>
                 <% end %>
               <% end %>
             </div>
