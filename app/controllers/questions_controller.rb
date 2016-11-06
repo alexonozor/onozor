@@ -87,6 +87,7 @@ class QuestionsController < ApplicationController
   # GET /questions/1.json
   def show
     @question.update_views! unless @question.user_id == current_user.id  if current_user.present?
+    @similar_question = Question.similar_question(@question)
     @answer = Answer.new(:question => @question, :user => current_user)
     @comment = Comment.new(:commentable_type => @question.class.name, :commentable_id => @question.id, :user => current_user )
     if params[:notification_id]
@@ -103,9 +104,6 @@ class QuestionsController < ApplicationController
   # GET /questions/new
   def new
     @question = Question.new
-    param =  params[:question] ||= ""
-    convert = param["name"]
-    @similar_question =  Question.search(convert)
     respond_to do |format|
       format.json
       format.js
@@ -126,6 +124,7 @@ class QuestionsController < ApplicationController
     @question.user = current_user
     @question.tag_list.add(params[:tag_list])
       if @question.save
+        ProfileProgress.update_profile_for_question(current_user) unless current_user.have_asked_a_question?
        respond_to do |format|
          format.js
          format.html { redirect_to @question,  :notice => "Question was successfully created." }
@@ -137,6 +136,7 @@ class QuestionsController < ApplicationController
   end
 
   def vote
+    ProfileProgress.update_profile_for_upvoted_content(current_user) unless current_user.have_upvoted_a_content?
     vote = current_user.question_votes.new(value: params[:value], question_id: params[:id] )
     if vote.save
       respond_to do |format|

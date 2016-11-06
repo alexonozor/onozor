@@ -2,7 +2,7 @@
 
 $(function() {
 
-$('.top.menu .item').tab();
+// $('.top.menu .item').tab();
 
 $('.ui.dropdown').dropdown();
 
@@ -25,11 +25,18 @@ $('.share-caller').click(function() {
   $('.share-name').text(obj.name);
   $('#share-link-form').val(obj.url)
   $('#twitter').attr("href", "https://twitter.com/share?url="+obj.url+'&text='+obj.name);
-  $('#facebook').attr("href", "https://www.facebook.com/dialog/share?app_id=176729339340246&href="+obj.url+"redirect_uri=http://www.onozor.com");
+  $('#facebook').attr("href", "https://www.facebook.com/dialog/share?app_id=484766111702543&href="+obj.url+"redirect_uri=http://www.onozor.com");
   $('#linkedin').attr("href", "https://www.linkedin.com/cws/share?url="+obj.url);
   $('#google-plus').attr("href", "https://plus.google.com/share?url="+obj.url);
   $('#reddit').attr("href", "http://www.reddit.com/submit?url="+ obj.url +"&title="+obj.name);
   $('#hacker').attr("href", "http://news.ycombinator.com/submitlink?u="+ obj.url + "&t="+obj.name);
+});
+
+
+$('.ask-some-one-button').click(function() {
+  $('.ask-some-one').modal({
+    blurring: true
+  }).modal('setting', 'transition', 'horizontal flip').modal('show');
 });
 
 

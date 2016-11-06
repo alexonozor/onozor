@@ -6,9 +6,9 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-Question.update_all(questionable_type: "Random")
-
-Category.destroy_all
+# Question.update_all(questionable_type: "Random")
+#
+# Category.destroy_all
 category_list = [
     [ "Technology", "http://res.cloudinary.com/sportbay-co/image/upload/v1443569929/main-thumb-t-2177-200-JiR07D1TQSfeQzRvWXomVaY4Poj2f8Yb_obscwy.jpg" ],
     [ "Science", "http://res.cloudinary.com/sportbay-co/image/upload/v1443569928/main-thumb-t-931-200-c8WCPwZ9qPsh5zLGQ5wHh1ddxtc9Cch7_yquqe7.webp" ],
@@ -77,6 +77,69 @@ category_list = [
     # [ "Musicians", "" ],
 ]
 
-category_list.each do |name, image|
-  Category.create!( name: name, image: image )
+# category_list.each do |name, image|
+#   Category.create!( name: name, image: image )
+# end
+
+def update_biography(user)
+  user.profile_progress.update(written_bio: true)
+  user.progress += 20
+  user.save
+end
+
+def ask_question(user)
+  user.profile_progress.update(asked_question: true)
+  user.progress += 20
+  user.save
+end
+
+def update_followers(user)
+  user.profile_progress.update(followed_someone: true)
+  user.progress += 20
+  user.save
+end
+
+def update_answered_question(user)
+  user.profile_progress.update(answered_question: true)
+  user.progress += 20
+  user.save
+end
+
+def update_upvoted_question(user)
+  user.profile_progress.update!(voted_for_content: true)
+  user.progress += 20
+  user.save
+end
+
+
+def update_profile(user)
+  if user.bio.present?
+    update_biography(user)
+  end
+
+  if user.questions.present?
+    ask_question(user)
+  end
+
+  if user.followed_users.present?
+    update_followers(user)
+  end
+
+
+ if user.replies.present?
+    update_answered_question(user)
+  end
+
+ upvoted_content = user.question_votes + user.answer_votes
+
+  if upvoted_content.present?
+    update_upvoted_question(user)
+  end
+end
+
+
+
+User.all.each do |user|
+  user.create_profile_progress
+  update_profile(user)
 end

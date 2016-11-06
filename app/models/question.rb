@@ -4,6 +4,7 @@ class Question < ActiveRecord::Base
   acts_as_taggable_on :tags
   acts_as_tagger
   before_validation :set_permalink
+  
   # after_create :send_slack_message if Rails.env.production?
   has_ancestry
 
@@ -90,6 +91,11 @@ class Question < ActiveRecord::Base
     end
   end
 
+  def self.similar_question(question)
+    sql = "select name, slug from questions where category_id = #{question.category_id} limit 9"
+    Question.find_by_sql(sql)
+  end
+
 
   def send_slack_message
     SLACK_NOTIFIER.ping("<!channel> New Question from #{self.user.username} :
@@ -100,4 +106,9 @@ class Question < ActiveRecord::Base
     latest_question = self.unanswered
     NewsLetter.deliver_letter(latest_question).deliver
   end
+
+
+
+
+
 end

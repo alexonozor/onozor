@@ -3,39 +3,54 @@
 <div class="four wide column">
   <% if current_user %>
     <div class="ui card  fluid">
-        <div class="content">
+        <div class="content content-panel">
             <div class="header">Getting started
             </div>
-            <p>You're 40% closer to being an awesome Onozor.</p>
+            <p>You're <%= current_user.progress %>% closer to being an awesome Onozor.</p>
         </div>
         <div class="content">
-            <div class="ui relaxed divided list">
+            <div class="ui relaxed  list">
                 <div class="item">
+                    <div class="content">
+                      <progress class="progressing" max="100" value="<%= current_user.progress %>"></progress>
+                    </div>
+                </div>
+                <!-- <div class="item">
+                    <div class="content">
+                        <i class=" check circle icon <%= current_user.profile_progress.written_bio? ? 'green' : 'yellow' %>"></i>
+                        <a class="">Creat your profile</a>
+                    </div>
+                </div> -->
 
+                <div class="item">
                     <div class="content">
-                        <div class="ui teal progress">
-                            <div class="bar"></div>
-                        </div>
-                        <i class="check circle green icon"></i>
-                        <a class="done">Creat your profile</a>
+                        <i class="check circle icon <%= current_user.profile_progress.written_bio? ? 'green' : 'yellow' %>"></i>
+                        <a class="">Write profile bio</a>
                     </div>
                 </div>
                 <div class="item">
                     <div class="content">
-                        <i class="check circle green icon"></i>
-                        <a class="done">Write Profile Bio</a>
+                        <i class="check circle icon <%= current_user.profile_progress.asked_question? ? 'green' : 'yellow' %>"></i>
+                        <%= link_to "Ask a question", new_question_path %>
                     </div>
                 </div>
                 <div class="item">
                     <div class="content">
-                        <i class="check circle yellow icon"></i>
-                        <a class="">Upvote question</a>
+                        <i class="check circle icon <%= current_user.profile_progress.voted_for_content? ? 'green' : 'yellow' %>"></i>
+                        <a class="">Upvote content</a>
                     </div>
                 </div>
                 <div class="item">
                     <div class="content">
-                        <i class="check circle yellow icon"></i>
-                        <a href='#'>Ask Question</a>
+                        <i class="check circle icon <%= current_user.profile_progress.answered_question? ? 'green' : 'yellow' %>"></i>
+                        <a href='#'>Answer question</a>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="content">
+                        <i class="check circle icon <%= current_user.profile_progress.followed_someone? ? 'green' : 'yellow' %>"></i>
+                        <a href='#'>Follow someone</a>
                     </div>
                 </div>
             </div>
@@ -44,19 +59,18 @@
 
 
     <div class="ui card  fluid">
-      <div class="content">
+      <div class="content content-panel">
         <div class="header">People you may know </div>
       </div>
       <div class="content">
-      <div class="ui middle aligned divided list">
-
+      <div class="ui middle aligned  list">
         <%  @people_to_follows.each do |user| %>
           <div class="item">
             <div class="right floated content">
               <% unless current_user.following?(user) %>
                 <%= form_for(current_user.relationships.build(followed_id: user.id)) do |f| %>
                   <%= f.hidden_field :followed_id %>
-                  <button class="compact ui button">Follow</button>
+                  <button class="tiny teal ui button"><i class="icon add sign box"></i><i class="icon small user"></i></button>
                 <% end %>
               <% end %>
             </div>
@@ -72,9 +86,9 @@
     </div>
 <% end %>
 
+<%= render partial: "layouts/footer" %>
 
-
-    <div class="ui card  fluid">
+    <!-- <div class="ui card  fluid">
         <div class="ui middle aligned selection list">
             <div class="item">
                 <i class="idea icon"></i>
@@ -102,4 +116,4 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->

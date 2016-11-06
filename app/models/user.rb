@@ -9,6 +9,8 @@ class User < ActiveRecord::Base
   mount_uploader :avatar, AvatarUploader
   extend FriendlyId
   friendly_id :username, use: :slugged
+  after_create :create_profile_progress_account
+
 
   #association
   has_many :owned_pages, class_name: 'Page', :foreign_key => 'user_id'
@@ -35,12 +37,17 @@ class User < ActiveRecord::Base
   has_many :comments
   has_many :direct_messages
   has_many :page_invites
+  has_one  :profile_progress
 
   #validations
   validates_presence_of :username
   validates_presence_of :avatar, :on => :account_update
   validates_length_of :username, :within => 4..10, :on => :account_update
   validates_uniqueness_of :username, :on => :account_update
+
+  def create_profile_progress_account
+     self.create_profile_progress
+  end
 
   def self.is_provider_from_twitter?(auth)
     if auth.provider == 'twitter'
@@ -192,7 +199,7 @@ end
   end
 
  def fullname
-   ("#{first_name}" ' ' "#{last_name}".capitalize if first_name && last_name.present?) || username
+   ("#{first_name}" ' ' "#{last_name}".titleize if first_name && last_name.present?) || username
  end
 
 def fullname?
@@ -270,6 +277,31 @@ end
   def self.page_inviter(inviter_id)
     self.find_by_id(inviter_id)
   end
+
+  def have_asked_a_question?
+    return true if self.profile_progress.asked_question
+    return false
+  end
+
+  def have_upvoted_a_content?
+    upvoted_content = self.question_votes + self.answer_votes
+    return true if upvoted_content.present?
+    return false
+  end
+
+  def have_answered_a_question?
+    return true if self.replies.present?
+    return false
+  end
+
+  def have_followed_someone?
+    return true if self.followed_users.present?
+    return false
+  end
+
+
+
+
 
   #schema
  # t.string   "email",                  default: "", null: false

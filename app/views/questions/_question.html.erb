@@ -6,7 +6,7 @@
       <div class="event">
         <div class="label">
           <%=link_to image_tag(question.user.avatar.url(:thumb), class: 'avatar'), question.user %>
-          
+
         </div>
         <div class="content">
           <% if user_signed_in? && (question.user == current_user || current_user.admin?) %>
@@ -18,12 +18,13 @@
              </div>
            </div>
           <% end %>
+
           <div class="date">
             <%= time_ago_in_words question.created_at %> ago
           </div>
-          <div class="summary" id='user_details' style="font-size: smaller; color: #676868;">
-             <%= link_to  (question.user.fullname.titleize), user_path(question.user) %>. interested in <%=   question.user.intrest %>
-             <%= pluralize question.user.followers.count, "followers" %>. <%=  question.user.categories.map{|a|  a.name }.take(3).join(", ").html_safe %>
+          <div class="summary" id='user_details' >
+            <%= link_to  (question.user.fullname.titleize), user_path(question.user), style:"font-size: 14px; font-weight: bolder;" %>
+            <span style="font-size: 12px !important; color: #607d8b !important">asked a question</span>
           </div>
         </div>
       </div>

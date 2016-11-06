@@ -13,7 +13,9 @@ a:hover {
 }
 
 
-
+.ui.grid+.grid {
+  margin-top: 2rem !important;
+}
 
 .top-header {
     padding: 40px 0;
@@ -79,8 +81,8 @@ body {
 }
 
 .you-may-like a {
-  margin-top: 15px;
-  font-size: 17px;
+  margin-top: 12px;
+  font-size: 15px;
   color: #495D41 !important;
 }
 
@@ -199,10 +201,10 @@ body {
 
 
 .ui.secondary.pointing.menu {
-    background: #fff;
     margin-left: 0;
     margin-right: 0;
     border-bottom: 2px solid rgba(34,36,38,.15);
+    border: 0px !important;
 }
 
 .set-category-form {
@@ -218,6 +220,7 @@ body {
 .question-description {
   color: #757575 !important;
   text-align: justify;
+  font-size: 12px !important;
 }
 
 .icon-size {
@@ -377,4 +380,82 @@ pre {
 
 body.pushable>.pusher {
   background: #eceff1;
+}
+
+.content-panel {
+  background: #FAFAFA !important;
+  .header {
+    font-weight: 200 !important;
+  }
+  p {
+    font-size: 12px !important;
+    margin-top: 10px !important;
+  }
+}
+
+
+progress {
+/* style rules */
+-webkit-appearance: none;
+   appearance: none;
+
+ background: red;
+ appearance: none;
+ border: none;
+ width: 100%;
+ height: 20px;
+ box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
+}
+progress::-webkit-progress-bar {
+/* style rules */
+    background: #43c5d0;
+    background-color: #fff;
+    border-radius: 2px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15) inset;
+}
+progress::-webkit-progress-value {
+/* style rules */
+background: #43c5d0;
+box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15) inset;
+}
+progress::-moz-progress-bar {
+/* style rules */
+background: #43c5d0;
+box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15) inset;
+}
+
+progress:not { background-color: #000000; }
+
+
+.footer-settings p {
+  font-size: 12px!important;
+  color: #607D8B!important;
+}
+
+.date {
+  font-size: 12px !important;
+  color: #607D8B !important;
+}
+
+
+.user_category {
+  a {
+    font-size: 16px !important;
+    color: #607D8B !important;
+    font-weight: 400 !important;
+    padding-left: 0px !important;
+  }
+  img {
+    width: 30px !important;
+    display: inline !important;
+    border-radius: 100% !important;
+    margin-right: 2px !important;
+    border: 1px solid rgba(0,0,0,.1) !important;
+  }
+}
+
+.ui.card {
+  border-radius: 0px !important;
+  border: 1px solid #E0E0E0 !important;
+  box-shadow: 0 1px 2px #E0E0E0 !important;
 }
