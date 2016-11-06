@@ -104,7 +104,6 @@ class UsersController < ApplicationController
 
 
   def select_category
-
    if current_user.update(user_params)
      @people_to_follows = User.people_you_may_know(current_user)
      respond_to do |format|
@@ -121,6 +120,7 @@ class UsersController < ApplicationController
   def update
    @user = current_user
   if @user.update(user_params)
+    ProfileProgress.update_profile_for_bio_updated(@user) unless @user.bio_changed? && @user.changed?
       redirect_to root_path, notice: "Account was updated successfully"
    else
      redirect_to :back

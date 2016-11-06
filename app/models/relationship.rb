@@ -4,9 +4,15 @@ class Relationship < ActiveRecord::Base
 
   validates :follower_id, presence: true
   validates :followed_id, presence: true
-  after_create :notify_follower
 
-  def notify_follower
-    
+  after_validation :update_profile_progress
+  # after_create :notify_follower
+  #
+  # def notify_follower
+  #
+  # end
+
+  def update_profile_progress
+     ProfileProgress.update_profile_for_following_someone(self.follower) unless self.follower.have_followed_someone?
   end
 end

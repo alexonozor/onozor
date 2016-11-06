@@ -29,8 +29,8 @@ class AnswersController < ApplicationController
     if @answer.save
     #  send_notification(@answer)
     respond_to do |format|
-      format.html { redirect_to @answer.question, :view => "answer-body", :notice => "Thanks for you Answer"}
-      format.mobile { redirect_to @answer.question, :notice => "Thanks for you Answer"}
+      format.html { redirect_to @answer.question, :view => "answer-body", :notice => "Thanks for your Answer"}
+      format.mobile { redirect_to @answer.question, :notice => "Thanks for your Answer"}
       format.js
      end
       else

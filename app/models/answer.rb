@@ -11,6 +11,13 @@ class Answer < ActiveRecord::Base
   validates_presence_of :body, :question_id, :user_id
   has_many :comments, :as => :commentable, :dependent => :destroy
 
+  after_validation :update_profile_progress
+
+  def update_profile_progress
+      ProfileProgress.update_profile_for_answer_question(self.user) unless self.user.have_answered_a_question?
+  end
+
+
 
 
   def self.by_votes

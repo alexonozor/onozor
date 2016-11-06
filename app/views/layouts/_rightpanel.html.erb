@@ -31,7 +31,7 @@
                 <div class="item">
                     <div class="content">
                         <i class="check circle icon <%= current_user.profile_progress.asked_question? ? 'green' : 'yellow' %>"></i>
-                        <a class="">Ask a question</a>
+                        <%= link_to "Ask a question", new_question_path %>
                     </div>
                 </div>
                 <div class="item">
