@@ -124,6 +124,8 @@ class QuestionsController < ApplicationController
     @question.user = current_user
     @question.tag_list.add(params[:tag_list])
       if @question.save
+        binding.pry
+        ProfileProgress.update_profile_for_question(current_user) unless current_user.have_asked_a_question?
        respond_to do |format|
          format.js
          format.html { redirect_to @question,  :notice => "Question was successfully created." }

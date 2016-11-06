@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160730210922) do
+ActiveRecord::Schema.define(version: 20161105030918) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -210,6 +210,18 @@ ActiveRecord::Schema.define(version: 20160730210922) do
     t.datetime "updated_at"
   end
 
+  create_table "profile_progresses", force: true do |t|
+    t.boolean  "written_bio",       default: false
+    t.boolean  "updated_question",  default: false
+    t.boolean  "asked_question",    default: false
+    t.boolean  "followed_someone",  default: false
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "answered_question", default: false
+    t.boolean  "voted_for_content", default: false
+  end
+
   create_table "question_votes", force: true do |t|
     t.integer  "user_id"
     t.integer  "question_id"
@@ -337,6 +349,7 @@ ActiveRecord::Schema.define(version: 20160730210922) do
     t.string   "personal_website"
     t.string   "cover_photo"
     t.string   "location"
+    t.integer  "progress",               default: 0
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

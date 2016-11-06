@@ -21,6 +21,11 @@
 
 $('.ui.dropdown').dropdown();
 
+
+$(function() {
+  $('#example4').progress();
+})
+
 $(document).on('ready page:load', function () {
   $('#get-notification').click( function(){
     $('.notifications-wrapper').load('/activities #notifications')
