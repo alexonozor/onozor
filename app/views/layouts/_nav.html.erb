@@ -37,7 +37,7 @@
   </div>
 </div>
 
-<% unless current_user %>
+<% unless current_user && (controller_name == "questions" && action_name == "index")  %>
   <div class="ui stackable segment container site-intro desktop-only" >
     <div class="info-header">
       <h1>Your questions may lead to a new discovery!</h1>
@@ -90,7 +90,7 @@
 </div>
 
 
-  <% unless current_user %>
+  <% unless current_user && (controller_name == "questions" && action_name == "index")  %>
     <div class="ui stackable segment  site-intro mobile-only" >
       <div class="info-header">
         <h1>Your questions may lead to a new discovery!</h1>
