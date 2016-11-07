@@ -25,29 +25,8 @@
     padding-top: 10rem;
 }
 
-.top-header {
-    padding: 40px 0;
-    margin-top: 50px;
-    background: linear-gradient( rgba(33, 29, 29, 0.55), rgba(4, 2, 2, 0.62) ), url('header.jpg') no-repeat;
-    background-size: cover;
-    height: 500px;
-    color: #fff;
-}
 
-.padding-settings {
-  padding-top: 13%;
-}
 
-.top-header h1 {
-  font-size: 39px;
-  font-weight: 700;
-  line-height: normal;
-  color: #fff;
-}
-
-.top-header h3 {
-  color: #fff !important;
-}
 
 body {
   background: #eceff1 !important;
@@ -319,22 +298,7 @@ a:hover {
   margin-top: 1rem !important;
 }
 
-/* line 20, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
-.top-header {
-  padding: 40px 0;
-  margin-top: 50px;
-  background: linear-gradient(rgba(33, 29, 29, 0.55), rgba(4, 2, 2, 0.62)), url("header.jpg") no-repeat;
-  background-size: cover;
-  height: 500px;
-  color: #fff;
-}
-
-/* line 29, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
-.padding-settings {
-  padding-top: 13%;
-}
-
-/* line 33, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
+/* line 25, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
 .top-header h1 {
   font-size: 39px;
   font-weight: 700;
@@ -342,94 +306,94 @@ a:hover {
   color: #fff;
 }
 
-/* line 40, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
+/* line 32, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
 .top-header h3 {
   color: #fff !important;
 }
 
-/* line 44, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
+/* line 36, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
 body {
   background: #eceff1;
 }
 
-/* line 49, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
+/* line 41, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
 .done {
   text-decoration: line-through !important;
 }
 
-/* line 53, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
+/* line 45, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
 .read-text, .answer p {
   font-size: 17px;
   color: #455A64;
 }
 
-/* line 58, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
+/* line 50, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
 .space-level {
   margin-top: 1% !important;
 }
 
-/* line 62, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
+/* line 54, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
 .space-level-0 {
   margin-top: 3% !important;
 }
 
-/* line 66, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
+/* line 58, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
 .space-level-1 {
   margin-top: 15% !important;
 }
 
-/* line 70, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
+/* line 62, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
 .space-level-2 {
   margin-top: 20% !important;
 }
 
-/* line 74, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
+/* line 66, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
 .space-level-3 {
   margin-top: 30% !important;
 }
 
-/* line 79, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
+/* line 71, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
 .commnet-form {
   height: 4em !important;
 }
 
-/* line 83, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
+/* line 75, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
 .you-may-like a {
   margin-top: 12px;
   font-size: 15px;
   color: #495D41 !important;
 }
 
-/* line 90, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
+/* line 82, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
 .side-label {
   margin-bottom: -5px;
   font-size: larger;
   font-weight: 800;
 }
 
-/* line 96, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
+/* line 88, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
 .align-logo {
   padding: 5px 0px;
 }
 
-/* line 100, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
+/* line 92, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
 .notification {
   color: #455A64;
 }
 
-/* line 104, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
+/* line 96, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
 .notification:hover {
   color: #455A64;
 }
 
-/* line 108, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
+/* line 100, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
 .notification-label {
   padding: 15px;
   border-bottom: 1px solid #ccc;
   color: #455A64;
 }
 
-/* line 114, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
+/* line 106, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
 .notifications {
   padding: 15px;
   border-bottom: 1px solid #ccc;
@@ -437,42 +401,42 @@ body {
   border-radius: 0px !important;
 }
 
-/* line 121, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
+/* line 113, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
 .notifications a {
   font-weight: 400;
   color: #455A64;
 }
 
-/* line 127, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
+/* line 119, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
 .notifications:last-child {
   border-bottom: 0px;
 }
 
-/* line 130, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
+/* line 122, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
 .unseen {
   background: rgba(33, 133, 208, 0.09);
 }
 
-/* line 134, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
+/* line 126, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
 .pull-left {
   float: left;
   text-align: left;
 }
 
-/* line 139, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
+/* line 131, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
 .pull-right {
   float: right;
   text-align: right;
 }
 
-/* line 144, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
+/* line 136, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
 #timeline {
   height: 50vh;
   width: 100%;
   background: #455A64;
 }
 
-/* line 150, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
+/* line 142, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
 .timeline-details {
   margin-top: -136.5px;
   padding-top: 32px;
@@ -482,12 +446,12 @@ body {
   position: relative;
 }
 
-/* line 159, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
+/* line 151, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
 .absolute {
   position: absolute;
 }
 
-/* line 163, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
+/* line 155, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
 .profile-picture {
   top: -70px;
   left: 100px;
@@ -497,38 +461,38 @@ body {
   width: 200px !important;
 }
 
-/* line 172, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
+/* line 164, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
 .profile-details {
   margin-left: 10px;
   color: #455A64;
 }
 
-/* line 177, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
+/* line 169, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
 .profile-name {
   font-size: 38px;
   color: #455A64;
 }
 
-/* line 182, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
+/* line 174, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
 .tagline {
   line-height: 0;
   font-size: 20px;
   font-weight: 400;
 }
 
-/* line 192, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
+/* line 184, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
 .following {
   margin-top: 30px;
 }
 
-/* line 196, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
+/* line 188, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
 .following a {
   color: #455A64;
   padding-left: 10px;
   font-weight: bold;
 }
 
-/* line 203, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
+/* line 195, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
 .ui.secondary.pointing.menu {
   margin-left: 0;
   margin-right: 0;
@@ -536,26 +500,26 @@ body {
   border: 0px !important;
 }
 
-/* line 210, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
+/* line 202, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
 .set-category-form {
   width: 100%;
 }
 
-/* line 214, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
+/* line 206, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
 .question-link a {
   color: black !important;
   font-size: 1.1em;
   line-height: 1.250em;
 }
 
-/* line 220, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
+/* line 212, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
 .question-description {
   color: #757575 !important;
   text-align: justify;
   font-size: 12px !important;
 }
 
-/* line 226, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
+/* line 218, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
 .icon-size {
   font-size: 1.5em !important;
   color: #e0e1e2;
@@ -563,17 +527,17 @@ body {
   cursor: pointer;
 }
 
-/* line 234, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
+/* line 226, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
 .reply {
   margin: 30px 0px;
 }
 
-/* line 238, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
+/* line 230, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
 .author {
   text-transform: capitalize;
 }
 
-/* line 242, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
+/* line 234, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
 #question-submit-button {
   margin-bottom: 20px;
   clear: both;
@@ -584,18 +548,18 @@ body {
   border-left: none;
 }
 
-/* line 252, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
+/* line 244, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
 .answer-settings, #first-answer {
   margin-bottom: 30px;
 }
 
-/* line 256, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
+/* line 248, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
 .ui.comments {
   margin: 1.5em 0;
   max-width: 100%;
 }
 
-/* line 261, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
+/* line 253, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
 .notifiaction-light {
   -webkit-animation-name: example !important;
   /* Chrome, Safari, Opera */
@@ -607,12 +571,12 @@ body {
 
 /* Chrome, Safari, Opera */
 @-webkit-keyframes example {
-  /* line 270, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
+  /* line 262, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
   from {
     background-color: red;
   }
 
-  /* line 271, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
+  /* line 263, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
   to {
     background-color: yellow;
   }
@@ -620,18 +584,18 @@ body {
 
 /* Standard syntax */
 @keyframes example {
-  /* line 276, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
+  /* line 268, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
   from {
     background-color: red;
   }
 
-  /* line 277, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
+  /* line 269, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
   to {
     background-color: yellow;
   }
 }
 
-/* line 280, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
+/* line 272, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
 .vote-count {
   font-weight: bolder !important;
   font-size: large;
@@ -639,41 +603,41 @@ body {
   margin: 0px 10px;
 }
 
-/* line 287, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
+/* line 279, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
 #comment_link {
   margin-left: 20px;
 }
 
-/* line 291, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
+/* line 283, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
 .user_details {
   font-weight: normal;
   color: #9E9E9E;
   font-size: smaller;
 }
 
-/* line 297, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
+/* line 289, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
 .share-name {
   text-align: center;
   margin-bottom: 10px;
 }
 
-/* line 302, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
+/* line 294, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
 .content-margin {
   margin: 20px 0px !important;
 }
 
-/* line 307, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
+/* line 299, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
 .loader-margin {
   margin-top: 20px  !important;
   margin-bottom: 20px  !important;
 }
 
-/* line 313, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
+/* line 305, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
 .result .description {
   display: none !important;
 }
 
-/* line 318, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
+/* line 310, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
 .ui.search > .results .result .image {
   float: right;
   overflow: hidden;
@@ -683,22 +647,22 @@ body {
   border-radius: .25em;
 }
 
-/* line 327, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
+/* line 319, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
 .error-message, .error-message-answer {
   display: none;
 }
 
-/* line 331, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
+/* line 323, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
 .popup {
   color: #FF0000 !important;
 }
 
-/* line 335, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
+/* line 327, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
 #follow_form > form {
   display: inline !important;
 }
 
-/* line 339, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
+/* line 331, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
 pre {
   display: block;
   padding: 7.5px;
@@ -715,13 +679,13 @@ pre {
   overflow: auto;
 }
 
-/* line 355, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
+/* line 347, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
 .turbolinks-progress-bar {
   height: 5px;
   background-color: green;
 }
 
-/* line 360, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
+/* line 352, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
 .badge {
   top: 7px;
   position: absolute;
@@ -733,37 +697,37 @@ pre {
   font-size: 10px;
 }
 
-/* line 371, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
+/* line 363, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
 .display {
   display: block !important;
 }
 
-/* line 375, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
+/* line 367, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
 .ui.small.select-friends {
   width: 640px;
   margin: 0 0 0 -360px;
 }
 
-/* line 381, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
+/* line 373, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
 body.pushable > .pusher {
   background: #eceff1;
 }
 
-/* line 385, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
+/* line 377, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
 .content-panel {
   background: #FAFAFA !important;
 }
-/* line 387, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
+/* line 379, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
 .content-panel .header {
   font-weight: 200 !important;
 }
-/* line 390, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
+/* line 382, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
 .content-panel p {
   font-size: 12px !important;
   margin-top: 10px !important;
 }
 
-/* line 397, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
+/* line 389, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
 progress {
   /* style rules */
   -webkit-appearance: none;
@@ -776,7 +740,7 @@ progress {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
 }
 
-/* line 409, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
+/* line 401, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
 progress::-webkit-progress-bar {
   /* style rules */
   background: #43c5d0;
@@ -785,45 +749,45 @@ progress::-webkit-progress-bar {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15) inset;
 }
 
-/* line 416, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
+/* line 408, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
 progress::-webkit-progress-value {
   /* style rules */
   background: #43c5d0;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15) inset;
 }
 
-/* line 421, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
+/* line 413, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
 progress::-moz-progress-bar {
   /* style rules */
   background: #43c5d0;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15) inset;
 }
 
-/* line 427, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
+/* line 419, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
 progress:not {
   background-color: #000000;
 }
 
-/* line 430, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
+/* line 422, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
 .footer-settings p {
   font-size: 12px !important;
   color: #607d8b !important;
 }
 
-/* line 435, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
+/* line 427, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
 .date {
   font-size: 12px !important;
   color: #607D8B !important;
 }
 
-/* line 442, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
+/* line 434, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
 .user_category a {
   font-size: 16px !important;
   color: #607D8B !important;
   font-weight: 400 !important;
   padding-left: 0px !important;
 }
-/* line 448, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
+/* line 440, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
 .user_category img {
   width: 30px !important;
   display: inline !important;
@@ -832,11 +796,203 @@ progress:not {
   border: 1px solid rgba(0, 0, 0, 0.1) !important;
 }
 
-/* line 457, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
+/* line 449, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
 .ui.card {
   border-radius: 0px !important;
   border: 1px solid #E0E0E0 !important;
   box-shadow: 0 1px 2px #E0E0E0 !important;
+}
+
+@media only screen and (max-width: 767px) {
+  /* line 456, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
+  .ui.grid {
+    width: 100% !important;
+    margin: 0 !important;
+    box-shadow: none !important;
+    padding: 0rem !important;
+  }
+}
+/* line 464, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
+.site-intro {
+  border-radius: 0px !important;
+  background: #2986F2;
+  background: -webkit-linear-gradient(left top, #2bc2f1, #2986f2);
+  background: -o-linear-gradient(bottom right, #2bc2f1, #2986f2);
+  background: -moz-linear-gradient(bottom right, #2bc2f1, #2986f2);
+  background: linear-gradient(to bottom right, #2bc2f1, #2986f2);
+}
+
+/* line 475, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
+.desktop-only {
+  display: none !important;
+}
+
+/* line 479, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
+.mobile-only {
+  display: none !important;
+}
+
+@media only screen and (min-width: 769px) {
+  /* line 484, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
+  .desktop-only {
+    display: flex !important;
+  }
+
+  /* line 488, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
+  .info-header {
+    margin: auto;
+    text-align: center;
+    padding: 100px;
+  }
+  /* line 492, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
+  .info-header h1 {
+    color: #fff;
+    font-weight: lighter;
+  }
+  /* line 496, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
+  .info-header .bottom-text {
+    text-align: center;
+    font-weight: lighter;
+  }
+  /* line 499, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
+  .info-header .bottom-text h4 {
+    color: #fff;
+    font-weight: lighter;
+  }
+  /* line 504, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
+  .info-header .bottom-text button {
+    color: #fff !important;
+  }
+
+  /* line 510, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
+  .margin-top-for-web {
+    margin-top: 20px !important;
+  }
+}
+@media only screen and (max-width: 640px) {
+  /* line 521, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
+  .mobile-only {
+    display: inline-block !important;
+  }
+}
+@media only screen and (max-width: 640px) {
+  /* line 527, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
+  .mobile-only-for-small-menu {
+    display: flex !important;
+  }
+
+  /* line 531, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
+  .info-header {
+    margin: auto;
+    text-align: center;
+  }
+  /* line 535, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
+  .info-header h1 {
+    color: #fff;
+    font-weight: lighter;
+  }
+  /* line 539, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
+  .info-header .bottom-text {
+    text-align: center;
+    font-weight: lighter;
+  }
+  /* line 542, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
+  .info-header .bottom-text h4 {
+    color: #fff;
+    font-weight: lighter;
+  }
+  /* line 547, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
+  .info-header .bottom-text button {
+    color: #fff !important;
+  }
+
+  /* line 554, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
+  .site-intro {
+    border-radius: 0px !important;
+    margin: 0rem 0 !important;
+    background: #2986F2;
+    background: -webkit-linear-gradient(left top, #2bc2f1, #2986f2);
+    background: -o-linear-gradient(bottom right, #2bc2f1, #2986f2);
+    background: -moz-linear-gradient(bottom right, #2bc2f1, #2986f2);
+    background: linear-gradient(to bottom right, #2bc2f1, #2986f2);
+  }
+}
+/* line 565, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
+.mobile-header {
+  width: 100%;
+  position: fixed;
+  background: #FFF;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  padding: 0;
+  height: auto;
+  border-bottom: 1px solid #E0E0E0;
+  padding: 9px 0;
+}
+/* line 577, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
+.mobile-header .head-wrap {
+  padding: 0 20px;
+}
+/* line 581, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
+.mobile-header .left-column {
+  display: flex;
+  float: left;
+  width: 100px;
+}
+/* line 586, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
+.mobile-header .left-column i {
+  cursor: pointer;
+  margin: 10px 5px;
+  font-size: 20px;
+  color: #90A4AE;
+  font-weight: lighter;
+}
+/* line 598, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
+.mobile-header .right-column ul {
+  float: right;
+  display: flex;
+  height: 20px;
+  margin-top: 0px;
+}
+/* line 603, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
+.mobile-header .right-column ul li {
+  display: inline-table;
+  list-style-type: none;
+  margin: 0px 10px;
+}
+/* line 607, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
+.mobile-header .right-column ul li a {
+  margin-top: 1px;
+}
+/* line 609, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
+.mobile-header .right-column ul li a i {
+  font-size: 20px;
+  margin: 10px 5px;
+  color: #90A4AE;
+}
+
+/* line 621, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
+.seach-holder {
+  display: none;
+  width: 100%;
+  height: 35px;
+  background-color: #fff;
+  position: relative;
+  top: 48px;
+}
+/* line 628, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
+.seach-holder form {
+  position: relative !important;
+  max-width: 100% !important;
+  position: absolute !important;
+  width: 100% !important;
+}
+/* line 633, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/style.css.scss */
+.seach-holder form input {
+  border-left: 0px !important;
+  border-right: 0px !important;
+  border-radius: 0px !important;
 }
 /* line 6, /Users/obogbarealexonozor/workspace/rails-projects/onozor/app/assets/stylesheets/user_category.css.scss */
 .category_modal label {
