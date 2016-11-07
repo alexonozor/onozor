@@ -260,7 +260,6 @@ $(function () {
 
 $(function () {
   $('#search-mobile').click(function() {
-    alert('welcome');
     $('.seach-holder').fadeToggle('slow');
   })
 })
