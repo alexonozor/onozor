@@ -37,20 +37,6 @@
   </div>
 </div>
 
-<% unless current_user && (controller_name == "questions" && action_name == "index")  %>
-  <div class="ui stackable segment container site-intro desktop-only" >
-    <div class="info-header">
-      <h1>Your questions may lead to a new discovery!</h1>
-        <div class="bottom-text">
-          <h4>An open, friendly and conversational community for everyone</h4>
-          <button class="ui button large   call-modal  basic button">Get Started Now</button>
-      </div>
-      </div>
-    </div>
-<% end %>
-
-
-
 
 <div class="mobile-header mobile-only">
   <div class="header-wrap">
@@ -88,16 +74,3 @@
     <% end %>
   </div>
 </div>
-
-
-  <% unless current_user && (controller_name == "questions" && action_name == "index")  %>
-    <div class="ui stackable segment  site-intro mobile-only" >
-      <div class="info-header">
-        <h1>Your questions may lead to a new discovery!</h1>
-          <div class="bottom-text">
-            <h4>An open, friendly and conversational community for everyone</h4>
-            <button class="ui button large   call-modal  basic button">Get Started Now</button>
-        </div>
-        </div>
-      </div>
-  <% end %>
