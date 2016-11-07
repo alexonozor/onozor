@@ -35,17 +35,69 @@
       </div>
     </div>
   </div>
-
 </div>
 
-
-
-<div class="ui page grid">
-  <div class="ui top fixed small menu mobile only row" style="padding: 0px;">
-    <div class="ui stackable mobile-container" style="margin: 0px auto">
-      <div class="align-logo" align="center">
-        <%=  (image_tag ("http://res.cloudinary.com/sportbay-co/image/upload/c_crop/v1478176357/Favicon/apple-icon-60x60.png"), class: "big  sidebar icon", width:"50px", style: "border-radius: 50%;") %>
+<% unless current_user %>
+  <div class="ui stackable segment container site-intro desktop-only" >
+    <div class="info-header">
+      <h1>Your questions may lead to a new discovery!</h1>
+        <div class="bottom-text">
+          <h4>An open, friendly and conversational community for everyone</h4>
+          <button class="ui button large   call-modal  basic button">Get Started Now</button>
+      </div>
       </div>
     </div>
+<% end %>
+
+
+
+
+<div class="mobile-header mobile-only">
+  <div class="header-wrap">
+    <div class="left-column">
+      <i style="cursor: pointer;" class="sidebar icon"></i>
+      <%= link_to (image_tag ("http://res.cloudinary.com/sportbay-co/image/upload/c_crop/v1478176357/Favicon/apple-icon-60x60.png"), width:"35px", style: "border-radius: 100%"), root_url, turbolinks: false %>
+    </div>
+  <% if current_user %>
+    <div class="right-column">
+      <ul>
+        <li><a href="#"><i class="icon search"></i></a></li>
+        <li><%= link_to '<i class="bell outline icon"></i>'.html_safe, activities_path %></li>
+        <li><%=link_to (image_tag current_user.avatar.url(:thumb), class:'ui mini circular image'), current_user  %></li>
+      </ul>
+    </div>
+    <% else %>
+    <div class="right-column">
+      <ul>
+        <li id="search-mobile"><a href="#"><i class="icon search" ></i></a></li>
+        <li><a href="../users/sign_in"class="ui button teal  basic button">Sign in</a></li>
+      </ul>
+    </div>
+    <% end %>
+  </div>
+  <div class="seach-holder">
+    <%= form_tag questions_path, class:"form ui", :method => 'get' do %>
+
+      <div class="ui right aligned category search">
+      <div class="ui icon input">
+        <%= text_field_tag :search,  params[:search], placeholder:"Search Onozor..",  class:"prompt"  %>
+        <i class="search icon"></i>
+      </div>
+      <div class="results"></div>
+    </div>
+    <% end %>
   </div>
 </div>
+
+
+  <% unless current_user %>
+    <div class="ui stackable segment  site-intro mobile-only" >
+      <div class="info-header">
+        <h1>Your questions may lead to a new discovery!</h1>
+          <div class="bottom-text">
+            <h4>An open, friendly and conversational community for everyone</h4>
+            <button class="ui button large   call-modal  basic button">Get Started Now</button>
+        </div>
+        </div>
+      </div>
+  <% end %>

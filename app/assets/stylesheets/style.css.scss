@@ -14,21 +14,13 @@ a:hover {
 
 
 .ui.grid+.grid {
-  margin-top: 2rem !important;
+  margin-top: 1rem !important;
 }
 
 .top-header {
-    padding: 40px 0;
-    margin-top: 50px;
-    background: linear-gradient( rgba(33, 29, 29, 0.55), rgba(4, 2, 2, 0.62) ), url('header.jpg') no-repeat;
-    background-size: cover;
-    height: 500px;
-    color: #fff;
 }
 
-.padding-settings {
-  padding-top: 13%;
-}
+
 
 .top-header h1 {
   font-size: 39px;
@@ -458,4 +450,190 @@ progress:not { background-color: #000000; }
   border-radius: 0px !important;
   border: 1px solid #E0E0E0 !important;
   box-shadow: 0 1px 2px #E0E0E0 !important;
+}
+
+@media only screen and (max-width: 767px) {
+  .ui.grid {
+      width: 100%!important;
+      margin: 0!important;
+      box-shadow: none!important;
+      padding: 0rem!important;
+  }
+}
+
+.site-intro {
+  border-radius: 0px !important ;
+  // margin: 0rem 0 !important;
+  background: #2986F2;
+  background: -webkit-linear-gradient(left top,#2BC2F1,#2986F2);
+  background: -o-linear-gradient(bottom right,#2BC2F1,#2986F2);
+  background: -moz-linear-gradient(bottom right,#2BC2F1,#2986F2);
+  background: linear-gradient(to bottom right,#2BC2F1,#2986F2);
+}
+
+
+.desktop-only {
+  display: none !important;
+}
+
+ .mobile-only {
+   display: none !important;
+ }
+
+@media only screen and (min-width:769px) {
+  .desktop-only {
+    display: flex !important;
+  }
+
+  .info-header {
+    margin: auto;
+    text-align: center;
+    padding: 100px;
+    h1 {
+      color: #fff;
+      font-weight: lighter;
+    }
+    .bottom-text {
+      text-align: center;
+      font-weight: lighter;
+      h4 {
+        color: #fff;
+        font-weight: lighter;
+      }
+
+      button {
+        color: #fff !important;
+      }
+    }
+
+  }
+  .margin-top-for-web {
+    margin-top: 20px !important;
+  }
+}
+
+
+
+
+
+// for mobile
+@media only screen and (max-width: 640px) {
+    .mobile-only {
+      display: inline-block !important;
+    }
+}
+
+@media only screen and (max-width: 640px) {
+    .mobile-only-for-small-menu {
+      display: flex !important;
+    }
+
+    .info-header {
+      margin: auto;
+      text-align: center;
+
+      h1 {
+        color: #fff;
+        font-weight: lighter;
+      }
+      .bottom-text {
+        text-align: center;
+        font-weight: lighter;
+        h4 {
+          color: #fff;
+          font-weight: lighter;
+        }
+
+        button {
+          color: #fff !important;
+        }
+      }
+
+    }
+
+    .site-intro {
+      border-radius: 0px !important ;
+      margin: 0rem 0 !important;
+      background: #2986F2;
+      background: -webkit-linear-gradient(left top,#2BC2F1,#2986F2);
+      background: -o-linear-gradient(bottom right,#2BC2F1,#2986F2);
+      background: -moz-linear-gradient(bottom right,#2BC2F1,#2986F2);
+      background: linear-gradient(to bottom right,#2BC2F1,#2986F2);
+    }
+}
+
+.mobile-header {
+    width: 100%;
+    position: fixed;
+    background: #FFF;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    padding: 0;
+    height: auto;
+    border-bottom: 1px solid #E0E0E0;
+    padding: 9px 0;
+
+    .head-wrap {
+      padding: 0 20px;
+    }
+
+    .left-column {
+      display: flex;
+      float: left;
+      width: 100px;
+
+      i {
+        cursor: pointer;
+        margin: 10px 5px;
+        font-size: 20px;
+        color: #90A4AE;
+        font-weight: lighter;
+      }
+    }
+
+
+
+    .right-column {
+      ul {
+        float: right;
+        display: flex;
+        height: 20px;
+        margin-top: 0px;
+        li {
+          display: inline-table;
+          list-style-type: none;
+          margin: 0px 10px;
+          a {
+            margin-top: 1px;
+            i {
+              font-size: 20px;
+              margin: 10px 5px;
+              color: #90A4AE;
+            }
+          }
+        }
+      }
+    }
+}
+
+
+.seach-holder {
+  display: none;
+  width: 100%;
+  height: 35px;
+  background-color: #fff;
+  position: relative;
+  top: 48px;
+  form {
+    position: relative !important;
+    max-width: 100% !important;
+    position: absolute !important;
+    width: 100% !important;
+    input {
+      border-left: 0px !important;
+      border-right: 0px !important;
+      border-radius: 0px !important;
+    }
+  }
 }

@@ -256,3 +256,11 @@ $(function () {
    $('#answer-form-center').toggle();
   })
 })
+
+
+$(function () {
+  $('#search-mobile').click(function() {
+    alert('welcome');
+    $('.seach-holder').fadeToggle('slow');
+  })
+})
