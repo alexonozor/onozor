@@ -7,17 +7,18 @@ class ApplicationController < ActionController::Base
 
   before_action :update_notification
   before_action :configure_devise_permitted_parameters, if: :devise_controller?
-   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
+  rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
+
   # rescue_from  ActionView::Template::Error, with: :no_user_found
   helper_method :mobile_device?, :suggested_people
+
+
 
 
 
   def after_sign_in_path_for(resource)
     request.env['omniauth.origin'] || stored_location_for(resource) || root_path
   end
-
-
 
   def update_notification
    if params['notification_id'].present?
@@ -26,18 +27,9 @@ class ApplicationController < ActionController::Base
    end
   end
 
-
-
-
-
   def is_admin?
     (user_signed_in? && current_user.admin?) ? true : false
   end
-
-
-
-
-
 
 
   private
@@ -51,7 +43,7 @@ class ApplicationController < ActionController::Base
   end
 
   def record_not_found
-    flash[:error] = "The page you are looking for does not exit"
+    flash[:error] = "The page you are looking for doesn't exist or an error occurred."
     redirect_to root_url
   end
 
@@ -63,10 +55,7 @@ class ApplicationController < ActionController::Base
     end
   end
 
-
-
   def trackable_activity(trackable)
-
     if trackable.class.name == 'Answer'
       answers = trackable.class.where(question_id: trackable.question.id)
       users = answers.map(&:user).uniq
@@ -94,29 +83,31 @@ class ApplicationController < ActionController::Base
 
   protected
 
-  def configure_devise_permitted_parameters
-    registration_params = [ :avatar, :last_requested_at, :admin, :avatar_file_name, :username, :gender, :first_name, :last_name, :bio, :occupation, :title,
-                            :intrest , :username, :location, :email, :password, :password_confirmation, :category_ids]
+    def configure_devise_permitted_parameters
+      registration_params = [ :avatar, :last_requested_at, :admin, :avatar_file_name, :username, :gender, :first_name, :last_name, :bio, :occupation, :title,
+                              :intrest , :username, :location, :email, :password, :password_confirmation, :category_ids]
 
 
-    if params[:action] == 'create'
-      devise_parameter_sanitizer.for(:sign_up) {
-          |u| u.permit(registration_params)
-      }
+      if params[:action] == 'create'
+        devise_parameter_sanitizer.for(:sign_up) {
+            |u| u.permit(registration_params)
+        }
+      end
     end
-  end
 
-  protected
 
-  def update_resource(resource, params)
-    resource.update_without_password(params)
-  end
 
-  def load_users
-    @users = User.all
-  end
+    def update_resource(resource, params)
+      resource.update_without_password(params)
+    end
 
-  def suggested_people
-    User.includes(:categories).group("users.id").order("id desc").limit(3)
+    def load_users
+      @users = User.all
+    end
+
+    def suggested_people
+      User.includes(:categories).group("users.id").order("id desc").limit(3)
+    end
+
+
   end
-end

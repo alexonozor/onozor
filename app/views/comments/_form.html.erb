@@ -6,8 +6,8 @@
   <%= f.hidden_field :commentable_type %>
   <%= f.hidden_field :commentable_id %>
     <div class="field">
-      <%= f.text_area :body, rows: 50, class:"commnet-form", placeholder: "Use comments to ask for more information or suggest improvements. Avoid answering questions in comments." %>
+      <%= f.text_area :body, rows: 50, class:"commnet-form", placeholder: "Write a comment..." %>
     </div>
-    <%= f.submit (@comment.new_record? ? "Post comment" : "Update comment"), class:'ui mini blue button pull-right' %>
-    <button type="button" class='pull-right ui mini yellow button cancel-comment' name="button">Cancel</button>
+    <%= f.submit (@comment.new_record? ? "Submit" : "Update comment"), class:'ui mini teal button pull-right' %>
+    <button type="button" class='pull-right ui mini  button cancel-comment' name="button">Cancel</button>
 <% end %>
