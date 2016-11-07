@@ -26,7 +26,7 @@
       <meta name="theme-color" content="#ffffff">
       <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
    </head>
-  <body >
+  <body data-no-turbolink>
 
   <% if current_user %>
    <div class="ui sidebar right inverted vertical menu">
@@ -59,6 +59,7 @@
          </div>
         </div>
     <% end %>
+      <%= render partial: 'layouts/flash_messages/flash' %>
     <div class="ui stackable container three column grid left-menu">
       <%= render :partial => "layouts/app_sidenav" %>
       <div class="nine wide column">
