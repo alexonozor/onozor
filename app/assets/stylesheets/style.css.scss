@@ -462,6 +462,14 @@ progress:not { background-color: #000000; }
    display:  none !important;
  }
 
+ .desktop-only-for-nav {
+   display:  none !important;
+ }
+
+ .mobile-only-for-small-menu {
+   display:  none !important;
+ }
+
 @media only screen and (min-width:769px) {
   .desktop-only {
     display: flex !important;
@@ -585,6 +593,7 @@ progress:not { background-color: #000000; }
 }
 
 @media only screen and (max-width: 640px) {
+
     .mobile-only-for-small-menu {
       display: flex !important;
     }
@@ -696,6 +705,8 @@ progress:not { background-color: #000000; }
         }
       }
     }
+
+
 }
 
 

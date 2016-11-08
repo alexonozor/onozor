@@ -36,45 +36,24 @@
 </div>
 
 
-<div class="mobile-header mobile-only">
-  <div class="header-wrap">
-    <div class="left-column">
 
-      <!-- <i style="cursor: pointer;" class=""></i> -->
 
-      <%= link_to (image_tag ("http://res.cloudinary.com/sportbay-co/image/upload/c_crop/v1478176357/Favicon/apple-icon-60x60.png"), width:"35px", style: "border-radius: 100%"), root_url, turbolinks: false %>
-    </div>
-  <% if current_user %>
-    <div class="right-column">
-      <ul>
-      <li id="search-mobile"><a href="#"><i class="icon search" ></i></a></li>
-        <li>
-          <%= link_to(activities_path, class: 'notification-bell') do %>
-            <i class="bell outline icon"></i>
-            <a class="ui red circular tiny label notification-label" style="position: absolute !important; top: 5px !important; right: 67px !important;"><%= current_user.activities.unseen.count if user_signed_in? && current_user.activities.unseen.count > 0  %></a>
+
+<div class=" ui fixed menu mobile-only-for-small-menu">
+  <%=link_to (image_tag 'http://res.cloudinary.com/sportbay-co/image/upload/c_crop/v1478176357/Favicon/apple-icon-60x60.png', class:'ui mini circular image'), root_path, class:"item"  %>
+  <div class="right menu">
+    <% if user_signed_in? %>
+      <%= link_to(activities_path, class: 'item notifcation') do %>
+          <i class="bell outline icon"></i>
+          <% if current_user.activities.unseen.count > 0 %>
+            <span class="ui red circular tiny label"><%= current_user.activities.unseen.count  %></span>
           <% end %>
-        </li>
-        <li><%=link_to (image_tag current_user.avatar.url(:thumb), class:'ui mini circular image'), current_user  %></li>
-      </ul>
-    </div>
-    <% else %>
-    <div class="right-column">
-      <ul>
-        <li id="search-mobile"><a href="#"><i class="icon search" ></i></a></li>
-        <li><a href="../users/sign_in"class="ui button teal  basic button">Sign in</a></li>
-      </ul>
-    </div>
-    <% end %>
-  </div>
-  <div class="seach-holder">
-    <%= form_tag questions_path, class:"form ui", :method => 'get' do %>
+      <% end %>
 
-      <div class="ui right aligned category search">
-      <div class="ui icon input">
-        <%= text_field_tag :search,  params[:search], placeholder:"Search Onozor..",  class:"prompt"  %>
-        <i class="search icon"></i>
-      </div>
-      <div class="results"></div>
+      <%=link_to (image_tag current_user.avatar.url(:thumb), class:'ui mini  circular image'), "#", class:"sidebar item"  %>
+    <% else %>
+    <div class="item">
+      <%= link_to "Sign in", new_user_session_path, class:"ui button small basic" %>
     </div>
     <% end %>
   </div>
