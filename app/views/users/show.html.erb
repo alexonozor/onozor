@@ -17,8 +17,10 @@
            <div style="display: relative; text-align: center;" class="mobile-only-for-profile">
              <%= render 'follow_form' %>
            </div>
-         <% else %>
-          <a href="../users/<%= @user.slug %>/edit" class="button teal ui"><i class="icon settings"></i> Settings</a>
+         <% elsif signed_in? && current_user != @user %>
+           <a href="../users/<%= @user.slug %>/edit" class="button teal ui"><i class="icon settings"></i> Settings</a>
+          <% else %>
+           <%= link_to "Follow",  "#", class: 'ui  teal call-modal button'  %>
          <% end %>
        </p>
        <div class="following">
