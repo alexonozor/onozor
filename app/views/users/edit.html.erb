@@ -21,7 +21,7 @@
         <div class="ui form">
 
           <div class="field">
-            <label>Change avatar</label>
+            <label>Change Picture</label>
             <%= f.input :avatar, as: :file, id:"exampleInputFile"  %>
           </div>
 
@@ -29,8 +29,6 @@
             <label>Username</label>
             <%= f.input :username, placeholder:"Username?", input_html: { class: 'huge' }, label: false  %>
           </div>
-
-
 
           <div class="field">
             <label>First Name</label>
@@ -40,6 +38,12 @@
           <div class="field">
             <label>Last Name</label>
             <%= f.input :last_name, placeholder:"Last Name?", input_html: { class: 'huge' }, label: false  %>
+          </div>
+
+
+          <div class="field">
+            <label>email</label>
+            <%= f.input :email, placeholder:"Email?", input_html: { class: 'huge' }, label: false  %>
           </div>
 
 

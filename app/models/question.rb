@@ -1,10 +1,10 @@
 class Question < ActiveRecord::Base
   mount_uploader :picture, PictureUploader
  #filters
-  acts_as_taggable_on :tags
-  acts_as_tagger
+  acts_as_taggable
+
   before_validation :set_permalink
-  
+
   # after_create :send_slack_message if Rails.env.production?
   has_ancestry
 

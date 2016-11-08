@@ -1,5 +1,4 @@
 <% title "All Questions & Answers - Onozor" %>
-
 <%= content_tag :div, id: "questions", class: 'panel panel-default', data: { url: questions_path(@question) } do %>
   <%= render @questions, :collection => @question %>
 <% end %>

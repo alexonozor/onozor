@@ -17,9 +17,7 @@
         <% if user_signed_in? %>
         <div class="item">
           <% if current_user.activities.unseen.count > 0 %>
-          <span class="badge badge-danger">
-            <%= current_user.activities.unseen.count  %>
-          </span>
+            <a class="ui red circular tiny label"><%= current_user.activities.unseen.count  %></a>
           <% end %>
           <%= link_to '<i class="bell big outline icon"></i>'.html_safe, activities_path %>
         </div>
@@ -48,7 +46,15 @@
     <div class="right-column">
       <ul>
         <li><a href="#"><i class="icon search"></i></a></li>
-        <li><%= link_to '<i class="bell outline icon"></i>'.html_safe, activities_path %></li>
+        <li>
+          <%= link_to '<i class="bell outline icon"></i>'.html_safe, activities_path %>
+          <% if user_signed_in? %>
+              <% if current_user.activities.unseen.count > 0 %>
+                <span class="badge badge-danger"><%= current_user.activities.unseen.count  %></span>
+              <% end %>
+          <% end %>
+        </li>
+
         <li><%=link_to (image_tag current_user.avatar.url(:thumb), class:'ui mini circular image'), current_user  %></li>
       </ul>
     </div>
