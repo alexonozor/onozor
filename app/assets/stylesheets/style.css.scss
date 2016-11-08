@@ -139,42 +139,16 @@ body {
   background: #455A64;
 }
 
-.timeline-details {
-  margin-top: -136.5px;
-  padding-top: 32px;
-  padding-bottom: 32px;
-  border-bottom: 1px solid #cfd8dc;
-  background: #fff;
-  position: relative;
-}
+
 
 .absolute {
   position: absolute;
 }
 
-.profile-picture {
-  top: -70px;
-  left: 100px;
-  position: absolute !important;
-  border: 4px solid #ECEFF1;
-  background: #ECEFF1;
-  width: 200px !important;
-}
 
 .profile-details {
   margin-left: 10px;
   color: #455A64;
-}
-
-.profile-name {
-  font-size: 38px;
-  color: #455A64;
-}
-
-.tagline {
-  line-height: 0;
-  font-size: 20px;
-  font-weight: 400;
 }
 
 .profile-social {
@@ -480,6 +454,14 @@ progress:not { background-color: #000000; }
    display: none !important;
  }
 
+ .mobile-only-for-profile {
+   display:  none !important;
+ }
+
+ .desktop-only-for-profile {
+   display:  none !important;
+ }
+
 @media only screen and (min-width:769px) {
   .desktop-only {
     display: flex !important;
@@ -510,6 +492,39 @@ progress:not { background-color: #000000; }
   .margin-top-for-web {
     margin-top: 20px !important;
   }
+
+  .timeline-details {
+    margin-top: -136.5px;
+    padding-top: 32px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid #cfd8dc;
+    background: #fff;
+    position: relative;
+  }
+
+  .profile-picture {
+    top: -70px;
+    left: 100px;
+    position: absolute !important;
+    border: 4px solid #ECEFF1;
+    background: #ECEFF1;
+    width: 200px !important;
+  }
+
+  .profile-name {
+    font-size: 38px;
+    color: #455A64;
+  }
+
+  .tagline {
+    line-height: 0;
+    font-size: 20px;
+    font-weight: 400;
+  }
+
+  .desktop-only-for-profile {
+    display: inline !important;
+  }
 }
 
 
@@ -520,6 +535,52 @@ progress:not { background-color: #000000; }
 @media only screen and (max-width: 640px) {
     .mobile-only {
       display: inline-block !important;
+    }
+
+    .mobile-only-for-profile {
+      display: inherit !important;
+    }
+
+    .timeline-details {
+      margin-top: -136.5px;
+      padding-top: 32px;
+      padding-bottom: 32px;
+      border-bottom: 1px solid #cfd8dc;
+      background: #fff;
+      position: relative;
+    }
+
+    .profile-picture {
+        top: -50px;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        position: absolute !important;
+        border: 4px solid #ECEFF1;
+        background: #ECEFF1;
+        width: 117px !important;
+    }
+
+    .profile-name {
+      font-size: 30px;
+      color: #455A64;
+      text-align: center;
+    }
+
+    .tagline {
+      font-size: 18px;
+      font-weight: 400;
+      text-align: center;
+    }
+
+    .social {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .follow-button-mobile {
+      text-align: center;
+      font-weight: bold;
     }
 }
 
@@ -548,6 +609,8 @@ progress:not { background-color: #000000; }
           color: #fff !important;
         }
       }
+
+
 
     }
 
@@ -592,7 +655,16 @@ progress:not { background-color: #000000; }
       }
     }
 
-
+.follow-settings {
+  display: inherit;
+  text-align: center;
+  .button, button, input {
+    display: inherit;
+    text-align: center;
+    float: right;
+    text-align: center !important;
+  }
+}
 
     .right-column {
       ul {

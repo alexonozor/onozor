@@ -1,7 +1,7 @@
 class QuestionsController < ApplicationController
   before_action :set_question, only: [:show, :edit, :update, :destroy, :accepted_answer, :vote, :undo_link]
   before_action :authenticate_user!, only: [:edit, :new, :create, :vote ]
-  layout "display", only: [:show, :new, :create]
+  layout "display", only: [:show, :new, :create, :edit]
   before_filter :people_to_follow, only: [:index], if: :html_request?
   respond_to :html, :json, js: { layout: false, content_type: 'text/javascript' }
 
@@ -160,7 +160,9 @@ class QuestionsController < ApplicationController
   # PATCH/PUT /questions/1
   # PATCH/PUT /questions/1.json
   def update
+      @question.tag_list.add(params[:tag_list])
       if @question.update(question_params)
+         binding.pry
         redirect_to @question, :notice =>"Question was successfully updated"
       else
         render action: 'edit'
