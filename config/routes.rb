@@ -1,4 +1,5 @@
 NairaOverflow::Application.routes.draw do
+  resources :tags
   get "coming_soon/index"
   get 'users/categories', to: 'users#user_categories', as: :user_categories
   resources :page_invites, only: [:create]
@@ -17,19 +18,20 @@ NairaOverflow::Application.routes.draw do
   end
 
   put  'users/select_category/:id', to: "users#select_category", as: "select_category"
-  get  "tags/index"
   post "versions/:id/revert" => "versions#revert", :as => "revert_version"
   get  'questions/advise', to: 'questions#advise', :as => "question_advise"
 
-  resources :categories
+  resources :categories do
+    member do
+      get :tags
+    end
+  end
   resources :friendships
   resources :followers
   resources :comments
   resources :page_users
   resources :activities
   resources :user_category
-  resources :tags, :only => [:index]
-
   resources :questions do
     member { post :vote }
     member { get  :accepted_answer }
@@ -69,7 +71,7 @@ NairaOverflow::Application.routes.draw do
 
  resources :relationships, only: [:create, :destroy]
 
-  get 'tags/:tag', to: 'questions#index', as: :tag
+
 
 
   resources :favourites, :only => [:toggle] do

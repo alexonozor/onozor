@@ -22,7 +22,7 @@
         <div class="content">
           <h1><%= (@question.name) %></h1>
           <h1 class="header">
-            <%= raw @question.tag_list.map { |t| link_to t, tag_path(t), class:"ui  tag label" }.join(' ') %>
+            <%= raw @question.tag_list.map { |t| link_to t, tag_path(t), class:"ui tag label" }.join(' ') %>
 
           </h1>
           <div class="description answer">

@@ -1,31 +1,117 @@
-<h1>Listing categories</h1>
+<%= render partial: "layouts/navbartag" %> 
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th>User</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
+<div class="bs-docs-header container" id="content" tabindex="-1">
+     <h1>Discover Nodes</h1>
+     <p>Browse and follow technologies you care about.</p>
+</div>
 
-  <tbody>
-    <% @categories.each do |category| %>
-      <tr>
-        <td><%= category.name %></td>
-        <td><%= category.description %></td>
-        <td><%= category.user_id %></td>
-        <td><%= link_to 'Show', category %></td>
-        <td><%= link_to 'Edit', edit_category_path(category) %></td>
-        <td><%= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
 
-<br>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-md-4 hidden-sm hidden-xs">
+      <div class="card">
+        <p>Search Category</p>
+        <input type="text" class="form-control" id="exampleInputAmount" placeholder="Search..">
+      </div>
+      <div class="list-group list-group-card">
+        <a href="#" class="list-group-item disabled">
+          Categories
+        </a>
+        <% @categories.each do |category| %>
+          <%= link_to category.name, tags_category_path(category.name), class: 'list-group-item', remote: true %>
+        <% end %>
+      </div>
+    </div>
 
-<%= link_to 'New Category', new_category_path %>
+    <div class="col-xs-12 col-sm-12 col-md-8">
+        <div class="row" id="tags">
+            <% @tags.each do |tag| %>
+              <div class="col-sm-4 col-md-5 col-lg-4">
+                <div class="thumbnail">
+                  <%=link_to (image_tag "https://res.cloudinary.com/hashnode/image/upload/w_400,h_400,c_thumb/v1450467384/rjxy8xoreclzppwynucv.png", class: "img-circle"), tag_path(tag.name) %>
+                  <div class="caption">
+                    <h5 class="text-center"><%= link_to tag.name.capitalize, tag_path(tag) %></h5>
+                    <p class="text-center"><%= pluralize tag.taggings_count, "Content" %></p>
+                    <p class="text-center"><a href="#" class="btn btn-info btn-lg text-center" role="button">Follow</a></p>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+        </div>
+    </div>
+  </div>
+</div>
+
+<style media="screen">
+.thumbnail>img, .thumbnail a>img {
+    height: 150px !important;
+}
+
+
+.bs-docs-nav {
+    margin-bottom: 0;
+    background-color: #fff;
+    border-bottom: 0;
+}
+
+
+.bs-docs-header {
+    padding-top: 60px;
+    padding-bottom: 60px;
+    font-size: 24px;
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.card {
+  border-radius: 0px !important;
+  border: 1px solid #E0E0E0 !important;
+  box-shadow: 0 1px 2px #E0E0E0 !important;
+  background: #FFF;
+  padding: 18px;
+  margin: 0px 0px 24px 0px !important;
+}
+
+.list-group-card {
+  border-radius: 0px !important;
+  border: 1px solid #E0E0E0 !important;
+  box-shadow: 0 1px 2px #E0E0E0 !important;
+  background: #FFF !important;
+  margin: 0px 0px 24px 0px !important;
+}
+
+.list-group-card a {
+  border: none !important;
+  font-size: 18px;
+  font-weight: 300;
+}
+
+body {
+  background: #ECEFF1;
+}
+
+.bs-docs-header {
+    position: relative;
+    align-self: center;
+    text-align: center;
+    width: 100%;
+    max-width: 720px;
+}
+
+.bs-docs-header h1 {
+  text-shadow: 0 1px 0 rgba(0,0,0,.1);
+  font-size: 40px;
+  font-weight: 200;
+  color: #4B4F56;
+  line-height: normal;
+}
+
+.bs-docs-header p {
+  margin: 0;
+  color: #424242;
+  font-size: 18px;
+  line-height: normal;
+  font-weight: 300;
+}
+
+</style>

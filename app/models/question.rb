@@ -2,6 +2,7 @@ class Question < ActiveRecord::Base
   mount_uploader :picture, PictureUploader
  #filters
   acts_as_taggable
+  
 
   before_validation :set_permalink
 

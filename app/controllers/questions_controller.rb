@@ -3,15 +3,13 @@ class QuestionsController < ApplicationController
   before_action :authenticate_user!, only: [:edit, :new, :create, :vote ]
   layout "display", only: [:show, :new, :create, :edit]
   before_filter :people_to_follow, only: [:index], if: :html_request?
-  respond_to :html, :json, js: { layout: false, content_type: 'text/javascript' }
+  respond_to :html, :json, :js
 
   require 'will_paginate/array'
   # GET /questions
   # GET /questions.json
   def index
-      if (params[:tag].present?)
-        @questions = Question.tagged_with(params[:tag]).paginate :page => params[:page], :per_page => 8
-      elsif (params[:search].present?)
+      if (params[:search].present?)
         @questions = Question.search(params[:search]).paginate(:per_page => 5, :page => params[:page])
       elsif current_user
         @questions = current_user.category_feeds.paginate :page => params[:page], :per_page => 8

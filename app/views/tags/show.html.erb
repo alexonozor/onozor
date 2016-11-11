@@ -1,0 +1,263 @@
+<%= render partial: "layouts/navbartag" %>
+<div class="banner" style="background-image: url(<%= @tag.banner.url(:timeline_picture) %>)">
+</div>
+<div class="info-bar">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-2 img-cen">
+        <%= image_tag @tag.image.url(:tag_logo), class: 'img-circle logo-setting' %>
+      </div>
+
+      <div class="col-md-8 small-screen-tagname">
+        <h1><%= @tag.name %></h1>
+        <p>The one true language of the Web.</p>
+      </div>
+
+      <div class="col-md-2 small-screen-following">
+        <button class="btn btn-md btn-default">Following</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <div class="card">
+        <h4>ABOUT THIS TAG</h4>
+        <p><%= @tag.description %></p>
+      </div>
+    </div>
+
+    <div class="col-md-6" style="padding: 0">
+      <div class="header">
+        <div class="header-notice">
+          Contribute to JavaScript. Write or share something.
+        </div>
+        <div class="btn-group btn-group-justified" role="group" aria-label="...">
+          <div class="btn-group" role="group">
+            <button type="button" class="btn btn-default btn-lg">Ask question</button>
+          </div>
+          <div class="btn-group" role="group">
+            <button type="button" class="btn btn-default btn-lg">Write story</button>
+          </div>
+          <div class="btn-group" role="group">
+            <button type="button" class="btn btn-default btn-lg">Share</button>
+          </div>
+        </div>
+      </div>
+
+      <% @questions.each do |question| %>
+          <div class="card questions">
+            <div class="row">
+              <div class="col-md-12" style="margin-bottom: -15px;">
+                <div class="media">
+                  <div class="media-left">
+                    <%=link_to image_tag(question.user.avatar.url(:thumb), class: 'media-object img-circle media-image-settings'), question.user %>
+                  </div>
+                  <div class="media-body">
+                    <h5 class="media-heading"><%= link_to  (question.user.fullname? ? question.user.fullname : question.user.username), user_path(question.user) %> <small>asked a question ·<%= time_ago_in_words question.created_at %></small></h5>
+                    <p><small>@<%= question.user.username %>, interested in <%=  question.user.categories.map{|a| a.name }.take(3).join(", ").html_safe %></small></p>
+                  </div>
+                </div>
+                <h4><%= link_to question.name.capitalize, question, class:"text-inverse link-black" %></h4>
+                <p class="text-small">
+                  <small><%= truncate (strip_tags question.body), length: 150 %></small>
+                </p>
+                 <div class="row">
+                   <div class="col-md-12">
+                     <ul class="list-inline" style="margin-bottom: 0px;">
+                       <li>
+                         <%= allow_ajax_only_if_user_is_signin_for_upvote_question(question) %>
+                       </li>
+                       <li><span id='vote-count-<%= question.id %>' class='vote-count'><%= question.votes %></span></li>
+                       <li>
+                          <%= allow_ajax_only_if_user_is_signin_for_downvote_question(question) %>
+                       </li>
+                       <li>
+                        <p class="action-footer"><i class="fa fa-comments-o" aria-hidden="true"></i></p>
+                       </li>
+
+                       <li class="pull-right">
+                         <p class="action-footer" ><i class="fa fa-share-alt" aria-hidden="true"></i></p>
+                       </li>
+
+                       <li class="pull-right">
+                         <p class="action-footer" ><i class="fa fa-star-o" aria-hidden="true"></i></p>
+                       </li>
+                     </ul>
+                   </div>
+                 </div>
+              </div>
+            </div>
+          </div>
+      <% end %>
+    </div>
+
+
+    <div class="col-md-3">
+      <div class="card">
+        <h4>TAG STATISICS</h4>
+        <p><%= @tag.description %></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style media="screen">
+
+.action-footer {
+  font-size: 21px;
+  margin: 13px;
+  color: #7d949f;
+}
+
+@media (min-width: 641px) and (max-width: 990px) {
+  .small-screen-tagname, .small-screen-following {
+    margin-left: 16rem;
+    transition: .3s ease-in
+  }
+
+  .small-screen-following button {
+  background: #eceff1;
+  border: 1px solid #eceff1;
+  font-weight: 400;
+  color: #78909C;
+  }
+}
+@media screen and (max-width: 640px) {
+  /*.logo-setting {
+    position: relative;
+    z-index: 100;
+    max-width: 75rem;
+    margin-left: 25%
+  }*/
+
+  .img-cen {
+    text-align: center;
+    margin-right: 15rem;
+  }
+
+  .small-screen-tagname {
+    text-align: center;
+    margin-top: 8rem;
+    transition: .5s ease-in
+  }
+
+  .small-screen-following {
+    text-align: center;
+    transition: .3s ease-in
+  }
+
+  .small-screen-following button {
+  background: #eceff1;
+  border: 1px solid #eceff1;
+  font-weight: 400;
+  color: #78909C;
+  }
+}
+
+.link-black {
+  color: #000
+}
+
+.link-black:hover {
+  color: #000;
+  text-decoration: none;
+}
+
+.media-image-settings {
+  width: 35px !important;
+}
+
+.header {
+  background: #FFF;
+  margin-bottom: 14px;
+  overflow: hidden;
+  border-radius: 1px;
+  border: 1px solid #E0E0E0;
+  box-shadow: 0 1px 2px #E0E0E0
+}
+  .header button {
+    border-radius: 0px !important;
+    border-bottom:  0px !important;
+    border-top:  0px !important;
+    border-left: 0px solid #ECEFF1 !important;
+    font-size: 15px;
+    font-weight: bold;
+  }
+
+  .header-notice {
+    padding: 12px 24px;
+    border-bottom: 1px solid #ECEFF1;
+    background: #FAFAFA;
+    color: #616161;
+  }
+
+  .banner {
+    width: 100%;
+    height: 300px;
+    background-color: #ccc;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-position: center;
+    position: relative;
+  }
+
+  .logo-setting {
+    height: 150px;
+    width: 150px;
+    position: absolute;
+    bottom: -60px;
+  }
+
+  .small-screen-following button {
+  background: #eceff1;
+  border: 1px solid #eceff1;
+  font-weight: 400;
+  color: #78909C;
+  }
+
+
+  .card {
+    border-radius: 0px !important;
+    border: 1px solid #E0E0E0 !important;
+    box-shadow: 0 1px 2px #E0E0E0 !important;
+    background: #FFF;
+    padding: 18px;
+    margin: 0px 0px 24px 0px !important;
+  }
+
+  body {
+    background: #ECEFF1;
+  }
+
+.navbar {
+    position: relative;
+    min-height: 50px;
+    margin-bottom: 0px !important;
+    border: 1px solid transparent;
+}
+
+.navbar-default {
+    background-color: #fff;
+    border-color: #e7e7e7;
+}
+
+.info-bar {
+  padding: 12px 16px 24px;
+  width: 100%;
+  background-color: #fff;
+  bottom: 0px;
+  position: relative;
+  border-bottom: 1px solid #E0E0E0;
+  box-shadow: 0 1px 2px #E0E0E0;
+  padding: 12px 16px 24px;
+  margin-bottom: 20px;
+}
+
+.info-bar h1 {
+  margin: 0px;
+}
+</style>
