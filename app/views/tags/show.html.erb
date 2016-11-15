@@ -16,9 +16,9 @@
       <div class="col-md-2 small-screen-following">
         <p class="text-center" id="follow-tag-button-<%= @tag.id %>">
           <% if current_user && current_user.following_tag?(@tag) %>
-            <%= render partial: 'tags/unfollow', locals: {:tag => @tag} %>
+            <%= render partial: 'tags/unfollow', locals: {:tag => @tag}  if current_user %>
           <% else %>
-            <%= render partial: 'tags/follow', locals: {:tag => @tag} %>
+            <%= render partial: 'tags/follow', locals: {:tag => @tag}  if current_user %>
           <% end %>
         </p>
       </div>
@@ -147,24 +147,8 @@
         </p>
       </div>
 
-      <!-- leader board -->
-      <div class="card">
-        <h4 class="title-size"> Leaderboard </h4>
-      <% @tag.users.each do |user| %>
-        <div class="media leaderboard-border">
-          <div class="media-left">
-            <%= link_to (image_tag user.avatar.url(:thumb), class:"media-object leaderboard-width img-circle"), user  %>
-          </div>
-          <div class="media-body">
-            <p class="media-heading leaderboard-username"> <%=link_to user.fullname.titleize, user %> </p>
-            <!-- Extra small button group -->
-              <div class="btn-group">
 
-              </div>
-          </div>
-        </div>
-        <% end %>
-      </div>
+      
       <!-- look above -->
     </div>
   </div>
