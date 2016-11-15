@@ -1,5 +1,6 @@
 NairaOverflow::Application.routes.draw do
   resources :tags
+  resources :user_tag
   get "coming_soon/index"
   get 'users/categories', to: 'users#user_categories', as: :user_categories
   resources :page_invites, only: [:create]

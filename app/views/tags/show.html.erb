@@ -1,5 +1,5 @@
 <%= render partial: "layouts/navbartag" %>
-<div class="banner" style="background-image: url(<%= @tag.banner.url(:timeline_picture) %>)">
+<div class="banner" style="background-image: url(<%= @tag.banner.url(:timeline_picture) if  @tag.banner.present? %>)">
 </div>
 <div class="info-bar">
   <div class="container">
@@ -10,11 +10,17 @@
 
       <div class="col-md-8 small-screen-tagname">
         <h1><%= @tag.name %></h1>
-        <p>The one true language of the Web.</p>
+        <p><%= @tag.short_description %></p>
       </div>
 
       <div class="col-md-2 small-screen-following">
-        <button class="btn btn-md btn-default">Following</button>
+        <p class="text-center" id="follow-tag-button-<%= @tag.id %>">
+          <% if current_user && current_user.following_tag?(@tag) %>
+            <%= render partial: 'tags/unfollow', locals: {:tag => @tag} %>
+          <% else %>
+            <%= render partial: 'tags/follow', locals: {:tag => @tag} %>
+          <% end %>
+        </p>
       </div>
     </div>
   </div>
@@ -24,7 +30,7 @@
   <div class="row">
     <div class="col-md-3">
       <div class="card">
-        <h4>ABOUT THIS TAG</h4>
+        <h4 class="title-size">ABOUT THIS TAG</h4>
         <p><%= @tag.description %></p>
       </div>
     </div>
@@ -32,20 +38,38 @@
     <div class="col-md-6" style="padding: 0">
       <div class="header">
         <div class="header-notice">
-          Contribute to JavaScript. Write or share something.
+          Contribute to <%= @tag.name %>. Write or share something.
         </div>
         <div class="btn-group btn-group-justified" role="group" aria-label="...">
-          <div class="btn-group" role="group">
-            <button type="button" class="btn btn-default btn-lg">Ask question</button>
+          <div class="btn-group link-color" role="group">
+            <%= link_to "Ask question", new_question_path, class:"btn btn-border btn-lg"  %>
           </div>
-          <div class="btn-group" role="group">
-            <button type="button" class="btn btn-default btn-lg">Write story</button>
+          <div class="btn-group link-color" role="group">
+            <%= link_to "Write story", coming_soon_index_path, class:"btn btn-border btn-lg"  %>
           </div>
-          <div class="btn-group" role="group">
-            <button type="button" class="btn btn-default btn-lg">Share</button>
+          <div class="btn-group link-color" role="group">
+            <!-- <button type="button" class="btn btn-default btn-lg">Share link</button> -->
+            <%= link_to "Share link", coming_soon_index_path, class:"btn btn-lg"  %>
           </div>
         </div>
       </div>
+
+      <!-- my new next navbar -->
+
+      <!-- <div class="header">
+        <div class="trending">
+         <table>
+           <tr>
+             <td class="table-space"> Trending posts </td>
+             <td class="table-active"> <a href="#"> <div> Popular </div> </a> </td>
+             <td> <a href="#"> <div class="table-nav"> Recency </div> </a> </td>
+             <td> <a href="#"> <div class="table-nav"> Filter </div> </a> </td>
+           </tr>
+         </table>
+        </div>
+      </div> -->
+
+      <!-- look above -->
 
       <% @questions.each do |question| %>
           <div class="card questions">
@@ -56,7 +80,7 @@
                     <%=link_to image_tag(question.user.avatar.url(:thumb), class: 'media-object img-circle media-image-settings'), question.user %>
                   </div>
                   <div class="media-body">
-                    <h5 class="media-heading"><%= link_to  (question.user.fullname? ? question.user.fullname : question.user.username), user_path(question.user) %> <small>asked a question ·<%= time_ago_in_words question.created_at %></small></h5>
+                    <h5 class="media-heading"><%= link_to  (question.user.fullname? ? question.user.fullname : question.user.username), user_path(question.user), class:"user-link-color" %> <small>asked a question ·<%= time_ago_in_words question.created_at %></small></h5>
                     <p><small>@<%= question.user.username %>, interested in <%=  question.user.categories.map{|a| a.name }.take(3).join(", ").html_safe %></small></p>
                   </div>
                 </div>
@@ -75,15 +99,30 @@
                           <%= allow_ajax_only_if_user_is_signin_for_downvote_question(question) %>
                        </li>
                        <li>
-                        <p class="action-footer"><i class="fa fa-comments-o" aria-hidden="true"></i></p>
+                        <p class="action-footer">
+                          <%= link_to "<i class='fa fa-comments-o' aria-hidden='true'></i> #{question.answers_count }".html_safe, question %>
+                        </p>
                        </li>
 
                        <li class="pull-right">
-                         <p class="action-footer" ><i class="fa fa-share-alt" aria-hidden="true"></i></p>
+                           <div class="dropdown action-footer">
+                            <i class="fa fa-share-alt" aria-hidden="true" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></i>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                              <li><a target='_blank' href="https://www.facebook.com/dialog/share?app_id=484766111702543&href=<%= question_url(question) %>redirect_uri=http://www.onozor.com">Facebook</a></li>
+                              <li><a target='_blank' href="https://twitter.com/share?url=<%= question_url(question) %>&text=<%= question.name %>">Twitter</a></li>
+                              <li><a target='_blank' href="#">Reddit</a></li>
+                              <li><a target='_blank' href="https://www.linkedin.com/cws/share?url=<%= question_url(question) %>">linkedin</a></li>
+                              <li><a target='_blank' href="https://plus.google.com/share?url=http://<%= question_url(question) %>">Google Plus</a></li>
+                              <li><a target='_blank' href="http://news.ycombinator.com/submitlink?u=<%= question_url(question) %>&t=<%= question.name %>">Y-news</a></li>
+                            </ul>
+                          </div>
+
                        </li>
 
                        <li class="pull-right">
-                         <p class="action-footer" ><i class="fa fa-star-o" aria-hidden="true"></i></p>
+                         <p class="action-footer">
+                           <%= link_to "<i class='#{question.favourited?(current_user)? 'fa fa-star-o yellow' : 'fa fa-star  icon' if current_user }' id='favorite-#{question.id}'></i> ".html_safe, toggle_favourite_path(question.id), :method => "post",   :remote => true %>
+                         </p>
                        </li>
                      </ul>
                    </div>
@@ -97,19 +136,126 @@
 
     <div class="col-md-3">
       <div class="card">
-        <h4>TAG STATISICS</h4>
-        <p><%= @tag.description %></p>
+        <h4 class="title-size"><%= @tag.name.capitalize %> statistics</h4>
+        <p class="statistics"> <%= @tag.users.count %>
+          <p class="statistics-color"> Followers</p>
+        </p>
+
+
+        <p class="statistics color-2"> <%= @tag.taggings_count %>
+          <p class="statistics-color"> Total posts </p>
+        </p>
       </div>
+
+      <!-- leader board -->
+      <div class="card">
+        <h4 class="title-size"> Leaderboard </h4>
+      <% @tag.users.each do |user| %>
+        <div class="media leaderboard-border">
+          <div class="media-left">
+            <%= link_to (image_tag user.avatar.url(:thumb), class:"media-object leaderboard-width img-circle"), user  %>
+          </div>
+          <div class="media-body">
+            <p class="media-heading leaderboard-username"> <%=link_to user.fullname.titleize, user %> </p>
+            <!-- Extra small button group -->
+              <div class="btn-group">
+
+              </div>
+          </div>
+        </div>
+        <% end %>
+      </div>
+      <!-- look above -->
     </div>
   </div>
 </div>
 
 <style media="screen">
 
+.leaderboard-botton {
+  background: #ECEFF1;
+  color: #78909C;
+  border: 1px solid #ddd;
+}
+
+/*.leaderboard-border {
+  border-bottom: 1px solid #ECEFF1;
+  padding-bottom: 10px
+}*/
+
+.leaderboard-username a{
+  font-size: 14px;
+  color: #000000 !important;
+}
+
+.leaderboard-width {
+  width: 30px
+}
+
+.color-2 {
+  color: #78909C !important;
+  font-size: 18px !important
+}
+
+.statistics-color {
+  color: #78909C;
+  font-weight: 200
+}
+
+.statistics {
+  font-size: 24px;
+  font-weight: 700;
+  color: #455A64;
+  line-height: 10px;
+  margin-top: 40px;
+}
+
+.statistics small {
+  font-size: 14px;
+  font-weight: 300
+}
+
+.container {
+  max-width: 95em !important;
+}
+
+.btn-border {
+  border-right: 1px solid #ECEFF1;
+}
+
+.link-color a {
+  color: #616161 !important;
+  font-weight: 600;
+  font-size: 14px;
+  transition: all .2s ease-in-out;
+}
+
+.link-color a:hover {
+  background: #F5F5F5;
+  color: #000 !important;
+  border-radius: 0px
+}
+
+.user-link-color {
+  color: #212121 !important;
+  font-weight: 700
+}
+
 .action-footer {
   font-size: 21px;
   margin: 13px;
-  color: #7d949f;
+  color: #B0BEC5;
+}
+
+.action-footer > a, a:hover, a:active, a:visited {
+  text-decoration: none;
+  color: #B0BEC5;
+}
+
+@media (min-width: 1200px) {
+  .container {
+      width: 1299px;
+  }
 }
 
 @media (min-width: 641px) and (max-width: 990px) {
@@ -132,6 +278,11 @@
     max-width: 75rem;
     margin-left: 25%
   }*/
+
+  .col-md-3 {
+    padding-right: 0px;
+    padding-left: 0px;
+  }
 
   .img-cen {
     text-align: center;
@@ -158,7 +309,7 @@
 }
 
 .link-black {
-  color: #000
+  color: #212121 !important
 }
 
 .link-black:hover {
@@ -192,6 +343,46 @@
     border-bottom: 1px solid #ECEFF1;
     background: #FAFAFA;
     color: #616161;
+  }
+
+  .trending {
+    padding-top: 3px;
+    border-bottom: 1px solid #ECEFF1;
+    background: #FFF;
+    font-size: 14px;
+    color: #616161;
+  }
+
+  .trending table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+  }
+
+  .trending table tr td {
+    padding: 12px 20px;
+  }
+
+  .table-space {
+    width: 60%;
+  }
+
+  .table-active {
+    border-bottom: 2px solid #0AB3C1;
+  }
+
+  .table-active a {
+  color: #616161 !important;
+  }
+
+  .table-nav {
+    color: #757575 !important;
+  }
+
+  .title-size {
+    font-size: 18px;
+    font-weight: 300;
+    color: #454545
   }
 
   .banner {

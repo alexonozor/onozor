@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Onozor</title>
+    <%= metamagic title: "Home - Onozor", description: "Onozor is a question-and-answer site where questions are asked, answered, edited and organized by its community of users.", keywords: %w(Question Answer Comment Tags Categories follow Profile) %>
     <meta name="viewport" content="width=device-width, initial-scale=1">
       <%= csrf_meta_tags %>
       <%= stylesheet_link_tag 'https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.0.0/semantic.min.css', "application", media: "all", "data-turbolinks-track" => true %>
@@ -25,6 +25,8 @@
       <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
       <meta name="theme-color" content="#ffffff">
       <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+      <link rel="image_src" href="http://res.cloudinary.com/sportbay-co/image/upload/v1478176359/Favicon/android-icon-192x192.png" />
+
    </head>
   <body data-no-turbolink>
 
@@ -39,7 +41,7 @@
       <div class="pusher">
       <%= render partial: 'layouts/nav' %>
       <%= render partial: "layouts/header" %>
-      
+
     <div class="ui stackable container three column grid margin-top-for-web left-menu">
       <%= render :partial => "layouts/app_sidenav" %>
       <div class="nine wide column">

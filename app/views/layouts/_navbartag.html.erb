@@ -2,6 +2,7 @@
   <div class="container">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
+      <%=link_to (image_tag current_user.avatar.url(:thumb), class:'nav-image img-circle navbar-toggle collapsed', width: '30px'), "#", style: 'padding: 0px', data: {  toggle:"dropdown", role:"button", haspopup:"true", expanded:"false" }  %>
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
         <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>
@@ -20,7 +21,7 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li><a href="#">Topics <span class="sr-only">(current)</span></a></li>
+        <!-- <li><a href="#">Topics <span class="sr-only">(current)</span></a></li> -->
         <!-- <li><a href="#">Link</a></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
@@ -42,15 +43,22 @@
           </div>
           <!-- <button type="submit" class="btn btn-default">Submit</button> -->
         </form>
-        <li><a href="#">Link</a></li>
+        <li class="notification">
+          <% if current_user.activities.unseen.count > 0 %>
+            <a class="notification-count"><%= current_user.activities.unseen.count  %></a>
+          <% end %>
+          <%= link_to '<i class="fa fa-bell-o" aria-hidden="true"></i>'.html_safe, activities_path, class: 'notification-bell' %>
+        </li>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown </a>
+          <%=link_to (image_tag current_user.avatar.url(:thumb), class:'nav-image img-circle', width: '30px'), "#", style: 'padding: 0px', data: {  toggle:"dropdown", role:"button", haspopup:"true", expanded:"false" }  %>
           <ul class="dropdown-menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
+            <li><%= link_to "View Profile", user_path(current_user), class: 'item' %></li>
             <li role="separator" class="divider"></li>
-            <li><a href="#">Separated link</a></li>
+            <li><%= link_to "Activities", activities_path  %></li>
+            <li role="separator" class="divider"></li>
+            <li><%= link_to "Settings".html_safe, edit_user_path(current_user.username), class: 'item' %></li>
+            <li role="separator" class="divider"></li>
+            <li><%= link_to "Logout".html_safe, destroy_user_session_path, method: :delete, class: 'item' %></li>
           </ul>
         </li>
       </ul>
@@ -60,9 +68,41 @@
 
 
 <style media="screen">
+  .notification {
+
+  }
+  .notification .notification-count {
+    position: absolute;
+    background-color: #db2828!important;
+    border-color: #db2828!important;
+    color: #fff;
+    min-width: 2em;
+    min-height: 2em;
+    padding: .5em!important;
+    line-height: 1em;
+    text-align: center;
+    border-radius: 500rem;
+    left: 21px;
+    color: #fff !important;
+    z-index: 100;
+
+  }
+
+  .notification-bell {
+    font-size: 20px;
+    margin: 0px 20px;
+  }
+
   .align-logo-alt img {
     position: relative;
     bottom: 11px
+  }
+
+  .nav-image {
+    width: 40px;
+    position: relative;
+    top: 5px;
+    margin: 0px !important;
   }
 
   .mobile-icon img {

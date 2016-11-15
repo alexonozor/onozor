@@ -36,7 +36,7 @@ NairaOverflow::Application.configure do
       :port                 => 587,
       :domain               => "localhost:3000",
       :user_name            => "alexonozor@gmail.com",
-      :password             => "obogbare",
+      :password             => "Onozorgheneho1",
       :authentication       => 'plain',
       :openssl_verify_mode  => 'none',
       :enable_starttls_auto => true  }

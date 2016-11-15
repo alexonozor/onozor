@@ -160,7 +160,6 @@ class QuestionsController < ApplicationController
   def update
       @question.tag_list.add(params[:tag_list])
       if @question.update(question_params)
-         binding.pry
         redirect_to @question, :notice =>"Question was successfully updated"
       else
         render action: 'edit'

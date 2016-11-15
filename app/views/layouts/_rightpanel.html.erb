@@ -1,7 +1,7 @@
 
 
 <div class="four wide column">
-  <% if current_user %>
+  <% if current_user && current_user.progress < 100 %>
     <div class="ui card  fluid">
         <div class="content content-panel">
             <div class="header">Getting started

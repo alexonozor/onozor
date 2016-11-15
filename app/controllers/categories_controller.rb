@@ -12,6 +12,7 @@ class CategoriesController < ApplicationController
     end
   end
 
+
   # GET /categories/1
   # GET /categories/1.json
   def show

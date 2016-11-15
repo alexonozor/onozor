@@ -22,7 +22,14 @@ class TagsController < ApplicationController
     end
 
     def update
-
+        @tag = Tag.find_by_name(params["tag"]["name"])
+      if @tag.update(tag_params)
+        respond_to do |format|
+          format.html { redirect_to tag_path(@tag.name), notice: 'Tag has been updated!' }
+        end
+      else
+        render "new"
+      end
     end
 
     def show
@@ -33,8 +40,6 @@ class TagsController < ApplicationController
     def new
       @tag = Tag.new
     end
-
-
 
     def create
       @tag = Tag.new(tag_params)
@@ -48,7 +53,7 @@ class TagsController < ApplicationController
     end
 
     def tag_params
-      params.require(:tag).permit(:name, :banner, :image, :description, :category_id)
+      params.require(:tag).permit(:name, :banner, :image, :description, :category_id, :short_description)
     end
 
 
