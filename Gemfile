@@ -71,6 +71,7 @@ gem 'whenever', :require => false
 gem 'tire'
 gem 'puma'
 gem 'devise'
+gem 'metamagic'
 
 
 

@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
 
   before_action :update_notification
   before_action :configure_devise_permitted_parameters, if: :devise_controller?
-  rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
+  # rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
 
   # rescue_from  ActionView::Template::Error, with: :no_user_found
   helper_method :mobile_device?, :suggested_people

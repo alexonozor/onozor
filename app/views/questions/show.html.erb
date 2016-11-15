@@ -1,3 +1,7 @@
+<%
+meta title: "#{@question.name}",
+     description: "#{@question.body || @question.answers.first.content || @question.user.fullname}"
+%>
 <div class="ui stackable container three margin-top-for-web column grid left-menu">
   <div class="eleven wide column">
    <div class="ui card fluid">
@@ -22,7 +26,7 @@
         <div class="content">
           <h1><%= (@question.name) %></h1>
           <h1 class="header">
-            <%= raw @question.tag_list.map { |t| link_to t, tag_path(t), class:"ui  tag label" }.join(' ') %>
+            <%= raw @question.tag_list.map { |t| link_to t, tag_path(t), class:"ui tag label" }.join(' ') %>
 
           </h1>
           <div class="description answer">
@@ -67,7 +71,7 @@
 
 
 
-        <%= render "answers/form" %>
+
 
 
     <% if @question.answers.present? %>
@@ -77,7 +81,11 @@
          <%= render :partial => @question.answers %>
       </div>
     <% end %>
+
+      <%= render "answers/form" %>
    </div>
+
+
 
 
   <div class="four wide column">
@@ -110,13 +118,8 @@
       <% end %>
     </div>
 
-    <div class="ui tiny horizontal list">
-      <p align='left' style="margin-top: 20px;">2016 · Onozor · LinearBytes Inc.</p>
-      <a style='margin-left: 0px' class="item">About</a>
-      <a class="item">Careers</a>
-      <a class="item">Terms</a>
-      <a class="item">Privacy</a>
-    </div>
+    <%= render partial: "layouts/footer" %>
+
   </div>
 
 </div>

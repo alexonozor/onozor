@@ -1,31 +1,120 @@
-<h1>Listing categories</h1>
+<%= render partial: "layouts/navbartag" %>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th>User</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
+<div class="bs-docs-header container" id="content" tabindex="-1">
+     <h1>Discover Tags</h1>
+     <p>Browse and follow tags you care about.</p>
+</div>
 
-  <tbody>
-    <% @categories.each do |category| %>
-      <tr>
-        <td><%= category.name %></td>
-        <td><%= category.description %></td>
-        <td><%= category.user_id %></td>
-        <td><%= link_to 'Show', category %></td>
-        <td><%= link_to 'Edit', edit_category_path(category) %></td>
-        <td><%= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
 
-<br>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-md-4 hidden-sm hidden-xs">
+      <!-- <div class="card">
+        <p>Search tags</p>
+        <input type="text" class="form-control" id="exampleInputAmount" placeholder="Search tags..">
+      </div> -->
+      <div class="list-group list-group-card">
+        <a href="#" class="list-group-item disabled">
+          Categories
+        </a>
+        <% @categories.each do |category| %>
+          <%= link_to category.name, tags_category_path(category.slug), class: 'list-group-item', remote: true %>
+        <% end %>
+      </div>
+    </div>
 
-<%= link_to 'New Category', new_category_path %>
+    <div class="col-xs-12 col-sm-12 col-md-8">
+        <div class="row" id="tags">
+            <% @tags.each do |tag| %>
+              <%= render partial: 'tags/tag', locals: {:tag => tag} %>
+            <% end %>
+        </div>
+    </div>
+  </div>
+</div>
+
+<style media="screen">
+.thumbnail>img, .thumbnail a>img {
+    height: 105px !important;
+}
+
+.change-link-size, .change-link-size:hover {
+  font-weight: 700;
+  font-size: larger;
+  color: black !important;
+  text-transform: capitalize;
+  text-decoration: none !important;
+}
+
+  .container{
+    max-width:1264px !important;
+  }
+
+
+.bs-docs-nav {
+    margin-bottom: 0;
+    background-color: #fff;
+    border-bottom: 0;
+}
+
+
+.bs-docs-header {
+    padding-top: 60px;
+    padding-bottom: 60px;
+    font-size: 24px;
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.card {
+  border-radius: 0px !important;
+  border: 1px solid #E0E0E0 !important;
+  box-shadow: 0 1px 2px #E0E0E0 !important;
+  background: #FFF;
+  padding: 18px;
+  margin: 0px 0px 24px 0px !important;
+}
+
+.list-group-card {
+  border-radius: 0px !important;
+  border: 1px solid #E0E0E0 !important;
+  box-shadow: 0 1px 2px #E0E0E0 !important;
+  background: #FFF !important;
+  margin: 0px 0px 24px 0px !important;
+}
+
+.list-group-card a {
+  border: none !important;
+  font-size: 18px;
+  font-weight: 300;
+}
+
+body {
+  background: #ECEFF1;
+}
+
+.bs-docs-header {
+    position: relative;
+    align-self: center;
+    text-align: center;
+    width: 100%;
+    max-width: 720px;
+}
+
+.bs-docs-header h1 {
+  text-shadow: 0 1px 0 rgba(0,0,0,.1);
+  font-size: 40px;
+  font-weight: 200;
+  color: #4B4F56;
+  line-height: normal;
+}
+
+.bs-docs-header p {
+  margin: 0;
+  color: #424242;
+  font-size: 18px;
+  line-height: normal;
+  font-weight: 300;
+}
+
+</style>

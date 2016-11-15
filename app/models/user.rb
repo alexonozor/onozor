@@ -19,7 +19,6 @@ class User < ActiveRecord::Base
   has_many :activities
   has_many :questions
   has_many :replies, :through => :questions, :source => :answers
-  has_many :alltags
   has_many :answers
   has_many :answered_questions, through: :answers, :source => :question
   has_many :favourites
@@ -38,6 +37,8 @@ class User < ActiveRecord::Base
   has_many :direct_messages
   has_many :page_invites
   has_one  :profile_progress
+  has_many :user_tags, dependent:  :destroy
+  has_many :tags,  -> { uniq }, through: :user_tags
 
   #validations
   validates_presence_of :username
@@ -242,6 +243,10 @@ end
 
   def unfollow!(other_user)
     relationships.find_by(followed_id: other_user.id).destroy
+  end
+
+  def following_tag?(tag)
+    self.tags.include?(tag)
   end
 
    def feed

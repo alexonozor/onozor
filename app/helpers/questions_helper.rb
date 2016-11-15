@@ -1,8 +1,5 @@
-module QuestionsHelper
- def popular
-   @popular = Question.popular
- end
 
+module QuestionsHelper
 
  def allow_ajax_only_if_user_is_signin_for_upvote_question(question)
    if current_user.present?

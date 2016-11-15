@@ -3,6 +3,7 @@ class Question < ActiveRecord::Base
  #filters
   acts_as_taggable
 
+
   before_validation :set_permalink
 
   # after_create :send_slack_message if Rails.env.production?
@@ -26,7 +27,7 @@ class Question < ActiveRecord::Base
  validates_presence_of    :name, :user_id #:tag_list
  validates_length_of      :name, :within => 5..2000
  #validates_length_of      :body, :within => 10...20000
- #validates_uniqueness_of  :name, :body
+ validates_uniqueness_of  :name, :body
 
   #scope
   default_scope          ->{ order('created_at DESC')}
