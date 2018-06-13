@@ -10,6 +10,10 @@ GEM
       erubis (~> 2.7.0)
       rack (~> 1.5.2)
       rack-test (~> 0.6.2)
+    active_model_serializers (0.10.0)
+      actionpack (>= 4.0)
+      activemodel (>= 4.0)
+      railties (>= 4.0)
     activemodel (4.0.6)
       activesupport (= 4.0.6)
       builder (~> 3.1.0)
@@ -36,10 +40,6 @@ GEM
     arel (4.0.2)
     aws_cf_signer (0.1.3)
     bcrypt (3.1.11)
-    better_errors (2.1.1)
-      coderay (>= 1.0.0)
-      erubis (>= 2.6.6)
-      rack (>= 0.9.0)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
     builder (3.1.4)
@@ -220,6 +220,9 @@ GEM
       bundler (>= 1.3.0, < 2.0)
       railties (= 4.0.6)
       sprockets-rails (~> 2.0)
+    rails-api (0.4.1)
+      actionpack (>= 3.2.11)
+      railties (>= 3.2.11)
     rails-observers (0.1.2)
       activemodel (~> 4.0)
     rails_12factor (0.0.3)
@@ -320,10 +323,10 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  active_model_serializers
   acts-as-taggable-on (~> 4.0)
   albino
   ancestry
-  better_errors
   binding_of_caller
   cancancan
   carrierwave
@@ -355,6 +358,7 @@ DEPENDENCIES
   puma
   quiet_assets
   rails (= 4.0.6)
+  rails-api
   rails-observers
   rails_12factor
   redcarpet
@@ -373,4 +377,4 @@ DEPENDENCIES
   will_paginate
 
 BUNDLED WITH
-   1.13.0.rc.2
+   1.16.1

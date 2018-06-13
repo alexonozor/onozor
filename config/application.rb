@@ -29,6 +29,8 @@ module NairaOverflow
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
     # config.autoload_paths += %W(#{config.root}/app/models/ckeditor #{config.root}/app/observers)
+    config.middleware.use ActionDispatch::Cookies
+    config.middleware.use ActionDispatch::Session::CookieStore
     config.active_record.observers = :onzor_observer
   end
 end

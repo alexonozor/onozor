@@ -72,13 +72,13 @@ gem 'tire'
 gem 'puma'
 gem 'devise'
 gem 'metamagic'
-
+gem 'rails-api'
+gem 'active_model_serializers'
 
 
 
 group :development, :test do
   # Use sqlite3 as the database for Active Record
-  gem 'better_errors'
   gem 'binding_of_caller'
   gem 'meta_request'
   gem 'quiet_assets'

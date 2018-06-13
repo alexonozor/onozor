@@ -1,4 +1,11 @@
 NairaOverflow::Application.routes.draw do
+  namespace :api do
+    namespace :v1 do
+      resources :questions
+    end
+  end
+
+
   resources :tags
   resources :user_tag
   get "coming_soon/index"
