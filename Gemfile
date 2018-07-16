@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.6'
+gem 'rails', '4.2.7'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
@@ -64,7 +64,7 @@ gem 'public_activity'
 gem 'private_pub'
 gem 'foreman'
 gem 'rails-observers'
-gem 'pg'
+gem "pg", "~> 0.18" 
 gem 'impressionist'
 gem 'geocoder'
 gem 'whenever', :require => false
@@ -74,7 +74,8 @@ gem 'devise'
 gem 'metamagic'
 gem 'rails-api'
 gem 'active_model_serializers'
-
+gem 'devise_token_auth'
+gem 'rack-cors', :require => 'rack/cors'
 
 
 group :development, :test do
@@ -87,4 +88,5 @@ group :development, :test do
   gem "database_cleaner"
   gem 'faker'
   gem 'pry'
+  gem 'web-console', '~> 2.0'
 end

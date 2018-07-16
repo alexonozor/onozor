@@ -9,6 +9,8 @@ Bundler.require(:default, Rails.env)
 module NairaOverflow
   class Application < Rails::Application
 
+    config.api_only = true
+    config.active_record.raise_in_transactional_callbacks = true
     config.to_prepare do
       Devise::SessionsController.layout proc { |controller| action_name == 'new' ? "devise"   : "layouts" }
     end
@@ -32,5 +34,14 @@ module NairaOverflow
     config.middleware.use ActionDispatch::Cookies
     config.middleware.use ActionDispatch::Session::CookieStore
     config.active_record.observers = :onzor_observer
+    config.middleware.use Rack::Cors do
+      allow do
+        origins '*'
+        resource '*',
+          headers: :any,
+          expose: ['access-token', 'expiry', 'token-type', 'uid', 'client'],
+          methods: [:get, :post, :options, :delete, :put]
+      end
+    end
   end
 end

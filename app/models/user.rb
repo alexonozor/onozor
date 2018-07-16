@@ -1,12 +1,17 @@
 class User < ActiveRecord::Base
+  include DeviseTokenAuth::Concerns::User
 
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :validatable,
          :recoverable, :rememberable, :trackable, :omniauthable,
          :omniauth_providers => [:facebook, :google_oauth2, :twitter, :linkedin]
+         
 
   mount_uploader :avatar, AvatarUploader
+
+  def confirmed_at
+    Time.now.utc
+  end
+
   extend FriendlyId
   friendly_id :username, use: :slugged
   after_create :create_profile_progress_account
@@ -41,7 +46,7 @@ class User < ActiveRecord::Base
   has_many :tags,  -> { uniq }, through: :user_tags
 
   #validations
-  validates_presence_of :username
+  #validates_presence_of :username
   validates_presence_of :avatar, :on => :account_update
   validates_length_of :username, :within => 4..10, :on => :account_update
   validates_uniqueness_of :username, :on => :account_update

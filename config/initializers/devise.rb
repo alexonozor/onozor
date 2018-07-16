@@ -57,7 +57,7 @@ Devise.setup do |config|
   # Configure which authentication keys should be case-insensitive.
   # These keys will be downcased upon creating or modifying a user and when used
   # to authenticate or find a user. Default is :email.
-  config.case_insensitive_keys = [ :email, :username ]
+  #config.case_insensitive_keys = [ :email, :username ]
 
   # Configure which authentication keys should have whitespace stripped.
   # These keys will have whitespace before and after removed upon creating or
@@ -237,8 +237,7 @@ Devise.setup do |config|
   # should add them to the navigational formats lists.
   #
   # The "*/*" below is required to match Internet Explorer requests.
-   config.navigational_formats = ['*/*', :html, :mobile]
-
+   config.navigational_formats = [:json]
   # The default HTTP method used to sign out a resource. Default is :delete.
   config.sign_out_via = :delete
 

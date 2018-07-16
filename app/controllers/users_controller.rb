@@ -1,14 +1,14 @@
 class UsersController < ApplicationController
-  respond_to  :json, :js
+
   #load_and_authorize_resource
   layout "display", only: [:index, :show, :edit]
-  before_filter :load_users
-  before_filter :get_user, only: [:show,
-                                  :show_user_questions,
-                                  :show_user_answers,
-                                  :show_user_followers,
-                                  :show_user_following,
-                                  :show_user_favorites]
+  # before_filter :load_users
+  # before_filter :get_user, only: [:show,
+  #                                 :show_user_questions,
+  #                                 :show_user_answers,
+  #                                 :show_user_followers,
+  #                                 :show_user_following,
+  #                                 :show_user_favorites]
 
   def index
    if params[:search].present?
@@ -32,6 +32,8 @@ class UsersController < ApplicationController
       format.json { render json: @user }
     end
   end
+
+
 
   def show_user_questions
     @user_questions = @user.questions
