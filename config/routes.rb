@@ -1,9 +1,15 @@
 NairaOverflow::Application.routes.draw do
   namespace :api, :defaults => { :format => 'json' } do
     namespace :v1 do
-      resources :questions do
-        resources :comments
-        resources :answers
+      get  'question/:id/comments', to: 'questions#comments'
+      get  'answer/:id/comments', to: 'answers#comments'
+      get  'question/:id/answers', to: 'questions#answers'
+      put  'comment/:id', to: 'comments#update'
+      put  'answer/:id', to: 'answers#update'
+
+      resources :questions, except: [:edit, :new] do
+        resources :comments, except: [:edit, :new, :update]
+        resources :answers,  except: [:edit, :new, :update]
       end
       resources :users do
         member do

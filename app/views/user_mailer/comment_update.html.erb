@@ -4,9 +4,9 @@
         <p><%=  (@commenter.fullname.titleize)  %> posted a reply to your <%= @commentable_type.downcase %>.</p>
         <p>click the link below to reply:</p>
       <% if @commentable_type == "Question" %>
-        <%= question_url (@find_parent) %>
+        <%#= question_url (@find_parent) %>
       <% else %>
-        <%= question_url (@find_parent.question) %>
+        <%#= question_url (@find_parent.question) %>
       <% end %>
     </body>
 </html>
