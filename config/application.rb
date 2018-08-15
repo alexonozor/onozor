@@ -11,10 +11,7 @@ module NairaOverflow
 
     config.api_only = true
     config.active_record.raise_in_transactional_callbacks = true
-    config.to_prepare do
-      Devise::SessionsController.layout proc { |controller| action_name == 'new' ? "devise"   : "layouts" }
-    end
-
+   
     # config.action_view.field_error_proc = Proc.new { |html_tag, instance|
     #   html_tag
     # }

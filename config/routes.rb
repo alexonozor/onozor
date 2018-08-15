@@ -6,7 +6,9 @@ NairaOverflow::Application.routes.draw do
       get  'question/:id/answers', to: 'questions#answers'
       put  'comment/:id', to: 'comments#update'
       put  'answer/:id', to: 'answers#update'
-
+      post 'sessions/create', to: 'sessions#create'
+      get 'user/login-token/:token', to: 'users#login'
+      
       resources :questions, except: [:edit, :new] do
         resources :comments, except: [:edit, :new, :update]
         resources :answers,  except: [:edit, :new, :update]
@@ -21,7 +23,13 @@ NairaOverflow::Application.routes.draw do
           get :get_questions
         end
       end
-      mount_devise_token_auth_for 'User', at: 'auth'
+
+      resources :favourites, :only => [:toggle] do
+        member do
+          # post :toggle
+          get :toggle
+        end
+      end
     end
   end
 

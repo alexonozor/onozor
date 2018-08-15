@@ -1,10 +1,6 @@
 class User < ActiveRecord::Base
-  include DeviseTokenAuth::Concerns::User
+  before_save :generate_access_token
 
-  devise :database_authenticatable, :registerable, :validatable,
-         :recoverable, :rememberable, :trackable, :omniauthable,
-         :omniauth_providers => [:facebook, :google_oauth2, :twitter, :linkedin]
-         
 
   mount_uploader :avatar, AvatarUploader
 
@@ -308,6 +304,16 @@ end
     return true if self.followed_users.present?
     return false
   end
+
+private
+
+def generate_access_token
+    
+    token = JWT.encode({ id: self.id,
+                exp: 60.days.from_now.to_i },
+               Rails.application.secrets.secret_key_base)
+    self.access_token = token
+end
 
 
 

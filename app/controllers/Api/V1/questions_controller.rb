@@ -4,7 +4,7 @@ class Api::V1::QuestionsController < ApplicationController
     # before_action :authenticate_api_v1_user!
    require 'will_paginate/array'
     def index
-        @feeds = User.second.category_feeds.paginate(page: params[:page], per_page: 5)
+        @feeds = @current_user.category_feeds.paginate(page: params[:page], per_page: params[:per_page])
         render json: @feeds, meta: pagination_dict(@feeds), each_serializer: FeedSerializer
     end
 
@@ -14,7 +14,6 @@ class Api::V1::QuestionsController < ApplicationController
     end
 
     def answers
-      sleep 2
       answers = @question.answers.paginate :page => params[:page], :per_page => 2
       render json: answers, meta: pagination_dict(answers)
     end

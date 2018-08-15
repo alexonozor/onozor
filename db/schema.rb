@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180621151645) do
+ActiveRecord::Schema.define(version: 20180807201647) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -326,57 +326,61 @@ ActiveRecord::Schema.define(version: 20180621151645) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                  limit: 255, default: "",      null: false
-    t.string   "encrypted_password",     limit: 255, default: "",      null: false
-    t.string   "reset_password_token",   limit: 255
+    t.string   "email",                   limit: 255, default: "",      null: false
+    t.string   "encrypted_password",      limit: 255, default: "",      null: false
+    t.string   "reset_password_token",    limit: 255
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                      default: 0,       null: false
+    t.integer  "sign_in_count",                       default: 0,       null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip",     limit: 255
-    t.string   "last_sign_in_ip",        limit: 255
+    t.string   "current_sign_in_ip",      limit: 255
+    t.string   "last_sign_in_ip",         limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "username",               limit: 255
-    t.string   "avatar",                 limit: 255
-    t.integer  "views",                              default: 0
+    t.string   "username",                limit: 255
+    t.string   "avatar",                  limit: 255
+    t.integer  "views",                               default: 0
     t.datetime "last_requested_at"
-    t.string   "avatar_file_name",       limit: 255
-    t.string   "avatar_content_type",    limit: 255
+    t.string   "avatar_file_name",        limit: 255
+    t.string   "avatar_content_type",     limit: 255
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
     t.boolean  "admin"
     t.integer  "reputation"
-    t.string   "slug",                   limit: 255
+    t.string   "slug",                    limit: 255
     t.datetime "banned_at"
-    t.string   "first_name",             limit: 255
-    t.string   "last_name",              limit: 255
-    t.string   "gender",                 limit: 255
+    t.string   "first_name",              limit: 255
+    t.string   "last_name",               limit: 255
+    t.string   "gender",                  limit: 255
     t.text     "bio"
-    t.string   "occupation",             limit: 255
-    t.string   "title",                  limit: 255
-    t.string   "intrest",                limit: 255
-    t.boolean  "moderator",                          default: false
-    t.boolean  "only_follower_feed",                 default: false
-    t.string   "provider",               limit: 255, default: "email"
-    t.string   "uid",                    limit: 255
+    t.string   "occupation",              limit: 255
+    t.string   "title",                   limit: 255
+    t.string   "intrest",                 limit: 255
+    t.boolean  "moderator",                           default: false
+    t.boolean  "only_follower_feed",                  default: false
+    t.string   "provider",                limit: 255, default: "email"
+    t.string   "uid",                     limit: 255
     t.integer  "category_id"
-    t.string   "city",                   limit: 255
-    t.string   "country",                limit: 255
-    t.string   "twitter_url",            limit: 255
-    t.string   "facebook_url",           limit: 255
-    t.string   "personal_website",       limit: 255
-    t.string   "cover_photo",            limit: 255
-    t.string   "location",               limit: 255
-    t.integer  "progress",                           default: 0
-    t.integer  "count_tags",                         default: 0
-    t.boolean  "allow_password_change",              default: false
+    t.string   "city",                    limit: 255
+    t.string   "country",                 limit: 255
+    t.string   "twitter_url",             limit: 255
+    t.string   "facebook_url",            limit: 255
+    t.string   "personal_website",        limit: 255
+    t.string   "cover_photo",             limit: 255
+    t.string   "location",                limit: 255
+    t.integer  "progress",                            default: 0
+    t.integer  "count_tags",                          default: 0
+    t.boolean  "allow_password_change",               default: false
     t.json     "tokens"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
     t.string   "confirmation_token"
+    t.string   "login_token"
+    t.datetime "login_token_valid_until"
+    t.string   "access_token"
+    t.datetime "access_token_expired_at"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
