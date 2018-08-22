@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180807201647) do
+ActiveRecord::Schema.define(version: 20180816171038) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,6 +58,7 @@ ActiveRecord::Schema.define(version: 20180807201647) do
     t.string   "user_agent",  limit: 255
     t.string   "user_ip",     limit: 255
     t.string   "referrer",    limit: 255
+    t.integer  "vote_count",              default: 0
   end
 
   create_table "categories", force: :cascade do |t|
@@ -249,6 +250,7 @@ ActiveRecord::Schema.define(version: 20180807201647) do
     t.string   "picture",           limit: 255
     t.integer  "page_id"
     t.string   "questionable_type", limit: 255
+    t.integer  "vote_count",                    default: 0
   end
 
   add_index "questions", ["ancestry"], name: "index_questions_on_ancestry", using: :btree

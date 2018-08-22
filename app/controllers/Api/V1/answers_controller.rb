@@ -37,13 +37,23 @@ class Api::V1::AnswersController < ApplicationController
   end
 
   def create
-    answer = User.first.answers.build(answer_params)
+    answer = current_user.answers.build(answer_params)
     answer.request = request
     if answer.save
       #  send_notification(@answer)
         render json: answer
     else
       render json: { errors: answer.errors, status: 500, success: false }
+    end
+  end
+
+  def vote
+    # ProfileProgress.update_profile_for_upvoted_content(current_user) unless current_user.have_upvoted_a_content?
+    vote = AnswerVote.where(answer_id: params[:id], user_id: current_user.id ).update_or_create(value: params[:value], answer_id: params[:id], user_id: current_user.id)
+    if vote
+      render json: { message: "Thank you for voting.", success: true, staus: 200 }
+    else
+      render json: { message: "Unable to vote",  success: false, status: 500 }
     end
   end
 

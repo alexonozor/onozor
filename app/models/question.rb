@@ -97,6 +97,12 @@ class Question < ActiveRecord::Base
     Question.find_by_sql(sql)
   end
 
+  def question_voters
+    query = "SELECT  users.slug, users.first_name, users.last_name, users.email, users.avatar, question_votes.* as vote  
+      FROM users INNER JOIN question_votes ON users.id = question_votes.user_id WHERE question_votes.question_id  = #{self.id}"
+      User.find_by_sql(query)
+  end
+
 
   def send_slack_message
     SLACK_NOTIFIER.ping("<!channel> New Question from #{self.user.username} :

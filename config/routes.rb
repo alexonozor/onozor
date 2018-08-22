@@ -8,8 +8,19 @@ NairaOverflow::Application.routes.draw do
       put  'answer/:id', to: 'answers#update'
       post 'sessions/create', to: 'sessions#create'
       get 'user/login-token/:token', to: 'users#login'
+      resources :answers,  except: [:edit, :new, :index, :update, :create, :new, :show] do
+        member do 
+          get :answer_voters
+          post :vote
+        end
+      end
+
       
       resources :questions, except: [:edit, :new] do
+        member do 
+          get :question_voters
+          post :vote
+        end
         resources :comments, except: [:edit, :new, :update]
         resources :answers,  except: [:edit, :new, :update]
       end

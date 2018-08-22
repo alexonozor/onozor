@@ -1,11 +1,11 @@
 class Api::V1::QuestionsController < ApplicationController
-   before_action :set_question, only: [:show, :answers, :comments]
+   before_action :set_question, only: [:show, :answers, :comments, :question_voters]
     
     # before_action :authenticate_api_v1_user!
    require 'will_paginate/array'
     def index
-        @feeds = @current_user.category_feeds.paginate(page: params[:page], per_page: params[:per_page])
-        render json: @feeds, meta: pagination_dict(@feeds), each_serializer: FeedSerializer
+        feeds = current_user.category_feeds.paginate(page: params[:page], per_page: params[:per_page])
+        render json: feeds, meta: pagination_dict(feeds), each_serializer: FeedSerializer
     end
 
     def comments
@@ -28,7 +28,22 @@ class Api::V1::QuestionsController < ApplicationController
      }
    end
 
+   def vote
+    # ProfileProgress.update_profile_for_upvoted_content(current_user) unless current_user.have_upvoted_a_content?
+    vote = QuestionVote.where(question_id: params[:id], user_id: current_user.id ).update_or_create(value: params[:value], question_id: params[:id], user_id: current_user.id)
+    if vote
+      render json: { message: "Thank you for voting.", success: true, staus: 200 }
+    else
+      render json: { message: "Unable to vote",  success: false, status: 500 }
+    end
+  end
+  
 
+
+   def question_voters
+     user = @question.question_voters
+     render json: user.to_json
+   end
 
   # GET /questions/1
   # GET /questions/1.json

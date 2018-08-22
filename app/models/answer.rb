@@ -11,7 +11,7 @@ class Answer < ActiveRecord::Base
   validates_presence_of :body, :question_id, :user_id
   has_many :comments, :as => :commentable, :dependent => :destroy
 
-  after_validation :update_profile_progress
+  # after_validation :update_profile_progress
 
   def update_profile_progress
       ProfileProgress.update_profile_for_answer_question(self.user) unless self.user.have_answered_a_question?
@@ -28,6 +28,12 @@ class Answer < ActiveRecord::Base
 
   def votes
     read_attribute(:votes) || answer_votes.sum(:value)
+  end
+
+  def answer_voters
+    query = "SELECT  users.slug, users.first_name, users.last_name, users.email, users.avatar, answer_votes.* as vote  
+      FROM users INNER JOIN answer_votes ON users.id = answer_votes.user_id WHERE answer_votes.answer_id  = #{self.id}"
+      User.find_by_sql(query)
   end
 
   def request=(request)

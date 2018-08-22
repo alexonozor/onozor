@@ -22,7 +22,7 @@ class Api::V1::CommentsController < ApplicationController
 
   def create
     comment = Comment.new(comment_params)
-    comment.user = User.first
+    comment.user = current_user
       if comment.save
         #send_notification(comment)
         render json: { data: comment, status: 200, success: true }, include: 'user'
