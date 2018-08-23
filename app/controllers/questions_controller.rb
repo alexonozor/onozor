@@ -152,7 +152,6 @@ class QuestionsController < ApplicationController
         format.mobile { render 'vote.js.erb' }
       end
     end
-
   end
 
   # PATCH/PUT /questions/1

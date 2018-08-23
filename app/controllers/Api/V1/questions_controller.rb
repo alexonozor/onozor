@@ -1,5 +1,5 @@
 class Api::V1::QuestionsController < ApplicationController
-   before_action :set_question, only: [:show, :answers, :comments, :question_voters]
+   before_action :set_question, only: [:show, :answers, :comments, :question_voters, :update]
     
     # before_action :authenticate_api_v1_user!
    require 'will_paginate/array'
@@ -48,14 +48,45 @@ class Api::V1::QuestionsController < ApplicationController
   # GET /questions/1
   # GET /questions/1.json
   def show
-    @question.update_views! unless @question.user_id == User.second.id  if User.second.present?
+    @question.update_views! unless @question.user_id == current_user.id  if current_user.present?
     render json: @question
   end
+
+    # POST /questions
+  # POST /questions.json
+  def create
+    @question = Question.new(question_params)
+    @question.user = current_user
+    # @question.tag_list.add(params[:tag_list])
+      if @question.save
+        # ProfileProgress.update_profile_for_question(current_user) unless current_user.have_asked_a_question?
+        render json: @question, status: 200
+      else
+        render json: @question.errors, status: 501
+    end
+  end
+
+  # PATCH/PUT /questions/1.json
+  def update
+    # @question.tag_list.add(params[:tag_list])
+    if @question.update(question_params)
+      render json: @question, status: 200
+    else
+      render json: @question.errors, status: 501
+    end
+end
+
 
 
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_question
     @question = Question.friendly.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def question_params
+    params.permit(:name, :body, :user_id, :views, :answers_count, :permalink,
+                                    :answer_id, :tag_list,  :send_mail, :category_id, :counter_cache, :picture)
   end
 end
