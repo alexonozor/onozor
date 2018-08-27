@@ -1,8 +1,9 @@
 class Api::V1::QuestionsController < ApplicationController
-   before_action :set_question, only: [:show, :answers, :comments, :question_voters, :update]
+   before_action :set_question, only: [:show, :answers, :comments, :question_voters, :update, :destroy]
     
     # before_action :authenticate_api_v1_user!
    require 'will_paginate/array'
+   
     def index
         feeds = current_user.category_feeds.paginate(page: params[:page], per_page: params[:per_page])
         render json: feeds, meta: pagination_dict(feeds), each_serializer: FeedSerializer
@@ -60,9 +61,9 @@ class Api::V1::QuestionsController < ApplicationController
     # @question.tag_list.add(params[:tag_list])
       if @question.save
         # ProfileProgress.update_profile_for_question(current_user) unless current_user.have_asked_a_question?
-        render json: @question, status: 200
+        render json: {question: @question}
       else
-        render json: @question.errors, status: 501
+        render json: { error: @question.errors}
     end
   end
 
@@ -70,11 +71,17 @@ class Api::V1::QuestionsController < ApplicationController
   def update
     # @question.tag_list.add(params[:tag_list])
     if @question.update(question_params)
-      render json: @question, status: 200
+      render json: {data: @question, status: 200}
     else
-      render json: @question.errors, status: 501
+      render json: {error: @question.errors, status: 501}
     end
-end
+  end
+
+ # DELETE /questions/1.json
+ def destroy
+    @question.destroy
+    render json: {message: "Question has been remove", status: 200}
+ end
 
 
 

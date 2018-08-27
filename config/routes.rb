@@ -27,6 +27,11 @@ NairaOverflow::Application.routes.draw do
       resources :users do
         member do
           get :user_categories
+          get :questions
+          get :answers
+          get :followers
+          get :following
+          get :favorites
         end
       end
       resources :categories do

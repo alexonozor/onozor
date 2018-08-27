@@ -11,6 +11,7 @@ class ApplicationController < ActionController::Base
   # request.env["HTTP_ACCESS_TOKEN"]
   #filters
   #before_action :suggested_people, :load_users, :last_requested_at
+  before_action  :last_requested_at
 
  # before_action :update_notification
   #before_action :configure_devise_permitted_parameters, if: :devise_controller?
@@ -35,9 +36,9 @@ class ApplicationController < ActionController::Base
   # end
   
   # private
-  # def last_requested_at
-  #   current_user.update_attribute(:last_requested_at,  Time.now) if current_user.present?
-  # end
+  def last_requested_at
+    current_user.update_attribute(:last_requested_at,  Time.now) if current_user.present?
+  end
 
   # def no_user_found
   #   flash[:error] = "You need to signin before continuing"

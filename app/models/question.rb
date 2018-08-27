@@ -27,7 +27,7 @@ class Question < ActiveRecord::Base
  validates_presence_of    :name #:tag_list
  validates_length_of      :name, :within => 5..2000
  #validates_length_of      :body, :within => 10...20000
- validates_uniqueness_of  :name, :body
+ validates_uniqueness_of  :name
 
   #scope
   default_scope          ->{ order('created_at DESC')}

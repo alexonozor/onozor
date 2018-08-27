@@ -235,7 +235,8 @@ end
   end
 
  def following?(other_user)
-    relationships.find_by(followed_id: other_user.id)
+    return true if relationships.find_by(followed_id: other_user.id).present?
+    return false
   end
 
   def follow!(other_user)
