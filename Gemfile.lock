@@ -158,25 +158,23 @@ GEM
       rack (>= 1.6.2, < 3)
     omniauth-facebook (5.0.0)
       omniauth-oauth2 (~> 1.2)
-    omniauth-google-oauth2 (0.2.10)
-      addressable (~> 2.3)
-      jwt (~> 1.0)
-      multi_json (~> 1.3)
+    omniauth-google-oauth2 (0.5.3)
+      jwt (>= 1.5)
       omniauth (>= 1.1.1)
-      omniauth-oauth2 (~> 1.3.1)
+      omniauth-oauth2 (>= 1.5)
     omniauth-linkedin-oauth2 (0.2.5)
       omniauth (~> 1.0)
       omniauth-oauth2
     omniauth-oauth (1.1.0)
       oauth
       omniauth (~> 1.0)
-    omniauth-oauth2 (1.3.1)
-      oauth2 (~> 1.0)
+    omniauth-oauth2 (1.5.0)
+      oauth2 (~> 1.1)
       omniauth (~> 1.2)
     omniauth-twitter (1.4.0)
       omniauth-oauth (~> 1.1)
       rack
-    pg (1.0.0)
+    pg (0.21.0)
     private_pub (1.0.3)
       faye
     pry (0.11.3)
@@ -323,7 +321,7 @@ DEPENDENCIES
   omniauth-google-oauth2
   omniauth-linkedin-oauth2
   omniauth-twitter
-  pg
+  pg (~> 0.18)
   private_pub
   pry
   public_activity

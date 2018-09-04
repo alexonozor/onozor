@@ -24,7 +24,7 @@ gem 'public_activity'
 gem 'private_pub'
 gem 'foreman'
 gem 'rails-observers'
-gem "pg"
+gem "pg", "~> 0.18" 
 gem 'impressionist'
 gem 'geocoder'
 gem 'whenever', :require => false
