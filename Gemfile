@@ -34,6 +34,7 @@ gem 'metamagic'
 gem 'rails-api'
 gem 'active_model_serializers'
 gem 'rack-cors', :require => 'rack/cors'
+gem 'json',  '1.8.3'
 
 group :development, :test do
   # Use sqlite3 as the database for Active Record
