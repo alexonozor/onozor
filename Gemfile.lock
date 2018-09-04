@@ -56,10 +56,6 @@ GEM
     builder (3.2.3)
     callsite (0.0.11)
     cancancan (2.2.0)
-    carrierwave (1.2.3)
-      activemodel (>= 4.0.0)
-      activesupport (>= 4.0.0)
-      mime-types (>= 1.16)
     case_transform (0.2)
       activesupport
     chronic (0.10.2)
@@ -304,7 +300,6 @@ DEPENDENCIES
   bcrypt
   binding_of_caller
   cancancan
-  carrierwave
   cloudinary
   database_cleaner
   faker
