@@ -1,10 +1,24 @@
 class Api::V1::CategoriesController < ApplicationController
-  before_action :set_category, only: [:get_questions]
+before_action :set_category, only: [:get_questions, :show]
   require 'will_paginate/array'
+
+  def index
+    if params[:term]
+      categories = Category.search(params[:term])
+      render json: categories
+    else
+      categories = Category.paginate(page: params[:page], per_page: 9)
+      render json: categories, meta: pagination_dict(categories)
+    end
+  end
 
   def get_questions
     category_questions = @categories.questions.paginate(page: params[:page], per_page: 5)
     render json: category_questions, each_serializer: FeedSerializer,  meta: pagination_dict(category_questions)
+  end
+
+  def show
+    render json: @categories
   end
 
   def pagination_dict(collection)

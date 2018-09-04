@@ -32,6 +32,7 @@ class QuestionSerializer < ActiveModel::Serializer
 
   belongs_to :user, key: :author
   has_many :comments
+  belongs_to :category
 
   def question_link
     api_v1_question_path(object.slug)

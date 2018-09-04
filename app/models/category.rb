@@ -22,7 +22,19 @@ class Category < ActiveRecord::Base
     self.permalink = name.downcase.gsub(/[^0-9a-z]+/, ' ').strip.gsub(' ', '-') if name
   end
 
+  def self.search(term)
+    if term
+      where('name ILIKE ?', "%#{term}%").order('id DESC')
+    else
+      order('id DESC') 
+    end
+  end
+
   def name_with_image
    "<span class='label_name'>#{self.name}</span> <img src=#{self.image}> <span class='marker'></span>".html_safe
+  end
+
+  def subscribe?(user)
+    self.user_categories.where(user_id: user.id).present?
   end
 end

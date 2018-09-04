@@ -8,6 +8,9 @@ NairaOverflow::Application.routes.draw do
       put  'answer/:id', to: 'answers#update'
       post 'sessions/create', to: 'sessions#create'
       get 'user/login-token/:token', to: 'users#login'
+      resources :relationships, only: [:create, :destroy]
+      post  'subscribe/communities', to: 'user_category#create'
+      delete  'unsubscribe/communities/:category_id', to: 'user_category#destroy'
       resources :answers,  except: [:edit, :new, :index, :update, :create, :new, :show] do
         member do 
           get :answer_voters

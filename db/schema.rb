@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180823124151) do
+ActiveRecord::Schema.define(version: 20180901125014) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,13 +62,15 @@ ActiveRecord::Schema.define(version: 20180823124151) do
   end
 
   create_table "categories", force: :cascade do |t|
-    t.string   "name",        limit: 255
+    t.string   "name",              limit: 255
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "permalink",   limit: 255
-    t.string   "slug",        limit: 255
-    t.string   "image",       limit: 255
+    t.string   "permalink",         limit: 255
+    t.string   "slug",              limit: 255
+    t.string   "image",             limit: 255
+    t.integer  "subscribers_count",             default: 0
+    t.integer  "question_count",                default: 0, null: false
   end
 
   create_table "ckeditor_assets", force: :cascade do |t|

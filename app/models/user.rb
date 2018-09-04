@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
 
 
   mount_uploader :avatar, AvatarUploader
+  mount_uploader :cover_photo, CoverPictureUploader
 
   def confirmed_at
     Time.now.utc

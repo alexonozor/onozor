@@ -15,7 +15,7 @@ class Question < ActiveRecord::Base
  #association
  belongs_to :page
  belongs_to :user
- belongs_to :category
+ belongs_to :category, counter_cache: :question_count
  has_many   :alltags
  has_many   :answers,                       :dependent => :destroy
  has_many   :favourites,                    :dependent => :destroy
