@@ -11,7 +11,7 @@ gem 'will_paginate'
 gem 'nokogiri'
 gem 'figaro'
 gem 'sidekiq'
-#gem 'carrierwave'
+gem 'carrierwave'
 gem 'cloudinary'
 gem 'slack-notifier'
 gem 'redis'
@@ -34,7 +34,7 @@ gem 'metamagic'
 gem 'rails-api'
 gem 'active_model_serializers'
 gem 'rack-cors', :require => 'rack/cors'
-gem 'json'
+gem 'json', '1.8.3'
 
 group :development, :test do
   # Use sqlite3 as the database for Active Record

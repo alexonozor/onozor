@@ -56,6 +56,10 @@ GEM
     builder (3.2.3)
     callsite (0.0.11)
     cancancan (2.2.0)
+    carrierwave (1.2.3)
+      activemodel (>= 4.0.0)
+      activesupport (>= 4.0.0)
+      mime-types (>= 1.16)
     case_transform (0.2)
       activesupport
     chronic (0.10.2)
@@ -115,7 +119,7 @@ GEM
       concurrent-ruby (~> 1.0)
     impressionist (1.6.1)
       nokogiri (~> 1)
-    json (1.8.6)
+    json (1.8.3)
     jsonapi-renderer (0.2.0)
     judge (2.1.1)
       rails (>= 3.1)
@@ -300,6 +304,7 @@ DEPENDENCIES
   bcrypt
   binding_of_caller
   cancancan
+  carrierwave
   cloudinary
   database_cleaner
   faker
@@ -308,7 +313,7 @@ DEPENDENCIES
   friendly_id
   geocoder
   impressionist
-  json
+  json (= 1.8.3)
   judge
   meta_request
   metamagic
