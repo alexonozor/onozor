@@ -1,3 +1,10 @@
+GIT
+  remote: git://github.com/flori/json.git
+  revision: 7f4cfd853f2c919d854fb95548a19980feff17e8
+  branch: v1.8
+  specs:
+    json (1.8.6)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -119,7 +126,6 @@ GEM
       concurrent-ruby (~> 1.0)
     impressionist (1.6.1)
       nokogiri (~> 1)
-    json (1.8.3)
     jsonapi-renderer (0.2.0)
     judge (2.1.1)
       rails (>= 3.1)
@@ -313,7 +319,7 @@ DEPENDENCIES
   friendly_id
   geocoder
   impressionist
-  json (= 1.8.3)
+  json!
   judge
   meta_request
   metamagic
@@ -344,4 +350,4 @@ DEPENDENCIES
   will_paginate
 
 BUNDLED WITH
-   1.16.1
+   1.16.4
