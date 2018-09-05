@@ -34,8 +34,8 @@ gem 'metamagic'
 gem 'rails-api'
 gem 'active_model_serializers'
 gem 'rack-cors', :require => 'rack/cors'
-gem 'json', github: 'flori/json', branch: 'v1.8'
-
+gem 'json'
+gem 'sprockets', '~>3.7.2'
 
 
 
