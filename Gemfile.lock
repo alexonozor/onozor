@@ -115,7 +115,7 @@ GEM
       concurrent-ruby (~> 1.0)
     impressionist (1.6.1)
       nokogiri (~> 1)
-    json (1.8.3)
+    json (2.0.0)
     jsonapi-renderer (0.2.0)
     judge (2.1.1)
       rails (>= 3.1)
@@ -257,7 +257,7 @@ DEPENDENCIES
   friendly_id
   geocoder
   impressionist
-  json (= 1.8.3)
+  json (= 2.0.0)
   judge
   meta_request
   nokogiri

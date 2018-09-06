@@ -24,7 +24,7 @@ gem 'whenever', :require => false
 gem 'puma'
 gem 'active_model_serializers'
 gem 'rack-cors', :require => 'rack/cors'
-gem 'json', '1.8.3'
+gem 'json', '2.0.0'
 gem 'sprockets', '~>3.7.2'
 
 
