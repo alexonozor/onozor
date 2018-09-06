@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+ruby "2.4.2"
 gem 'rails', '>= 5.0.0.rc2', '< 5.1'
 gem 'bcrypt'
 gem 'friendly_id'
@@ -23,7 +24,7 @@ gem 'whenever', :require => false
 gem 'puma'
 gem 'active_model_serializers'
 gem 'rack-cors', :require => 'rack/cors'
-gem 'json'
+gem 'json', '1.8.3'
 gem 'sprockets', '~>3.7.2'
 
 
