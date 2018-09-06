@@ -26,7 +26,6 @@ gem 'whenever', :require => false
 gem 'tire'
 gem 'puma'
 gem 'metamagic'
-gem 'rails-api'
 gem 'active_model_serializers'
 gem 'rack-cors', :require => 'rack/cors'
 gem 'json'
