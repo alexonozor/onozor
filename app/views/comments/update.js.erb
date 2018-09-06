@@ -1,5 +1,0 @@
-<% if @comment.errors.present? %>
- $.toaster({ priority : 'warning', message : "<%= @comment.errors.full_messages.to_sentence.html_safe %>"});
-<% else %>
-  $("#edit_comment_<%= @comment.id %>").replaceWith("<%=raw escape_javascript render(@comment) %>");
-<% end %>

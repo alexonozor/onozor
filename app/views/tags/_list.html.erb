@@ -1,8 +1,0 @@
-
-    <% tags.each do |tag| %>
-        <div style="width: 20%; float: left; margin-bottom:25px;">
-          <%=link_to "#{tag.count} x #{tag}".html_safe, questions_path(:tag => tag.name), :class => "tag" -%>
-
-        </div>
-    <% end -%>
-

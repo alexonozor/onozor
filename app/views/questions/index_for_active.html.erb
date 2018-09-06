@@ -1,8 +1,0 @@
-<% title "Active Questions" %>
-<div id="questions">
-<% @questions.each do |question| %>
-  <%= render "/questions/question", :question => question %>
-<% end -%>
-</div>
-
-<%= will_paginate @questions %> 

@@ -1,6 +1,0 @@
-<% if @page.errors.any? %>
-  alert(<%= @page.errors.full_messages %>)
-<% else %>
- $('#defaultpage').replaceWith('<%= j render "page_logo" %>');
- $('.camera').replaceWith('<i class="fa fa-check-circle-o text-success"></i>');
-<% end %>

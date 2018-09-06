@@ -1,5 +1,0 @@
-<% if @question.errors.present? %>
- alert("<%= @question.errors.full_messages.to_sentence.html_safe %>");
-<% else %>
-  $("#edit_question_<%= @question.id %>").replaceWith("<%=raw escape_javascript render('question_body') %>");
-<% end %>

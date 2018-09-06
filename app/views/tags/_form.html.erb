@@ -1,9 +1,0 @@
-<%= simple_form_for @tag do |f| %>
-  <%= f.input :name %>
-  <%= f.input :description %>
-  <%= f.input :short_description %>
-  <%= f.input :image, as: :file %>
-  <%= f.input :banner, as: :file %>
-  <%= f.association :category %>
-  <%= f.submit %>
-<% end %>
