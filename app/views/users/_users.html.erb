@@ -1,0 +1,12 @@
+
+<div class="container-set">
+  <%= form_tag(users_path, :method => "get", :remote => true, class:"navbar-form", :id => "users_search") do %>
+        <div class="form-group">
+            <%= text_field_tag :search, params[:search], placeholder: "Search user", class: "form-control" %>
+           </div>
+            <button class="btn btn-default">search</button>
+  <% end %>
+  <div class="row">
+    <%= render "users_cards" %>
+  </div>
+</div>

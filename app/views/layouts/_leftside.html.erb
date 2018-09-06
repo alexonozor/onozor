@@ -1,0 +1,24 @@
+<% if current_user %>
+  <div class="leftside">
+    <h5>Categories</h5>
+    <div class="blocktxt">
+      <ul class="cats">
+        <%  current_user.categories.each do |category| %>
+         <li><%= link_to category.name, category %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+<% end %>
+
+
+  <div class="leftside">
+    <h5>Pages</h5>
+     <% current_user.pages.each do |page| %>
+      <div class="blocktxt">
+        <ul class="cats">
+        <li><%= image_tag page.logo.url(:lil_image) %> <%= link_to truncate(page.name, :length => 20),  page %></li>
+       </ul>
+      </div>
+     <% end %>
+  </div>

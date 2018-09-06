@@ -119,6 +119,7 @@ GEM
     jsonapi-renderer (0.2.0)
     judge (2.1.1)
       rails (>= 3.1)
+    jwt (2.1.0)
     loofah (2.2.2)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -259,6 +260,7 @@ DEPENDENCIES
   impressionist
   json (= 2.0.0)
   judge
+  jwt
   meta_request
   nokogiri
   pg (~> 0.18)

@@ -1,0 +1,8 @@
+<% option ||= "" %>
+<div id="user_<%= option %>">
+  <% if @user[option] %>
+   <%= render partial: "current_user_prop", locals: {option: option} %>
+  <% else %>
+   <%= render("users/add_#{option}") %>
+  <% end %>
+</div>

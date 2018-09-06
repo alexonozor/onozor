@@ -1,0 +1,60 @@
+<div class='col-md-4 page-left-roll-bottom'>
+            <div class="list-group">
+              <div class="list-group-item">
+                <div class="media">
+                  <div class="media-left">
+                    <a href="#">
+                      <%= image_tag current_user.friends(current_user).sample.avatar.url(:thumb) if current_user && !current_user.friends(current_user).empty? %>
+                    </a>
+                  </div>
+                  <div class="media-body">
+                    <p class="media-heading"><%= @page.users.count %> people like this</br>
+                    People Talking About This</p>
+                  </div>
+                </div>
+              </div>
+              <a href="#" class="list-group-item"><%= pluralize @page.total_impression, "person" %> have been here</a>
+              <%= link_to 'Invite friends to like this Page', invitess_pages_path(page_id: @page), class:'list-group-item invite_friend', remote: true %>
+            </div>
+
+            <div class="list-group about">
+              <a href="#" class="list-group-item disabled">
+                About
+              </a>
+              <div class='page-about-map'>
+                <%= image_tag "http://maps.google.com/maps/api/staticmap?size=300x200&sensor=false&zoom=16&markers=#{@page.latitude}%2C#{@page.longitude}" %>
+              </div>
+              <p class="list-group-item">
+                <%= @page.short_description %>
+              </p>
+              <p class="list-group-item">
+                <i class="fa fa-location-arrow"></i> <%= @page.address %>
+              </p>
+
+              <p class="list-group-item">
+                <i class="fa fa-phone"></i> <%= @page.phone %>
+              </p>
+
+              <p class="list-group-item">
+                <i class="fa fa-globe"></i> <%= @page.website %>
+              </p>
+            </div>
+
+
+
+<!-- Modal -->
+
+<!-- Small modal -->
+<div class="modal invitess fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <small class="modal-title" id="mySmallModalLabel">Invite your friends to like <%= @page.name %></small>
+       </div>
+       <div class="modal-body">
+         <div align='center'><i class="fa fa-circle-o-notch inivteloader fa-spin"></i></div>
+      </div>
+    </div>
+  </div>
+</div>

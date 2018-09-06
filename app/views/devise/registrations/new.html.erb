@@ -1,0 +1,20 @@
+<% title "Signup  Onozor" %>
+<div class="ui middle aligned center aligned grid">
+  <div class="column" style="margin-top: 100px;">
+    <%= render partial: 'layouts/flash_messages/flash' %>
+
+    <h2 class="ui teal image header">
+      <%= link_to (image_tag "logo-icon.png"), "/", turbolinks: false, class:"image" %>
+    </h2>
+    <div class="content">
+      <h3>Join Onozor community</h3>
+    </div>
+    <%= render "devise/sessions/signup" %>
+    
+     <div class="ui message">
+       <%= render "devise/sessions/third_party_sign_ups" %>
+     </div>
+
+
+   </div>
+  </div>

@@ -9,7 +9,7 @@ Bundler.require(:default, Rails.env)
 module NairaOverflow
   class Application < Rails::Application
 
-    config.api_only = true
+    config.api_only = false
     config.active_record.raise_in_transactional_callbacks = true
    
     # config.action_view.field_error_proc = Proc.new { |html_tag, instance|

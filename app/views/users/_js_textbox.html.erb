@@ -1,0 +1,21 @@
+<%
+  request_path ||= ""
+  field_to_edit ||= "Something's wrong. Please retry."
+  default_text = @current_user.fullname if field_to_edit == "fullname"
+  placeholder ||= "Edit #{field_to_edit}"
+%>
+
+<% size = field_to_edit == "fullname" ? {rows: 1} : {} %>
+  <%=form_for request_path, remote: true do |f| %>
+    <div class="js-textbox">
+       <div class="form-group">
+         <%= f.text_area(field_to_edit, {class: "form-control", id: "message-text", placeholder: placeholder, value: default_text }.merge(size) ) %>
+         <%= f.hidden_field :option, value: field_to_edit %>
+       </div>
+       <div>
+         <%= button_tag(type: 'submit',  class: "btn btn-sm btn-success right", id: 'new_direct_message') do %>
+              <i class="fa fa-save"></i>&nbsp;&nbsp;Save
+            <% end %>
+      </div>
+    </div>
+  <% end %>

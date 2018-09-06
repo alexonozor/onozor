@@ -1,0 +1,24 @@
+<div class='answer-box' id='question_<%= question.id %>-form'>
+  <% for answer in question.answers %> 
+    <div class='page-question-answer' id='page-question-answer-<%= answer.id %>'>
+      <div class="media">
+        <div class="media-left">
+          <a href="#">
+            <%= image_tag answer.user.avatar.url, class: 'media-object' %>
+          </a>
+        </div>
+        <div class="media-body">
+          <p class="media-heading"><strong><%= link_to answer.user.fullname, answer.user %></strong> 
+            <%= answer.body %>
+          <% if current_user && current_user.is_the_owner?(current_user, answer) %>  
+            <small class='pull-right'><%= link_to "<i class='fa fa-trash'></i> Delete".html_safe, answer_path(answer), 
+                 :remote => true, method: :delete %></li></small>
+          <% end %>       
+
+          </p>
+          <small><%= answer.created_at.strftime("%B %-d at %-l:%M%P") %></small>  
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

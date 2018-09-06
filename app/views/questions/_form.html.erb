@@ -1,0 +1,60 @@
+
+  <!-- POST -->
+
+  <div class="ui stackable container one column grid left-menu">
+      <div class="ui sixteen card wide column">
+        <%= simple_form_for @question,  html:{class:"form newtopic" } do |f| %>
+       <% if @question.errors.any? %>
+
+        <div class="ui error message">
+            <i class="close icon"></i>
+            <div class="header">
+              There was some errors with your submission
+            </div>
+            <ul class="list">
+              <% @question.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+        <div class="ui form">
+          <div class="field">
+            <label>Enter your question</label>
+            <%= f.input :name, placeholder:"What is your question?", input_html: { class: 'huge' }, label: false  %>
+          </div>
+
+          <h2 class="ui  header"></h2>
+
+          <div class="field">
+            <label>Describe your question</label>
+            <%= f.input :body, input_html: {class: 'form-control', id: 'mytextarea'}, label: false, placeholder:"Description your question, insert code block, links and more.. [Markdown Supported]" %>
+          </div>
+
+            <div class="field">
+              <%= f.association :category, collection: Category.all.pluck(:name, :id), input_html: {class: 'ui fluid dropdown'}, label: 'Select Category', prompt: "Select your Category" %>
+            </div>
+
+          <h2 class="ui  header"></h2>
+          <div class="field">
+            <%= f.label :tag_list, "Tags (separated by commas)" %><br />
+            <%= f.text_field :tag_list %>
+          </div>
+
+    <h2 class="ui  header"></h2>
+         <div class="ui segment">
+          <div class="field">
+            <div class="ui toggle checkbox">
+              <input type="checkbox" name="question[send_mail]"  tabindex="0" class="hidden">
+              <label>Do you want to receive mail?</label>
+            </div>
+          </div>
+        </div>
+        <button class="ui button green huge"><i class="military icon"></i>Submit</button>
+        </div>
+        <% end %>
+      </div>
+    </div>
+    <script type="text/javascript">
+      var simplemde = new SimpleMDE({toolbar: ["bold", "italic", "heading", "|", "quote", "code", "image", "link", "|", "unordered-list", "ordered-list", "|", "preview"], autosave: { enabled: true, uniqueId: true }});
+    </script>

@@ -1,5 +1,5 @@
 class UserMailer < ActionMailer::Base
-  skip_before_filter :restrict_access
+
   default :from => "noreply@onozor.com"
 
   def answer_update(answer)

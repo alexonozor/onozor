@@ -1,0 +1,1 @@
+$("#user_<%= @option %>").html('<%=j render(partial: "users/js_textbox", locals: {request_path: "user", field_to_edit: "#{@option}", default_text: "#{@current_user[@option]}"}) %>');

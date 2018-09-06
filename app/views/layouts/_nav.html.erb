@@ -1,0 +1,60 @@
+
+<div class="ui page grid" style="margin-top: 4rem !important;">
+  <div class="ui top fixed small menu computer tablet only row" style="padding: 0px;">
+    <div class="ui stacked container">
+      <div class="align-logo">
+        <%= link_to (image_tag ("logo-small.png"), width:"150px"), root_url, turbolinks: false %>
+      </div>
+      <div class="right menu">
+        <div class="item large screen only">
+          <%= form_tag questions_path, class:"navbar-form navbar-left", :method => 'get' do %>
+          <div class="ui icon input">
+            <%= text_field_tag :search,  params[:search], placeholder:"Search Questions" %>
+            <i class="search link icon"></i>
+          </div>
+          <% end %>
+        </div>
+        <% if user_signed_in? %>
+        <div class="item">
+          <% if current_user.activities.unseen.count > 0 %>
+            <a class="ui red circular tiny label"><%= current_user.activities.unseen.count  %></a>
+          <% end %>
+          <%= link_to '<i class="bell big outline icon"></i>'.html_safe, activities_path %>
+        </div>
+        <div class="item">
+          <%=link_to (image_tag current_user.avatar.url(:thumb), class:'ui mini circular image'), current_user  %>
+          <i style="cursor: pointer;" class="big  sidebar icon"></i>
+        </div>
+        <% else %>
+        <div class="item">
+          <%= link_to "Login / Signup", new_user_registration_path, class: 'ui facebook button' %>
+        </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<div class=" ui fixed menu mobile-only-for-small-menu">
+  <%=link_to (image_tag 'http://res.cloudinary.com/sportbay-co/image/upload/c_crop/v1478176357/Favicon/apple-icon-60x60.png', class:'ui mini circular image'), root_path, class:"item"  %>
+  <div class="right menu">
+    <% if user_signed_in? %>
+      <%= link_to(activities_path, class: 'item notifcation') do %>
+          <i class="bell outline icon"></i>
+          <% if current_user.activities.unseen.count > 0 %>
+            <span class="ui red circular tiny label"><%= current_user.activities.unseen.count  %></span>
+          <% end %>
+      <% end %>
+
+      <%=link_to (image_tag current_user.avatar.url(:thumb), class:'ui mini  circular image'), "#", class:"sidebar item"  %>
+    <% else %>
+    <div class="item">
+      <%= link_to "Sign in", new_user_session_path, class:"ui button small basic" %>
+    </div>
+    <% end %>
+  </div>
+</div>

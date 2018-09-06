@@ -1,0 +1,36 @@
+<div class="toolbar">
+  <div class="toolbar-inner">
+    <a href="/" class="link"><i class="glyphicon glyphicon-credit-card darkgray "></i></a>
+    <a href="/users" class="link"><i class="glyphicon glyphicon-user darkgray blue"></i></a>
+    <a href="/tags" class="link"><i class="glyphicon glyphicon-tag darkgray"></i></a>
+    <a href="#" data-popover=".popover-menu" class="open-popover link "><i class="glyphicon glyphicon-tasks darkgray"></i></a>
+  </div>
+</div>
+
+<div class="content-block users-content-block">
+  <div class="row">
+    <div class="col-50"><a href="/users"  class="button">All Users</a></div>
+    <div class="col-50"><a href="#" class="button active">Online Users</a></div>
+  </div>
+</div>
+
+<div class="list-block">
+  <ul>
+    <% if @users.present? %>
+    <% @users.each do |q|  %>
+        <li><%= link_to (q), class:"close-panel item-link"  do %>
+
+              <div class="item-content">
+                <div class="item-media"> <%= image_tag q.avatar.url(:thumb), size:"34x34" %> </div>
+                <div class="item-inner">
+                  <div class="link_name theme-red  item-title"><%= q.fullname %></div>
+                </div>
+              </div><% end %></li>
+    <% end %>
+    <% else %>
+         <h1>No users is currently online</h1>
+    <% end %>
+  </ul>
+</div>
+
+<% title "Online users" %>

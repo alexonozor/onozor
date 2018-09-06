@@ -1,0 +1,140 @@
+<%
+meta title: "#{@user.fullname} - Onozor",
+     description: "#{@user.bio || @user.fullname + 'using Onozor to ask question, answer questions, and comment on peoples questions.'}"
+%>
+
+<div class="pusher">
+<div class="ui stackable fluid">
+  <div id='timeline'></div>
+
+  <div class='ui one stacked container timeline-details'>
+    <%= image_tag @user.avatar.url(:medium), class:"ui profile-picture medium circular image" %>
+   <div class="ui stackable container three column grid">
+     <div class="four wide column profile-details">
+
+     </div>
+     <div class="eight wide column profile-details">
+       <h1 class="profile-name"><%= @user.fullname.titleize %></h1>
+       <h4 class="tagline"><%=  @user.categories.map{|a| a.name }.take(3).join(", ").html_safe %></h4>
+       <p class="social">@<%= @user.username %>,  <i class="marker icon"></i><%= @user.city  %>, <%= @user.country %> &nbsp; <i class="twitter icon"></i> <i class="facebook icon"></i> <i class="github icon"></i></p>
+       <p  style="text-align: center; display: relative !important;" class="mobile-only-for-profile follow-settings">
+         <%  if signed_in? && current_user != @user %>
+           <div style="display: relative; text-align: center;" class="mobile-only-for-profile">
+             <%= render 'follow_form' %>
+           </div>
+         <% elsif signed_in? && current_user != @user %>
+           <a href="../users/<%= @user.slug %>/edit" class="button teal ui"><i class="icon settings"></i> Settings</a>
+          <% else %>
+           <%= link_to "Follow",  "#", class: 'ui  teal call-modal button'  %>
+         <% end %>
+       </p>
+       <div class="following">
+         <span class="desktop-only-for-profile">
+           <%= render 'follow_form' if signed_in? && current_user != @user  %>
+           <%= link_to "Follow",  "#", class: 'ui primary call-modal button' unless signed_in?  %>
+         </span>
+         <div class="follow-button-mobile">
+           <%= link_to (pluralize @user.followers.count, "Follower"), user_path(@user) + "/followers", :remote => true   %>
+           <%= link_to (pluralize @user.followed_users.count, "Following"), user_path(@user) + "/following", :remote => true   %>
+         </div>
+      </div>
+     </div>
+   </div>
+  </div>
+</div>
+<!-- <span class="ui active centered  inline space-level-0 loader"></span> -->
+
+<div class="ui container space-level one column grid desktop-only">
+ <div class="three wide column">
+   <div class="ui one column grid">
+     <div class="column">
+       <div class="ui secondary fluid vertical pointing menu">
+         <%= link_to "<i class='user icon'></i>About".html_safe, user_path(@user),   class:"item active", id:"about"  %>
+         <%= link_to "<i class='list icon'></i>Questions".html_safe, user_path(@user) + "/questions", :remote => true , class: "item"  %>
+         <%= link_to "<i class='plane icon'></i>Answer".html_safe, user_path(@user) + "/answers", :remote => true , class: "item"  %>
+         <%= link_to "<i class='star icon'></i>Favourite".html_safe, user_path(@user) + "/favorites", :remote => true, class:"item"   %>
+       </div>
+     </div>
+   </div>
+ </div>
+
+ <div class="thirteen wide column" id='show_user_followers'>
+   <div class="ui one column grid">
+     <div class="eight wide column">
+       <div class="ui fluid card">
+         <div class="content">
+           <h4>Introduction</h4>
+           <p><%= (@user.bio && !@user.bio.empty?) ? @user.bio : "<i>No bio yet</i>".html_safe %></p>
+         </div>
+       </div>
+     </div>
+     <div class="eight wide column">
+       <!-- <div class="ui card  fluid">
+         <div class="notification-label">
+           <h3>Total Appreciations</h3>
+         </div>
+
+         <div class="notifications unseen">
+           <i class="medium add user icon"></i> <a href="#">El Mehdi and 1 other followed you.</a> <span class="ui pull-right">3 days ago</span>
+         </div>
+         <div class="notifications">
+           <a href="#">El Mehdi and 1 other followed you.</a>  <span class="ui pull-right">3 days ago</span>
+         </div>
+         <div class="notifications">
+           <a href="#">El Mehdi and 1 other followed you.</a>  <span class="ui pull-right">3 days ago</span>
+         </div>
+       </div> -->
+     </div>
+   </div>
+ </div>
+</div>
+
+<div class="ui stackable container space-level one column grid mobile-only">
+ <div class="three wide column">
+   <div class="ui one column grid">
+     <div class="column">
+       <div class="ui secondary fluid vertical pointing menu">
+         <%= link_to "<i class='user icon'></i>About".html_safe, user_path(@user),   class:"item active", id:"about"  %>
+         <%= link_to "<i class='list icon'></i>Questions".html_safe, user_path(@user) + "/questions", :remote => true , class: "item"  %>
+         <%= link_to "<i class='plane icon'></i>Answer".html_safe, user_path(@user) + "/answers", :remote => true , class: "item"  %>
+         <%= link_to "<i class='star icon'></i>Favourite".html_safe, user_path(@user) + "/favorites", :remote => true, class:"item"   %>
+       </div>
+     </div>
+   </div>
+ </div>
+
+ <div class="one wide column" id='show_user_followers'>
+   <div class="ui one column grid">
+     <div class=" wide column">
+       <div class="ui fluid card">
+         <div class="content">
+           <h4>Introduction</h4>
+           <p><%= (@user.bio && !@user.bio.empty?) ? @user.bio : "<i>No bio yet</i>".html_safe %></p>
+         </div>
+       </div>
+     </div>
+     <!-- <div class=" wide column">
+       <div class="ui card  fluid">
+         <div class="notification-label">
+           <h3>Total Appreciations</h3>
+         </div>
+
+         <div class="notifications unseen">
+           <i class="medium add user icon"></i> <a href="#">El Mehdi and 1 other followed you.</a> <span class="ui pull-right">3 days ago</span>
+         </div>
+         <div class="notifications">
+           <a href="#">El Mehdi and 1 other followed you.</a>  <span class="ui pull-right">3 days ago</span>
+         </div>
+         <div class="notifications">
+           <a href="#">El Mehdi and 1 other followed you.</a>  <span class="ui pull-right">3 days ago</span>
+         </div>
+       </div>
+     </div> -->
+     <div class="follow_user_follower" id="show_user_followers">
+
+     </div>
+   </div>
+ </div>
+</div>
+
+</body>

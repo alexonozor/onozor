@@ -1,0 +1,8 @@
+<div class="ui icon message">
+  <div class="content">
+    <p><%= @user.fullname %> Answers</p>
+  </div>
+</div>
+<% @user_answers.each do |question| %>
+    <%= render partial: "users/question_summary", locals: { question: question } %>
+<% end if @user_answers %>

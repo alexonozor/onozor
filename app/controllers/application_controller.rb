@@ -1,8 +1,10 @@
 class ApplicationController < ActionController::Base
-  before_action :restrict_access
+  include ActionController::HttpAuthentication::Token::ControllerMethods
+
+  before_filter :restrict_access
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
-  protect_from_forgery with: :null_session
+  # protect_from_forgery with: :null_session
   serialization_scope :current_user
 
   def current_user
