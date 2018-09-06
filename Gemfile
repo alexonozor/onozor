@@ -1,6 +1,5 @@
 source 'https://rubygems.org'
-gem 'rails', '4.2.7'
-gem 'rails_12factor', group: :production
+gem 'rails', '>= 5.0.0.rc2', '< 5.1'
 gem 'bcrypt'
 gem 'friendly_id'
 gem 'rmagick'
@@ -15,10 +14,6 @@ gem 'carrierwave'
 gem 'cloudinary'
 gem 'slack-notifier'
 gem 'redis'
-gem 'omniauth-twitter'
-gem 'omniauth-facebook'
-gem 'omniauth-google-oauth2'
-gem 'omniauth-linkedin-oauth2'
 gem 'judge'
 gem 'public_activity'
 gem 'private_pub'
@@ -36,7 +31,7 @@ gem 'active_model_serializers'
 gem 'rack-cors', :require => 'rack/cors'
 gem 'json'
 gem 'sprockets', '~>3.7.2'
-gem 'uglifier'
+
 
 
 group :development, :test do
