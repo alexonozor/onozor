@@ -8,7 +8,7 @@ gem 'rails-api'
 gem 'spring', :group => :development
 
 
-gem 'pg'
+gem "pg", "~> 0.18" 
 
 
 
