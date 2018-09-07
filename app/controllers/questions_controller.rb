@@ -5,9 +5,12 @@ class QuestionsController < ApplicationController
    require 'will_paginate/array'
    
     def index
-        # feeds = current_user.category_feeds.paginate(page: params[:page], per_page: params[:per_page])
-        # render json: feeds, meta: pagination_dict(feeds), each_serializer: FeedSerializer
-        render json: { message: "sdfsd"}
+      if current_user
+        feeds = current_user.category_feeds.paginate(page: params[:page], per_page: params[:per_page])
+        render json: feeds, meta: pagination_dict(feeds), each_serializer: FeedSerializer
+      else
+        render json: Question.all
+      end
     end
 
     def comments

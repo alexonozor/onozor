@@ -35,14 +35,14 @@ class QuestionSerializer < ActiveModel::Serializer
   belongs_to :category
 
   def question_link
-    api_v1_question_path(object.slug)
+    question_path(object.slug)
   end
 
   def comments
-    api_v1_question_comments_path(object.slug)
+    question_comments_path(object.slug)
   end
 
   def answers
-    api_v1_question_answers_path(object.slug)
+    question_answers_path(object.slug)
   end
 end

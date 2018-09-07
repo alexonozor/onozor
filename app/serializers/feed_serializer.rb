@@ -40,7 +40,7 @@ class FeedSerializer < ActiveModel::Serializer
 
 
   def links
-    {self: api_v1_question_path(object.slug)}
+    {self: question_path(object.slug)}
   end
 end
 

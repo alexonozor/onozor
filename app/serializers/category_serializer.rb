@@ -3,7 +3,7 @@ class CategorySerializer < ActiveModel::Serializer
   attributes :id, :name, :description, :created_at, :updated_at, :permalink, :slug, :image, :links, :subscribers_count, :question_count, :subscribe
   def links
     {
-        questions: get_questions_api_v1_category_path(object.slug)
+        questions: get_questions_category_path(object.slug)
     }
   end
 
