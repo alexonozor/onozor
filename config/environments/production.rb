@@ -2,13 +2,13 @@ NairaOverflow::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.
-  config.cache_classes = true
+  # config.cache_classes = true
 
   # Eager load code on boot. This eager loads most of Rails and
   # your application in memory, allowing both thread web servers
   # and those relying on copy on write to perform better.
   # Rake tasks automatically ignore this option for performance.
-  config.eager_load = true
+  # config.eager_load = true
 
   # Full error reports are disabled and caching is turned on.
   config.consider_all_requests_local       = false
@@ -34,6 +34,7 @@ NairaOverflow::Application.configure do
 
   # Version of your assets, change this if you want to expire all your assets.
   config.assets.version = '1.0'
+  config.enable_dependency_loading = true
 
   # Specifies the header that your server uses for sending files.
   # config.action_dispatch.x_sendfile_header = "X-Sendfile" # for apache
@@ -72,7 +73,6 @@ NairaOverflow::Application.configure do
 
   # Send deprecation notices to registered listeners.
   config.active_support.deprecation = :notify
-  
 
   # Disable automatic flushing of the log to improve performance.
   # config.autoflush_log = false
