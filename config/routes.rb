@@ -1,5 +1,4 @@
 Rails.application.routes.draw  do
-  
     get  'question/:id/comments', to: 'questions#comments'
     get  'answer/:id/comments', to: 'answers#comments'
     get  'question/:id/answers', to: 'questions#answers'
