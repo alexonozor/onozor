@@ -1,0 +1,9 @@
+<%= form_for @answer, url: create_answer_pages_path, html: { class:'answer-form'}, remote: true do |f| %>
+ <div class="form-group has-feedback">
+  <%= f.hidden_field :question_id, value: @question.id  %>
+  <%= f.hidden_field :user_id, value: current_user.id  %>	
+  <%= f.text_field :body, class:"form-control input-sm", placeholder:'Write your answer...'  %>
+  <span class="fa fa-camera form-control-feedback" aria-hidden="true"></span>
+  <small>Press Enter to submit</small>
+ </div> 
+<% end %>

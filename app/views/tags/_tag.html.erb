@@ -1,0 +1,16 @@
+<div class="col-sm-4 col-md-5 col-lg-4">
+  <div class="thumbnail thumbnail-size">
+    <%=link_to (image_tag tag.image.url(:tag_logo), class: "img-circle"), tag_path(tag.name) %>
+    <div class="caption">
+      <h5 class="text-center change-link-size"><%= link_to tag.name.capitalize, tag_path(tag.name) %></h5>
+      <p class="text-center" id="follow-tag-count-<%= tag.id %>"><%= pluralize tag.users.count, "followers" %></p>
+      <p class="text-center" id="follow-tag-button-<%= tag.id %>">
+        <% if current_user && current_user.following_tag?(tag) %>
+          <%= render partial: 'tags/unfollow', locals: {:tag => tag} if current_user %>
+        <% else %>
+          <%= render partial: 'tags/follow', locals: {:tag => tag} if current_user %>
+        <% end %>
+      </p>
+    </div>
+  </div>
+</div>

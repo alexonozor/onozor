@@ -1,0 +1,43 @@
+
+<%= form_for @answer, :remote => true do |f| %>
+
+    <div class="list-block">
+      <ul>
+        <%= f.hidden_field :question_id  %>
+        <%= f.hidden_field :user_id %>
+        <li class="item-content">
+          <div class="item-media"><i class="glyphicon glyphicon-text-height"></i></div>
+          <div class="item-inner">
+            <div class="item-title label">
+              <% if current_user.nil? %>
+                  First <%= link_to "sign in", new_user_session_path %> to post a Answer.
+              <% elsif cannot? :create, :answers %>
+                 You have been banned from creating Answers. Please  if you are a legitimate user.
+              <% else %>
+            </div>
+            <div class="item-input">
+              <%= f.text_area :body %>
+            </div>
+              <% end %>
+          </div>
+        </li>
+
+
+
+
+      </ul>
+
+    </div>
+<% end %>
+
+    <div class="content-block users-content-block">
+      <div class="row">
+        <div class="col-50"><button  class="button active">Post Answer</button></div>
+        <div class="col-50"><a href="/questions/new" class="button ">Reset</a></div>
+      </div>
+    </div>
+
+
+
+
+

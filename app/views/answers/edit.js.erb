@@ -1,0 +1,4 @@
+new SimpleMDE({element: $("#edit_answer")[0], toolbar: ["bold", "italic", "heading", "|", "quote", "code", "image", "link", "|", "unordered-list", "ordered-list", "|", "preview"]});
+$("#<%= dom_id(@answer) %>").replaceWith("<%= escape_javascript render("form") %>");
+$("textarea").find("#edit_answer")[0].focus();
+$('#edit').hide();

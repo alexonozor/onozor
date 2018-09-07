@@ -1,0 +1,17 @@
+
+
+<%= link_to user_omniauth_authorize_path(:facebook), class: "ui circular facebook icon button", id: 'fb-signup'  do %>
+  <i class="facebook icon"></i>
+<% end %>
+
+  <%= link_to  user_omniauth_authorize_path(:twitter),  class: "ui circular twitter icon button", id: 'twitter-signup'  do %>
+      <i class="twitter icon"></i>
+  <% end %>
+
+  <%= link_to user_omniauth_authorize_path(:google_oauth2),  class:"ui circular google plus icon button", id: 'google-signup'  do %>
+    <i class="google plus icon"></i>
+  <% end %>
+
+  <%= link_to user_omniauth_authorize_path(:linkedin),  class:"ui circular linkedin icon button", id: 'google-signup'  do %>
+    <i class="linkedin icon"></i>
+  <% end %>

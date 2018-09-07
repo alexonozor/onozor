@@ -8,8 +8,28 @@ gem 'rails-api'
 gem 'spring', :group => :development
 
 
-gem "pg", "~> 0.18" 
 
+
+gem 'bcrypt'
+gem 'friendly_id'
+gem 'rmagick'
+gem 'ancestry'
+gem 'acts-as-taggable-on'
+gem 'cancancan'
+gem 'will_paginate'
+gem 'figaro'
+gem 'carrierwave'
+gem 'cloudinary'
+gem 'judge'
+gem 'public_activity'
+gem 'rails-observers'
+gem "pg", "~> 0.18" 
+gem 'impressionist'
+gem 'geocoder'
+gem 'puma'
+gem 'active_model_serializers'
+gem 'rack-cors', :require => 'rack/cors'
+gem 'jwt'
 
 
 # To use ActiveModel has_secure_password

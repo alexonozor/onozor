@@ -1,0 +1,77 @@
+
+  <!-- POST -->
+
+  <div class="ui stackable container one column grid left-menu">
+      <div class="ui sixteen card wide column">
+    <%= simple_form_for(@user, url: user_path(@user), html: { method: :put, multiple: :true, :role=>"form newtopic" }) do |f| %>
+       <% if @user.errors.any? %>
+
+        <div class="ui error message">
+            <i class="close icon"></i>
+            <div class="header">
+              There was some errors with your submission
+            </div>
+            <ul class="list">
+              <% @user.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+        <div class="ui form">
+
+          <div class="field">
+            <label>Change Picture</label>
+            <%= f.input :avatar, as: :file, id:"exampleInputFile"  %>
+          </div>
+
+          <div class="field">
+            <label>Username</label>
+            <%= f.input :username, placeholder:"Username?", input_html: { class: 'huge' }, label: false  %>
+          </div>
+
+          <div class="field">
+            <label>First Name</label>
+            <%= f.input :first_name, placeholder:"First Name?", input_html: { class: 'huge' }, label: false  %>
+          </div>
+
+          <div class="field">
+            <label>Last Name</label>
+            <%= f.input :last_name, placeholder:"Last Name?", input_html: { class: 'huge' }, label: false  %>
+          </div>
+
+
+          <div class="field">
+            <label>email</label>
+            <%= f.input :email, placeholder:"Email?", input_html: { class: 'huge' }, label: false  %>
+          </div>
+
+
+
+          <div class="field">
+            <label>Interest</label>
+            <%= f.input :intrest, placeholder:"Interest", input_html: { class: 'huge' }, label: false  %>
+          </div>
+
+          <div class="field">
+            <label>Biography</label>
+            <%= f.input :bio, input_html: {class: 'form-control', id: 'mytextarea'}, label: false, placeholder:"Biography" %>
+          </div>
+
+          <div class="field">
+            <label>occupation</label>
+            <%= f.input :occupation, input_html: {class: 'form-control', id: 'mytextarea'}, label: false, placeholder:"occupation" %>
+          </div>
+
+            <div class="field">
+              <%= f.input :gender, as: :select,  collection: [:Male, :Female], input_html: {class: 'ui fluid dropdown'}, label: 'Select Category', prompt: "Select your Gender" %>
+            </div>
+
+        <%= f.submit "Update  Account", class:"ui button green huge" %>
+        </div>
+        <% end %>
+      </div>
+    </div>
+    <script type="text/javascript">
+      var simplemde = new SimpleMDE({toolbar: ["bold", "italic", "heading", "|", "quote", "code", "image", "link", "|", "unordered-list", "ordered-list", "|", "preview"], autosave: { enabled: true, uniqueId: true }});
+    </script>

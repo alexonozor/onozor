@@ -1,0 +1,6 @@
+<% if activity.trackable %>
+    <%= link_to question_path(activity.trackable.question, notification_id: activity.id) do %>
+          <strong><%=  activity.trackable.user.fullname.humanize  %></strong> favourite your question: <%=  activity.trackable.question.name %>
+          <span class="ui pull-right"><%= time_ago_in_words activity.created_at, class:'small' %></span>
+    <% end %>
+<% end %>

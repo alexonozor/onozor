@@ -1,0 +1,92 @@
+
+<div class="ui small modal auth-modal">
+  <i class="close floated right icon"></i>
+  <div class="header">
+      SIGN UP OR LOG IN TO ONOZOR
+  </div>
+  <div class="image content">
+      <div class="description">
+          <div class="ui stackable big two column grid">
+              <div class="column">
+                <%= link_to user_omniauth_authorize_path(:facebook), class: "ui facebook large fluid button", id: 'fb-signup'  do %>
+                    <i class="facebook icon"></i>
+                    Facebook
+                <% end %>
+              </div>
+              <div class="column">
+                <%= link_to user_omniauth_authorize_path(:google_oauth2),  class: "ui google large plus fluid button", id: 'google-signup'  do %>
+                  <i class="google plus icon"></i>
+                  Google Plus
+                <% end %>
+              </div>
+              <div class="column">
+                <%= link_to  user_omniauth_authorize_path(:twitter),  class: "ui twitter large plus fluid button", id: 'twitter-signup'  do %>
+                  <i class="google plus icon"></i>
+                  Twitter
+                <% end %>
+              </div>
+              <div class="column">
+                <%= link_to  new_user_registration_path,  class: "ui email large plus fluid button", id: 'twitter-signup'  do %>
+                    <i class="mail icon"></i>
+                    Email
+                <% end %>
+              </div>
+          </div>
+      </div>
+  </div>
+  <div class="actions">
+      <p align='center' style="text-align: center;">
+          We'll never publish anything on your social media accounts without your permission. By joining you agree to our terms and privacy policies.
+      </p>
+  </div>
+</div>
+
+<% if current_user && current_user.sign_in_count == 1 && current_user.followers.empty? %>
+  <div class="ui small modal  select-friends">
+    <div class="header">
+      Here are few smart people that you may want to follow
+    </div>
+    <div class="ui top attached teal progress" data-percent="74" id='example2'>
+      <div class="label">74% Funded</div>
+    <div class="bar"></div>
+  </div>
+
+      <div class="image content load-followers">
+
+      </div>
+
+    <div class="actions">
+      <%= link_to "Continue", root_url, class:'teal close ui button' %>
+    </div>
+  </div>
+<% end %>
+
+
+<% if current_user && current_user.sign_in_count == 1 && current_user.categories.empty? %>
+  <div class="ui small modal  category_modal">
+    <div class="header">
+      Follow topics to see the best answers about them
+    </div>
+    <div class="ui top attached teal progress" data-percent="74" id='example2'>
+      <div class="label">74% Funded</div>
+    <div class="bar"></div>
+  </div>
+    <div class="image  content">
+      <div class="image">
+        <%= form_for @current_user, url: select_category_path(current_user.id), remote: :true, method: :put do |f| %>
+          <%= f.collection_check_boxes(:category_ids, Category.all, :id, :name_with_image, class: 'select-category' ) %>
+      </div>
+    </div>
+    <div class="actions">
+      <%= f.submit 'Save changes', :class => 'ui  button  save-cat disabled' %>
+      <% end %>
+    </div>
+  </div>
+<button type="button" class='call-category-modal' name="button"></button>
+<script type="text/javascript">
+  $('.call-category-modal').click(function() {
+    $('.category_modal').modal({ blurring: true, closable: false, allowMultiple: false }).modal('setting', 'transition', 'horizontal flip').modal('show');
+  });
+  $('.call-category-modal').click();
+</script>
+<% end %>

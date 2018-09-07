@@ -1,0 +1,3 @@
+
+$("#follow-tag-button-<%= @init_tag.id %>").html("<%= escape_javascript(render partial: 'tags/follow', :locals => {:tag => @init_tag}) %>");
+$("#follow-tag-count-<%= @init_tag.id %>").html('<%= pluralize @init_tag.users.count, "follower" %>');

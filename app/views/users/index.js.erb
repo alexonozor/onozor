@@ -1,0 +1,5 @@
+<% if @user.empty? %>
+$(".users").html("<h2>No Result find for your Search</h2>").css();
+<% else %>
+$(".users").html("<%= escape_javascript(render("users")) %>");
+<% end %>

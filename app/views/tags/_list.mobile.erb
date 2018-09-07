@@ -1,0 +1,21 @@
+<div class="toolbar">
+  <div class="toolbar-inner">
+    <a href="#" data-popover=".popover-menu" class="open-popover link">Menu</a>
+    <a href="/users" class="link">Users</a>
+    <a href="/tags" class="link">Tags</a>
+  </div>
+</div>
+
+<div class="list-block">
+  <ul>
+    <% tags.each do |tag| %>
+        <li>
+          <%=link_to  questions_path(:tag => tag.name)  do %>
+              <div class="item-content">
+                <div class="item-inner">
+                  <div class="link_name theme-red  item-title"><%= tag %></div>
+                </div>
+              </div><% end %></li>
+    <% end %>
+  </ul>
+</div>

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Required meta tags-->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <%= csrf_meta_tags %>
+    <!-- Your app title -->
+    <title>My App</title>
+    <!-- Path to Framework7 Library CSS-->
+    <%= stylesheet_link_tag  "/mobile/stylesheets/framework7.css"  %>
+    <!-- Path to your custom app styles-->
+    <%= stylesheet_link_tag  "/mobile/stylesheets/my-app.css"  %>
+  </head>
+  <body>
+    <!-- Status bar overlay for full screen mode (PhoneGap) -->
+    <div class="statusbar-overlay"></div>
+    <!-- Panels overlay-->
+    <div class="panel-overlay"></div>
+    <!-- Left panel with reveal effect-->
+
+    <div class="panel panel-left panel-cover layout-dark">
+      <div class="content-block-title">ABOUT INQUIRE</div>
+      <div class="content-block">
+        <p>Experience exicting moments and share ideas with professionals, getting Satisfying answers to questions in all Categories of life.
+          Share & Flow</p>
+      </div>
+
+      <div class="list-block layout-dark">
+        <ul class="left-panel-list">
+          <% if current_user.present? %>
+          <li><a href="/users/<%= current_user.username if current_user %>" class="close-panel item-link">
+            <div class="item-content">
+              <div class="item-media"><i class="glyphicon glyphicon-user"></i></div>
+              <div class="item-inner">
+                <div class="item-title">MY PROFILE</div>
+              </div>
+            </div></a></li>
+          <li><a href="/users/edit" class="close-panel item-link">
+            <div class="item-content">
+              <div class="item-media"><i class="glyphicon glyphicon-edit"></i></div>
+              <div class="item-inner">
+                <div class="item-title">EDIT PROFILE</div>
+              </div>
+            </div></a></li>
+          <li><a href="tabs.html" class="close-panel item-link">
+            <div class="item-content">
+              <div class="item-media"><i class="glyphicon glyphicon-cog"></i></div>
+              <div class="item-inner">
+                <div class="item-title">SETTINGS</div>
+              </div>
+            </div></a></li>
+          <li>
+            <%= link_to  (destroy_user_session_path), :method => :delete, class:"close-panel item-link"  do %>
+            <div class="item-content">
+              <div class="item-media"><i class="glyphicon glyphicon-log-out"></i></div>
+              <div class="item-inner">
+                <div class="item-title">SIGN OUT</div>
+              </div>
+            </div><% end %></li>
+              <% end %>
+          <li><a href="list-view.html" class="close-panel item-link">
+            <div class="item-content">
+              <div class="item-media"><i class="glyphicon glyphicon-phone-alt"></i></div>
+              <div class="item-inner">
+                <div class="item-title">CONTACT US</div>
+              </div>
+            </div></a></li>
+          <li><a href="swipe-delete.html" class="close-panel item-link">
+            <div class="item-content">
+              <div class="item-media"><i class="glyphicon glyphicon-flag"></i></div>
+              <div class="item-inner">
+                <div class="item-title">ADVERTISE</div>
+              </div>
+            </div></a></li>
+          <li><a href="forms.html" class="close-panel item-link">
+            <div class="item-content">
+              <div class="item-media"><i class="glyphicon glyphicon-adjust"></i></div>
+              <div class="item-inner">
+                <div class="item-title">TERM OF USE</div>
+              </div>
+            </div></a></li>
+
+
+        </ul>
+      </div>
+      <div class="content-block">
+
+        <p>
+          Have you thoroughly searched for an answer before asking your question? Sharing your research helps everyone. Tell us what you found (on this site or elsewhere) and why it didn’t meet your needs. This demonstrates that you’ve taken the time to try to help yourself, it saves us from reiterating obvious answers, and above all, it helps you get a more specific and relevant answer!
+        </p>
+      </div>
+    </div>
+    <!-- Views -->
+    <div class="views">
+      <!-- Your main view, should have "view-main" class -->
+      <div class="view view-main">
+        <!-- Top Navbar-->
+        <div class="navbar">
+          <div class="navbar-inner">
+            <div class="left">
+              <div class="left sliding"><%= yield :title %> </div>
+            </div>
+            <!-- We need cool sliding animation on title element, so we have additional "sliding" class -->
+
+             <div class="right">
+               <% if current_user %>
+               <a href="/questions/advise" class="link icon-only"><i class="glyphicon glyphicon-plus white"></i></a>
+                <% else %>
+                <a href="/users/sign_in"  class="link icon-only "><i class="glyphicon glyphicon-lock white"></i></a>
+                <% end %>
+              <a href="#" class="link icon-only open-panel"><i class="icon icon-bars-white"></i></a>
+            </div>
+          </div>
+        </div>
+
+
+
+
+
+        <!-- Pages container, because we use fixed-through navbar and toolbar, it has additional appropriate classes-->
+        <div class="pages navbar-through toolbar-through">
+          <!-- Page, "data-page" contains page name -->
+          <div data-page="index" class="page">
+            <!-- Scrollable page content -->
+            <div class="page-content">
+
+
+              <%= yield %>
+            </div>
+
+
+          </div>
+        </div>
+        <!-- Bottom Toolbar-->
+        <div class="toolbar bottom-class">
+          <div class="toolbar-inner">
+            <!-- Toolbar links -->
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="popover popover-menu modal-in" style="display: block; top: 18.5px; left: 1121px;">
+      <div class="popover-angle on-bottom" style="left: 203.5px;"></div>
+      <div class="popover-inner">
+        <div class="list-block">
+          <ul>
+            <li><a href="/questions/active" class="list-button item-link"><i class="glyphicon glyphicon-fire"></i>Active</a></li>
+            <li><a href="/questions/answered" class="list-button item-link">Answered</a></li>
+            <li><a href="/questions/unanswered" class="list-button item-link">Unanswered</a></li>
+            <li><a href="/questions/hot" class="list-button item-link">Hot</a></li>
+            <li><a href="/questions/latest" class="list-button item-link">Latest</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="popover popover-action modal-in" style="display: block; top: 18.5px; left: 1121px;">
+      <div class="popover-angle on-bottom" style="left: 203.5px;"></div>
+      <div class="popover-inner">
+        <div class="list-block">
+          <ul>
+            <li><a href="#answer" class="list-button item-link">Add Answer</a></li>
+            <li><a href="#comment" class="list-button item-link">Add comment</a></li>
+            <li><a href="/users" class="list-button item-link">Follow User</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+  </body>
+</html>

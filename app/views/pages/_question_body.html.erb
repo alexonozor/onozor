@@ -1,0 +1,5 @@
+<div class='user-question-on-page' id='edit_question_<%= @question.id %>-form'>
+  <p><strong><%= @question.name %></strong></p>
+  <%= image_tag @question.picture.url(:thumb) if @question.picture.present? %>
+  <p><%=raw markdown(@question.body) %></p>
+</div>
