@@ -1,92 +1,39 @@
 class CategoriesController < ApplicationController
-  layout "bootstrap"
-  before_action :set_category, only: [:show, :edit, :update, :destroy, :tags]
-  # GET /categories
-  # GET /categories.json
+before_action :set_category, only: [:get_questions, :show]
+  require 'will_paginate/array'
+
   def index
-    @categories = Category.all
-    @tags = Tag.all
-    respond_to do |format|
-      format.html
-      # format.json { render json: @categories }
+    if params[:term]
+      categories = Category.search(params[:term])
+      render json: categories
+    else
+      categories = Category.paginate(page: params[:page], per_page: 9)
+      render json: categories, meta: pagination_dict(categories)
     end
   end
 
+  def get_questions
+    category_questions = @categories.questions.paginate(page: params[:page], per_page: 5)
+    render json: category_questions, each_serializer: FeedSerializer,  meta: pagination_dict(category_questions)
+  end
 
-  # GET /categories/1
-  # GET /categories/1.json
   def show
-   @questions = @category.questions
-   respond_to do |format|
-     format.js { render 'question_sort.js.erb' }
-     format.html
-   end
+    render json: @categories
   end
 
-  def tags
-    @tags = @category.tags
-    respond_to do |format|
-      format.js { render 'category_tags.js.erb' }
-    end
-  end
-
-  # GET /categories/new
-  def new
-    @category = Category.new
-  end
-
-  # GET /categories/1/edit
-  def edit
-  end
-
-  # POST /categories
-  # POST /categories.json
-  def create
-    @category = current_user.category.build(category_params)
-
-    respond_to do |format|
-      if @category.save
-        format.html { redirect_to @category, notice: 'Category was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @category }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @category.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # PATCH/PUT /categories/1
-  # PATCH/PUT /categories/1.json
-  def update
-    respond_to do |format|
-      if @category.update(category_params)
-        format.html { redirect_to @category, notice: 'Category was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @category.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /categories/1
-  # DELETE /categories/1.json
-  def destroy
-    @category.destroy
-    respond_to do |format|
-      format.html { redirect_to categories_url }
-      format.json { head :no_content }
-    end
+  def pagination_dict(collection)
+    {
+        current_page: collection.current_page,
+        next_page: collection.next_page,
+        prev_page: collection.previous_page, # use collection.previous_page when using will_paginate
+        total_pages: collection.total_pages,
+        total_count: collection.total_entries
+    }
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_category
-      @category = Category.friendly.find(params[:id])
-    end
-
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def category_params
-      params.require(:category).permit(:name, :description, :user_id, :set_permalink, :slug, :image)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_category
+    @categories = Category.friendly.find(params[:id])
+  end
 end

@@ -1,55 +1,52 @@
-Rails.application.routes.draw do
-  namespace :api, :defaults => { :format => 'json' } do
-    namespace :v1 do
-      get  'question/:id/comments', to: 'questions#comments'
-      get  'answer/:id/comments', to: 'answers#comments'
-      get  'question/:id/answers', to: 'questions#answers'
-      put  'comment/:id', to: 'comments#update'
-      put  'answer/:id', to: 'answers#update'
-      post 'sessions/create', to: 'sessions#create'
-      get 'user/login-token/:token', to: 'users#login'
-      resources :relationships, only: [:create, :destroy]
-      post  'subscribe/communities', to: 'user_category#create'
-      delete  'unsubscribe/communities/:category_id', to: 'user_category#destroy'
-      resources :answers,  except: [:edit, :new, :index, :update, :create, :new, :show] do
-        member do 
-          get :answer_voters
-          post :vote
-        end
-      end
-
-      
-      resources :questions, except: [:edit, :new] do
-        member do 
-          get :question_voters
-          post :vote
-        end
-        resources :comments, except: [:edit, :new, :update]
-        resources :answers,  except: [:edit, :new, :update]
-      end
-      resources :users do
-        member do
-          get :user_categories
-          get :questions
-          get :answers
-          get :followers
-          get :following
-          get :favorites
-        end
-      end
-      resources :categories do
-        member do
-          get :get_questions
-        end
-      end
-
-      resources :favourites, :only => [:toggle] do
-        member do
-          # post :toggle
-          get :toggle
-        end
+Rails.application.routes.draw  do
+  
+    get  'question/:id/comments', to: 'questions#comments'
+    get  'answer/:id/comments', to: 'answers#comments'
+    get  'question/:id/answers', to: 'questions#answers'
+    put  'comment/:id', to: 'comments#update'
+    put  'answer/:id', to: 'answers#update'
+    post 'sessions/create', to: 'sessions#create'
+    get 'user/login-token/:token', to: 'users#login'
+    resources :relationships, only: [:create, :destroy]
+    post  'subscribe/communities', to: 'user_category#create'
+    delete  'unsubscribe/communities/:category_id', to: 'user_category#destroy'
+    resources :answers,  except: [:edit, :new, :index, :update, :create, :new, :show] do
+      member do 
+        get :answer_voters
+        post :vote
       end
     end
+
+    
+    resources :questions, except: [:edit, :new] do
+      member do 
+        get :question_voters
+        post :vote
+      end
+      resources :comments, except: [:edit, :new, :update]
+      resources :answers,  except: [:edit, :new, :update]
+    end
+    resources :users do
+      member do
+        get :user_categories
+        get :questions
+        get :answers
+        get :followers
+        get :following
+        get :favorites
+      end
+    end
+    resources :categories do
+      member do
+        get :get_questions
+      end
+    end
+
+    resources :favourites, :only => [:toggle] do
+      member do
+        # post :toggle
+        get :toggle
+      end
   end
 
   # mount_devise_token_auth_for 'User', at: 'auth', skip: [:omniauth_callbacks, :registrations, :passwords]
