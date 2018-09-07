@@ -1,3 +1,0 @@
-<% option ||= @option.nil? ? "" : @option %>
-<h3 class="user_<%= option %>"><%= @current_user[option] %>
-<%=link_to "Edit", user_edit_user_path(@current_user, "#{option}"), class: "edit_link", remote: :true %></h3>
