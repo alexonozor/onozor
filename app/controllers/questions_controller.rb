@@ -1,15 +1,23 @@
+
 class QuestionsController < ApplicationController
+  
    before_action :set_question, only: [:show, :answers, :comments, :question_voters, :update, :destroy]
-    
-    # before_action :authenticate_api_v1_user!
+   skip_before_action :restrict_access, only: [:index, :show, :answers, :comments]
+
    require 'will_paginate/array'
    
     def index
       if current_user
         feeds = current_user.category_feeds.paginate(page: params[:page], per_page: params[:per_page])
-        render json: feeds, meta: pagination_dict(feeds), each_serializer: FeedSerializer
+        unless feeds.empty?
+          render json: feeds, meta: pagination_dict(feeds), each_serializer: FeedSerializer
+        else
+          feeds =  Question.paginate(page: params[:page], per_page: params[:per_page])
+          render json: feeds, meta: pagination_dict(feeds), each_serializer: FeedSerializer
+        end
       else
-        render json: Question.all
+        feeds =  Question.paginate(page: params[:page], per_page: params[:per_page])
+        render json: feeds, meta: pagination_dict(feeds), each_serializer: FeedSerializer
       end
     end
 
