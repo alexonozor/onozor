@@ -38,6 +38,8 @@ class UsersController < ApplicationController
   def login
     user = User.find_by(login_token: params[:token])
       if user && user.login_token_valid_until > Time.now
+        user.update_user_name_from_email if user.sign_in_count == 0
+        user.update_signin_details
         render json: { user: user, access_token: user.access_token, success: true, status: 200 }, status: 200
       else
         render json: { message: 'Login Link/Token has expired', success: false, status: 203 }, status: 203

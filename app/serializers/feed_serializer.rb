@@ -14,13 +14,17 @@ class FeedSerializer < ActiveModel::Serializer
   belongs_to :user, key: :author, serializer: AuthorSerializer
 
   def vote
+    if  current_user.present?
     vote = QuestionVote.find_by(question_id: object.id, user_id: current_user.id)
-    # binding.pry
-    if vote.present? && vote.value === 1
-      { currentUserHasUpvote: true, currentUserHasDownVote: false, voteValue: vote.value }
-    elsif vote.present? && vote.value === -1
-      { currentUserHasUpvote: false, currentUserHasDownVote: true, voteValue: vote.value }
-     else
+      # binding.pry
+      if vote.present? && vote.value === 1
+        { currentUserHasUpvote: true, currentUserHasDownVote: false, voteValue: vote.value }
+      elsif vote.present? && vote.value === -1
+        { currentUserHasUpvote: false, currentUserHasDownVote: true, voteValue: vote.value }
+      else
+        { currentUserHasUpvote: false, currentUserHasDownVote: false, voteValue: 0 }
+      end
+    else
       { currentUserHasUpvote: false, currentUserHasDownVote: false, voteValue: 0 }
     end
   end
@@ -30,7 +34,8 @@ class FeedSerializer < ActiveModel::Serializer
   end
 
   def favourited
-    object.favourited?(current_user)
+    return object.favourited?(current_user) if current_user.present?
+    return false
   end
 
   def sharePost

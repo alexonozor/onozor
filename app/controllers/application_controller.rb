@@ -2,7 +2,6 @@ class ApplicationController < ActionController::API
     # protect_from_forgery with: :null_session
     include ActionController::Serialization
     include ActionController::HttpAuthentication::Token::ControllerMethods
-
     before_action :restrict_access
     # Prevent CSRF attacks by raising an exception.
     # For APIs, you may want to use :null_session instead.
@@ -12,6 +11,11 @@ class ApplicationController < ActionController::API
     def current_user
       @current_user
     end
+
+    def is_token_present?
+      return request.headers['Authorization'].split(' ')[1] != 'null'
+    end
+
     # request.env["HTTP_ACCESS_TOKEN"]
     #filters
     #before_action :suggested_people, :load_users, :last_requested_at

@@ -8,6 +8,7 @@ class CategorySerializer < ActiveModel::Serializer
   end
 
   def subscribe
-    object.subscribe?(current_user)
+    return object.subscribe?(current_user) if current_user.present?
+    return false
   end
 end

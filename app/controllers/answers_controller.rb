@@ -1,6 +1,6 @@
 class AnswersController < ApplicationController
   before_action :set_answers, only: [:show, :comments, :update]
-  # before_action :authenticate_user!
+  skip_before_action :restrict_access, only: [:comments]
   require 'will_paginate/array'
   # def index
   #   answers = @question.answers.paginate :page => params[:page], :per_page => 5

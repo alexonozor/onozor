@@ -151,6 +151,17 @@ class User < ActiveRecord::Base
    end
 
 
+   def update_signin_details
+    self.increment(:sign_in_count, 1)
+    self.update(last_sign_in_at: Time.now)
+  end
+
+  def update_user_name_from_email
+     username = self.email.split("@")[0]
+    self.update(username: username)
+  end
+
+
 
     # def self.new_with_session(params, session)
     #   binding.pry
@@ -257,8 +268,8 @@ end
    end
 
   def category_feeds
-    feeds = self.categories.map(&:questions) << feed
-     @alex = feeds.flatten.uniq.sort! {|a, b|  b.created_at.to_i <=> a.created_at.to_i }
+     feeds = self.categories.map(&:questions) << feed
+     feeds.flatten.uniq.sort! {|a, b|  b.created_at.to_i <=> a.created_at.to_i }
   end
 
   def self.people_you_may_know(current_user)
