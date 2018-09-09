@@ -1,13 +1,14 @@
 
 class QuestionsController < ApplicationController
-  
+   
    before_action :set_question, only: [:show, :answers, :comments, :question_voters, :update, :destroy]
    skip_before_action :restrict_access, only: [:index, :show, :answers, :comments]
 
    require 'will_paginate/array'
    
     def index
-      if current_user
+      if is_token_present?
+        restrict_access
         feeds = current_user.category_feeds.paginate(page: params[:page], per_page: params[:per_page])
         unless feeds.empty?
           render json: feeds, meta: pagination_dict(feeds), each_serializer: FeedSerializer
@@ -101,6 +102,10 @@ class QuestionsController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_question
     @question = Question.friendly.find(params[:id])
+  end
+
+  def request_header?
+    @userToken = request.headers['Authorization'].present?
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
