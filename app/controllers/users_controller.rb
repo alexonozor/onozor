@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:user_categories, :show, :followers, :following, :questions, :answers, :favorites]
-  skip_before_action :restrict_access, only: [:login]
+  skip_before_action :restrict_access, except: [:update]
   require 'will_paginate/array'
 
   def user_categories
