@@ -1,6 +1,6 @@
 class CategoriesController < ApplicationController
 before_action :set_category, only: [:get_questions, :show]
-skip_before_action :restrict_access, only: [:get_questions]
+skip_before_action :restrict_access
 
   require 'will_paginate/array'
 
@@ -16,6 +16,7 @@ skip_before_action :restrict_access, only: [:get_questions]
   end
 
   def get_questions
+    restrict_access if is_token_present? 
     category_questions = @categories.questions.paginate(page: params[:page], per_page: 5)
     render json: category_questions, each_serializer: FeedSerializer,  meta: pagination_dict(category_questions)
   end
