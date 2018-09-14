@@ -23,7 +23,7 @@ class ApplicationController < ActionController::API
   
    # before_action :update_notification
     #before_action :configure_devise_permitted_parameters, if: :devise_controller?
-    # rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
+    rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
   
     # rescue_from  ActionView::Template::Error, with: :no_user_found
     # helper_method :mobile_device?, :suggested_people
@@ -53,10 +53,9 @@ class ApplicationController < ActionController::API
     #   redirect_to root_url
     # end
   
-    # def record_not_found
-    #   flash[:error] = "The page you are looking for doesn't exist or an error occurred."
-    #   redirect_to root_url
-    # end
+    def record_not_found
+      render json: "Record not found", status: 404
+    end
   
     # def mobile_device?
     #   if session[:mobile_param]
@@ -108,7 +107,6 @@ class ApplicationController < ActionController::API
   
     
       def restrict_access
-        # binding.pry
         if request.headers['Authorization'].present?
           authenticate_or_request_with_http_token do |token|
             begin

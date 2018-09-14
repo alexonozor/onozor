@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:user_categories, :show, :followers, :following, :questions, :answers, :favorites]
-  skip_before_action :restrict_access, except: [:update]
+  skip_before_action :restrict_access, except: [:update, :user_categories]
   require 'will_paginate/array'
 
   def user_categories
@@ -9,6 +9,7 @@ class UsersController < ApplicationController
   end
 
   def index
+    restrict_access if is_token_present? 
     users = User.order(:username).paginate(page: params[:page], per_page: 20)
     render json: users, meta: pagination_dict(users), each_serializer: UsersSerializer
   end
@@ -72,6 +73,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    restrict_access if is_token_present? 
    render json: @user
   end
 

@@ -1,10 +1,11 @@
 class CategoriesController < ApplicationController
 before_action :set_category, only: [:get_questions, :show]
-skip_before_action :restrict_access, only: [:index, :get_questions, :show]
+skip_before_action :restrict_access, only: [:get_questions]
 
   require 'will_paginate/array'
 
   def index
+    restrict_access if is_token_present? 
     if params[:term]
       categories = Category.search(params[:term])
       render json: categories
@@ -20,6 +21,7 @@ skip_before_action :restrict_access, only: [:index, :get_questions, :show]
   end
 
   def show
+    restrict_access if is_token_present? 
     render json: @categories
   end
 
