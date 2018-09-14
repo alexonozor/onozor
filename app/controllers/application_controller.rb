@@ -107,7 +107,6 @@ class ApplicationController < ActionController::API
   
     
       def restrict_access
-        # binding.pry
         if request.headers['Authorization'].present?
           authenticate_or_request_with_http_token do |token|
             begin
