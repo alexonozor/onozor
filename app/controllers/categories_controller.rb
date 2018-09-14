@@ -1,5 +1,7 @@
 class CategoriesController < ApplicationController
 before_action :set_category, only: [:get_questions, :show]
+skip_before_action :restrict_access, only: [:index, :get_questions, :show]
+
   require 'will_paginate/array'
 
   def index

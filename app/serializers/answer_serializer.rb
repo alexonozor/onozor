@@ -1,6 +1,6 @@
 class AnswerSerializer < ActiveModel::Serializer
   require_relative 'feed_serializer'
-  attributes :id, :body, :question_id, :created_at, :updated_at, :send_mail, :comments_count, :vote_count, :vote
+  attributes :id, :body, :question_id, :created_at, :updated_at, :send_mail, :comments_count, :vote_count, :vote, :types
   belongs_to :user, key: :author
   def comments_count
     object.comments.count
@@ -8,6 +8,10 @@ class AnswerSerializer < ActiveModel::Serializer
 
   def vote_count
     object.votes
+  end
+
+  def types
+    'answers'
   end
   
   def vote
