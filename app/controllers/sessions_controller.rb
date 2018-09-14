@@ -8,6 +8,6 @@ class SessionsController < ApplicationController
     user.update!(login_token: SecureRandom.urlsafe_base64,
                  login_token_valid_until: Time.now + 15.minutes)
     UserMailer.login_link(user).deliver
-    render json: { message: 'Login link sended to your email', success: true }, status: 200
+    render json: { message: 'Login link has been sent to your email', success: true }, status: 200
   end
 end

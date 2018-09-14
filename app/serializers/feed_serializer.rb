@@ -9,7 +9,8 @@ end
 class FeedSerializer < ActiveModel::Serializer
   include Rails.application.routes.url_helpers
   # embed :ids, include: true
-  attributes :id, :name, :slug, :body, :created_at, :links, :answers_count, :comments_count, :views, :favourited, :vote_count, :vote, :sharePost
+  attributes :id, :name, :slug, :body, :created_at, :links, :answers_count, :comments_count, 
+  :views, :favourited, :vote_count, :vote, :sharePost, :types
   belongs_to :category
   belongs_to :user, key: :author, serializer: AuthorSerializer
 
@@ -31,6 +32,10 @@ class FeedSerializer < ActiveModel::Serializer
 
   def vote_count
     object.votes
+  end
+
+  def types
+    'questions'
   end
 
   def favourited
