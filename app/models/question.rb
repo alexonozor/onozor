@@ -1,4 +1,5 @@
 class Question < ActiveRecord::Base
+  require 'pry'
   mount_uploader :picture, PictureUploader
  #filters
   acts_as_taggable
@@ -92,8 +93,8 @@ class Question < ActiveRecord::Base
     end
   end
 
-  def self.similar_question(question)
-    sql = "select name, slug from questions where category_id = #{question.category_id} limit 9"
+  def similar_question
+    sql = "select id, name, slug, answers_count, category_id from questions where category_id = #{self.category_id} limit 7"
     Question.find_by_sql(sql)
   end
 

@@ -1,8 +1,8 @@
 
 class QuestionsController < ApplicationController
    
-   before_action :set_question, only: [:show, :answers, :comments, :question_voters, :update, :destroy]
-   skip_before_action :restrict_access, only: [:index, :show, :answers, :comments, :hots_questions]
+   before_action :set_question, only: [:show, :answers, :comments, :question_voters, :update, :destroy, :similar_questions]
+   skip_before_action :restrict_access, only: [:index, :show, :answers, :comments, :hots_questions, :similar_questions]
 
    require 'will_paginate/array'
    
@@ -55,6 +55,11 @@ class QuestionsController < ApplicationController
   def hots_questions
     hots_questions = Question.hot
     render json: hots_questions.to_json
+  end
+
+  def similar_questions
+    similar_questions = @question.similar_question
+    render json: similar_questions.to_json
   end
 
    def question_voters
