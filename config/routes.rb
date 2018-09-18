@@ -20,7 +20,11 @@ Rails.application.routes.draw  do
     resources :questions, except: [:edit, :new] do
       member do 
         get :question_voters
+        get :similar_questions
         post :vote
+      end
+      collection do 
+        get :hots_questions
       end
       resources :comments, except: [:edit, :new, :update]
       resources :answers,  except: [:edit, :new, :update]

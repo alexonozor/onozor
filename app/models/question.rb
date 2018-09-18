@@ -1,4 +1,5 @@
 class Question < ActiveRecord::Base
+  require 'pry'
   mount_uploader :picture, PictureUploader
  #filters
   acts_as_taggable
@@ -33,7 +34,7 @@ class Question < ActiveRecord::Base
   default_scope          ->{ order('created_at DESC')}
   scope :latest,         ->{ where("questions.created_at DESC")}
   scope :popular,        ->{ where('questions.views >= ? AND questions.questionable_type <> ?', 10, 'Questions').limit(5)}
-  scope :hot,            ->{ where("answers_count > ?", 4)}
+  scope :hot,            ->{ where("answers_count > ?", 4).select('id, slug, name, answers_count').limit(5).order("answers_count DESC")}
   scope :unanswered,     ->{ where("answers_count = ?", 0)}
   scope :answered,       ->{ where("answers_count > ?", 0)}
   scope :page_questions, ->{ where("questionable_type = ?", "question")}
@@ -92,8 +93,8 @@ class Question < ActiveRecord::Base
     end
   end
 
-  def self.similar_question(question)
-    sql = "select name, slug from questions where category_id = #{question.category_id} limit 9"
+  def similar_question
+    sql = "select id, name, slug, answers_count, category_id from questions where category_id = #{self.category_id} limit 7"
     Question.find_by_sql(sql)
   end
 
