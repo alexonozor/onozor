@@ -22,6 +22,9 @@ Rails.application.routes.draw  do
         get :question_voters
         post :vote
       end
+      collection do 
+        get :hots_questions
+      end
       resources :comments, except: [:edit, :new, :update]
       resources :answers,  except: [:edit, :new, :update]
     end
