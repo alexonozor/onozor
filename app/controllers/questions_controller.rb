@@ -7,6 +7,7 @@ class QuestionsController < ApplicationController
    require 'will_paginate/array'
    
     def index
+      
       if is_token_present?
         restrict_access
         feeds = current_user.category_feeds.paginate(page: params[:page], per_page: params[:per_page])

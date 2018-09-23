@@ -51,6 +51,9 @@ Rails.application.routes.draw  do
       member do
         get :get_questions
       end
+      collection do
+        get :trending 
+      end
     end
 
     resources :favourites, :only => [:toggle] do

@@ -12,6 +12,7 @@ class Category < ActiveRecord::Base
   # validates_presence_of :user_id, :description, :name
   # validates_length_of   :name, :within => 10..30, :uniqueness => true
   # validates_length_of   :description, :minimum => 70, :uniqueness => true
+  scope :trending,  ->{ where('question_count > ?', 3).limit(4)}
 
  #friendlyId
  extend FriendlyId
