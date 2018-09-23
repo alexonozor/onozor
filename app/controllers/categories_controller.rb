@@ -15,10 +15,16 @@ skip_before_action :restrict_access
     end
   end
 
+  def trending
+    restrict_access if is_token_present?
+    categories = Category.trending.order("subscribers_count DESC")
+    render json: categories
+  end
+
   def get_questions
     restrict_access if is_token_present? 
     category_questions = @categories.questions.paginate(page: params[:page], per_page: 5)
-    render json: category_questions, each_serializer: FeedSerializer,  meta: pagination_dict(category_questions)
+    render json: category_questions, each_serializer: FeedSerializer, meta: pagination_dict(category_questions)
   end
 
   def show
