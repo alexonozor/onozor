@@ -24,7 +24,7 @@ class CommentsController < ApplicationController
     comment = Comment.new(comment_params)
     comment.user = current_user
       if comment.save
-        #send_notification(comment)
+        send_notification(comment)
         render json: { data: comment, status: 200, success: true }, include: 'user'
       else
         render json: { error: comment.errors, status: 500, success: false }
@@ -44,13 +44,20 @@ class CommentsController < ApplicationController
   def send_notification(comment)
     if comment.commentable.class.name == 'Answer'
       answers = comment.commentable.class.where(question_id: comment.commentable.question.id)
-      users = answers.map(&:user).uniq
+      uniq_users = answers.map(&:user).uniq
     else
       answers = comment.commentable.answers
-      users = answers.map(&:user).uniq
+      users = answers.map(&:user)
+      users << comment.commentable.user
+      uniq_users = users.uniq
     end
-    users.each do |user|
-      Activity.create!(action: params[:action], trackable: comment, user_id: user.id) unless user.id == current_user.id
+    uniq_users.each do |uniq_user|
+      Activity.create!(
+        action: params[:action], 
+        trackable: comment, 
+        user_id: uniq_user.id, 
+        actor_id: current_user.id
+      ) unless uniq_user.id == current_user.id
     end
   end
 

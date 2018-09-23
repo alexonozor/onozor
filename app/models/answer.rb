@@ -4,13 +4,12 @@ class Answer < ActiveRecord::Base
   belongs_to :user
   has_many :answer_votes
   has_many :comments, :as => :commentable, :dependent => :destroy
-  has_many :activities,  as: :notifier, :foreign_key => 'receiver_id'
 
   #validation
   validates_uniqueness_of :body, { scope: :question_id }
   validates_presence_of :body, :question_id, :user_id
   has_many :comments, :as => :commentable, :dependent => :destroy
-
+  default_scope { order("created_at ASC") }
   # after_validation :update_profile_progress
 
   def update_profile_progress

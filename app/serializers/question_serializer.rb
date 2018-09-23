@@ -2,10 +2,15 @@ class QuestionSerializer < ActiveModel::Serializer
   require 'feed_serializer'
   include Rails.application.routes.url_helpers
   attributes :id, :name, :slug, :body, :created_at, :updated_at, :answers_count, :comments_count, :views,
-             :question_link, :comments, :answers, :favourited, :vote_count, :vote, :types
+             :question_link, :comments, :answers, :favourited, :vote_count, :vote, :types, :show_answer_form
 
   def comments_count
     object.comments.count
+  end
+
+  def show_answer_form
+    return true if object.answers_count > 0
+    return false
   end
 
   def vote_count
