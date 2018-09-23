@@ -21,7 +21,6 @@ gem 'figaro'
 gem 'carrierwave'
 gem 'cloudinary'
 gem 'judge'
-gem 'public_activity'
 gem 'rails-observers'
 gem "pg", "~> 0.18" 
 gem 'impressionist'

@@ -13,6 +13,8 @@ class AnswerSerializer < ActiveModel::Serializer
   def types
     'answers'
   end
+
+  
   
   def vote
     if  current_user.present?

@@ -1,0 +1,9 @@
+<html>
+    <body>
+        <h3>Hi  <%= (@following.fullname.titleize) %>, </h3>
+        <p><%=  (@follower.fullname.titleize)  %> is now following you</p>
+        <p>click the link below to view <%= @follower.fullname.titleize + "'s" %> Profile</p>
+        <%= user_url (@follower) %>
+        <a herf="http://onozor.com/#/users/<%=  @follower.slug %>/questions">View Profile</a>
+    </body>
+</html>

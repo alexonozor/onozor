@@ -44,12 +44,19 @@ class QuestionsController < ApplicationController
 
    def vote
     # ProfileProgress.update_profile_for_upvoted_content(current_user) unless current_user.have_upvoted_a_content?
-    vote = QuestionVote.where(question_id: params[:id], user_id: current_user.id ).update_or_create(value: params[:value], question_id: params[:id], user_id: current_user.id)
+    question_vote = QuestionVote.where(question_id: params[:id], user_id: current_user.id )
+    vote = question_vote.update_or_create(value: params[:value], question_id: params[:id], user_id: current_user.id)
     if vote
+      send_notification(question_vote)
       render json: { message: "Thank you for voting.", success: true, staus: 200 }
     else
       render json: { message: "Unable to vote",  success: false, status: 500 }
     end
+  end
+
+  def send_notification(vote)
+    user_id = Question.find(params[:id]).user.id
+    Activity.create!(action: params[:action], trackable: vote.first, user_id: user_id, actor_id: current_user.id)
   end
   
   def hots_questions

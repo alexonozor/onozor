@@ -1,5 +1,4 @@
 class Question < ActiveRecord::Base
-  require 'pry'
   mount_uploader :picture, PictureUploader
  #filters
   acts_as_taggable
@@ -7,7 +6,6 @@ class Question < ActiveRecord::Base
 
   before_validation :set_permalink
 
-  # after_create :send_slack_message if Rails.env.production?
   has_ancestry
 
  extend FriendlyId
@@ -27,8 +25,6 @@ class Question < ActiveRecord::Base
  #validation
  validates_presence_of    :name #:tag_list
  validates_length_of      :name, :within => 5..2000
- #validates_length_of      :body, :within => 10...20000
- validates_uniqueness_of  :name
 
   #scope
   default_scope          ->{ order('created_at DESC')}

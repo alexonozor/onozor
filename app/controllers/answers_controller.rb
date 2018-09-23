@@ -1,5 +1,5 @@
 class AnswersController < ApplicationController
-  before_action :set_answers, only: [:show, :comments, :update]
+  before_action :set_answers, only: [:show, :comments, :update, :vote]
   skip_before_action :restrict_access, only: [:comments]
   require 'will_paginate/array'
   # def index
@@ -40,17 +40,27 @@ class AnswersController < ApplicationController
     answer = current_user.answers.build(answer_params)
     answer.request = request
     if answer.save
-      #  send_notification(@answer)
+        send_notification(answer)
         render json: answer
     else
       render json: { errors: answer.errors, status: 500, success: false }
     end
   end
 
+  def send_notification(answer)
+    answers = Answer.where(question_id: answer.question.id)
+    users = answers.map(&:user) << answer.question.user
+    users.uniq.each do |user|
+      Activity.create!(action: params[:action], trackable: answer, user_id: user.id, actor_id: current_user.id ) unless answer.user.id == user.id
+    end
+  end
+
   def vote
     # ProfileProgress.update_profile_for_upvoted_content(current_user) unless current_user.have_upvoted_a_content?
-    vote = AnswerVote.where(answer_id: params[:id], user_id: current_user.id ).update_or_create(value: params[:value], answer_id: params[:id], user_id: current_user.id)
+    answer_vote = AnswerVote.where(answer_id: params[:id], user_id: current_user.id )
+    vote = answer_vote.update_or_create(value: params[:value], answer_id: params[:id], user_id: current_user.id)
     if vote
+      Activity.create!(action: params[:action], trackable: answer_vote.first, user_id: @answer.user_id, actor_id: current_user.id)
       render json: { message: "Thank you for voting.", success: true, staus: 200 }
     else
       render json: { message: "Unable to vote",  success: false, status: 500 }
@@ -64,14 +74,6 @@ class AnswersController < ApplicationController
       render json: @answer
     else
       render json: { errors: @answer.errors, status: 500, success: false }
-    end
-  end
-
-  def send_notification(answer)
-    answers = Answer.where(question_id: answer.question.id)
-    users = answers.map(&:user) << answer.question.user
-    users.uniq.each do |user|
-      Activity.create!(action: params[:action], trackable: answer, user_id: user.id ) unless answer.user.id == user.id
     end
   end
 

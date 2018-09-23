@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180901125014) do
+ActiveRecord::Schema.define(version: 20180921152207) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,9 @@ ActiveRecord::Schema.define(version: 20180901125014) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "seen",                       default: false
+    t.integer  "actor_id"
+    t.datetime "read_at"
+    t.boolean  "read",                       default: false
   end
 
   add_index "activities", ["trackable_id"], name: "index_activities_on_trackable_id", using: :btree

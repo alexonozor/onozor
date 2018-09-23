@@ -1,4 +1,11 @@
 Rails.application.routes.draw  do
+    resources :notifications do 
+      collection do
+        put :mark_all
+        get :notification_count
+      end
+    end
+
     get  'question/:id/comments', to: 'questions#comments'
     get  'answer/:id/comments', to: 'answers#comments'
     get  'question/:id/answers', to: 'questions#answers'
@@ -15,6 +22,7 @@ Rails.application.routes.draw  do
         post :vote
       end
     end
+    
 
     
     resources :questions, except: [:edit, :new] do
