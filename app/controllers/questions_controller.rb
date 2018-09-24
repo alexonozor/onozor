@@ -2,12 +2,11 @@
 class QuestionsController < ApplicationController
    
    before_action :set_question, only: [:show, :answers, :comments, :question_voters, :update, :destroy, :similar_questions]
-   skip_before_action :restrict_access, only: [:index, :show, :answers, :comments, :hots_questions, :similar_questions]
+   skip_before_action :restrict_access, only: [:index, :show, :answers, :comments, :hots_questions, :similar_questions, :search]
 
    require 'will_paginate/array'
    
     def index
-      
       if is_token_present?
         restrict_access
         feeds = current_user.category_feeds.paginate(page: params[:page], per_page: params[:per_page])
@@ -21,6 +20,12 @@ class QuestionsController < ApplicationController
         feeds =  Question.paginate(page: params[:page], per_page: params[:per_page])
         render json: feeds, meta: pagination_dict(feeds), each_serializer: FeedSerializer
       end
+    end
+
+
+    def search
+      results = Question.search(params[:name])
+      render json: results
     end
 
     def comments

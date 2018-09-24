@@ -33,6 +33,7 @@ Rails.application.routes.draw  do
       end
       collection do 
         get :hots_questions
+        get :search 
       end
       resources :comments, except: [:edit, :new, :update]
       resources :answers,  except: [:edit, :new, :update]
@@ -52,7 +53,7 @@ Rails.application.routes.draw  do
         get :get_questions
       end
       collection do
-        get :trending 
+        get :trending
       end
     end
 
